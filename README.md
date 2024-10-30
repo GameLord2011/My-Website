@@ -1,1 +1,1 @@
-[my website](GameLord2011.github.io)
+my website
