@@ -1,3 +1,9 @@
+@font-face { 
+    font-family:"BigBlueTermPlusNerdFontPropoRegular"; 
+    src: url("assets/fonts/BigBlueTermPlusNerdFontPropoRegular.ttf") 
+    format("truetype"); 
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -24,8 +30,9 @@
     border-style: double;
 }
 body{
-    color: white;
-    background-color: black;
+    color: #c1c1c1;
+    background-color: #121013;
+    font-family: BigBlueTermPlusNerdFontPropoRegular;
 }
 .background {
     position: absolute;
@@ -33,4 +40,7 @@ body{
     top: 0;
     left: 0;
     z-index: 0;
+}
+.wiredmarquee{
+    color: #FFFFFF;
 }
