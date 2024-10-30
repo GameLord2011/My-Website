@@ -15,12 +15,12 @@
     align-content: center;
     text-align: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgb(21, 0, 78);
 }
 
 .name {
     background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(255,165,0,1) 16%, rgba(255,255,0,1) 32%, rgba(0,255,0,1) 48%, rgba(0,0,255,1) 64%, rgba(75,0,130,1) 80%, rgba(128,0,128,1) 100%);
-    color: rgb(0, 0, 0);
+    color: #121013;
     border-style: double;
 }
 body{
