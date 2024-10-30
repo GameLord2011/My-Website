@@ -23,7 +23,7 @@
     border-style: double;
 }
 body{
-    color: #c1c1c1;
+    color: #ffffff;
     background-color: #121013;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -33,7 +33,4 @@ body{
     top: 0;
     left: 0;
     z-index: 0;
-}
-.wiredmarquee{
-    color: #FFFFFF;
 }
