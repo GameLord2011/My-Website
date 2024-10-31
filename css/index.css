@@ -35,11 +35,11 @@ body{
 .center_panel{
     position: absolute;
     z-index: 10;
-    width: 50%;
-    height: 90%;
+    width: 25%;
+    height: 20%;
     background: #1b7400;
-    top: 50%;
-    left: 50%;
+    top: 25%;
+    left: 25%;
     margin: -110px 0 0 -100px;
     padding: 20px;
     border-radius: 4px;
