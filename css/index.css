@@ -37,12 +37,14 @@ body{
     z-index: 10;
     width: 25%;
     height: 20%;
-    background: #1b7400;
+    background: rgba(0, 0, 0, 0);
     top: 25%;
     left: 50%;
     margin: -110px 0 0 -100px;
     padding: 20px;
     border-radius: 4px;
+    border-style: dotted;
+    border-color: darkgreen;
     box-sizing: border-box;
     z-index: 100;
     text-align: center;
