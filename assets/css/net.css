@@ -8,4 +8,6 @@ canvas#canvas {
     display: block;
     background: #000;
     text-align: left;
+    width: 100%;
+    height: 100%;
 }
