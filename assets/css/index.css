@@ -75,8 +75,6 @@ ul{
 }
 /* Dropdown Button */
 .dropbtn {
-    top: 30%;
-    left: 100%;
     background-color: #04AA6D;
     color: white;
     padding: 16px;
