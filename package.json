@@ -1,6 +1,6 @@
 {
     "private": "true",
     "dependencies": {
-        "@tsparticles/engine": "^3.5.0"
+        "tsparticles": "^3.5.0"
     }
 }
