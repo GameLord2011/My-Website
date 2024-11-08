@@ -1,0 +1,6 @@
+{
+    "private": "true",
+    "dependencies": {
+        "tsparticles": "^3.5.0"
+    }
+}

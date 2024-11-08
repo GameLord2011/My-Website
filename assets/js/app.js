@@ -4,7 +4,7 @@
 tsParticles
     .load({
         id: "tsparticles",
-        url: "./assets/js/particles.json",
+        url: "./assets/json/particles.json",
     })
     .then(container => {
         console.log("callback - tsparticles config loaded");
