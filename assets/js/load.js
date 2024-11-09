@@ -1,3 +1,3 @@
 (async () => {
-    await tsParticles.load({ id: "tsparticles", url: "./assets/json/particles.json"});
+    await tsParticles.load({ id: "tsparticles", url: "assets/json/particles.json"});
 })();
