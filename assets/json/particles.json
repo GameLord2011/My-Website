@@ -185,8 +185,8 @@
       "animation": {
         "h": {
           "count": 0,
-          "enable": false,
-          "speed": 10,
+          "enable": true,
+          "speed": 1,
           "decay": 0,
           "delay": 0,
           "sync": true,
