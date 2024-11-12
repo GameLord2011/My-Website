@@ -539,3 +539,4 @@
           }
     });
 })();
+console.log("TsParticles.js loaded")
