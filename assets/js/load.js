@@ -1,4 +1,3 @@
-import { tsParticles } from "@tsparticles/engine";
 (async () => {
     await tsParticles.load({ id: "tsparticles", options:
         {
