@@ -1,7 +1,0 @@
-{
-    "private": "false",
-    "dependencies": {
-        "tsparticles": "^3.5.0",
-        "type": "module"
-    }
-}
