@@ -1,3 +1,5 @@
+import { tsParticles } from "@tsparticles/engine";
+
 /* await */ tsParticles.load({
      element: "tsparticles", /* an HTML element used as container for the canvas, if a canvas is passed, is used that instead of a generated canvas, optional */
     // id: /* a string to identify the current loading instance, if not passed, a random id is generated */
