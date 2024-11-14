@@ -138,3 +138,12 @@ ul{
     border-style: dashed;
     border-color: #3e8e41;
 }
+.attrib-bcg{
+    right: 100%;
+    bottom: 100%;
+    color: #c1c1c1;
+    border-style: solid;
+    border-width: 10pt;
+    margin: 10pt;
+    padding: 10pt;
+}
