@@ -1,5 +1,5 @@
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@3.5.0/tsparticles.bundle.min.js";
-import { loadFull } from "https://cdn.jsdelivr.net/npm/tsparticles@3.5.0/+esm";
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.2.2/+esm";
+import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.2.2/+esm";
 
 const options =
 {
