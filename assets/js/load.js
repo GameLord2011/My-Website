@@ -112,3 +112,7 @@ const options =
   },
   "retina_detect": true
 }
+(async () => {
+  await loadAll(tsParticles);
+  await tsParticles.load({ id: "particles-js", options });
+})();
