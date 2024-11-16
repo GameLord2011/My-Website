@@ -1,8 +1,13 @@
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.2.2/+esm";
-import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.2.2/+esm";
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm";
+import { loadAll } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm";
 
-const options =
-{
+async function loadParticles(options) {
+  await loadAll(tsParticles);
+
+  await tsParticles.load({ id: "tsparticles", options });
+}
+
+const configs = {
   "particles": {
     "number": {
       "value": 99,
@@ -111,8 +116,10 @@ const options =
     }
   },
   "retina_detect": true
-}
-(async () => {
-  await loadAll(tsParticles);
-  await tsParticles.load({ id: "particles-js", options });
-})();
+};
+
+
+
+loadParticles(configs);
+//# sourceURL=pen.js
+    
