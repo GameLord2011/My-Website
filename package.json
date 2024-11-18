@@ -1,7 +1,3 @@
 {
-    "private": "false",
-    "dependencies": {
-        "@tsparticles/particles.js": "^3.0.0-beta.0",
-        "animejs": "^3.2.2"
-    }
+    "private": "false"
 }
