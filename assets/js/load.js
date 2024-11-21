@@ -298,11 +298,11 @@
             "options": {}
           },
           "outModes": {
-            "default": "out",
-            "bottom": "out",
-            "left": "out",
-            "right": "out",
-            "top": "out"
+            "default": "bounce",
+            "bottom": "bounce",
+            "left": "bounce",
+            "right": "bounce",
+            "top": "bounce"
           },
           "random": false,
           "size": false,
