@@ -1,4 +1,4 @@
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/+esm";
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/tsparticles.bundle.min.js";
 
 tsParticles
   .load({
