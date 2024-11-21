@@ -186,7 +186,7 @@ for (const e of document.querySelectorAll('div, img')) {
       // - 0: left-to-right
       // - 1: top-to-bottom
       // - 2: radial       
-      mode: data.mode ?? 0,
+      mode: data.mode ?? 2,
       
       // Width of effect area.
       width: data.width ?? 0.2,

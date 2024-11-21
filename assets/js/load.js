@@ -7,7 +7,7 @@
       "autoPlay": true,
       "background": {
         "color": {
-          "value": "#000"
+          "value": "#000000"
         },
         "image": "",
         "position": "",
@@ -19,7 +19,7 @@
         "composite": "destination-out",
         "cover": {
           "color": {
-            "value": "#fff"
+            "value": "#000000"
           },
           "opacity": 1
         },
@@ -221,7 +221,7 @@
           }
         },
         "color": {
-          "value": "#03A062",
+          "value": "#000f00",
           "animation": {
             "h": {
               "count": 0,
@@ -511,7 +511,7 @@
             "enable": true,
             "frequency": 0.5,
             "color": {
-              "value": "#03a062"
+              "value": "#000f00"
             },
             "opacity": 0.17
           },
