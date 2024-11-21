@@ -173,7 +173,7 @@ const getDataAttributes = (e) => {
 // main
 const vfx = new VFX();
 
-for (const e of document.querySelectorAll('img')) {      
+for (const e of document.querySelectorAll('body')) {      
   const data = getDataAttributes(e);
       
   vfx.add(e, { 
