@@ -1,4 +1,4 @@
-import { VFX } from './node_modules/@vfx-js/core';
+import { VFX } from 'https://esm.sh/@vfx-js/core';
 
 const img = document.querySelector('#img');
 

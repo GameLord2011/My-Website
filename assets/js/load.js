@@ -1,4 +1,4 @@
-import { tsParticles } from "./node_modules/@tsparticles/engine/package.json";
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/+esm";
 
 tsParticles
   .load({
