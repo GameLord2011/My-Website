@@ -1,5 +1,5 @@
 (async () => {
-  await loadFull(tsParticles);
+  await loadAll(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",
