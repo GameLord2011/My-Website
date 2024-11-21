@@ -7,7 +7,7 @@
       "autoPlay": true,
       "background": {
         "color": {
-          "value": "#000000"
+          "value": "#000"
         },
         "image": "",
         "position": "",
@@ -19,7 +19,7 @@
         "composite": "destination-out",
         "cover": {
           "color": {
-            "value": "#000000"
+            "value": "#fff"
           },
           "opacity": 1
         },
