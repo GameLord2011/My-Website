@@ -1,6 +1,7 @@
 {
-    "private": "false",
-    "dependencies": {
-        "tsparticles": "^3.6.0"
-    }
+  "private": "false",
+  "dependencies": {
+    "@vfx-js/core": "^0.5.2",
+    "tsparticles": "^3.6.0"
+  }
 }
