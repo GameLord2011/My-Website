@@ -545,3 +545,4 @@
     },
   });
 })();
+console.log("tsparticles loaded!")
