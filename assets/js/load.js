@@ -1,3 +1,9 @@
-particlesJS.load('particles-js', 'assets/json/particles.json', function() {
-  console.log('callback - particles.js config loaded');
+import { tsParticles } from "tsparticles-engine";
+
+tsParticles.load({
+  id: "tsparticles",
+  //options: {
+  //    /* options here */
+  //},
+   url: "assets\\json\\particles.json"
 });

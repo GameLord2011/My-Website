@@ -11,7 +11,6 @@
         </title>
     </head>
     <body onclick="clicksound()"> 
-        <!-- TODO: Render dropdown over canvas. -->
         <div class="dropdown">
             <button class="dropbtn">Pages</button>
             <div class="dropdown-content">
@@ -44,8 +43,8 @@
             </ul>
         </div>
         <div id="particles-js"></div>
-        <script src="assets/js/particles.js"></script>
-        <script src="assets/js/load.js">
+        <script src="node_modules/@tsparticles/engine/tsparticles.engine.min.js"></script>
+        <script type="module" src="assets/js/load.js">
         </script>
     </body>
 </html>
