@@ -1,4 +1,4 @@
-import { tsParticles } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine/package.json";
 
 tsParticles
   .load({
