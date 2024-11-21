@@ -1,13 +1,10 @@
-import { tsParticles } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/tsparticles.bundle.min.js";
+import { loadFull } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/tsparticles.bundle.min.js";
 
-tsParticles
-  .load({
+(async () => {
+  await loadFull(tsParticles);
+
+  await tsParticles.load({
     id: "tsparticles",
-    url: "assets/json/particles.json",
-  })
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
+    url: "./assets/json/particles.json"
   });
+})();
