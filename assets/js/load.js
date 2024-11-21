@@ -1,4 +1,4 @@
-import { loadFull } from "https://cdn.jsdelivr.net/npm/tsparticles@3.6.0/tsparticles.bundle.min.js";
+import { tsParticles } from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.6.0/tsparticles.all.bundle.min.js";
 
 (async () => {
   await loadFull(tsParticles);
