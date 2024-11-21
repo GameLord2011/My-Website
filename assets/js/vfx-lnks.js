@@ -173,7 +173,7 @@ const getDataAttributes = (e) => {
 // main
 const vfx = new VFX();
 
-for (const e of document.querySelectorAll('div, img')) {      
+for (const e of document.querySelectorAll('img')) {      
   const data = getDataAttributes(e);
       
   vfx.add(e, { 
@@ -186,7 +186,7 @@ for (const e of document.querySelectorAll('div, img')) {
       // - 0: left-to-right
       // - 1: top-to-bottom
       // - 2: radial       
-      mode: data.mode ?? 2,
+      mode: data.mode ?? 0,
       
       // Width of effect area.
       width: data.width ?? 0.2,
