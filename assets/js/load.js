@@ -221,7 +221,7 @@
           }
         },
         "color": {
-          "value": "#000f00",
+          "value": "#03A062",
           "animation": {
             "h": {
               "count": 0,
@@ -511,7 +511,7 @@
             "enable": true,
             "frequency": 0.5,
             "color": {
-              "value": "#000f00"
+              "value": "#03A062"
             },
             "opacity": 0.17
           },
