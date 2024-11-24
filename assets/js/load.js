@@ -51,7 +51,7 @@ import * as tsParticles from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.6.
             "type": "circle"
           },
           "onHover": {
-            "enable": false,
+            "enable": true,
             "mode": "repulse",
             "parallax": {
               "enable": false,
@@ -151,7 +151,7 @@ import * as tsParticles from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.6.
             "quantity": 2
           },
           "repulse": {
-            "distance": 200,
+            "distance": 100,
             "duration": 0.4,
             "factor": 100,
             "speed": 1,
