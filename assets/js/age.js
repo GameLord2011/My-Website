@@ -10,3 +10,4 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
     age--;
 };
 document.getElementById("age").innerHTML = age;
+console.log("Contarary to what (I Think) you thought, I am in fact " + age + " years old.")
