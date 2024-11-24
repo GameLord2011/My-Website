@@ -1,3 +1,5 @@
+import * as tsParticles from "https://cdn.jsdelivr.net/npm/@tsparticles/all@3.6.0/tsparticles.all.bundle.min.js";
+
 (async () => {
   await loadAll(tsParticles);
 
