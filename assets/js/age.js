@@ -19,5 +19,5 @@ else if (age >= 1 && age <= 12){
     console.log("Wait how are you visiting this site, I haven't programmed it yet!?!");
 }
 else{
-    console.log("Contarary to what (I Think) you thought, I am in fact " + age + " years old.");
+    console.log("Contarary to what (I Think) you (might have) thought, I am in fact " + age + " years old.");
 }
