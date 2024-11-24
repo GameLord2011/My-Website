@@ -10,4 +10,14 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
     age--;
 };
 document.getElementById("age").innerHTML = age;
-console.log("Contarary to what (I Think) you thought, I am in fact " + age + " years old.")
+
+// Little easter egg for the devs @B-)
+if (age <= 0){
+    console.log("Wait how are you visiting this site, I'm not even born yet!?!");
+}
+else if (age >= 1 && age <= 12){
+    console.log("Wait how are you visiting this site, I haven't programmed it yet!?!");
+}
+else{
+    console.log("Contarary to what (I Think) you thought, I am in fact " + age + " years old.");
+}
