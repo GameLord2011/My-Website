@@ -1,3 +1,13 @@
+::-moz-selection { /* Code for Firefox */
+    color: rgb(0, 0, 0);
+    background: darkgreen;
+  }
+  
+  ::selection {
+    color: rgb(0, 0, 0);
+    background: darkgreen;
+  }
+
 *{
     margin: 0;
     padding: 0;
