@@ -1,3 +1,17 @@
+::-moz-selection { /* Code for Firefox */
+    color: rgb(0, 0, 0);
+    background: darkgreen;
+    animation-name: FontSwitch;
+    animation-duration: 50ms;
+  }
+  
+::selection {
+    color: rgb(0, 0, 0);
+    background: darkgreen;
+    animation-name: FontSwitch;
+    animation-duration: 50ms;
+}
+
 @font-face {
     font-family: TTSZNFM;
     src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
@@ -14,20 +28,6 @@
         font-family: TTSZNFM;
     }
 }
-
-::-moz-selection { /* Code for Firefox */
-    color: rgb(0, 0, 0);
-    background: darkgreen;
-    animation-name: FontSwitch;
-    animation-duration: 50ms;
-  }
-  
-  ::selection {
-    color: rgb(0, 0, 0);
-    background: darkgreen;
-    animation-name: FontSwitch;
-    animation-duration: 50ms;
-  }
 
 *{
     margin: 0;
