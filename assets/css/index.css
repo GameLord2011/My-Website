@@ -1,13 +1,13 @@
 ::-moz-selection { /* Code for Firefox */
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: monospace;
   }
   
   ::selection {
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: monospace;
   }
 
 *{
