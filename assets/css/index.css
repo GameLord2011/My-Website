@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'ThreeTwoSevenZeroNFM';
-    src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2')
+    src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
+          url('../fonts/3270NerdFontMono-Regular.woff') format('woff')
 }
 
 ::-moz-selection { /* Code for Firefox */
