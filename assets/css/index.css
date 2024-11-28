@@ -1,13 +1,18 @@
+@font-face {
+    font-family: 'ThreeTwoSevenZeroNFM';
+    src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2')
+}
+
 ::-moz-selection { /* Code for Firefox */
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: monospace;
+    font-family: 'ThreeTwoSevenZeroNFM';
   }
   
   ::selection {
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: monospace;
+    font-family: 'ThreeTwoSevenZeroNFM';
   }
 
 *{
