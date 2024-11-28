@@ -13,7 +13,7 @@
 }
 
 @font-face {
-    font-family: TTSZNFM;
+    font-family: 'TTSZNFM';
     src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
           url('../fonts/3270NerdFontMono-Regular.woff') format('woff'),
           url('../fonts/3270NerdFontMono-Regular.ttf') format('truetype');
@@ -25,7 +25,7 @@
     }
 
     to{
-        font-family: TTSZNFM;
+        font: 'TTSZNFM';
     }
 }
 
