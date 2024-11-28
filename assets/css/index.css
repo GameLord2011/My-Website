@@ -1,19 +1,20 @@
 @font-face {
-    font-family: 'ThreeTwoSevenZeroNFM';
+    font-family: 'TTSZNFM';
     src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
-          url('../fonts/3270NerdFontMono-Regular.woff') format('woff')
+          url('../fonts/3270NerdFontMono-Regular.woff') format('woff'),
+          url('../fonts/3270NerdFontMono-Regular.ttf') format('truetype');
 }
 
 ::-moz-selection { /* Code for Firefox */
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: 'ThreeTwoSevenZeroNFM';
+    font-family: 'TTSZNFM';
   }
   
   ::selection {
     color: rgb(0, 0, 0);
     background: darkgreen;
-    font-family: 'ThreeTwoSevenZeroNFM';
+    font-family: 'TTSZNFM';
   }
 
 *{
