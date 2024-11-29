@@ -1,32 +1,29 @@
+@font-face {
+    font-family: 'TTZNFM';
+    src: url('../../assets/fonts/3270NerdFontMono-Regular.eot');
+    src:  url('../../assets/fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
+          url('../../assets/fonts/3270NerdFontMono-Regular.woff') format('woff'),
+          url('../../assets/fonts/3270NerdFontMono-Regular.ttf') format('truetype'),
+          url('../../assets/fonts/3270NerdFontMono-Regular.eot?#iefix') format('embedded-opentype'),
+          url('../../assets/fonts/3270NerdFontMono-Regular.svg#3270NFM') format('svg');
+}
+
+@keyframes fnt_ld {
+    0%{font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+    25%{font-family: 'TTZNFM';}
+    50%{font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+    75%{font-family: 'TTZNFM';}
+    100%{font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+}
+
 ::-moz-selection { /* Code for Firefox */
     color: rgb(0, 0, 0);
     background: darkgreen;
-    animation-name: FontSwitch;
-    animation-duration: 50ms;
-  }
+}
   
 ::selection {
     color: rgb(0, 0, 0);
     background: darkgreen;
-    animation-name: FontSwitch;
-    animation-duration: 50ms;
-}
-
-@font-face {
-    font-family: 'TTSZNFM';
-    src:  url('../fonts/3270NerdFontMono-Regular.woff2') format('woff2'),
-          url('../fonts/3270NerdFontMono-Regular.woff') format('woff'),
-          url('../fonts/3270NerdFontMono-Regular.ttf') format('truetype');
-}
-
-@keyframes FontSwitch {
-    from{
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    to{
-        font: 'TTSZNFM';
-    }
 }
 
 *{
@@ -54,7 +51,9 @@
 body{
     color: #ffffff;
     background-color: #000000;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: TTZNFM;
+    animation: fnt_ld;
+    animation-duration: 3s;
 }
 .background {
     position: absolute;
