@@ -1,5 +1,3 @@
-var loadAll = require("@tsparticles/all");
-
 (async () => {
   await loadAll(tsParticles);
 
