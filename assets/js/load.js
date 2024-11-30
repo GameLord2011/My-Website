@@ -1,3 +1,5 @@
+const tsParticles = require('@tsparticles/all')
+
 (async () => {
   await loadAll(tsParticles);
 

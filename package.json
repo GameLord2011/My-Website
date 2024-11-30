@@ -1,3 +1,6 @@
 {
-  "private": "false"
+  "private": "false",
+  "dependencies": {
+    "@tsparticles/all": "^3.7.1"
+  }
 }
