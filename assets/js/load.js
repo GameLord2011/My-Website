@@ -1,4 +1,4 @@
-var tsParticles = require('@tsparticles/all');
+const tsParticles = require("@tsparticles/all");
 
 (async () => {
   await loadAll(tsParticles);
