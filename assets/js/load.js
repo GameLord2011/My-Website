@@ -1,4 +1,4 @@
-import tsParticles from '@tsparticles/all';
+import tsParticles from '../../node_modules/@tsparticles/all';
 
 (async () => {
   await loadAll(tsParticles);
