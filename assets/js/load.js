@@ -1,4 +1,4 @@
-import tsParticles from '@tsparticles/all';
+var tsParticles = require("@tsparticles/all")
 
 (async () => {
   await loadAll(tsParticles);
