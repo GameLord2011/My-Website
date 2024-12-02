@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@tsparticles/all": "^3.7.1",
-    "@vfx-js/core": "^0.5.2"
-  }
-}
