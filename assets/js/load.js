@@ -1,5 +1,3 @@
-import { tsParticles } from "./node_modules/tsparticles";
-
 (async () => {
   await loadAll(tsParticles);
 
