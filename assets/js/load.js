@@ -1,3 +1,5 @@
+const cap = require('capitalize')
+
 (async () => {
   await loadAll(tsParticles);
 
@@ -546,3 +548,4 @@
   });
 })();
 console.log("tsparticles loaded!")
+console.log(capitalize("if this dosen't then im gonna yell!"))

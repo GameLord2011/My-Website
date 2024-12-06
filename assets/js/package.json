@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@vfx-js/core": "^0.5.2"
+    "@vfx-js/core": "^0.5.2",
+    "capitalize": "^2.0.4"
   }
 }
