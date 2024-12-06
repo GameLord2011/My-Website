@@ -1,3 +1,5 @@
+import { tsParticles } from "tsparticles";
+
 (async () => {
   await loadAll(tsParticles);
 
