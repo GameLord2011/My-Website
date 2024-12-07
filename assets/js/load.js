@@ -1,5 +1,3 @@
-import * as cap from './node_modules/capitalize'
-
 (async () => {
   await loadAll(tsParticles);
 
@@ -548,4 +546,3 @@ import * as cap from './node_modules/capitalize'
   });
 })();
 console.log("tsparticles loaded!")
-console.log(cap("if this dosen't then im gonna yell!"))
