@@ -1,4 +1,4 @@
-import * as cap from 'capitalize'
+import * as cap from './node_modules/capitalize'
 
 (async () => {
   await loadAll(tsParticles);
