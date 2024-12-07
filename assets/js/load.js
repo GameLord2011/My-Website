@@ -1,4 +1,4 @@
-import * as cap from ('capitalize')
+import * as cap from 'capitalize'
 
 (async () => {
   await loadAll(tsParticles);
