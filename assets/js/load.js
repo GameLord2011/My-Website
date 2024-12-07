@@ -1,4 +1,4 @@
-const cap = require('capitalize')
+import * as cap from ('capitalize')
 
 (async () => {
   await loadAll(tsParticles);
@@ -548,4 +548,4 @@ const cap = require('capitalize')
   });
 })();
 console.log("tsparticles loaded!")
-console.log(capitalize("if this dosen't then im gonna yell!"))
+console.log(cap("if this dosen't then im gonna yell!"))
