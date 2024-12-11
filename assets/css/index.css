@@ -196,3 +196,10 @@ ul{
     left: 0%;
     position: fixed;
 }
+#rain-effect{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    padding: 0%;
+    margin: 0%;
+}
