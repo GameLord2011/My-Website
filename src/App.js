@@ -1,16 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './Components/Home';
 import About from './Components/About';
 import Contact from './Components/Contact';
 
-
-
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadAll } from "@tsparticles/all";
-
-
 
 function App() {
 
@@ -38,6 +34,13 @@ function App() {
   if(init){
     return (
       <>
+      <Suspense 
+        fallback={
+          <div
+          style={{textAlign: 'center', color: "#ffffff"}}>
+              Loading...
+          </div>}
+      >
       <Particles
         id="tsparticles"
         particlesLoaded={particlesLoaded}
@@ -62,6 +65,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       </Router>
+      </Suspense>
       </>
     );
   }

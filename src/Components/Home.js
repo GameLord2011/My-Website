@@ -1,4 +1,5 @@
 import React from 'react';
+
 function Age(dob){
   const birthDate = new Date('2011-09-23');
   const today = new Date();
@@ -30,13 +31,6 @@ function Age(dob){
 }
 
 function Home() {
-
-  
-
-  
-
-  
-
   return (
     <>
       <div className="center_panel">
