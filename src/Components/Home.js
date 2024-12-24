@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Definily a stupid idea... eh, wut da heck
+//Definily a stupid idea... eh, what the heck
 
 function Age({ Impress_Da_Girls_Mode, DOB }){
   const birthDate = new Date(DOB);
