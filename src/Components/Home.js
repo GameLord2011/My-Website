@@ -2,8 +2,8 @@ import React from 'react';
 
 //Definily a stupid idea... eh, wut da heck
 
-function Age({ Impress_Da_Girls_Mode }){
-  const birthDate = new Date('2011-09-23');
+function Age({ Impress_Da_Girls_Mode, DOB }){
+  const birthDate = new Date(DOB);
   const today = new Date();
 
   // Calculate the difference in years
@@ -45,7 +45,7 @@ function Home() {
             </h1>
       </div>
       <div className="center_panel_mn">
-            <p>I am a <Age Impress_Da_Girls_Mode={false} /> year old ameture programmer.</p>
+            <p>I am a <Age Impress_Da_Girls_Mode={false} DOB='2011-09-23' /> year old ameture programmer.</p>
             <p>I program in:</p>
             <ul>
                 <li>C</li>
