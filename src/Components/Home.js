@@ -1,6 +1,8 @@
 import React from 'react';
 
-function Age(dob){
+//Definily a stupid idea... eh, wut da heck
+
+function Age({ Impress_Da_Girls_Mode }){
   const birthDate = new Date('2011-09-23');
   const today = new Date();
 
@@ -12,6 +14,10 @@ function Age(dob){
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   };
+
+  if(Impress_Da_Girls_Mode === true){
+    age++;
+  }
 
   // Little easter egg for the devs @B-)
   if (age <= 0){
@@ -39,7 +45,7 @@ function Home() {
             </h1>
       </div>
       <div className="center_panel_mn">
-            <p>I am a <Age /> year old ameture programmer.</p>
+            <p>I am a <Age Impress_Da_Girls_Mode={false} /> year old ameture programmer.</p>
             <p>I program in:</p>
             <ul>
                 <li>C</li>
