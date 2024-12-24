@@ -187,3 +187,7 @@ ul{
   left: 0%;
   position: fixed;
 }
+.attribs{
+  bottom: 0%;
+  left: 100%;
+}

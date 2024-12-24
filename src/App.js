@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadAll } from "@tsparticles/all";
 
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+
 function App() {
 
   const [init, setInit] = useState(false);
@@ -34,6 +36,7 @@ function App() {
   if(init){
     return (
       <>
+      <BrowserView>
       <Suspense 
         fallback={
           <div
@@ -65,15 +68,15 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       </Router>
-      
+      <div
+    className='attribs'
+    >
+      <a href='https://github-readme-stats.vercel.app'><img src='https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github' alt="Stats"></img></a>
+    </div>
       <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
       </Suspense>
-      </>
-    );
-  }
-
-  return (
-    <>
+      </BrowserView>
+      <MobileView>
       <Suspense 
         fallback={
           <div
@@ -81,7 +84,12 @@ function App() {
               Loading...
           </div>}
       >
-    <Router>
+      <Particles
+        id="tsparticles"
+        particlesLoaded={particlesLoaded}
+        url='/assets/json/particles.json'
+      />
+      <Router>
       <nav>
         <div className="dropdown">
           <button className="dropbtn">
@@ -99,10 +107,80 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-    </Router>
-    <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
-    </Suspense>
-    </>
+      </Router>
+      </Suspense>
+      </MobileView>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <BrowserView>
+      <Suspense 
+        fallback={
+          <div
+          style={{textAlign: 'center', color: "#ffffff"}}>
+              Loading...
+          </div>}
+      >
+      <Router>
+      <nav>
+        <div className="dropdown">
+          <button className="dropbtn">
+          Pages
+          </button>
+          <div className="dropdown-content">
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      </Router>
+      <div
+    className='attribs'
+    >
+      <a href='https://github-readme-stats.vercel.app'><img src='https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github' alt="Stats"></img></a>
+    </div>
+      <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
+      </Suspense>
+      </BrowserView>
+      <MobileView>
+      <Suspense 
+        fallback={
+          <div
+          style={{textAlign: 'center', color: "#ffffff"}}>
+              Loading...
+          </div>}
+      >
+      <Router>
+      <nav>
+        <div className="dropdown">
+          <button className="dropbtn">
+          Pages
+          </button>
+          <div className="dropdown-content">
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      </Router>
+      </Suspense>
+      </MobileView>
+      </>
   );
 }
 
