@@ -23,7 +23,7 @@ function Age({ Impress_Da_Girls_Mode, DOB , Age_You_Started_Programming_This_Web
   if (age <= 0){
     console.log("Wait how are you visiting this site, I'm not even born yet!?!");
   }
-  else if (age >= 1 && age <= Age_You_Started_Programming_This_Website){
+  else if (age >= 1 && age < Age_You_Started_Programming_This_Website){
     console.log("Wait how are you visiting this site, I haven't programmed it yet!?!");
   }
   else{
@@ -45,7 +45,7 @@ function Home() {
             </h1>
       </div>
       <div className="center_panel_mn">
-            <p>I am a <Age Impress_Da_Girls_Mode={false} DOB='2011-09-23' Age_You_Started_Programming_This_Website={12} /> year old ameture programmer.</p>
+            <p>I am a <Age Impress_Da_Girls_Mode={false} DOB='2011-09-23' Age_You_Started_Programming_This_Website={13} /> year old ameture programmer.</p>
             <p>I program in:</p>
             <ul>
                 <li>C</li>
