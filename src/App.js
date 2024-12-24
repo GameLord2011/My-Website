@@ -65,12 +65,22 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       </Router>
+      
+      <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
       </Suspense>
       </>
     );
   }
 
   return (
+    <>
+      <Suspense 
+        fallback={
+          <div
+          style={{textAlign: 'center', color: "#ffffff"}}>
+              Loading...
+          </div>}
+      >
     <Router>
       <nav>
         <div className="dropdown">
@@ -90,6 +100,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
+    <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
+    </Suspense>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 //Definily a stupid idea... eh, what the heck
 
-function Age({ Impress_Da_Girls_Mode, DOB }){
+function Age({ Impress_Da_Girls_Mode, DOB , Age_You_Started_Programming_This_Website}){
   const birthDate = new Date(DOB);
   const today = new Date();
 
@@ -23,7 +23,7 @@ function Age({ Impress_Da_Girls_Mode, DOB }){
   if (age <= 0){
     console.log("Wait how are you visiting this site, I'm not even born yet!?!");
   }
-  else if (age >= 1 && age <= 12){
+  else if (age >= 1 && age <= Age_You_Started_Programming_This_Website){
     console.log("Wait how are you visiting this site, I haven't programmed it yet!?!");
   }
   else{
@@ -45,7 +45,7 @@ function Home() {
             </h1>
       </div>
       <div className="center_panel_mn">
-            <p>I am a <Age Impress_Da_Girls_Mode={false} DOB='2011-09-23' /> year old ameture programmer.</p>
+            <p>I am a <Age Impress_Da_Girls_Mode={false} DOB='2011-09-23' Age_You_Started_Programming_This_Website={12} /> year old ameture programmer.</p>
             <p>I program in:</p>
             <ul>
                 <li>C</li>
@@ -62,7 +62,6 @@ function Home() {
                 <li>Json</li>
             </ul>
       </div>
-      <a href="http://s05.flagcounter.com/more/xU6"><img className="Flag_cntr" src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"/></a>
     </>
   );
 }
