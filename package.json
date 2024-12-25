@@ -1,6 +1,6 @@
 {
   "name": "gamelord2011.github.io",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@tsparticles/all": "^3.7.1",
