@@ -80,7 +80,7 @@ function App() {
       <Suspense 
         fallback={
           <div
-          style={{textAlign: 'center', color: "#ffffff"}}>
+          className='load'>
               Loading...
           </div>}
       >
@@ -155,7 +155,7 @@ function App() {
       <Suspense 
         fallback={
           <div
-          style={{textAlign: 'center', color: "#ffffff"}}>
+          className='load'>
               Loading...
           </div>}
       >
