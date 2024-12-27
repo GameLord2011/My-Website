@@ -5,12 +5,18 @@
   "dependencies": {
     "@tsparticles/all": "^3.7.1",
     "@tsparticles/react": "^3.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.0",
     "react-scripts": "5.0.1",
+    "react-vfx": "^0.10.2",
+    "typescript": "^5.7.2",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
