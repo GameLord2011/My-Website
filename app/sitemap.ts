@@ -9,13 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: 'https://acme.com/links',
+      url: 'https://gamelord2011.gitihub.io/links',
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.8,
     },
     {
-      url: 'https://acme.com/api',
+      url: 'https://gamelord2011.gitihub.io/api',
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.5,
