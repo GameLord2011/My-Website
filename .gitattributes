@@ -1,3 +1,0 @@
-/OlderSite/* filter=lfs diff=lfs merge=lfs -text
-OlderSite/node_modules/.cache/default-development/6.pack filter=lfs diff=lfs merge=lfs -text
-OlderSite/node_modules/.cache/default-development/0.pack filter=lfs diff=lfs merge=lfs -text
