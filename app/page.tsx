@@ -5,7 +5,7 @@ export default function Home() {
     <main>
       <div>
         <p>
-          I&#39;m <b>&#64;GameLord2011</b>
+          I&#39;m <b className="bg-rainbow text-black font-serif border-black border-double border-spacing-4">&#64;GameLord2011</b>
         </p>	
       </div>
       <div>

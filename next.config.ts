@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   distDir: 'out',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's05.flagcounter.com',
+        pathname: '/**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {

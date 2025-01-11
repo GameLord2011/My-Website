@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+// This page is an EASTER EGG!
+
 export default function Page() {
     return(
         <main>
