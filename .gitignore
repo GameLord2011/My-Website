@@ -616,3 +616,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,git,react,nextjs,windows,vs,linux,vim,vercel
+public/sitemap.xml
