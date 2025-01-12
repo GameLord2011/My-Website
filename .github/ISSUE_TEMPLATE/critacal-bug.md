@@ -1,9 +1,9 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+name: Critical Bug
+about: For CRITICAL BUGS
+title: ":feelsgood: Critacal Bug, FIX NOW!!!"
+labels: FIXMENOW
+assignees: GameLord2011
 
 ---
 
