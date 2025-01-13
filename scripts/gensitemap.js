@@ -26,7 +26,8 @@ async function generateSitemap() {
                     <lastmod>${new Date().toISOString()}</lastmod>
                     <priority>${priority}</priority>
                     <changefreq>always</changefreq>
-                </url>`;
+                </url>
+                `;
             })
             .join("")}
     </urlset>`;
