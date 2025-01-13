@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: 14.x
       - run: |
-          npm i
-          npm run build
+          pnpm i
+          pnpm run build
       - name: Next Pages
         uses: anorcle/next-pages@v1.0
       - name: Commit and push changes
