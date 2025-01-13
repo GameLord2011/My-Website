@@ -12,36 +12,36 @@
   font-style: normal;
 }
 
-:root {
+:root{
   --background: #ffffff;
   --foreground: #171717;
+  --highlight-bg: #01d101;
+  --highlight-fg: #ededed;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --background: #000;
+    --foreground: #ededed;
+    --highlight-bg: #006400;
+    --highlight-fg: #000;
+  }
+}
+
+// Selection Mixin
+@mixin selection {
+  background: var(--highlight-bg);
+  color: var(--highlight-fg);
 }
 
 ::selection {
-  background: #01d101;
-  color: #ededed
+  @include selection;
 }
 
 ::-moz-selection {
-  background: #01d101;
-  color: #ededed
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000;
-    --foreground: #ededed;
-  }
-
-  ::selection {
-    background: #006400;
-    color: #000;
-  }
-
-  ::-moz-selection {
-    background: #006400;
-    color: #000;
-  }
+  @include selection;
 }
 
 body {
@@ -51,7 +51,13 @@ body {
   text-align: center;
 }
 
-li::marker {
-  content: "\2623";
-  color: white;
+li {
+  &::marker{
+    content: "\2623";
+    color: white;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
 }
