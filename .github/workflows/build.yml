@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 14.x
       - run: |
-          npm i
+          npm i --force
           npm run build
       - name: Next Pages
         uses: anorcle/next-pages@v1.0
