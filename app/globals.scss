@@ -5,9 +5,9 @@
 // Add the font-face for Cascadia Code
 @font-face {
   font-family: 'Cascadia Code';
-  src: url('/public/Fonts/CascadiaCode.woff2') format('woff2'),
-       url('/public/Fonts/CascadiaCode-Regular.otf') format('opentype'),
-       url('/public/Fonts/CascadiaCode.ttf') format('truetype');
+  src: url('/Fonts/CascadiaCode.woff2') format('woff2'),
+       url('/Fonts/CascadiaCode-Regular.otf') format('opentype'),
+       url('/Fonts/CascadiaCode.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
