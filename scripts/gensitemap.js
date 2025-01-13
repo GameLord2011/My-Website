@@ -35,7 +35,7 @@ async function generateSitemap() {
     // Write the sitemap to the public folder
     const filePath = join(process.cwd(), "public", "sitemap.xml");
     writeFileSync(filePath, sitemap, "utf8");
-    console.log("sitemap.xml generated!");
+    console.log("sitemap.xml generated! \n");
 }
 
 generateSitemap();
