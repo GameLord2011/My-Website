@@ -55,13 +55,13 @@ body {
 li {
   &::marker{
     content: "\2623 ";
-    color: white;
+    color: var(--foreground);
   }
 }
 
 .dropbtn {
   background-color: #04AA6D;
-  color: white;
+  color: var(--foreground);
   padding: 16px;
   font-size: 16px;
   border: none;
