@@ -20,7 +20,7 @@ jobs:
           node-version: 22.x
       - run: |
           npm install -g pnpm
-          pnpm ci
+          pnpm i
           pnpm run build
       - name: Next Pages
         uses: anorcle/next-pages@v1.0
