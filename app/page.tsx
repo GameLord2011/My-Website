@@ -33,7 +33,7 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center">
       <div className="w-2/3 h-1/5 rounded-s border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
         <p>
-          I&#39;m <b className="bg-rainbow text-black font-serif border-black border-double border-4">&#64;GameLord2011</b>
+          I&#39;m <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4">&#64;GameLord2011</b>
         </p>	
       </div>
       <div>
