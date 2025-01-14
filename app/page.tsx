@@ -30,7 +30,7 @@ export default function Home() {
 
   console.log(message);
   return (
-    <main className="flex flex-col items-center justify-center w-screen h-screen">
+    <main className="flex flex-col items-center justify-center">
       <div className="w-2/3 h-1/5 rounded-s border-dotted border-Gween-300 dark:border-Gween-600 content-center self-center text-center top-1/4 right-1/2 fixed">
         <p>
           I&#39;m <b className="bg-rainbow text-black font-serif border-black border-double border-spacing-4">&#64;GameLord2011</b>
