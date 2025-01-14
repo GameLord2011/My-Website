@@ -17,6 +17,8 @@
   --foreground: #171717;
   --highlight-bg: #01d101;
   --highlight-fg: #ededed;
+  --nav-bkg: #f1f1f1;
+  --nav-hvr-bkg: #ddd;
 }
 
 
@@ -27,6 +29,8 @@
     --foreground: #ededed;
     --highlight-bg: #006400;
     --highlight-fg: #000;
+    --nav-bkg: #333;
+    --nav-hvr-bkg: #444;
   }
 }
 
@@ -55,17 +59,13 @@ body {
 li {
   &::marker{
     content: "\2623 ";
-    color: white;
+    color: var(--foreground);
   }
-}
-
-::-webkit-scrollbar {
-  width: 10px;
 }
 
 .dropbtn {
   background-color: #04AA6D;
-  color: white;
+  color: var(--foreground);
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -84,15 +84,15 @@ li {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
+  background-color: var(--nav-bkg);
+  min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: var(--foreground);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -100,7 +100,7 @@ li {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: var(--nav-hvr-bkg);
 }
 
 /* Show the dropdown menu on hover */
