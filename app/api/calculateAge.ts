@@ -1,3 +1,5 @@
+"use client";
+
 export const calculateAge = async (birthdate: string): Promise<number> => {
   return new Promise((resolve) => {
     const birthDate = new Date(birthdate);
