@@ -12,13 +12,13 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         "Gween": {
-          300: "#01d101",
-          600: "#006400"
+          300: "hsl(120, 99.05%, 41.18%)",
+          600: "hsl(120, 100%, 19.61%)"
         }
       },
       backgroundImage: {
         'svgimg': 'url(\'https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github\')',
-        'rainbow': 'radial-gradient(circle, rgb(255, 0, 0) 0%, rgb(255, 165, 0) 16%, rgb(255, 255, 0) 32%, rgb(0, 255, 0) 48%, rgb(0, 0, 255) 64%, rgb(75, 0, 130) 80%, rgb(128, 0, 128) 100%);',
+        'rainbow': 'radial-gradient(circle, hsl(0, 100%, 50%) 0%, hsl(38.82, 100%, 50%) 16%, hsl(60, 100%, 50%) 32%, hsl(120, 100%, 50%) 48%, hsl(240, 100%, 50%) 64%, hsl(274.62, 100%, 25.49%) 80%, hsl(300, 100%, 25.1%) 100%);',
       }
     },
   },

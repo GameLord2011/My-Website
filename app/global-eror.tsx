@@ -11,7 +11,8 @@ export default function GlobalError({
     // global-error must include html and body tags
     <html>
       <body>
-        <h2>Dangit a/an {error.name} error!</h2>
+        <h2>What the heck?!? A {error.name} error!</h2>
+        <p>If you see this page CONTACT ME IMMEDIATELY</p>
         <button type="button" onClick={() => reset()}>Try again</button>
       </body>
     </html>

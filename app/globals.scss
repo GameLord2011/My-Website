@@ -13,24 +13,24 @@
 }
 
 :root{
-  --background: #ffffff;
-  --foreground: #171717;
-  --highlight-bg: #01d101;
-  --highlight-fg: #ededed;
-  --nav-bkg: #f1f1f1;
-  --nav-hvr-bkg: #ddd;
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 9%);
+  --highlight-bg: hsl(120, 99%, 41%);
+  --highlight-fg: hsl(0, 0%, 93%);
+  --nav-bkg: hsl(0, 0%, 95%);
+  --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
 
 
 @media (prefers-color-scheme: dark) {
   :root{
-    --background: #000;
-    --foreground: #ededed;
-    --highlight-bg: #006400;
-    --highlight-fg: #000;
-    --nav-bkg: #333;
-    --nav-hvr-bkg: #444;
+    --background: hsl(0, 0%, 0%);
+    --foreground: hsl(0, 0%, 93%);
+    --highlight-bg: hsl(120, 100%, 20%);
+    --highlight-fg: hsl(0, 0%, 0%);
+    --nav-bkg: hsl(0, 0%, 20%);
+    --nav-hvr-bkg: hsl(0, 0%, 27%);
   }
 }
 
@@ -64,7 +64,7 @@ li {
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: hsl(158, 95%, 34%);
   color: var(--foreground);
   padding: 16px;
   font-size: 16px;
@@ -86,7 +86,7 @@ li {
   position: absolute;
   background-color: var(--nav-bkg);
   min-width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px hsla(0, 0%, 0%, 0.2);
   z-index: 1;
 }
 
@@ -110,5 +110,5 @@ li {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: hsl(122, 39%, 40%);
 }
