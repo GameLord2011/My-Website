@@ -19,6 +19,6 @@ A clear and concise description of any alternative solutions or features you've 
 **Additional context**
 Add any other context or screenshots about the feature request here.
 
-# For the reviewer
+## For the reviewer
 
     I have tested that this feature works in at least 2 browsers [ ]
