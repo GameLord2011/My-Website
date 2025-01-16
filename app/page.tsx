@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { calculateAge } from '@/app/api/calculateAge';
+import styles from 'ansi-styles';
 
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
@@ -28,7 +29,7 @@ export default function Home() {
     }
   }
 
-  console.log(message);
+  console.log(`${styles.blue.open}${message}${styles.blue.close}`);
   return (
     <main className="flex flex-col items-center justify-center">
       <div className="w-2/3 h-1/5 rounded-s border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">

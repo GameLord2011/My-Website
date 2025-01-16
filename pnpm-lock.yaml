@@ -14,6 +14,9 @@ importers:
       '@tsparticles/react':
         specifier: ^3.0.0
         version: 3.0.0(@tsparticles/engine@3.7.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      ansi-styles:
+        specifier: 6.2.1
+        version: 6.2.1
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
