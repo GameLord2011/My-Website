@@ -36,7 +36,15 @@ export default function HPageIs() {
       )}
       {isMobile && (
         <div>
-          {/* Mobile-specific content can go here */}
+          <Link href="http://s05.flagcounter.com/more/xU6" className="hidden w-[209px] bottom-0 p-0 m-0 left-0 fixed dark:block">
+            <Image
+              className="Flag_cntr"
+              src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
+              alt="Flag Counter"
+              width={209}
+              height={123}
+            />
+          </Link>
         </div>
       )}
     </>
