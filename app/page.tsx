@@ -7,7 +7,7 @@ import styles from 'ansi-styles';
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
   const birthdate = '2011-09-23';
-  const DYSTW = new Date('2024-10-30');
+  const DYSTW = new Date('2024-10-30'); // DYSTW = Date You Started This Website
 
   useEffect(() => {
     const fetchAge = async () => {
