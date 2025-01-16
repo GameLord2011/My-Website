@@ -17,6 +17,7 @@
   --foreground: hsl(0, 0%, 9%);
   --highlight-bg: hsl(120, 99%, 41%);
   --highlight-fg: hsl(0, 0%, 93%);
+  --nav-btn-bg: hsl(158, 95%, 34%);
   --nav-bkg: hsl(0, 0%, 95%);
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
@@ -29,6 +30,7 @@
     --foreground: hsl(0, 0%, 93%);
     --highlight-bg: hsl(120, 100%, 20%);
     --highlight-fg: hsl(0, 0%, 0%);
+    --nav-btn-bg: hsl(122, 39%, 30%);
     --nav-bkg: hsl(0, 0%, 20%);
     --nav-hvr-bkg: hsl(0, 0%, 27%);
   }
@@ -64,8 +66,8 @@ li {
 }
 
 .dropbtn {
-  background-color: hsl(158, 95%, 34%);
-  color: var(--foreground);
+  background-color: var(--nav-btn-bg);
+  color: hsl(0, 0%, 93%);
   padding: 16px;
   font-size: 16px;
   border: none;
