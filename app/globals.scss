@@ -22,7 +22,15 @@
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
-
+a {
+  color: hsl(120, 99%, 41%);
+  &:visited {
+    color: hsl(120, 100%, 20%);
+  }
+  &:hover {
+    color: hsl(120, 100%, 20%);
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   :root{
@@ -33,6 +41,15 @@
     --nav-btn-bg: hsl(122, 39%, 30%);
     --nav-bkg: hsl(0, 0%, 20%);
     --nav-hvr-bkg: hsl(0, 0%, 27%);
+  }
+  a {
+    color: hsl(120, 100%, 20%);
+    &:visited {
+      color: hsl(120, 99%, 41%);
+    }
+    &:hover {
+      color: hsl(120, 99%, 41%);
+    }
   }
 }
 
@@ -58,10 +75,20 @@ body {
   text-align: center;
 }
 
-li {
-  &::marker{
-    content: "\2623 ";
-    color: var(--foreground);
+ul{
+  &li {
+    &::marker{
+      content: "\2623 ";
+      color: var(--foreground);
+    }
+  }
+}
+
+ol{
+  &li{
+    &::marker{
+      color: var(--foreground);
+    }
   }
 }
 

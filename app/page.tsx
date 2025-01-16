@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+
 import { calculateAge } from '@/app/api/calculateAge';
+
 import styles from 'ansi-styles';
+
+import HPageIs from "@/app/api/HPageIs";
 
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
@@ -31,30 +35,33 @@ export default function Home() {
 
   console.log(`${styles.blue.open}${message}${styles.blue.close}`);
   return (
-    <main className="flex flex-col items-center justify-center">
-      <div className="w-2/3 h-1/5 rounded-s border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
-        <p>
-          I&#39;m <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4">&#64;GameLord2011</b>
-        </p>	
-      </div>
-      <div>
-            <p>I am a {age !== null ? age : '...'} year old ameture programmer.</p>
-            <p>I program in:</p>
-            <ul className='list-disc list-inside'>
-                <li>  C</li>
-                <li>  C++</li>
-                <li>  C#</li>
-                <li>  Js</li>
-                <li>  Html</li>
-                <li>  Css</li>
-                <li>  Bash</li>
-                <li>  Batch</li>
-                <li>  Powershell Script</li>
-                <li>  Python</li>
-                <li>  Hlsl</li>
-                <li>  Json</li>
-            </ul>
-      </div>
-    </main>
+    <>
+      <main className="flex flex-col items-center justify-center">
+        <div className="w-2/3 h-1/5 rounded-s border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
+          <p>
+            I&#39;m <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4">&#64;GameLord2011</b>
+          </p>	
+        </div>
+        <div>
+              <p>I am a {age !== null ? age : '...'} year old ameture programmer.</p>
+              <p>I program in:</p>
+              <ul className='list-disc list-inside'>
+                  <li>  C</li>
+                  <li>  C++</li>
+                  <li>  C#</li>
+                  <li>  Js</li>
+                  <li>  Html</li>
+                  <li>  Css</li>
+                  <li>  Bash</li>
+                  <li>  Batch</li>
+                  <li>  Powershell Script</li>
+                  <li>  Python</li>
+                  <li>  Hlsl</li>
+                  <li>  Json</li>
+              </ul>
+        </div>
+      </main>
+      <HPageIs/>
+    </>
   );
 }

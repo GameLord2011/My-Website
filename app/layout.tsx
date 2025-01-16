@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 
-import HPageIs from "@/app/api/HPageIs";
-
 import TSParticles from "@/app/api/TSParticles";
 
 import Link from "next/link";
@@ -35,7 +33,6 @@ export default function RootLayout({
       </nav>
         <TSParticles />
         {children}
-        <HPageIs/>
       </body>
     </html>
   );
