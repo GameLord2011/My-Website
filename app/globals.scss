@@ -66,21 +66,13 @@ body {
   text-align: center;
 }
 
-ul{
-  &li {
-    &::marker{
-      content: "\2623 ";
-      color: var(--foreground);
-    }
-  }
+ul li::marker{
+  content: "\2623 ";
+  color: var(--foreground);
 }
 
-ol{
-  &li{
-    &::marker{
-      color: var(--foreground);
-    }
-  }
+ol li::marker{
+  color: var(--foreground);
 }
 
 .dropbtn {

@@ -45,7 +45,7 @@ export default function Home() {
         <div>
               <p>I am a {age !== null ? age : '...'} year old ameture programmer.</p>
               <p>I program in:</p>
-              <ul className='list-disc list-inside'>
+              <ul className='list-inside'>
                   <li>  C</li>
                   <li>  C++</li>
                   <li>  C#</li>
