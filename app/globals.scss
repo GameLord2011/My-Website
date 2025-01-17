@@ -22,30 +22,12 @@
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
-/*
 a {
-  //color: hsl(120, 99%, 41%);
-  color: hsl(120, 100%, 20%);
-  &:visited {
-    //color: hsl(120, 100%, 20%);
-    color: hsl(120, 99%, 41%);
-  }
-  &:hover {
-    //color: hsl(120, 100%, 20%);
-    color: hsl(120, 99%, 41%);
-  }
-}
-*/
-
-a {
-  //color: hsl(120, 100%, 20%);
   color: hsl(120, 99%, 41%);
   &:visited {
-    //color: hsl(120, 99%, 41%);
     color: hsl(120, 100%, 20%);
   }
   &:hover {
-    //color: hsl(120, 99%, 41%);
     color: hsl(120, 100%, 20%);
   }
 }
@@ -60,18 +42,6 @@ a {
     --nav-bkg: hsl(0, 0%, 20%);
     --nav-hvr-bkg: hsl(0, 0%, 27%);
   }
-  /*a {
-    //color: hsl(120, 100%, 20%);
-    color: hsl(120, 99%, 41%);
-    &:visited {
-      //color: hsl(120, 99%, 41%);
-      color: hsl(120, 100%, 20%);
-    }
-    &:hover {
-      //color: hsl(120, 99%, 41%);
-      color: hsl(120, 100%, 20%);
-    }
-  }*/
 }
 
 // Selection Mixin
@@ -91,7 +61,7 @@ a {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Cascadia Code';//, Arial, Helvetica, sans-serif; // Update the font-family
+  font-family: 'Cascadia Code';
   font-size: small;
   text-align: center;
 }
