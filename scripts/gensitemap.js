@@ -30,12 +30,13 @@ async function generateSitemap() {
                 `;
             })
             .join("")}
-    </urlset>`;
+    </urlset>
+    `;
 
     // Write the sitemap to the public folder
     const filePath = join(process.cwd(), "public", "sitemap.xml");
     writeFileSync(filePath, sitemap, "utf8");
-    console.log("sitemap.xml generated! \n");
+    console.log("\udb81\uddc0 sitemap.xml generated! \n");
 }
 
 generateSitemap();
