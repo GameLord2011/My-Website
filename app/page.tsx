@@ -34,6 +34,9 @@ export default function Home() {
   }
 
   console.log(`${styles.blue.open}${message}${styles.blue.close}`);
+  console.log("\n\n")
+  console.info(`${styles.red.open}I used partial prerendering for this page to properly calculate the age.${styles.red.close}`);
+
   return (
     <>
       <main className="flex flex-col items-center justify-center">
