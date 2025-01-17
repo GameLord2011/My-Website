@@ -7,7 +7,7 @@ export default function About() {
             <br/>
             <h1 className="text-xl">What To Do When:</h1>
             <br/>
-            <div className="text-left float-left">
+            <div className="text-left float-left md:text-sm sm:text-xs w-screen md:w-1/2 sm:w-1/3">
                 <h2 title="I Like This" className="text-lg">You like this site, and wish your&#39;s was like this.</h2>
                 <br/>
                 <p>
