@@ -22,6 +22,7 @@
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
+/*
 a {
   //color: hsl(120, 99%, 41%);
   color: hsl(120, 100%, 20%);
@@ -32,6 +33,20 @@ a {
   &:hover {
     //color: hsl(120, 100%, 20%);
     color: hsl(120, 99%, 41%);
+  }
+}
+*/
+
+a {
+  //color: hsl(120, 100%, 20%);
+  color: hsl(120, 99%, 41%);
+  &:visited {
+    //color: hsl(120, 99%, 41%);
+    color: hsl(120, 100%, 20%);
+  }
+  &:hover {
+    //color: hsl(120, 99%, 41%);
+    color: hsl(120, 100%, 20%);
   }
 }
 
@@ -45,7 +60,7 @@ a {
     --nav-bkg: hsl(0, 0%, 20%);
     --nav-hvr-bkg: hsl(0, 0%, 27%);
   }
-  a {
+  /*a {
     //color: hsl(120, 100%, 20%);
     color: hsl(120, 99%, 41%);
     &:visited {
@@ -56,7 +71,7 @@ a {
       //color: hsl(120, 99%, 41%);
       color: hsl(120, 100%, 20%);
     }
-  }
+  }*/
 }
 
 // Selection Mixin
