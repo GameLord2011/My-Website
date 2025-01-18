@@ -9,7 +9,8 @@ async function generateSitemap() {
         { path: "/", priority: 1.0 }, // Home
         { path: "/api", priority: 0.5}, //Easter egg
         { path: "/testpage", priority: 0.1}, //test
-        //{ path: "/about", priority: 0.8 }, // About page
+        { path: "/about", priority: 0.8 }, // About page
+        { path: "/shoutouts", priority: 0.7 }, // Shoutouts page
         //{ path: "/contact", priority: 0.7 }, // Contact page
         // Add dynamic routes if available
         // Example:
