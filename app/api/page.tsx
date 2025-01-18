@@ -7,6 +7,7 @@ export default function Page() {
         <main>
             <p className="text-center">
                 You wern&#39;t supposed to find this page!
+                <br/>
                 <Link href="/" className="text-emerald-800 dark:text-emerald-400">
                     Go Home?
                 </Link>
