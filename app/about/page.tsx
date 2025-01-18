@@ -28,7 +28,7 @@ export default function About() {
                             Then open Windows Terminal, or your favorite terminal, and type <code>git clone https://github.com/&#60;your_user_name&#62;/my-website</code>
                         </li>
                         <li>
-                            Type <code>cd gamelord2011.github.io</code>
+                            Type <code>cd &#34;My-Website&#34;</code>
                         </li>
                         <li>
                             Then <code>npm i -g pnpm</code>
