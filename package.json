@@ -20,6 +20,7 @@
     "react": "^19.0.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
+    "react-vfx": "0.11.0",
     "tsparticles": "^3.7.1"
   },
   "devDependencies": {
