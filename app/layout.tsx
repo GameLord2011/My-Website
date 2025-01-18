@@ -85,6 +85,7 @@ export default function RootLayout({
           <div className="dropdown-content">
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
+            <Link href="/shoutouts">Shoutouts</Link>
             <Link href="https://linktr.ee/GameLord2011">Links</Link>
           </div>
         </div>
