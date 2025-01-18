@@ -19,13 +19,13 @@ export default function About() {
                             First make a <Link title='GitHub' href="https://github.com/">github</Link> account!
                         </li>
                         <li>
-                            After that, go to this website&#39;s <Link title="https://www.github.com/gamelord2011/gamelord2011.github.io/" href="https://github.com/gamelord2011/gamelord2011.github.io">repo</Link> &#40;That&#39;s right, IT&#39;S FOSS!&#41; and click the fork button.
+                            After that, go to this website&#39;s <Link title="https://www.github.com/gamelord2011/my-website/" href="https://github.com/gamelord2011/my-website/">repo</Link> &#40;That&#39;s right, IT&#39;S FOSS!&#41; and click the fork button.
                         </li>
                         <li>
                             Next, install <Link title='Git' href='https://git-scm.com/'>git</Link> & <Link title='Node Js' href='https://nodejs.org/en/'>node.js</Link> on your computer.
                         </li>
                         <li>
-                            Then open Windows Terminal, or your favorite terminal, and type <code>git clone https://github.com/&#60;your_user_name&#62;/gamelord2011.github.io</code>
+                            Then open Windows Terminal, or your favorite terminal, and type <code>git clone https://github.com/&#60;your_user_name&#62;/my-website</code>
                         </li>
                         <li>
                             Type <code>cd gamelord2011.github.io</code>
