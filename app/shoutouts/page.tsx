@@ -26,6 +26,10 @@ export default function Shoutouts() {
                 <p>
                     <Link href="https://github.com/torvalds">@torvalds</Link> for <i><Link href="https://github.com/torvalds/linux">Linux</Link></i>!
                 </p>
+                <br/>
+                <p>
+                    <Link href='https://github.com/willy-jl'>@Willy-JL</Link>, <Link href='https://github.com/sil333033'>@Sil333033</Link>, <Link href='https://github.com/haxsam'>@HaxSam</Link>, <Link href='https://github.com/matthewkukanich'>@MatthewKuKanich</Link>, and <Link href='https://github.com/956mb'>@956MB</Link> for <i><Link href='https://github.com/next-flip/momentum-firmware'>Momentum Firmware</Link></i>!
+                </p>
             </div>
         </main>
     </VFXProvider>
