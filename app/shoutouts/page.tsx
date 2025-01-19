@@ -16,7 +16,7 @@ export default function Shoutouts() {
                 </p>
                 <br/>
                 <p>
-                    <Link href="https://github.com/vincentgarreau">@vincentgarreau</Link>, and <Link href="https://github.com/matteobruni">@matteobruni</Link> for <Link href="https://github.com/tsparticles/tsparticles">TSParticles</Link>!
+                    <Link href="https://github.com/vincentgarreau">@vincentgarreau</Link>, and <Link href="https://github.com/matteobruni">@matteobruni</Link> for <i><Link href="https://github.com/tsparticles/tsparticles">TSParticles</Link></i>!
                 </p>
                 <br/>
                 <p>
@@ -24,7 +24,7 @@ export default function Shoutouts() {
                 </p>
                 <br/>
                 <p>
-                    <Link href="https://github.com/torvalds">@torvalds</Link> for <Link href="https://github.com/torvalds/linux">Linux</Link>!
+                    <Link href="https://github.com/torvalds">@torvalds</Link> for <i><Link href="https://github.com/torvalds/linux">Linux</Link></i>!
                 </p>
             </div>
         </main>
