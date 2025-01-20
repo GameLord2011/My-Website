@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         hostname: 's05.flagcounter.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 's01.flagcounter.com',
+        pathname: '/**',
+      }
     ],
   },
 };
