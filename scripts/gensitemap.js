@@ -2,7 +2,7 @@ import { writeFileSync } from "fs";
 import { join } from "path";
 
 async function generateSitemap() {
-    const baseUrl = "https://gamelord2011.github.io";
+    const baseUrl = "https://gamelord2011.vercel.app"; // Your website URL
 
     // Define your routes with priority
     const routes = [
