@@ -50,14 +50,14 @@ export default function Home() {
                   <li>  C</li>
                   <li>  C++</li>
                   <li>  C#</li>
-                  <li>  Js</li>
+                  <li>  Java Script</li>
                   <li>  Html</li>
                   <li>  Css</li>
                   <li>  Bash</li>
                   <li>  Batch</li>
                   <li>  Powershell Script</li>
                   <li>  Python</li>
-                  <li>  Hlsl</li>
+                  <li>  Type Script</li>
                   <li>  Json</li>
               </ul>
         </div>
