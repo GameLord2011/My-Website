@@ -24,7 +24,7 @@ export default function HPageIs() {
             <div className="bg-svgimg w-[467px] h-[195px] bottom-0 p-0 m-0 right-0 fixed" />
           </Link>
           {process.env.NODE_ENV === 'production' && (
-            <Link href="http://s01.flagcounter.com/more/ugnH" className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block">
+            <Link href="http://s01.flagcounter.com/more/ugnH" className="hidden bottom-0 p-0 m-0 left-0 fixed 2xs:hidden dark:block">
               <Image
                 className="Flag_cntr"
                 src="https://s01.flagcounter.com/count2/ugnH/bg_000000/txt_1e4d12/border_1E4D12/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
@@ -35,7 +35,7 @@ export default function HPageIs() {
             </Link>
           )}
           {process.env.NODE_ENV === 'development' && (
-              <Link href="http://s05.flagcounter.com/more/xU6" className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block">
+              <Link href="http://s05.flagcounter.com/more/xU6" className="hidden bottom-0 p-0 m-0 left-0 2xs:hidden fixed dark:block">
                 <Image
                   className="Flag_cntr"
                   src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
