@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { calculateAge } from '@/app/api/calculateAge';
 import styles from 'ansi-styles';
 import HPageIs from "@/app/api/HPageIs";
-import ErrorThrower from '@/app/api/Chuckanerror';
 
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);
@@ -58,7 +57,6 @@ export default function Home() {
                   <li>  Type Script</li>
                   <li>  Json</li>
               </ul>
-              <ErrorThrower />
         </div>
       </main>
       <HPageIs/>
