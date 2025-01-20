@@ -11,7 +11,6 @@ async function generateSitemap() {
         { path: "/testpage", priority: 0.1}, //test
         { path: "/about", priority: 0.8 }, // About page
         { path: "/shoutouts", priority: 0.7 }, // Shoutouts page
-        //{ path: "/contact", priority: 0.7 }, // Contact page
         // Add dynamic routes if available
         // Example:
         // ...(await fetchDynamicRoutes().map(route => ({ path: `/dynamic/${route}`, priority: 0.6 })))
