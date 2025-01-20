@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        '2xs': '100px',
+        '2xs': '240px',
       },
       colors: {
         background: "var(--background)",
