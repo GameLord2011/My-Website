@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export default function TSParticles(){
@@ -14,6 +15,10 @@ export default function TSParticles(){
         setInit(true);
       });
     }, []);
+
+    const particlesLoaded = async (container?: Container) => {
+      console.log(container);
+    };
   
     if(init){
         return(
@@ -21,6 +26,7 @@ export default function TSParticles(){
                 <Particles
                     id="tsparticles"
                     url="/particles.json"
+                    particlesLoaded={particlesLoaded}
                 />
             </>
         )
