@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import TSParticles from "@/app/api/TSParticles";
 import Link from "next/link";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "@GameLord2011",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="w-screen h-screen">
+      <SpeedInsights />
       <noscript className="text-left">
         Please enable JavaScript to run this app, if you do not know how to enable JavaScript,
         <br />
