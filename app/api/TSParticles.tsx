@@ -20,17 +20,16 @@ export default function TSParticles(){
       console.log(container);
     };
   
-    if(init){
-        return(
-            <>
-                <Particles
-                    id="tsparticles"
-                    url="/particles.json"
-                    particlesLoaded={particlesLoaded}
-                />
-            </>
-        )
-    }
-
-    return<></>;  
+    return(
+      <>
+        {init && (
+            <Particles
+              id="tsparticles"
+              url="/particles.json"
+              particlesLoaded={particlesLoaded}
+            />
+          )
+        }
+      </>
+    );  
 }
