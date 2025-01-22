@@ -12,7 +12,12 @@ export default function Home() {
 
   React.useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> programmer', '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> frontend / backend web dev' ,'<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> C / C++ / C# developer', 'developer'],
+      strings: [
+        '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> programmer', 
+        '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> frontend / backend web dev', 
+        '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> C / C++ / C# developer', 
+        'developer'
+      ],
       typeSpeed: 100,
       backDelay: 1000,
       backSpeed: 90,
