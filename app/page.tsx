@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { calculateAge } from '@/app/api/calculateAge';
+import { calculateAge } from 'api/calculateAge';
 import styles from 'ansi-styles';
-import HPageIs from "@/app/api/HPageIs";
+import HPageIs from "api/HPageIs";
 
 export default function Home() {
   const [age, setAge] = useState<number | null>(null);

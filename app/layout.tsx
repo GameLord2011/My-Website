@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import TSParticles from "@/app/api/TSParticles";
+import TSParticles from "api/TSParticles";
 import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
