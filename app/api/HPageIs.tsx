@@ -18,6 +18,10 @@ export default function HPageIs() {
   }
 
   const bot = isbot(navigator.userAgent);
+  
+  const message = bot ? 'You are a bot' : 'You are not a bot';
+
+  console.log(message);
 
   return (
     <>
