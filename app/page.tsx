@@ -4,8 +4,28 @@ import React, { useEffect, useState } from 'react';
 import { calculateAge } from 'api/calculateAge';
 import styles from 'ansi-styles';
 import HPageIs from "api/HPageIs";
+import Typed from 'typed.js';
 
 export default function Home() {
+
+  const el = React.useRef(null);
+
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> programmer', '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> frontend / backend web dev' ,'<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> C / C++ / C# developer', 'developer'],
+      typeSpeed: 100,
+      backDelay: 1000,
+      backSpeed: 90,
+      showCursor: false,
+      smartBackspace: true,
+    });
+
+    return () => {
+      // Destroy Typed instance during cleanup to stop animation
+      typed.destroy();
+    };
+  }, []);
+
   const [age, setAge] = useState<number | null>(null);
   const birthdate = '2011-09-23';
   const DYSTW = new Date('2024-10-30'); // DYSTW = Date You Started This Website
@@ -41,7 +61,7 @@ export default function Home() {
           </p>	
         </div>
         <div>
-              <p>I am a {age !== null ? age : '...'} year old ameture programmer.</p>
+              <p>I am a {age !== null ? age : '...'} year old <span ref={el}></span>.</p>
               <p>I program in:</p>
               <ul className='list-inside'>
                   <li>  C</li>
