@@ -6,11 +6,10 @@ async function generateSitemap() {
 
     // Define your routes with priority
     const routes = [
-        { path: "/", priority: 1.0 }, // Home
-        { path: "/api", priority: 0.5}, //Easter egg
-        { path: "/testpage", priority: 0.1}, //test
-        { path: "/about", priority: 0.8 }, // About page
-        { path: "/shoutouts", priority: 0.7 }, // Shoutouts page
+        { path: "/", priority: 1.0, pagename: "Homepage." }, // Home
+        { path: "/api", priority: 0.5, pagename: "Api easter egg page."}, //Easter egg
+        { path: "/about", priority: 0.8, pagename: "About page." }, // About page
+        { path: "/shoutouts", priority: 0.7, pagename: "Shoutouts page." }, // Shoutouts page
         // Add dynamic routes if available
         // Example:
         // ...(await fetchDynamicRoutes().map(route => ({ path: `/dynamic/${route}`, priority: 0.6 })))
@@ -20,9 +19,9 @@ async function generateSitemap() {
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${routes
-            .map(({ path, priority }) => {
+            .map(({ path, priority, pagename }) => {
                 return `<url>
-                    <loc>${baseUrl}${path}</loc>
+                    <loc>${baseUrl}${path}</loc> <!-- ${pagename} -->
                     <lastmod>${new Date().toISOString()}</lastmod>
                     <priority>${priority}</priority>
                     <changefreq>always</changefreq>
