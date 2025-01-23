@@ -18,7 +18,7 @@ export default function Home() {
         '<i class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amature</i> C / C++ / C# developer', 
         'developer'
       ],
-      typeSpeed: 100,
+      typeSpeed: 90,
       backDelay: 1000,
       backSpeed: 90,
       showCursor: false,

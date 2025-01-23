@@ -12,7 +12,7 @@ export default function Shoutouts() {
             <br/>
             <div className='text-sm'>
                 <p>
-                    <Link href="https://github.com/fand">@fand</Link> for <Link href="https://amagi.dev/react-vfx"><VFXImg src="/react-vfx.png" className='h-[1.3rem] hidden dark:inline-block overflow-clip' shader="rgbShift" overflow={true} alt='React-Vfx' /><VFXImg src="/react-vfx-light.png" className="h-[1.3rem] dark:hidden inline-block overflow-clip" shader="rgbShift" overflow={true} alt="React-Vfx"/></Link>!
+                    <Link href="https://github.com/fand">@fand</Link> for <Link href="https://amagi.dev/react-vfx"><VFXImg loading="lazy" src="/react-vfx.png" className='h-[1.3rem] hidden dark:inline-block overflow-clip' shader="rgbShift" overflow={true} alt='React-Vfx' /><VFXImg loading="lazy" src="/react-vfx-light.png" className="h-[1.3rem] dark:hidden inline-block overflow-clip" shader="rgbShift" overflow={true} alt="React-Vfx"/></Link>!
                 </p>
                 <br/>
                 <p>

@@ -38,6 +38,7 @@ export default function HPageIs() {
                 alt="Flag Counter"
                 width={209}
                 height={123}
+                loading="lazy"
               />
             </Link>
           )}
@@ -49,6 +50,7 @@ export default function HPageIs() {
                   alt="Flag Counter"
                   width={209}
                   height={123}
+                  loading="lazy"
                 />
             </Link>          
           )}
@@ -64,6 +66,7 @@ export default function HPageIs() {
                 alt="Flag Counter"
                 width={209}
                 height={123}
+                loading="lazy"
               />
           </Link>
           )}
@@ -75,6 +78,7 @@ export default function HPageIs() {
                   alt="Flag Counter"
                   width={209}
                   height={123}
+                  loading="lazy"
                 />
             </Link>          
           )}
