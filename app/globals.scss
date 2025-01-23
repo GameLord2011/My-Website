@@ -123,3 +123,8 @@ ol li::marker{
 .dropdown:hover .dropbtn {
   background-color: hsl(122, 39%, 40%);
 }
+
+#tsparticles {
+  z-index: -10;
+  position: relative;
+}
