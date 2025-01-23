@@ -12,7 +12,7 @@
     "msm": "node scripts/gensitemap.js"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.7.1",
+    "@tsparticles/engine": "^3.8.0",
     "@tsparticles/react": "^3.0.0",
     "@vercel/speed-insights": "1.1.0",
     "ansi-styles": "6.2.1",
@@ -23,7 +23,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
     "react-vfx": "0.11.0",
-    "tsparticles": "^3.7.1",
+    "tsparticles": "^3.8.0",
     "typed.js": "2.1.0"
   },
   "devDependencies": {
