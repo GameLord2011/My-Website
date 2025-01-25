@@ -10,7 +10,8 @@
     "lint": "next lint",
     "export": "next export",
     "msm": "node scripts/gensitemap.js",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "pcheck": "prettier --check ."
   },
   "dependencies": {
     "@tsparticles/engine": "^3.8.0",
