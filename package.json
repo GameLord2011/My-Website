@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "msm": "node scripts/gensitemap.js"
+    "msm": "node scripts/gensitemap.js",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@tsparticles/engine": "^3.8.0",
@@ -17,6 +18,7 @@
     "@vercel/speed-insights": "1.1.0",
     "ansi-styles": "6.2.1",
     "autoprefixer": "10.4.20",
+    "eslint-config-prettier": "10.0.1",
     "isbot": "5.1.21",
     "next": "15.1.3",
     "prettier": "3.4.2",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
