@@ -4,15 +4,16 @@
 
 // Add the font-face for Cascadia Code
 @font-face {
-  font-family: 'Cascadia Code';
-  src: url('/Fonts/CascadiaCode.woff2') format('woff2'),
-       url('/Fonts/CascadiaCode-Regular.otf') format('opentype'),
-       url('/Fonts/CascadiaCode.ttf') format('truetype');
+  font-family: "Cascadia Code";
+  src:
+    url("/Fonts/CascadiaCode.woff2") format("woff2"),
+    url("/Fonts/CascadiaCode-Regular.otf") format("opentype"),
+    url("/Fonts/CascadiaCode.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-:root{
+:root {
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(0, 0%, 9%);
   --highlight-bg: hsl(120, 99%, 41%);
@@ -33,7 +34,7 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root{
+  :root {
     --background: hsl(0, 0%, 0%);
     --foreground: hsl(0, 0%, 93%);
     --highlight-bg: hsl(120, 100%, 20%);
@@ -61,17 +62,17 @@ a {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Cascadia Code';
+  font-family: "Cascadia Code";
   font-size: small;
   text-align: center;
 }
 
-ul li::marker{
+ul li::marker {
   content: "\2623 ";
   color: var(--foreground);
 }
 
-ol li::marker{
+ol li::marker {
   color: var(--foreground);
 }
 
