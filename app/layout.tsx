@@ -28,7 +28,7 @@ export default function RootLayout({
           </style>
         </noscript>
         <noscript className="text-center block relative x-0 y-0 w-full h-full p-0 m-0 z-50">
-          Please enable JavaScript to run this app, if you do not know how to
+          Please enable JavaScript to run this site, if you do not know how to
           enable JavaScript,
           <br />
           then read the section that corresponds to your browser:
