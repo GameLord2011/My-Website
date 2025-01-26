@@ -7,6 +7,15 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "@GameLord2011",
   description: "@GameLord2011's site",
+  generator: "NextJS",
+  applicationName: "@GameLord2011's site",
+  creator: "@GameLord2011",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  authors: [{ name: '@GameLord2011', url: 'https://github.com/gamelord2011' }],
 };
 
 export default function RootLayout({
