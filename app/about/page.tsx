@@ -1,6 +1,18 @@
+"use client";
+
+import { useEffect } from 'react';
 import Link from "next/link";
+import hljs from 'highlight.js/lib/core';
+import './theme.scss';
+import bash from 'highlight.js/lib/languages/bash';
+
+hljs.registerLanguage('bash', bash);
 
 export default function About() {
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
   return (
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">About This Site</h1>
@@ -27,45 +39,36 @@ export default function About() {
             account!
           </li>
           <li>
-            After that, go to this website&#39;s{" "}
-            <Link
-              title="https://www.github.com/gamelord2011/my-website/"
-              href="https://github.com/gamelord2011/my-website/"
-            >
-              repo
-            </Link>{" "}
-            &#40;That&#39;s right, IT&#39;S FOSS!&#41; and click the fork
-            button.
+            Clone this repository to your local machine:
+            <pre>
+              <code className="bash">
+                git clone https://github.com/&lt;your-username&gt;/your-repo.git
+              </code>
+            </pre>
           </li>
           <li>
-            Next, install{" "}
-            <Link title="Git" href="https://git-scm.com/">
-              git
-            </Link>{" "}
-            &{" "}
-            <Link title="Node Js" href="https://nodejs.org/en/">
-              node.js
-            </Link>{" "}
-            on your computer.
+            Navigate to the project directory:
+            <pre>
+              <code className="bash">
+                cd your-repo
+              </code>
+            </pre>
           </li>
           <li>
-            Then open Windows Terminal, or your favorite terminal, and type{" "}
-            <code>
-              git clone https://github.com/&#60;your_user_name&#62;/my-website
-            </code>
+            Install the dependencies:
+            <pre>
+              <code className="bash">
+                npm install
+              </code>
+            </pre>
           </li>
           <li>
-            Type <code>cd &#34;My-Website&#34;</code>
-          </li>
-          <li>
-            Then <code>npm i -g pnpm</code>
-          </li>
-          <li>
-            Install dependencies, <code>pnpm i</code>
-          </li>
-          <li>Modify the files to your liking.</li>
-          <li>
-            And lastly, type <code>pnpm dev</code> to preview the site.
+            Start the development server:
+            <pre>
+              <code className="bash">
+                npm run dev
+              </code>
+            </pre>
           </li>
         </ol>
       </div>
