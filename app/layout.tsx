@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import TSParticles from "api/TSParticles";
-import Link from "next/link";
+import Navbar from "api/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
@@ -142,20 +142,7 @@ export default function RootLayout({
           </ul>
         </noscript>
         <div className="yescript">
-          <nav>
-            <div className="dropdown right-full bottom-full sticky">
-              <button type="button" className="dropbtn">
-                Pages
-              </button>
-              <div className="dropdown-content">
-                <Link href="/">Home</Link>
-                <Link href="/about">About</Link>
-                <Link href="/shoutouts">Shoutouts</Link>
-                <Link href="/repos">Repos</Link>
-                <Link href="https://linktr.ee/GameLord2011">Links</Link>
-              </div>
-            </div>
-          </nav>
+          <Navbar />
           <TSParticles />
           {children}
         </div>
