@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Page() {
     const [repos, setRepos] = useState<{ name: string; description: string; id: number }[]>([]);
@@ -50,11 +51,13 @@ export default function Page() {
         return parts.map((part, index) => {
             if (part.startsWith(":") && part.endsWith(":") && emojis[part.slice(1, -1)]) {
                 return (
-                    <img
+                    <Image
                         key={index}
                         src={emojis[part.slice(1, -1)]}
                         alt={part}
-                        style={{ width: "1em", height: "1em", display: "inline" }}
+                        width={16}
+                        height={16}
+                        className="w-[1em] h-[1em] inline"
                     />
                 );
             }
@@ -74,7 +77,7 @@ export default function Page() {
                                 {repo.name}
                             </Link>
                         </h2>
-                        <p>{renderWithEmojis(repo.description)}</p>
+                        <p className="hidden md:block">{renderWithEmojis(repo.description)}</p>
                     </div>
                 ))}
             </div>
