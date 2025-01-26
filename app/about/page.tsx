@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import Link from "next/link";
-import hljs from 'highlight.js/lib/core';
-import './theme.scss';
-import bash from 'highlight.js/lib/languages/bash';
+import hljs from "highlight.js/lib/core";
+import "./theme.scss";
+import bash from "highlight.js/lib/languages/bash";
 
-hljs.registerLanguage('bash', bash);
+hljs.registerLanguage("bash", bash);
 
 export default function About() {
   useEffect(() => {
@@ -49,25 +49,19 @@ export default function About() {
           <li>
             Navigate to the project directory:
             <pre>
-              <code className="bash">
-                cd your-repo
-              </code>
+              <code className="bash">cd your-repo</code>
             </pre>
           </li>
           <li>
             Install the dependencies:
             <pre>
-              <code className="bash">
-                npm install
-              </code>
+              <code className="bash">npm install</code>
             </pre>
           </li>
           <li>
             Start the development server:
             <pre>
-              <code className="bash">
-                npm run dev
-              </code>
+              <code className="bash">npm run dev</code>
             </pre>
           </li>
         </ol>
