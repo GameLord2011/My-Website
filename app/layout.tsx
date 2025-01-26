@@ -18,7 +18,15 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-screen h-screen">
         <SpeedInsights />
-        <noscript className="text-left">
+        <noscript>
+          <style>{`
+              .yescript{
+                display:none;
+              }
+            `}
+          </style>
+        </noscript>
+        <noscript className="text-center block relative x-0 y-0 w-full h-full p-0 m-0 z-50">
           Please enable JavaScript to run this app, if you do not know how to
           enable JavaScript,
           <br />
@@ -132,21 +140,23 @@ export default function RootLayout({
             </li>
           </ul>
         </noscript>
-        <nav>
-          <div className="dropdown right-full bottom-full sticky">
-            <button type="button" className="dropbtn">
-              Pages
-            </button>
-            <div className="dropdown-content">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/shoutouts">Shoutouts</Link>
-              <Link href="https://linktr.ee/GameLord2011">Links</Link>
+        <div className="yescript">
+          <nav>
+            <div className="dropdown right-full bottom-full sticky">
+              <button type="button" className="dropbtn">
+                Pages
+              </button>
+              <div className="dropdown-content">
+                <Link href="/">Home</Link>
+                <Link href="/about">About</Link>
+                <Link href="/shoutouts">Shoutouts</Link>
+                <Link href="https://linktr.ee/GameLord2011">Links</Link>
+              </div>
             </div>
-          </div>
-        </nav>
-        <TSParticles />
-        {children}
+          </nav>
+          <TSParticles />
+          {children}
+        </div>
       </body>
     </html>
   );
