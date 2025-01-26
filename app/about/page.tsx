@@ -39,6 +39,9 @@ export default function About() {
             account!
           </li>
           <li>
+            Then, open your devices terminal.
+          </li>
+          <li>
             Clone this repository to your local machine:
             <pre>
               <code className="bash">
