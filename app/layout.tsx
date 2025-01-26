@@ -151,6 +151,7 @@ export default function RootLayout({
                 <Link href="/">Home</Link>
                 <Link href="/about">About</Link>
                 <Link href="/shoutouts">Shoutouts</Link>
+                <Link href="/repos">Repos</Link>
                 <Link href="https://linktr.ee/GameLord2011">Links</Link>
               </div>
             </div>
