@@ -19,13 +19,7 @@ export default function RootLayout({
       <body className="w-screen h-screen">
         <SpeedInsights />
         <noscript>
-          <style>
-            {`
-              .yescript{
-                display:none;
-              }
-            `}
-          </style>
+          <style>{`.yescript{display:none;}`}</style>
         </noscript>
         <noscript className="text-center block relative x-0 y-0 w-full h-full p-0 m-0 z-50">
           Please enable JavaScript to run this site, if you do not know how to
