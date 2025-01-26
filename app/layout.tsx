@@ -19,7 +19,8 @@ export default function RootLayout({
       <body className="w-screen h-screen">
         <SpeedInsights />
         <noscript>
-          <style>{`
+          <style>
+            {`
               .yescript{
                 display:none;
               }
