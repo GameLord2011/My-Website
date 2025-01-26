@@ -4,7 +4,10 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Navbar() {
+
     const pathname: string = usePathname();
+
+    console.log(`Your path is: ${pathname}`);
 
     return(
         <nav>
