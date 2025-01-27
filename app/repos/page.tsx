@@ -65,6 +65,7 @@ export default function Page() {
             key={index}
             src={emojis[part.slice(1, -1)]}
             alt={part}
+            title={part}
             width={0}
             height={0}
             className="w-[1em] h-[1em] inline"
