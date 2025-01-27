@@ -22,7 +22,7 @@ export default function Page() {
         const data = await response.json();
         const formattedRepos = data.map(
           (repo: { name: string; description: string; id: number }) => ({
-            name: repo.name,
+            name: repo.name || "No name available",
             description: repo.description || "No description available",
             id: repo.id,
           }),
@@ -65,8 +65,8 @@ export default function Page() {
             key={index}
             src={emojis[part.slice(1, -1)]}
             alt={part}
-            width={16}
-            height={16}
+            width={0}
+            height={0}
             className="w-[1em] h-[1em] inline"
           />
         );
