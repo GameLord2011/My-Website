@@ -39,6 +39,21 @@ export default function About() {
             account!
           </li>
           <li>
+            Install{" "}
+            <Link title="Git" href="https://git-scm.com/">
+              git
+            </Link>
+            ,{" "}
+            <Link title="Node.js" href="https://nodejs.org/">
+            Node.js
+            </Link>
+            , and{" "}
+            <Link title="pnpm" href="https://www.pnpm.org/">
+              pnpm
+            </Link>{" "}
+            on your device.
+          </li>
+          <li>
             Then, open your devices terminal.
           </li>
           <li>
