@@ -48,7 +48,7 @@ export default function About() {
             Node.js
             </Link>
             , and{" "}
-            <Link title="pnpm" href="https://www.pnpm.org/">
+            <Link title="pnpm" href="https://www.pnpm.io/">
               pnpm
             </Link>{" "}
             on your device.
