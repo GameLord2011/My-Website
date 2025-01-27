@@ -1,0 +1,16 @@
+# Workplace Notes
+
+These are workplace notes for this project.
+
+## Things this uses
+
+- Pnpm
+- Next.JS
+- Prettier
+- Node
+
+Make sure all of these are installed before modifing code.
+
+## Changes that need to be made
+
+To
