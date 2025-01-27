@@ -45,7 +45,7 @@ export default function About() {
             </Link>
             ,{" "}
             <Link title="Node.js" href="https://nodejs.org/">
-            Node.js
+              Node.js
             </Link>
             , and{" "}
             <Link title="pnpm" href="https://www.pnpm.io/">
@@ -53,9 +53,7 @@ export default function About() {
             </Link>{" "}
             on your device.
           </li>
-          <li>
-            Then, open your devices terminal.
-          </li>
+          <li>Then, open your devices terminal.</li>
           <li>
             Clone this repository to your local machine:
             <pre>

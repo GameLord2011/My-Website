@@ -1,14 +1,14 @@
 {
-    "name": "My Next.js Application",
-    "short_name": "Next.js App",
-    "description": "An application built with Next.js",
-    "start_url": "/",
-    "icons": [
-        {
-            "src": "/favicon.ico",
-            "sizes": "256x256",
-            "type": "image/vnd.microsoft.icon",
-            "purpose": "any maskable"
-        }
-    ]
-  }
+  "name": "My Next.js Application",
+  "short_name": "Next.js App",
+  "description": "An application built with Next.js",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "256x256",
+      "type": "image/vnd.microsoft.icon",
+      "purpose": "any maskable"
+    }
+  ]
+}
