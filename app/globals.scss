@@ -19,6 +19,7 @@
   --highlight-bg: hsl(120, 99%, 41%);
   --highlight-fg: hsl(0, 0%, 93%);
   --nav-btn-bg: hsl(158, 95%, 34%);
+  --nav-btn-hvr-bkg: hsl(158, 95%, 24%);
   --nav-bkg: hsl(0, 0%, 95%);
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
@@ -40,9 +41,50 @@ a {
     --highlight-bg: hsl(120, 100%, 20%);
     --highlight-fg: hsl(0, 0%, 0%);
     --nav-btn-bg: hsl(122, 39%, 30%);
+    --nav-btn-hvr-bkg: hsl(122, 39%, 40%);
     --nav-bkg: hsl(0, 0%, 20%);
     --nav-hvr-bkg: hsl(0, 0%, 27%);
   }
+}
+
+@-webkit-keyframes nvbr-btn-clr-cng {
+  from { background-color: var(--nav-btn-bg); }
+  to { background-color: var(--nav-btn-hvr-bkg); }
+}
+
+@-moz-keyframes nvbr-btn-clr-cng {
+  from { background-color: var(--nav-btn-bg); }
+  to { background-color: var(--nav-btn-hvr-bkg); }
+}
+
+@-o-keyframes nvbr-btn-clr-cng {
+  from { background-color: var(--nav-btn-bg); }
+  to { background-color: var(--nav-btn-hvr-bkg); }
+}
+
+@keyframes nvbr-btn-clr-cng {
+  from { background-color: var(--nav-btn-bg); }
+  to { background-color: var(--nav-btn-hvr-bkg); }
+}
+
+@-webkit-keyframes nvbr-lnk-clr-cng {
+  from { background-color: var(--nav-bkg); }
+  to { background-color: var(--nav-hvr-bkg); }
+}
+
+@-moz-keyframes nvbr-lnk-clr-cng {
+  from { background-color: var(--nav-bkg); }
+  to { background-color: var(--nav-hvr-bkg); }
+}
+
+@-o-keyframes nvbr-lnk-clr-cng {
+  from { background-color: var(--nav-bkg); }
+  to { background-color: var(--nav-hvr-bkg); }
+}
+
+@keyframes nvbr-lnk-clr-cng {
+  from { background-color: var(--nav-bkg); }
+  to { background-color: var(--nav-hvr-bkg); }
 }
 
 // Selection Mixin
@@ -86,6 +128,8 @@ ol li::marker {
   top: 100%;
   left: 100%;
   z-index: 1;
+  border-radius: 4px;
+  position: sticky;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -101,6 +145,7 @@ ol li::marker {
   min-width: 150px;
   box-shadow: 0px 8px 16px 0px hsla(0, 0%, 0%, 0.2);
   z-index: 1;
+  border-radius: 4px;
 }
 
 /* Links inside the dropdown */
@@ -112,7 +157,25 @@ ol li::marker {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: var(--nav-hvr-bkg);
+  -webkit-animation-name: nvbr-lnk-clr-cng;
+  -moz-animation-name: nvbr-lnk-clr-cng;
+  -o-animation-name: nvbr-lnk-clr-cng;
+  animation-name: nvbr-lnk-clr-cng;
+  
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+  
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 /* Show the dropdown menu on hover */
@@ -122,7 +185,25 @@ ol li::marker {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: hsl(122, 39%, 40%);
+  -webkit-animation-name: nvbr-btn-clr-cng;
+  -moz-animation-name: nvbr-btn-clr-cng;
+  -o-animation-name: nvbr-btn-clr-cng;
+  animation-name: nvbr-btn-clr-cng;
+  
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+  
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 #tsparticles {
