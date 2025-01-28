@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  authors: [{ name: '@GameLord2011', url: 'https://github.com/gamelord2011' }],
+  authors: [{ name: "@GameLord2011", url: "https://github.com/gamelord2011" }],
 };
 
 export default function RootLayout({
