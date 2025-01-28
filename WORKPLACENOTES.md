@@ -13,4 +13,4 @@ Make sure all of these are installed before modifing code.
 
 ## Changes that need to be made
 
-To make this site your own, change all occurecnces of my username to your own.
+To make this site your own, change all occurecnces of my username to your own. broseph.
