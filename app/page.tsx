@@ -60,10 +60,10 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-center">
-        <div className="w-2/3 h-1/5 rounded-s border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
+        <div className="text-xl w-2/3 h-1/5 rounded border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
           <p>
             I&#39;m{" "}
-            <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4">
+            <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4 rounded-md">
               &#64;GameLord2011
             </b>
           </p>
