@@ -48,43 +48,75 @@ a {
 }
 
 @-webkit-keyframes nvbr-btn-clr-cng {
-  from { background-color: var(--nav-btn-bg); }
-  to { background-color: var(--nav-btn-hvr-bkg); }
+  from {
+    background-color: var(--nav-btn-bg);
+  }
+  to {
+    background-color: var(--nav-btn-hvr-bkg);
+  }
 }
 
 @-moz-keyframes nvbr-btn-clr-cng {
-  from { background-color: var(--nav-btn-bg); }
-  to { background-color: var(--nav-btn-hvr-bkg); }
+  from {
+    background-color: var(--nav-btn-bg);
+  }
+  to {
+    background-color: var(--nav-btn-hvr-bkg);
+  }
 }
 
 @-o-keyframes nvbr-btn-clr-cng {
-  from { background-color: var(--nav-btn-bg); }
-  to { background-color: var(--nav-btn-hvr-bkg); }
+  from {
+    background-color: var(--nav-btn-bg);
+  }
+  to {
+    background-color: var(--nav-btn-hvr-bkg);
+  }
 }
 
 @keyframes nvbr-btn-clr-cng {
-  from { background-color: var(--nav-btn-bg); }
-  to { background-color: var(--nav-btn-hvr-bkg); }
+  from {
+    background-color: var(--nav-btn-bg);
+  }
+  to {
+    background-color: var(--nav-btn-hvr-bkg);
+  }
 }
 
 @-webkit-keyframes nvbr-lnk-clr-cng {
-  from { background-color: var(--nav-bkg); }
-  to { background-color: var(--nav-hvr-bkg); }
+  from {
+    background-color: var(--nav-bkg);
+  }
+  to {
+    background-color: var(--nav-hvr-bkg);
+  }
 }
 
 @-moz-keyframes nvbr-lnk-clr-cng {
-  from { background-color: var(--nav-bkg); }
-  to { background-color: var(--nav-hvr-bkg); }
+  from {
+    background-color: var(--nav-bkg);
+  }
+  to {
+    background-color: var(--nav-hvr-bkg);
+  }
 }
 
 @-o-keyframes nvbr-lnk-clr-cng {
-  from { background-color: var(--nav-bkg); }
-  to { background-color: var(--nav-hvr-bkg); }
+  from {
+    background-color: var(--nav-bkg);
+  }
+  to {
+    background-color: var(--nav-hvr-bkg);
+  }
 }
 
 @keyframes nvbr-lnk-clr-cng {
-  from { background-color: var(--nav-bkg); }
-  to { background-color: var(--nav-hvr-bkg); }
+  from {
+    background-color: var(--nav-bkg);
+  }
+  to {
+    background-color: var(--nav-hvr-bkg);
+  }
 }
 
 // Selection Mixin
@@ -161,17 +193,17 @@ ol li::marker {
   -moz-animation-name: nvbr-lnk-clr-cng;
   -o-animation-name: nvbr-lnk-clr-cng;
   animation-name: nvbr-lnk-clr-cng;
-  
+
   -webkit-animation-duration: 0.5s;
   -moz-animation-duration: 0.5s;
   -o-animation-duration: 0.5s;
   animation-duration: 0.5s;
-  
+
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear;
   -o-animation-timing-function: linear;
   animation-timing-function: linear;
-  
+
   -webkit-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   -o-animation-fill-mode: forwards;
@@ -189,17 +221,17 @@ ol li::marker {
   -moz-animation-name: nvbr-btn-clr-cng;
   -o-animation-name: nvbr-btn-clr-cng;
   animation-name: nvbr-btn-clr-cng;
-  
+
   -webkit-animation-duration: 0.5s;
   -moz-animation-duration: 0.5s;
   -o-animation-duration: 0.5s;
   animation-duration: 0.5s;
-  
+
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function: linear;
   -o-animation-timing-function: linear;
   animation-timing-function: linear;
-  
+
   -webkit-animation-fill-mode: forwards;
   -moz-animation-fill-mode: forwards;
   -o-animation-fill-mode: forwards;

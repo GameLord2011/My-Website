@@ -71,13 +71,13 @@ export default function About() {
           <li>
             Install the dependencies:
             <pre>
-              <code className="bash">npm install</code>
+              <code className="bash">pnpm i</code>
             </pre>
           </li>
           <li>
             Start the development server:
             <pre>
-              <code className="bash">npm run dev</code>
+              <code className="bash">pnpm dev</code>
             </pre>
           </li>
         </ol>
