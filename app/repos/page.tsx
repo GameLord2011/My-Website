@@ -84,7 +84,7 @@ export default function Page() {
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="border p-4 rounded border-black dark:border-white"
+            className="bz30:border p-4 bz30:rounded bz30:border-black bz30:dark:border-white"
           >
             <h2 className="text-xl">
               <Link href={`https://github.com/${username}/${repo.name}/`}>

@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-center">
-        <div className="jio2:w-full jio2:text-xs bz30:text-xl bz30:w-2/3 h-1/5 rounded border-dotted border-2 border-Gween-300 dark:border-Gween-600 content-center self-center text-center p-10">
+        <div className="jio2:w-full jio2:text-xs bz30:text-xl bz30:w-2/3 h-1/5 bz30:rounded bz30:border-dotted bz30:border-2 bz30:border-Gween-300 bz30:dark:border-Gween-600 content-center self-center text-center p-10">
           <p>
             I&#39;m{" "}
             <b className="bg-rainbow text-black font-serif border-white dark:border-black border-double border-4 rounded-md">
