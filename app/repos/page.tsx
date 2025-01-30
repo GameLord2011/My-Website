@@ -69,6 +69,7 @@ export default function Page() {
             width={0}
             height={0}
             className="w-[1em] h-[1em] inline"
+            loading="eager"
           />
         );
       }
