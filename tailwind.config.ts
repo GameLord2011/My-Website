@@ -19,8 +19,6 @@ export default {
       backgroundImage: {
         svgimg:
           "url('https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github')",
-        rainbow:
-          "radial-gradient(circle, hsl(0, 100%, 50%) 0%, hsl(38.82, 100%, 50%) 16%, hsl(60, 100%, 50%) 32%, hsl(120, 100%, 50%) 48%, hsl(240, 100%, 50%) 64%, hsl(274.62, 100%, 25.49%) 80%, hsl(300, 100%, 25.1%) 100%);",
       },
       screens: {
         jio2: "240px",
