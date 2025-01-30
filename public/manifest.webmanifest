@@ -1,7 +1,7 @@
 {
-  "name": "My Next.js Application",
-  "short_name": "Next.js App",
-  "description": "An application built with Next.js",
+  "name": "@GameLord2011",
+  "short_name": "GameLord2011",
+  "description": "@GameLord2011's website",
   "start_url": "/",
   "icons": [
     {
