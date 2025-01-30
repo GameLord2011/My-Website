@@ -29,13 +29,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/256X256.ico",
-      "sizes": "256x256",
-      "type": "image/vnd.microsoft.icon",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/16X16.pngpng",
+      "src": "/16X16png.png",
       "sizes": "16x16",
       "type": "image/png",
       "purpose": "any maskable"
