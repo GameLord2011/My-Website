@@ -15,7 +15,7 @@ export default function Shoutouts() {
             <Link href="https://github.com/fand">@fand</Link> for{" "}
             <Link href="https://amagi.dev/react-vfx">
               <VFXImg
-                loading="lazy"
+                loading="eager"
                 src="/react-vfx.png"
                 className="h-[1.3rem] hidden dark:inline-block overflow-clip"
                 shader="rgbShift"
@@ -23,7 +23,7 @@ export default function Shoutouts() {
                 alt="React-Vfx"
               />
               <VFXImg
-                loading="lazy"
+                loading="eager"
                 src="/react-vfx-light.png"
                 className="h-[1.3rem] dark:hidden inline-block overflow-clip"
                 shader="rgbShift"

@@ -9,7 +9,7 @@ export default function Navbar() {
   console.log(`Your path is: ${pathname}`);
 
   return (
-    <nav className="z-10 relative">
+    <nav className="z-[10000] relative">
       <div className="dropdown right-full bottom-full sticky">
         <button type="button" className="dropbtn">
           Pages
