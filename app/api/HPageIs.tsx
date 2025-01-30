@@ -36,7 +36,7 @@ export default function HPageIs() {
               className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block w-auto h-auto"
             >
               <Image
-                className="Flag_cntr w-auto h-auto bz30:block jio2:hidden"
+                className="Flag_cntr w-auto h-auto bz30:block hidden"
                 src="https://s01.flagcounter.com/count2/ugnH/bg_000000/txt_1e4d12/border_1E4D12/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
                 alt="Flag Counter"
                 width={0}
@@ -51,7 +51,7 @@ export default function HPageIs() {
               className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block w-auto h-auto"
             >
               <Image
-                className="Flag_cntr w-auto h-auto bz30:block jio2:hidden"
+                className="Flag_cntr w-auto h-auto bz30:block hidden"
                 src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
                 alt="Flag Counter"
                 width={0}
@@ -70,7 +70,7 @@ export default function HPageIs() {
               className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block"
             >
               <Image
-                className="Flag_cntr w-auto h-auto bz30:block jio2:hidden"
+                className="Flag_cntr w-auto h-auto bz30:block hidden"
                 src="https://s01.flagcounter.com/count2/ugnH/bg_000000/txt_1e4d12/border_1E4D12/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
                 alt="Flag Counter"
                 width={0}
@@ -85,7 +85,7 @@ export default function HPageIs() {
               className="hidden bottom-0 p-0 m-0 left-0 fixed dark:block"
             >
               <Image
-                className="Flag_cntr w-auto h-auto bz30:block jio2:hidden"
+                className="Flag_cntr w-auto h-auto bz30:block hidden"
                 src="https://s05.flagcounter.com/count2_US/xU6/bg_000000/txt_044002/border_044002/columns_2/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
                 alt="Flag Counter"
                 width={0}
