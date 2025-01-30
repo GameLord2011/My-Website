@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   authors: [{ name: "@GameLord2011", url: "https://github.com/gamelord2011" }],
-  icons: [{ rel: "apple-touch-icon", url: "/512X512square.png" }],
+  icons: [{ rel: "icon", url: "/128x128png.png" }, { rel: "apple-touch-icon", url: "/512X512square.png" }],
   manifest: "/manifest.webmanifest",
 };
 
