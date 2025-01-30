@@ -1,8 +1,11 @@
 {
+  "lang": "en-us",
   "name": "@GameLord2011",
   "short_name": "GameLord2011",
   "description": "@GameLord2011's website",
   "start_url": "/",
+  "orientation": "any",
+  "display": "standalone",
   "icons": [
     {
       "src": "/16X16.ico",
