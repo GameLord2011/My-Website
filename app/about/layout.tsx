@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     images: [{ url: "/512X512square.png", width: 512, height: 512 }],
     title: "@GameLord2011 | About",
     description: "@GameLord2011's site",
-    url: "https://gamelord2011.vercel.app",
+    url: "https://gamelord2011.vercel.app/about",
     type: "website",
     siteName: "@GameLord2011 about page",
   },
