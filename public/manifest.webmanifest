@@ -62,7 +62,7 @@
       "purpose": "any maskable"
     },
     {
-      "src":"/512X512.png",
+      "src": "/512X512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
