@@ -12,7 +12,7 @@ export default function Page() {
 
   const username = "gamelord2011";
 
-  // Fetch repositories
+  // Fetch repositories & emojis from GitHub API
   useEffect(() => {
     async function fetchRepos() {
       try {
@@ -33,11 +33,6 @@ export default function Page() {
       }
     }
 
-    fetchRepos();
-  }, []);
-
-  // Fetch GitHub emojis
-  useEffect(() => {
     async function fetchEmojis() {
       try {
         const response = await fetch("https://api.github.com/emojis");
@@ -48,6 +43,7 @@ export default function Page() {
       }
     }
 
+    fetchRepos();
     fetchEmojis();
   }, []);
 
