@@ -5,6 +5,10 @@ import Navbar from "api/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gamelord2011.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: "@GameLord2011",
   description: "@GameLord2011's site",
   generator: "NextJS",
