@@ -26,12 +26,13 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     images: [{ url: "/512X512square.png", width: 512, height: 512 }],
-    authors: ["@GameLord2011"],
     title: "@GameLord2011",
     description: "@GameLord2011's site",
     url: "https://gamelord2011.vercel.app",
+    type: "website",
   },
   twitter: {
+    card: "summary_large_image",
     site: "@GameLord2011",
     creator: "@GameLord2011",
     images: [{ url: "/512X512square.png", width: 512, height: 512 }],
