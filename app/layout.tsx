@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     description: "@GameLord2011's site",
     url: "https://gamelord2011.vercel.app",
     type: "website",
+    siteName: "@GameLord2011",
   },
   twitter: {
     card: "summary_large_image",
