@@ -162,6 +162,7 @@ ol li::marker {
   z-index: 1;
   border-radius: 4px;
   border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   position: sticky;
 }
 
@@ -179,6 +180,7 @@ ol li::marker {
   box-shadow: 0px 8px 16px 0px hsla(0, 0%, 0%, 0.2);
   z-index: 1;
   border-radius: 4px;
+  border-top-left-radius: 0px;
 }
 
 /* Links inside the dropdown */
