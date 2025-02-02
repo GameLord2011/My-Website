@@ -13,4 +13,4 @@ Make sure all of these are installed before modifing code.
 
 ## Changes that need to be made
 
-To make this site your own, change all occurecnces of my username to your own.
+To make this site your own, change all occurecnces of my username to your own, and create a file called `.env.local` and add the code `NEXT_PUBLIC_BIRTHDATE='2011-09-23'`

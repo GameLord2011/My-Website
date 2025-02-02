@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   const [age, setAge] = useState<number | null>(null);
-  const birthdate = "2011-09-23";
+  const birthdate = process.env.NEXT_PUBLIC_BIRTHDATEE || "";
   const DYSTW = new Date("2024-10-30"); // DYSTW = Date You Started This Website
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
         <div>
           <p>
-            I am a {age !== null ? age : "..."} year old <span ref={el}></span>.
+            I am a {Number.isNaN(age) ? "Error" : (age !== null ? age : "...")} year old <span ref={el}></span>.
           </p>
           <p>I program in:</p>
           <ul className="list-inside">
