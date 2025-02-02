@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: "/opengraph.png",
         width: 512,
         height: 512,
-      }
+      },
     ],
     title: "@GameLord2011",
     description: "@GameLord2011's site",
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
         url: "/opengraph.png",
         width: 512,
         height: 512,
-      }
-    ]
+      },
+    ],
   },
   manifest: "/manifest.webmanifest",
 };

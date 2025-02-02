@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/opengraph.png",
         width: 512,
         height: 512,
-      }
+      },
     ],
   },
   twitter: {
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         url: "/opengraph.png",
         width: 512,
         height: 512,
-      }
+      },
     ],
   },
   manifest: "/manifest.webmanifest",
