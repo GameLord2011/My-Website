@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { error } from "console";
 
 export default function Page() {
+
+  const reposFetched = useRef(false);
+
   const [repos, setRepos] = useState<
     { name: string; description: string; id: number }[]
   >([]);
@@ -24,8 +26,8 @@ export default function Page() {
         const formattedRepos = data.map(
           (repo: { name: string; description: string; id: number }) => ({
             name: repo.name || "No name available",
-            description: repo.description || "No description available",
-            id: repo.id || error("No id available on repo " + repo.name),
+            description: repo.description || null,
+            id: repo.id,
           }),
         );
         setRepos(formattedRepos);
@@ -46,6 +48,7 @@ export default function Page() {
 
     fetchRepos();
     fetchEmojis();
+    reposFetched.current = !reposFetched.current;
   }, []);
 
   // Replace emoji shortcodes with React elements
@@ -74,6 +77,16 @@ export default function Page() {
     });
   };
 
+  if(!reposFetched.current){
+    return(
+      <main className="flex flex-col items-center justify-center">
+      <h1 className="text-2xl">My GitHub Repositories:</h1>
+      <br />
+      <p>loading...</p>
+      </main>
+    );
+  }
+
   return (
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">My GitHub Repositories:</h1>
@@ -89,9 +102,11 @@ export default function Page() {
                 {repo.name}
               </Link>
             </h2>
+            {repo.description !== null &&
             <p className="hidden md:block">
               {renderWithEmojis(repo.description)}
             </p>
+            }
           </div>
         ))}
       </div>
