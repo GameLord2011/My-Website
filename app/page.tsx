@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   const [age, setAge] = useState<number | null>(null);
-  const birthdate = process.env.NEXT_PUBLIC_BIRTHDATEE || "";
+  const birthdate = process.env.NEXT_PUBLIC_BIRTHDATE || "";
   const DYSTW = new Date("2024-10-30"); // DYSTW = Date You Started This Website
 
   useEffect(() => {
