@@ -19,8 +19,14 @@ function getRoutes(dir, basePath = "") {
       routes = routes.concat(getRoutes(fullPath, relativePath));
     } else if (entry.isFile() && entry.name === "page.tsx") {
       const routePath = relativePath.replace(/\\/g, "/").replace("/page.tsx", "");
-      routes.push({ path: routePath === "" ? "/" : routePath, priority: 0.7 });
-      console.log("Found route:", routePath, "Priority: 0.7");
+      if(routePath === "page.tsx") {
+        routes.push({ path: routePath === "" ? "/" : `/`, priority: 0.7 });
+        console.log("Found route:", routePath === "" ? "/" : `/`, "Priority: 0.7");
+      } else {
+        routes.push({ path: routePath === "" ? "/" : `/${routePath}`, priority: 0.7 });
+        console.log("Found route:", routePath === "" ? "/" : `/${routePath}`, "Priority: 0.7");
+      }
+      
     }
   }
 
@@ -39,7 +45,7 @@ async function generateSitemap() {
         ${routes
           .map(({ path, priority }) => {
             return `<url>
-                    <loc>${baseUrl}/${path}</loc>
+                    <loc>${baseUrl}${path}</loc>
                     <lastmod>${new Date().toISOString()}</lastmod>
                     <priority>${priority}</priority>
                     <changefreq>always</changefreq>
