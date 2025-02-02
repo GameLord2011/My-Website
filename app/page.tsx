@@ -70,7 +70,8 @@ export default function Home() {
         </div>
         <div>
           <p>
-            I am a {Number.isNaN(age) ? "Error" : (age !== null ? age : "...")} year old <span ref={el}></span>.
+            I am a {Number.isNaN(age) ? "Error" : age !== null ? age : "..."}{" "}
+            year old <span ref={el}></span>.
           </p>
           <p>I program in:</p>
           <ul className="list-inside">

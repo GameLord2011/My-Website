@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Page() {
-
   const reposFetched = useRef(false);
 
   const [repos, setRepos] = useState<
@@ -77,12 +76,12 @@ export default function Page() {
     });
   };
 
-  if(!reposFetched.current){
-    return(
+  if (!reposFetched.current) {
+    return (
       <main className="flex flex-col items-center justify-center">
-      <h1 className="text-2xl">My GitHub Repositories:</h1>
-      <br />
-      <p>loading...</p>
+        <h1 className="text-2xl">My GitHub Repositories:</h1>
+        <br />
+        <p>loading...</p>
       </main>
     );
   }
@@ -102,11 +101,11 @@ export default function Page() {
                 {repo.name}
               </Link>
             </h2>
-            {repo.description !== null &&
-            <p className="hidden md:block">
-              {renderWithEmojis(repo.description)}
-            </p>
-            }
+            {repo.description !== null && (
+              <p className="hidden md:block">
+                {renderWithEmojis(repo.description)}
+              </p>
+            )}
           </div>
         ))}
       </div>
