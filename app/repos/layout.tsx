@@ -22,11 +22,25 @@ export const metadata: Metadata = {
     url: "https://gamelord2011.vercel.app/repos",
     type: "website",
     siteName: "@GameLord2011 | Repos",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 512,
+        height: 512,
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: "@GameLord2011 | Repos",
     creator: "@GameLord2011",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 512,
+        height: 512,
+      }
+    ],
   },
   manifest: "/manifest.webmanifest",
 };
