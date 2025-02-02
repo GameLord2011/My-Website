@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { error } from "console";
 
 export default function Page() {
   const [repos, setRepos] = useState<
@@ -24,7 +25,7 @@ export default function Page() {
           (repo: { name: string; description: string; id: number }) => ({
             name: repo.name || "No name available",
             description: repo.description || "No description available",
-            id: repo.id,
+            id: repo.id || error("No id available on repo " + repo.name),
           }),
         );
         setRepos(formattedRepos);
