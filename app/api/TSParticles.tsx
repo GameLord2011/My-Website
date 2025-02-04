@@ -17,7 +17,7 @@ export default function TSParticles() {
   }, []);
 
   const particlesLoaded = async (container?: Container) => {
-    console.log(container);
+    console.info(container);
   };
 
   return (

@@ -29,6 +29,7 @@ export default function Page() {
             id: repo.id,
           }),
         );
+        console.log("Repos: ",formattedRepos);
         setRepos(formattedRepos);
       } catch (error) {
         console.error("Error fetching repos:", error);

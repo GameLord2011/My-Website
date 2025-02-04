@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Navbar() {
   const pathname: string = usePathname();
 
-  console.log(`Your path is: ${pathname}`);
+  console.info(`Your path is: ${pathname}`);
 
   return (
     <nav className="z-[10000] relative">
