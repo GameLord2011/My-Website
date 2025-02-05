@@ -3,7 +3,13 @@
   "atDirectives": [
     {
       "name": "@theme",
-      "description": "Use @theme to apply tailwind css configuration."
+      "description": "@theme configures the tailwindcss theme.",
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://tailwindcss.com/docs/theme"
+        }
+      ]
     }
   ]
 }
