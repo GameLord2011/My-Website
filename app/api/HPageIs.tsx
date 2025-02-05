@@ -27,7 +27,7 @@ export default function HPageIs() {
       {isBrowser && !bot && (
         <div>
           <Link href="https://github-readme-stats.vercel.app/">
-            <div className="bg-svgimg w-[467px] h-[195px] bottom-0 p-0 m-0 right-0 fixed" />
+            <div className="fixed bottom-0 right-0 m-0 h-[195px] w-[467px] bg-svgimg p-0" />
           </Link>
         </div>
       )}

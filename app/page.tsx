@@ -60,10 +60,10 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-center">
-        <div className="flex flex-row justify-center jio2:w-full jio2:text-xs bz30:text-xl bz30:w-2/3 h-1/5 bz30:rounded bz30:border-dotted bz30:border-2 bz30:border-Gween-300 bz30:dark:border-Gween-600 content-center self-center text-center p-10">
+        <div className="flex h-1/5 flex-row content-center justify-center self-center p-10 text-center jio2:w-full jio2:text-xs bz30:w-2/3 bz30:rounded bz30:border-2 bz30:border-dotted bz30:border-Gween-300 bz30:text-xl bz30:dark:border-Gween-600">
           <p>
             I&#39;m{" "}
-            <b className="bg-opacity-25 backdrop-filter backdrop-blur-xl filter saturate-200 bg-Gween-300 text-black font-serif border-white dark:border-black border-double border-4 rounded-md z-0 relative">
+            <b className="relative z-0 rounded-md border-4 border-double border-white bg-Gween-300 bg-opacity-25 font-serif text-black saturate-200 filter backdrop-blur-xl backdrop-filter dark:border-black">
               &#64;GameLord2011
             </b>
           </p>

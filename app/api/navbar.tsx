@@ -9,8 +9,8 @@ export default function Navbar() {
   console.info(`Your path is: ${pathname}`);
 
   return (
-    <nav className="z-[10000] relative">
-      <div className="dropdown right-full bottom-full sticky">
+    <nav className="relative z-[10000]">
+      <div className="dropdown sticky bottom-full right-full">
         <button type="button" className="dropbtn">
           Pages
         </button>

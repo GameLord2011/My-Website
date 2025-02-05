@@ -56,12 +56,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-screen h-screen">
+      <body className="h-screen w-screen">
         <SpeedInsights />
         <noscript>
           <style>{`.yescript{display:none;}`}</style>
         </noscript>
-        <noscript className="text-center block relative x-0 y-0 w-full h-full p-0 m-0 z-50">
+        <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
           Please enable JavaScript to run this site, if you do not know how to
           enable JavaScript,
           <br />

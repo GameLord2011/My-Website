@@ -68,7 +68,7 @@ export default function Page() {
             title={part}
             width={0}
             height={0}
-            className="w-[1em] h-[1em] inline"
+            className="inline h-[1em] w-[1em]"
             loading="eager"
           />
         );
@@ -91,11 +91,11 @@ export default function Page() {
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">My GitHub Repositories:</h1>
       <br />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="bz30:border p-4 bz30:rounded bz30:border-black bz30:dark:border-white"
+            className="p-4 bz30:rounded bz30:border bz30:border-black bz30:dark:border-white"
           >
             <h2 className="text-xl">
               <Link href={`https://github.com/${username}/${repo.name}/`}>

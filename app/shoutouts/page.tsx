@@ -17,7 +17,7 @@ export default function Shoutouts() {
               <VFXImg
                 loading="eager"
                 src="/react-vfx.png"
-                className="h-[1.3rem] hidden dark:inline-block overflow-clip"
+                className="hidden h-[1.3rem] overflow-clip dark:inline-block"
                 shader="rgbShift"
                 overflow={true}
                 alt="React-Vfx"
@@ -25,7 +25,7 @@ export default function Shoutouts() {
               <VFXImg
                 loading="eager"
                 src="/react-vfx-light.png"
-                className="h-[1.3rem] dark:hidden inline-block overflow-clip"
+                className="inline-block h-[1.3rem] overflow-clip dark:hidden"
                 shader="rgbShift"
                 overflow={true}
                 alt="React-Vfx"
@@ -55,7 +55,7 @@ export default function Shoutouts() {
             site possible at all via{" "}
             <Link href="https://github.com/vercel/next.js">
               <svg
-                className="dark:invert h-[0.7rem] inline-block -translate-y-[1px]"
+                className="inline-block h-[0.7rem] -translate-y-[1px] dark:invert"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 394 80"

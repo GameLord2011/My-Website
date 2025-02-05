@@ -1,7 +1,7 @@
 export default function NotFound() {
   return (
     <div>
-      <h2 className="font-extrabold text-lg">&#34;Not Here!&#34;</h2>
+      <h2 className="text-lg font-extrabold">&#34;Not Here!&#34;</h2>
       <p className="font-extralight"> -Dr. Dolittle</p>
       <p>
         I dunno where you got this link, but it&#39;s wrong, or broken from my

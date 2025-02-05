@@ -17,9 +17,9 @@ export default function About() {
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">About This Site</h1>
       <br />
-      <h1 className="text-xl text-left float-left">What To Do When:</h1>
+      <h1 className="float-left text-left text-xl">What To Do When:</h1>
       <br />
-      <div className="text-left float-left md:text-sm sm:text-xs w-1/2 md:w-2/3 sm:w-1/3">
+      <div className="float-left w-1/2 text-left sm:w-1/3 sm:text-xs md:w-2/3 md:text-sm">
         <h2 title="I Like This" className="text-lg">
           You like this site, and wish your&#39;s was like this.
         </h2>
@@ -30,7 +30,7 @@ export default function About() {
           <br />
           Steps to make this site your own:
         </p>
-        <ol className="list-[lower-greek] list-inside">
+        <ol className="list-inside list-[lower-greek]">
           <li>
             First make a{" "}
             <Link title="GitHub" href="https://github.com/">
