@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import TSParticles from "api/TSParticles";
-import Navbar from "api/navbar";
+import TSParticles from "components/TSParticles";
+import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { calculateAge } from "api/calculateAge";
+import { calculateAge } from "components/calculateAge";
 import styles from "ansi-styles";
-import HPageIs from "api/HPageIs";
+import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 
 export default function Home() {
