@@ -18,9 +18,19 @@ export default function Page() {
   useEffect(() => {
     async function fetchRepos() {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${username}/repos`,
-        );
+        let response;
+        if (process.env.NODE_ENV === "development" || "test") {
+          response = await fetch(
+            "/tests/gitrepos.json"
+          )
+        } else{
+          response = await fetch(
+            `https://api.github.com/users/${username}/repos`,
+          );
+        }
+        if (!response) {
+          throw new Error("Failed to fetch repositories");
+        }
         const data = await response.json();
         const formattedRepos = data.map(
           (repo: { name: string; description: string; id: number }) => ({
@@ -37,6 +47,9 @@ export default function Page() {
     }
 
     async function fetchEmojis() {
+      if(process.env.NODE_ENV === "development" || "test") {
+        return null;
+      }
       try {
         const response = await fetch("https://api.github.com/emojis");
         const data = await response.json();
