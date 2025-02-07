@@ -8,7 +8,7 @@ export default function Page() {
   const reposFetched = useRef(false);
 
   const [repos, setRepos] = useState<
-    { name: string; description: string; id: number }[]
+    { name: string; description: string; id: number; fork: boolean }[]
   >([]);
   const [emojis, setEmojis] = useState<{ [key: string]: string }>({}); // To store GitHub emojis
 
@@ -23,7 +23,7 @@ export default function Page() {
           response = await fetch(
             "/tests/gitrepos.json"
           )
-        } else{
+        } else {
           response = await fetch(
             `https://api.github.com/users/${username}/repos`,
           );
@@ -33,10 +33,11 @@ export default function Page() {
         }
         const data = await response.json();
         const formattedRepos = data.map(
-          (repo: { name: string; description: string; id: number }) => ({
+          (repo: { name: string; description: string; id: number; fork: boolean }) => ({
             name: repo.name || "No name available",
             description: repo.description || null,
             id: repo.id,
+            fork: repo.fork,
           }),
         );
         console.log("Repos: ", formattedRepos);
@@ -120,6 +121,7 @@ export default function Page() {
                 {renderWithEmojis(repo.description)}
               </p>
             )}
+            {repo.fork && 'Forked Repo.'}
           </div>
         ))}
       </div>
