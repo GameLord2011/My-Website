@@ -26,7 +26,8 @@ export default function Page() {
           response = await fetch(
             "/Tests/gitrepos.json"
           )
-        } else {
+        }
+        if(process.env.NODE_ENV === "production") {
           response = await fetch(
             `https://api.github.com/users/${username}/repos`,
           );
