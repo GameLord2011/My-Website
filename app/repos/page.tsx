@@ -55,12 +55,14 @@ export default function Page() {
       if(process.env.NODE_ENV === "development" || "test") {
         return null;
       }
-      try {
-        const response = await fetch("https://api.github.com/emojis");
-        const data = await response.json();
-        setEmojis(data); // Store emojis as key-value pairs
-      } catch (error) {
-        console.error("Error fetching emojis:", error);
+      if(process.env.NODE_ENV === "production") {
+        try {
+          const response = await fetch("https://api.github.com/emojis");
+          const data = await response.json();
+          setEmojis(data); // Store emojis as key-value pairs
+        } catch (error) {
+          console.error("Error fetching emojis:", error);
+        }
       }
     }
 
