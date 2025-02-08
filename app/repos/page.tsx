@@ -21,7 +21,7 @@ export default function Page() {
         let response;
         if (process.env.NODE_ENV === "development" || "test") {
           response = await fetch(
-            "/tests/gitrepos.json"
+            "/Tests/gitrepos.json"
           )
         } else {
           response = await fetch(
