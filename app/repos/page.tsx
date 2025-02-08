@@ -52,9 +52,6 @@ export default function Page() {
     }
 
     async function fetchEmojis() {
-      if(process.env.NODE_ENV === "development" || "test") {
-        return null;
-      }
       if(process.env.NODE_ENV === "production") {
         try {
           const response = await fetch("https://api.github.com/emojis");
