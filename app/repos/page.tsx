@@ -5,6 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Page() {
+
+  console.log("process.env.NODE_ENV: ", process.env.NODE_ENV);
+
   const reposFetched = useRef(false);
 
   const [repos, setRepos] = useState<
