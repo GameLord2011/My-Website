@@ -1,22 +1,18 @@
-"use client"; // Error boundaries must be Client Components
+"use client";
 
 export default function GlobalError({
-  error,
   reset,
 }: {
-  error: Error & { digest?: string };
   reset: () => void;
 }) {
   return (
     // global-error must include html and body tags
-    <html>
-      <body>
-        <h2>What the heck?!? A {error.name} error!</h2>
+    <div>
+        <h2>What the heck?!? A global error!</h2>
         <p>If you see this page CONTACT ME IMMEDIATELY</p>
         <button type="button" onClick={() => reset()}>
           Try again
         </button>
-      </body>
-    </html>
+      </div>
   );
 }

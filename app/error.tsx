@@ -1,3 +1,5 @@
+"use client";
+
 import GlobalError from '@/app/global-error';
 
 export default function ErrorBoundary({
@@ -7,5 +9,11 @@ export default function ErrorBoundary({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  return <GlobalError error={error} reset={reset} />;
+  return (
+  <html>
+    <body>
+      <GlobalError reset={reset} />
+    </body>
+  </html>
+);
 }
