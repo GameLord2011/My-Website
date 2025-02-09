@@ -13,7 +13,7 @@ export default function Home() {
     const typed = new Typed(el.current, {
       strings: [
         '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
-        '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> frontend / backend web dev',
+        '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> fullstack web dev',
         '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> C / C++ / C# developer',
         "developer",
       ],
