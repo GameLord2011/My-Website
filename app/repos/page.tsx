@@ -114,7 +114,7 @@ export default function Page() {
             key={repo.id}
             className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30"
           >
-            <h2 className="text-xl">
+            <h2 className="text-xl novisited">
               <Link href={`https://github.com/${username}/${repo.name}/`}>
                 {repo.name}
               </Link>

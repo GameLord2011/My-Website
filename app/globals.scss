@@ -270,3 +270,15 @@ ol li::marker {
   -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+
+.novisited{
+  &a{
+    color: hsl(120, 99%, 41%);
+    &:visited {
+      color: hsl(120, 99%, 41%);
+    }
+    &:hover {
+      color: hsl(120, 100%, 20%);
+    }
+  }
+}
