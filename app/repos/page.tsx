@@ -68,7 +68,7 @@ export default function Page() {
       }
     }
 
-    fetchEmojis
+    fetchEmojis();
   }, [repos]);
 
   // Replace emoji shortcodes with React elements
