@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Page() {
-
   console.log("process.env.NODE_ENV: ", process.env.NODE_ENV);
 
   const reposFetched = useRef(false);
@@ -23,11 +22,9 @@ export default function Page() {
       try {
         let response;
         if (process.env.NODE_ENV === "development" || "test") {
-          response = await fetch(
-            "/Tests/gitrepos.json"
-          )
+          response = await fetch("/Tests/gitrepos.json");
         }
-        if(process.env.NODE_ENV === "production") {
+        if (process.env.NODE_ENV === "production") {
           response = await fetch(
             `https://api.github.com/users/${username}/repos`,
           );
@@ -37,7 +34,12 @@ export default function Page() {
         }
         const data = await response.json();
         const formattedRepos = data.map(
-          (repo: { name: string; description: string; id: number; fork: boolean }) => ({
+          (repo: {
+            name: string;
+            description: string;
+            id: number;
+            fork: boolean;
+          }) => ({
             name: repo.name || "No name available",
             description: repo.description || null,
             id: repo.id,
@@ -57,7 +59,7 @@ export default function Page() {
 
   useEffect(() => {
     async function fetchEmojis() {
-      if(process.env.NODE_ENV === "production") {
+      if (process.env.NODE_ENV === "production") {
         try {
           const response = await fetch("https://api.github.com/emojis");
           const data = await response.json();
@@ -111,7 +113,7 @@ export default function Page() {
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">My GitHub Repositories:</h1>
       <br />
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 novisited">
+      <div className="novisited grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {repos.map((repo) => (
           <div
             key={repo.id}
@@ -127,7 +129,7 @@ export default function Page() {
                 {renderWithEmojis(repo.description)}
               </p>
             )}
-            {repo.fork && 'Forked Repo.'}
+            {repo.fork && "Forked Repo."}
           </div>
         ))}
       </div>

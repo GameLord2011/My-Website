@@ -1,20 +1,20 @@
 @use "tailwindcss";
 
 @theme {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-  
-    --color-Gween-300: hsl(120, 99.05%, 41.18%);
-    --color-Gween-600: hsl(120, 100%, 19.61%);
-  
-    --background-image-svgimg: url("https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github");
-  
-    --breakpoint-jio2: 240px;
-    --breakpoint-bz30: 360px;
-    --breakpoint-minsvgw: 1039px;
-  }
-  
-  /*
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-Gween-300: hsl(120, 99.05%, 41.18%);
+  --color-Gween-600: hsl(120, 100%, 19.61%);
+
+  --background-image-svgimg: url("https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github");
+
+  --breakpoint-jio2: 240px;
+  --breakpoint-bz30: 360px;
+  --breakpoint-minsvgw: 1039px;
+}
+
+/*
     The default border color has changed to `currentColor` in Tailwind CSS v4,
     so we've added these compatibility styles to make sure everything still
     looks the same as it did with Tailwind CSS v3.
@@ -22,16 +22,15 @@
     If we ever want to remove these styles, we need to add an explicit border
     color utility to any element that depends on these defaults.
   */
-  @layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-      border-color: var(--color-gray-200, currentColor);
-    }
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
-  
+}
 
 // Add the font-face for Cascadia Code
 @font-face {
@@ -55,8 +54,8 @@
   --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
-.novisited{
-  a{
+.novisited {
+  a {
     color: hsl(120, 99%, 41%);
     &:visited {
       color: hsl(120, 99%, 41%);
