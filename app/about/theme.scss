@@ -35,15 +35,6 @@ code.hljs {
   color: #444;
 }
 /* Base color: saturation 0; */
-.hljs-subst {
-  /* default */
-}
-/* purposely ignored */
-.hljs-formula,
-.hljs-attr,
-.hljs-property,
-.hljs-params {
-}
 .hljs-comment {
   color: #697070;
 }
@@ -138,9 +129,6 @@ code.hljs {
   .hljs-section,
   .hljs-link {
     color: white;
-  }
-  .hljs-subst {
-    /* default */
   }
   .hljs-string,
   .hljs-title,
