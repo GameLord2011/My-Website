@@ -47,10 +47,15 @@ export default function Page() {
         console.log("Repos: ", formattedRepos);
         setRepos(formattedRepos);
       } catch (error) {
-        console.error("Error fetching repos:", error);
+        console.error("Failed to fetch repositories: ", error);
       }
     }
 
+    fetchRepos();
+    reposFetched.current = !reposFetched.current;
+  }, []);
+
+  useEffect(() => {
     async function fetchEmojis() {
       if(process.env.NODE_ENV === "production") {
         try {
@@ -58,15 +63,13 @@ export default function Page() {
           const data = await response.json();
           setEmojis(data); // Store emojis as key-value pairs
         } catch (error) {
-          console.error("Error fetching emojis:", error);
+          console.error("Failed to fetch emojis, error: ", error);
         }
       }
     }
 
-    fetchRepos();
-    fetchEmojis();
-    reposFetched.current = !reposFetched.current;
-  }, []);
+    fetchEmojis
+  }, [repos]);
 
   // Replace emoji shortcodes with React elements
   const renderWithEmojis = (text: string) => {
