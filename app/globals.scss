@@ -278,7 +278,10 @@ ol li::marker {
 }
 
 .mobile-navbar-content a {
-  padding: 12px 16px;
+  @media (width > 240px) {
+    padding: 12px 16px;
+  }
+  padding: 12px 5px;
   text-decoration: none;
   display: block;
 }
