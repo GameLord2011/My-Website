@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 export const calculateAge = async (birthdate: string): Promise<number> => {
   return new Promise((resolve) => {

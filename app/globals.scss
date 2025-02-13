@@ -11,7 +11,7 @@
 
   --breakpoint-jio2: 240px;
   --breakpoint-bz30: 360px;
-  --breakpoint-minsvgw: 1039px;
+  --breakpoint-minsvgw: 1100px;
 }
 
 /*
@@ -253,6 +253,52 @@ ol li::marker {
   -moz-animation-fill-mode: forwards;
   -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+.mobile-navbar-content a:hover {
+  -webkit-animation-name: nvbr-lnk-clr-cng;
+  -moz-animation-name: nvbr-lnk-clr-cng;
+  -o-animation-name: nvbr-lnk-clr-cng;
+  animation-name: nvbr-lnk-clr-cng;
+
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.mobile-navbar-content a {
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+  @media (width > 240px) {
+    padding: 12px 16px;
+  }
+}
+
+.mobile-navbar-content {
+  position: absolute;
+  background-color: var(--nav-bkg);
+  width: 100vw;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  position: sticky;
+  display: flex;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  justify-content: center;
 }
 
 /* Show the dropdown menu on hover */
