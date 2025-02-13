@@ -8,6 +8,7 @@ export default function Page() {
   console.log("process.env.NODE_ENV: ", process.env.NODE_ENV);
 
   const reposFetched = useRef(false);
+  const emojisFetched = useRef(false);
 
   const [repos, setRepos] = useState<
     { name: string; description: string; id: number; fork: boolean }[]
@@ -18,22 +19,31 @@ export default function Page() {
 
   // Fetch repositories & emojis from GitHub API
   useEffect(() => {
-    async function fetchRepos() {
+    async function fetchData() {
+      if (reposFetched.current) return;
+
       try {
-        let response;
-        if (process.env.NODE_ENV === "development" || "test") {
-          response = await fetch("/Tests/gitrepos.json");
-        }
-        if (process.env.NODE_ENV === "production") {
-          response = await fetch(
+        let reposResponse;
+        let emojisResponse;
+
+        if (
+          process.env.NODE_ENV === "development" ||
+          process.env.NODE_ENV === "test"
+        ) {
+          reposResponse = await fetch("/Tests/gitrepos.json");
+        } else if (process.env.NODE_ENV === "production") {
+          reposResponse = await fetch(
             `https://api.github.com/users/${username}/repos`,
           );
+          emojisResponse = await fetch("https://api.github.com/emojis");
         }
-        if (!response) {
+
+        if (!reposResponse || !reposResponse.ok) {
           throw new Error("Failed to fetch repositories");
         }
-        const data = await response.json();
-        const formattedRepos = data.map(
+
+        const reposData = await reposResponse.json();
+        const formattedRepos = reposData.map(
           (repo: {
             name: string;
             description: string;
@@ -48,30 +58,20 @@ export default function Page() {
         );
         console.log("Repos: ", formattedRepos);
         setRepos(formattedRepos);
-      } catch (error) {
-        console.error("Failed to fetch repositories: ", error);
-      }
-    }
+        reposFetched.current = true;
 
-    fetchRepos();
-    reposFetched.current = !reposFetched.current;
-  }, []);
-
-  useEffect(() => {
-    async function fetchEmojis() {
-      if (process.env.NODE_ENV === "production") {
-        try {
-          const response = await fetch("https://api.github.com/emojis");
-          const data = await response.json();
-          setEmojis(data); // Store emojis as key-value pairs
-        } catch (error) {
-          console.error("Failed to fetch emojis, error: ", error);
+        if (emojisResponse && emojisResponse.ok) {
+          const emojisData = await emojisResponse.json();
+          setEmojis(emojisData); // Store emojis as key-value pairs
+          emojisFetched.current = true;
         }
+      } catch (error) {
+        console.error("Failed to fetch data: ", error);
       }
     }
 
-    fetchEmojis();
-  }, [repos]);
+    fetchData();
+  }, []);
 
   // Replace emoji shortcodes with React elements
   const renderWithEmojis = (text: string) => {

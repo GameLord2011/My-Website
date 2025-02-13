@@ -21,15 +21,15 @@ function getRoutes(dir, basePath = "") {
       const routePath = relativePath
         .replace(/\\/g, "/")
         .replace("/page.tsx", "");
-        routes.push({
-          path: routePath === "" ? "/" : `/${routePath}`,
-          priority: 0.7,
-        });
-        console.log(
-          "Found route:",
-          routePath === "" ? "/" : `/${routePath}`,
-          "Priority: 0.7",
-        );
+      routes.push({
+        path: routePath === "" ? "/" : `/${routePath}`,
+        priority: 0.7,
+      });
+      console.log(
+        "Found route:",
+        routePath === "" ? "/" : `/${routePath}`,
+        "Priority: 0.7",
+      );
     }
   }
 
