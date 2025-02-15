@@ -21,7 +21,7 @@ export default function About() {
       <br />
       <div className="float-left w-1/2 text-left sm:w-1/3 sm:text-xs md:w-2/3 md:text-sm">
         <h2 title="I Like This" className="text-lg">
-          You like this site, and wish your&#39;s was like this.
+          You like this site, and wish yours was like this.
         </h2>
         <br />
         <p>
