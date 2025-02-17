@@ -129,7 +129,7 @@ export default function Page() {
                 {renderWithEmojis(repo.description)}
               </p>
             )}
-            {repo.fork && "Forked Repo."}
+            {repo.fork && (<p className="font-ui">Forked repo.</p>)}
           </div>
         ))}
       </div>
