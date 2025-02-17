@@ -88,9 +88,9 @@ export default function Page() {
             src={emojis[part.slice(1, -1)]}
             alt={part}
             title={part}
-            width={20}
-            height={20}
-            className="inline-flex"
+            width={0}
+            height={0}
+            className="inline-flex h-[1em] w-[1em]"
             loading="eager"
           />
         );
