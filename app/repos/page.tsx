@@ -125,7 +125,7 @@ export default function Page() {
               </Link>
             </h2>
             {repo.description !== null && (
-              <p className="hidden md:block">
+              <p className="font-ui hidden leading-[1.5] md:block">
                 {renderWithEmojis(repo.description)}
               </p>
             )}
