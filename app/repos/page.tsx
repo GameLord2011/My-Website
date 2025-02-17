@@ -90,7 +90,7 @@ export default function Page() {
             title={part}
             width={20}
             height={20}
-            className="max-w-none bg-transparent aspect-square box-content align-text-top border-none"
+            className="box-content aspect-square max-w-none border-none bg-transparent align-text-top"
             loading="eager"
           />
         );
@@ -129,7 +129,7 @@ export default function Page() {
                 {renderWithEmojis(repo.description)}
               </p>
             )}
-            {repo.fork && (<p className="font-ui">Forked repo.</p>)}
+            {repo.fork && <p className="font-ui">Forked repo.</p>}
           </div>
         ))}
       </div>
