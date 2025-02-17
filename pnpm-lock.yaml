@@ -15,7 +15,7 @@ importers:
         version: 3.0.0(@tsparticles/engine@3.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       "@vercel/speed-insights":
         specifier: 1.1.0
-        version: 1.1.0(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.84.0))(react@19.0.0)
+        version: 1.1.0(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.0))(react@19.0.0)
       ansi-styles:
         specifier: 6.2.1
         version: 6.2.1
@@ -30,7 +30,7 @@ importers:
         version: 5.1.21
       next:
         specifier: 15.1.6
-        version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.84.0)
+        version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.0)
       prettier:
         specifier: 3.4.2
         version: 3.4.2
@@ -66,14 +66,14 @@ importers:
         specifier: ^6.11.3
         version: 6.11.3
       "@types/node":
-        specifier: ^20.17.18
-        version: 20.17.18
+        specifier: ^20.17.19
+        version: 20.17.19
       "@types/react":
-        specifier: ^19.0.8
-        version: 19.0.8
+        specifier: ^19.0.10
+        version: 19.0.10
       "@types/react-dom":
-        specifier: ^19.0.3
-        version: 19.0.3(@types/react@19.0.8)
+        specifier: ^19.0.4
+        version: 19.0.4(@types/react@19.0.10)
       "@types/sass-loader":
         specifier: ^8.0.9
         version: 8.0.9
@@ -96,11 +96,11 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2
       sass:
-        specifier: ^1.84.0
-        version: 1.84.0
+        specifier: ^1.85.0
+        version: 1.85.0
       sass-loader:
         specifier: 16.0.4
-        version: 16.0.4(sass@1.84.0)(webpack@5.97.1)
+        version: 16.0.4(sass@1.85.0)(webpack@5.97.1)
       style-loader:
         specifier: ^4.0.0
         version: 4.0.0(webpack@5.97.1)
@@ -1183,24 +1183,24 @@ packages:
         integrity: sha512-dWWMGPX8uselSQ1MLzDvQnVz5Qy1pe7SJuUl1Yqi2NCNRkrk5DmHlP44VZmTWm+buR2T217+5zEAPbAmTwKIOQ==,
       }
 
-  "@types/node@20.17.18":
+  "@types/node@20.17.19":
     resolution:
       {
-        integrity: sha512-9kS0opXVV3dJ+C7HPhXfDlOdMu4cjJSZhlSxlDK39IxVRxBbuiYjCkLYSO9d5UYqTd4DApxRK9T1xJiTAkfA0w==,
+        integrity: sha512-LEwC7o1ifqg/6r2gn9Dns0f1rhK+fPFDoMiceTJ6kWmVk6bgXBI/9IOWfVan4WiAavK9pIVWdX0/e3J+eEUh5A==,
       }
 
-  "@types/react-dom@19.0.3":
+  "@types/react-dom@19.0.4":
     resolution:
       {
-        integrity: sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==,
+        integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==,
       }
     peerDependencies:
       "@types/react": ^19.0.0
 
-  "@types/react@19.0.8":
+  "@types/react@19.0.10":
     resolution:
       {
-        integrity: sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==,
+        integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==,
       }
 
   "@types/sass-loader@8.0.9":
@@ -3959,10 +3959,10 @@ packages:
       webpack:
         optional: true
 
-  sass@1.84.0:
+  sass@1.85.0:
     resolution:
       {
-        integrity: sha512-XDAbhEPJRxi7H0SxrnOpiXFQoUJHwkR2u3Zc4el+fK/Tt5Hpzw5kkQ59qVDfvdaUq6gCrEZIbySFBM2T9DNKHg==,
+        integrity: sha512-3ToiC1xZ1Y8aU7+CkgCI/tqyuPXEmYGJXO7H4uqp0xkLXUqp88rQQ4j1HmP37xSJLbCJPaIiv+cT1y+grssrww==,
       }
     engines: { node: ">=14.0.0" }
     hasBin: true
@@ -4640,7 +4640,7 @@ snapshots:
       "@jest/schemas": 29.6.3
       "@types/istanbul-lib-coverage": 2.0.6
       "@types/istanbul-reports": 3.0.4
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       "@types/yargs": 17.0.33
       chalk: 4.1.2
 
@@ -5105,26 +5105,26 @@ snapshots:
 
   "@types/node-sass@4.11.8":
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
 
-  "@types/node@20.17.18":
+  "@types/node@20.17.19":
     dependencies:
       undici-types: 6.19.8
 
-  "@types/react-dom@19.0.3(@types/react@19.0.8)":
+  "@types/react-dom@19.0.4(@types/react@19.0.10)":
     dependencies:
-      "@types/react": 19.0.8
+      "@types/react": 19.0.10
 
-  "@types/react@19.0.8":
+  "@types/react@19.0.10":
     dependencies:
       csstype: 3.1.3
 
   "@types/sass-loader@8.0.9":
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       "@types/node-sass": 4.11.8
       "@types/webpack": 4.41.40
-      sass: 1.84.0
+      sass: 1.85.0
 
   "@types/source-list-map@0.1.6": {}
 
@@ -5136,13 +5136,13 @@ snapshots:
 
   "@types/webpack-sources@3.2.3":
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       "@types/source-list-map": 0.1.6
       source-map: 0.7.4
 
   "@types/webpack@4.41.40":
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       "@types/tapable": 1.0.12
       "@types/uglify-js": 3.17.5
       "@types/webpack-sources": 3.2.3
@@ -5232,9 +5232,9 @@ snapshots:
       "@typescript-eslint/types": 8.19.1
       eslint-visitor-keys: 4.2.0
 
-  "@vercel/speed-insights@1.1.0(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.84.0))(react@19.0.0)":
+  "@vercel/speed-insights@1.1.0(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.0))(react@19.0.0)":
     optionalDependencies:
-      next: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.84.0)
+      next: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.0)
       react: 19.0.0
 
   "@vfx-js/core@0.6.0":
@@ -6337,7 +6337,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       "@jest/types": 29.6.3
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -6345,13 +6345,13 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@29.7.0:
     dependencies:
-      "@types/node": 20.17.18
+      "@types/node": 20.17.19
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -6508,7 +6508,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.84.0):
+  next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.0):
     dependencies:
       "@next/env": 15.1.6
       "@swc/counter": 0.1.3
@@ -6528,7 +6528,7 @@ snapshots:
       "@next/swc-linux-x64-musl": 15.1.6
       "@next/swc-win32-arm64-msvc": 15.1.6
       "@next/swc-win32-x64-msvc": 15.1.6
-      sass: 1.84.0
+      sass: 1.85.0
       sharp: 0.33.5
     transitivePeerDependencies:
       - "@babel/core"
@@ -6929,14 +6929,14 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  sass-loader@16.0.4(sass@1.84.0)(webpack@5.97.1):
+  sass-loader@16.0.4(sass@1.85.0)(webpack@5.97.1):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
-      sass: 1.84.0
+      sass: 1.85.0
       webpack: 5.97.1
 
-  sass@1.84.0:
+  sass@1.85.0:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.0.3

@@ -21,15 +21,22 @@ function getRoutes(dir, basePath = "") {
       const routePath = relativePath
         .replace(/\\/g, "/")
         .replace("/page.tsx", "");
-      routes.push({
-        path: routePath === "" ? "/" : `/${routePath}`,
-        priority: 0.7,
-      });
-      console.log(
-        "Found route:",
-        routePath === "" ? "/" : `/${routePath}`,
-        "Priority: 0.7",
-      );
+      if(routePath === "page.tsx") {
+        routes.push({
+          path: "/",
+        });
+        console.log(
+          "Found route: /",
+        );
+      } else {
+        routes.push({
+          path: routePath === "" ? "/" : `/${routePath}`,
+        });
+        console.log(
+          "Found route:",
+          routePath === "" ? "/" : `/${routePath}`,
+        );
+      }
     }
   }
 
@@ -46,11 +53,11 @@ async function generateSitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${routes
-          .map(({ path, priority }) => {
+          .map(({ path }) => {
             return `<url>
                     <loc>${baseUrl}${path}</loc>
                     <lastmod>${new Date().toISOString()}</lastmod>
-                    <priority>${priority}</priority>
+                    <priority>${path === "/" ? '1' : '0.7'}</priority>
                     <changefreq>always</changefreq>
                 </url>
                 `;
