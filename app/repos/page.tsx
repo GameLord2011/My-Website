@@ -90,7 +90,7 @@ export default function Page() {
             title={part}
             width={20}
             height={20}
-            className="box-content aspect-square max-w-none border-none bg-transparent align-text-top"
+            className="box-content aspect-square max-w-none border-none bg-transparent align-text-top inline-flex"
             loading="eager"
           />
         );
