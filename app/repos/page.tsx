@@ -88,9 +88,9 @@ export default function Page() {
             src={emojis[part.slice(1, -1)]}
             alt={part}
             title={part}
-            width={20}
-            height={20}
-            className="box-content aspect-square max-w-none border-none bg-transparent align-text-top"
+            width={0}
+            height={0}
+            className="inline-flex h-[1em] w-[1em]"
             loading="eager"
           />
         );
@@ -125,11 +125,11 @@ export default function Page() {
               </Link>
             </h2>
             {repo.description !== null && (
-              <p className="font-ui hidden leading-[1.5] md:block">
+              <p className="hidden md:block">
                 {renderWithEmojis(repo.description)}
               </p>
             )}
-            {repo.fork && <p className="font-ui">Forked repo.</p>}
+            {repo.fork && "Forked repo."}
           </div>
         ))}
       </div>
