@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { calculateAge } from "components/calculateAge";
-import styles from "ansi-styles";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 
@@ -32,7 +31,6 @@ export default function Home() {
 
   const [age, setAge] = useState<number | null>(null);
   const birthdate = process.env.NEXT_PUBLIC_BIRTHDATE || "";
-  const DYSTW = new Date("2024-10-30"); // DYSTW = Date You Started This Website
 
   useEffect(() => {
     const fetchAge = async () => {
@@ -42,20 +40,6 @@ export default function Home() {
 
     fetchAge();
   }, [birthdate]);
-
-  let message = "";
-  if (age !== null) {
-    if (age <= 0) {
-      message = "Wait how are you visiting this site, I'm not even born yet!?!";
-    } else if (age >= 1 && new Date().getTime() < DYSTW.getTime()) {
-      message =
-        "Wait how are you visiting this site, I haven't programmed it yet!?!";
-    } else {
-      message = `Contrary to what (I Think) you (might have) thought, I am in fact ${age} years old.`;
-    }
-  }
-
-  console.log(`${styles.blue.open}${message}${styles.blue.close}`);
 
   return (
     <>

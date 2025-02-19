@@ -9,13 +9,15 @@ export const calculateAge = async (birthdate: string): Promise<number> => {
 
     const ipData = await ipResponse.json();
     const ipAddress = ipData.ip;
-    const response = await fetch(`https://www.timeapi.io/api/time/current/ip?ipAddress=${ipAddress}`);
+    const response = await fetch(
+      `https://www.timeapi.io/api/time/current/ip?ipAddress=${ipAddress}`,
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch current date and time");
     }
 
     const data = await response.json();
-    const currentDate = new Date(data.date);
+    const currentDate = new Date(data.dateTime);
     console.info(`Date/Time: ${currentDate}`);
 
     const birthDate = new Date(birthdate);
