@@ -9,6 +9,7 @@ export const calculateAge = async (birthdate: string): Promise<number> => {
 
     const data = await response.json();
     const currentDate = new Date(data.datetime);
+    console.info(`Date/Time: ${currentDate}`);
 
     const birthDate = new Date(birthdate);
     let age = currentDate.getFullYear() - birthDate.getFullYear();
