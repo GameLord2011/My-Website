@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      {isBrowser && (
+      {(isBrowser || (!isBrowser && !isMobile)) && (
         <nav className="@container relative z-[10000]">
           <div className="dropdown group sticky right-full bottom-full inline-block">
             <button
@@ -111,7 +111,7 @@ export default function Navbar() {
             )}
             <Link
               href="https://linktr.ee/GameLord2011"
-              className="@max[240px]:py-[16px] block px-[5px] py-[12px] @max-[240px]:px-[12px]"
+              className="hover:animate-nvbr-lnk-hvr @max[240px]:py-[16px] block px-[5px] py-[12px] @max-[240px]:px-[12px]"
             >
               Links
             </Link>
