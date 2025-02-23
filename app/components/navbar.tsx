@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      {isBrowser && (
+      {isBrowser || (!isBrowser && !isMobile) && (
         <nav className="@container relative z-[10000]">
           <div className="dropdown group sticky right-full bottom-full inline-block">
             <button
