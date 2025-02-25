@@ -32,7 +32,7 @@ export default function Isiecheck() {
                   : null}
               ; if you love God, your family, and/or your computer at all, you
               should upgrade your browser asap. <br /> I will not let you use
-              this site until you upgrade your browser
+              this site until you upgrade your browser.
             </p>
           </div>
         </>
