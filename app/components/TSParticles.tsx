@@ -5,16 +5,16 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { loadSlim } from "@tsparticles/slim";
-import { isMobile, isBrowser } from "react-device-detect"
+import { isMobile, isBrowser } from "react-device-detect";
 
 export default function TSParticles() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      if(isBrowser){
+      if (isBrowser) {
         await loadFull(engine);
-      } else if(isMobile) {
+      } else if (isMobile) {
         await loadSlim(engine);
       } else {
         await loadSlim(engine);
