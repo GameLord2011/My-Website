@@ -20,6 +20,7 @@ export default function Isiecheck() {
         <>
           <style>{`.displaynotonie{display:none;}`}</style>
           <div className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
+            <br />
             <h1 className="text-2xl">WARNING</h1>
             <br />
             <p>
@@ -30,7 +31,8 @@ export default function Isiecheck() {
                   ? "a legacy version of microsoft edge"
                   : null}
               ; if you love God, your family, and/or your computer at all, you
-              should upgrade your browser asap.
+              should upgrade your browser asap. <br /> I will not let you use
+              this site until you upgrade your browser.
             </p>
           </div>
         </>
