@@ -66,8 +66,8 @@ importers:
         specifier: ^6.11.3
         version: 6.11.3
       "@types/node":
-        specifier: ^20.17.21
-        version: 20.17.21
+        specifier: ^20.17.22
+        version: 20.17.22
       "@types/react":
         specifier: ^19.0.10
         version: 19.0.10
@@ -1180,6 +1180,12 @@ packages:
     resolution:
       {
         integrity: sha512-yw1WZ94lZpdZbpnaF+WRvlN/Sx2EZWe/YZVdK4mC4u02/ql6Ozen8qbRJhOtltOxCg97/kpijhGs5X6STwkvbg==,
+      }
+
+  "@types/node@20.17.22":
+    resolution:
+      {
+        integrity: sha512-9RV2zST+0s3EhfrMZIhrz2bhuhBwxgkbHEwP2gtGWPjBzVQjifMzJ9exw7aDZhR1wbpj8zBrfp3bo8oJcGiUUw==,
       }
 
   "@types/react-dom@19.0.4":
@@ -4629,7 +4635,7 @@ snapshots:
       "@jest/schemas": 29.6.3
       "@types/istanbul-lib-coverage": 2.0.6
       "@types/istanbul-reports": 3.0.4
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       "@types/yargs": 17.0.33
       chalk: 4.1.2
 
@@ -5094,9 +5100,13 @@ snapshots:
 
   "@types/node-sass@4.11.8":
     dependencies:
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
 
   "@types/node@20.17.21":
+    dependencies:
+      undici-types: 6.19.8
+
+  "@types/node@20.17.22":
     dependencies:
       undici-types: 6.19.8
 
@@ -5110,7 +5120,7 @@ snapshots:
 
   "@types/sass-loader@8.0.9":
     dependencies:
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       "@types/node-sass": 4.11.8
       "@types/webpack": 4.41.40
       sass: 1.85.1
@@ -5125,13 +5135,13 @@ snapshots:
 
   "@types/webpack-sources@3.2.3":
     dependencies:
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       "@types/source-list-map": 0.1.6
       source-map: 0.7.4
 
   "@types/webpack@4.41.40":
     dependencies:
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       "@types/tapable": 1.0.12
       "@types/uglify-js": 3.17.5
       "@types/webpack-sources": 3.2.3
@@ -6329,7 +6339,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       "@jest/types": 29.6.3
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -6343,7 +6353,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      "@types/node": 20.17.21
+      "@types/node": 20.17.22
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
