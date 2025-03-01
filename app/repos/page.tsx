@@ -36,6 +36,8 @@ export default function Page() {
             `https://api.github.com/users/${username}/repos`,
           );
           emojisResponse = await fetch("https://api.github.com/emojis");
+        } else{
+          reposResponse = await fetch("/Tests/gitrepos.json");
         }
 
         if (!reposResponse || !reposResponse.ok) {
@@ -113,11 +115,11 @@ export default function Page() {
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">My GitHub Repositories:</h1>
       <br />
-      <div className="novisited @container grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="novisited grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white bg-black/30 p-4 backdrop-blur-xs @max-[240px]:w-full dark:bg-white/30"
+            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30 max-jio2:w-full"
           >
             <h2 className="text-xl">
               <Link href={`https://github.com/${username}/${repo.name}/`}>
