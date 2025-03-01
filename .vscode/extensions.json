@@ -1,13 +1,13 @@
 {
-    "recommendations": [
-        "mikestead.dotenv",
-        "usernamehw.errorlens",
-        "idered.npm",
-        "esbenp.prettier-vscode",
-        "YoavBls.pretty-ts-errors",
-        "jawandarajbir.react-vscode-extension-pack",
-        "mrmlnc.vscode-scss",
-        "bradlc.vscode-tailwindcss",
-        "stivo.tailwind-fold"
-    ]
+  "recommendations": [
+    "mikestead.dotenv",
+    "usernamehw.errorlens",
+    "idered.npm",
+    "esbenp.prettier-vscode",
+    "YoavBls.pretty-ts-errors",
+    "jawandarajbir.react-vscode-extension-pack",
+    "mrmlnc.vscode-scss",
+    "bradlc.vscode-tailwindcss",
+    "stivo.tailwind-fold"
+  ]
 }
