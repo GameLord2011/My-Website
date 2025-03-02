@@ -36,7 +36,7 @@ export default function Page() {
             `https://api.github.com/users/${username}/repos`,
           );
           emojisResponse = await fetch("https://api.github.com/emojis");
-        } else{
+        } else {
           reposResponse = await fetch("/Tests/gitrepos.json");
         }
 
@@ -119,7 +119,7 @@ export default function Page() {
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30 max-jio2:w-full"
+            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30"
           >
             <h2 className="text-xl">
               <Link href={`https://github.com/${username}/${repo.name}/`}>
