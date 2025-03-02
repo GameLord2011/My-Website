@@ -53,7 +53,13 @@ export default function About() {
             </Link>{" "}
             on your device.
           </li>
-          <li>Fork the <Link href="https://www.github.com/gamelord2011/my-website/">Repo</Link>!</li>
+          <li>
+            Fork the{" "}
+            <Link href="https://www.github.com/gamelord2011/my-website/">
+              Repo
+            </Link>
+            !
+          </li>
           <li>Then, open your devices terminal.</li>
           <li>
             Clone this repository to your local machine:

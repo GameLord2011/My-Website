@@ -6,7 +6,7 @@ export default function GlobalError({ reset }: { reset: () => void }) {
     <div>
       <h2>What the heck?!? A global error!</h2>
       <p>If you see this page CONTACT ME IMMEDIATELY</p>
-      <button type="button" onClick={() => reset()}>
+      <button type="button" onClick={() => reset()} aria-label="reset button">
         Try again
       </button>
     </div>
