@@ -6,7 +6,7 @@ export default function ErrorBoundary({ reset }: { reset: () => void }) {
   return (
     <html>
       <body>
-        <GlobalError reset={reset} />
+        <GlobalError reset={reset}/>
       </body>
     </html>
   );

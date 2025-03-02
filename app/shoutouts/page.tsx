@@ -21,6 +21,7 @@ export default function Shoutouts() {
                 shader="rgbShift"
                 overflow={true}
                 alt="React-Vfx"
+                aria-label="React-Vfx"
               />
               <VFXImg
                 loading="eager"
@@ -29,6 +30,7 @@ export default function Shoutouts() {
                 shader="rgbShift"
                 overflow={true}
                 alt="React-Vfx"
+                aria-label="React-Vfx"
               />
             </Link>
             !
@@ -59,6 +61,7 @@ export default function Shoutouts() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 394 80"
+                aria-label="Next.js"
               >
                 <path
                   fill="#000"

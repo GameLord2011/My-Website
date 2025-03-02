@@ -88,12 +88,13 @@ export default function Page() {
           <Image
             key={index}
             src={emojis[part.slice(1, -1)]}
-            alt={part}
+            alt={part.slice(1, -1)}
             title={part}
             width={20}
             height={20}
             className="box-content inline-flex aspect-square max-w-none border-none bg-transparent align-text-top"
             loading="eager"
+            aria-label={part.slice(1, -1)}
           />
         );
       }
