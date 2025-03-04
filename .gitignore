@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,git,react,nextjs,windows,vs,linux,vim,vercel
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,git,react,nextjs,windows,vs,linux,vim,vercel
+# Created by https://www.toptal.com/developers/gitignore/api/vs,git,vim,node,linux,react,nextjs,vercel,windows,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=vs,git,vim,node,linux,react,nextjs,vercel,windows,visualstudiocode
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -236,6 +236,25 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
 ### vs ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -615,5 +634,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/node,git,react,nextjs,windows,vs,linux,vim,vercel
+# End of https://www.toptal.com/developers/gitignore/api/vs,git,vim,node,linux,react,nextjs,vercel,windows,visualstudiocode
+
+!.vscode/css-data.json
 public/sitemap.xml
