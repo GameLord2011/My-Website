@@ -1,7 +1,7 @@
 ---
 name: Critical Bug
 about: For CRITICAL BUGS
-title: ":feelsgood: Critacal Bug, FIX NOW!!!"
+title: ":feelsgood: Critical Bug, FIX NOW!!!"
 labels: FIXMENOW
 assignees: GameLord2011
 ---
