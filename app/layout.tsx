@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.scss";
 import TSParticles from "components/TSParticles";
 import Navbar from "components/navbar";
@@ -49,6 +49,13 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
 };
+export const viewport: Viewport = {
+  width: "device-width",
+  height: "device-height",
+  initialScale: 1,
+  minimumScale: 1,
+  colorScheme: "dark light",
+};
 
 export default function RootLayout({
   children,
@@ -57,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-screen w-screen">
+      <body className="h-screen w-screen transition-all duration-500 ease-in-out">
         <Isiecheck />
         <div className="displaynotonie">
           <SpeedInsights />
