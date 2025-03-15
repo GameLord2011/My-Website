@@ -1,7 +1,7 @@
 ---
 name: Critical Bug
 about: For CRITICAL BUGS
-title: ":feelsgood: Critacal Bug, FIX NOW!!!"
+title: ":feelsgood: Critical Bug, FIX NOW!!!"
 labels: FIXMENOW
 assignees: GameLord2011
 ---
@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
 
-- OS: [e.g. iOS]
+- OS: [e.g. Windows 7]
 - Browser [e.g. chrome, safari]
 - Version [e.g. 22]
 
