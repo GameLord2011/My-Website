@@ -5,6 +5,8 @@ import Link from "next/link";
 import hljs from "highlight.js/lib/core";
 import "./theme.scss";
 import bash from "highlight.js/lib/languages/bash";
+import { useState } from "react";
+import { calculateAge } from "components/calculateAge";
 
 hljs.registerLanguage("bash", bash);
 
@@ -13,15 +15,25 @@ export default function About() {
     hljs.highlightAll();
   }, []);
 
+  const [age, setAge] = useState<number | null>(null);
+  const birthdate = process.env.NEXT_PUBLIC_BIRTHDATE || "";
+
+  useEffect(() => {
+    const fetchAge = async () => {
+      const calculatedAge = await calculateAge(birthdate);
+      setAge(calculatedAge);
+    };
+
+    fetchAge();
+  }, [birthdate]);
+
   return (
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">About This Site</h1>
       <br />
-      <h1 className="float-left text-left text-xl">What To Do When:</h1>
-      <br />
       <div className="float-left w-1/2 text-left sm:w-1/3 sm:text-xs md:w-2/3 md:text-sm">
         <h2 title="I Like This" className="text-lg">
-          You like this site, and wish yours was like this.
+          What to do when you like this site, and wish yours was like this.
         </h2>
         <br />
         <p>
@@ -88,6 +100,29 @@ export default function About() {
             </pre>
           </li>
         </ol>
+        <br />
+        <h1 className="text-2xl">About Me</h1>
+        <br />
+        <p>
+          I am a {Number.isNaN(age) ? "Error" : age !== null ? age : "..."} year
+          old developer. I program in a lot of languages, but I am best at
+          TypeScript and Html. I also program in C# and some java and batch. I
+          mainly use windows, but I have ubuntu (WSL2) and a raspberry pi 4b
+          with retropie. I listen to music on spotify and I play a lot of{" "}
+          <Link href="https://www.minecraft.net/">Minecraft</Link> (
+          <Link href="https://namemc.com/profile/GameLord2011.1">
+            my profile
+          </Link>
+          ) and <Link href="https://fortnite.com/">Fortnite</Link> (
+          <Link href="https://fortnitetracker.com/profile/all/TRGameLord2011">
+            my Fortnite profile
+          </Link>
+          ). I also love the <Link href="https://www.marvel.com/">Marvel</Link>{" "}
+          and <Link href="https://starwars.com/">Star Wars</Link> movies. I am a
+          big fan of <Link href="https://itsfoss.com/">F.O.S.S.</Link> and{" "}
+          <Link href="https://www.github.com/">GitHub</Link>! I use VSCode and 
+          Visual Studio for programming.
+        </p>
       </div>
     </main>
   );
