@@ -10,6 +10,16 @@
           "url": "https://tailwindcss.com/docs/theme"
         }
       ]
+    },
+    {
+      "name": "@custom-variant",
+      "description": "@custom-variant configures custom variants for tailwindcss.",
+      "references": [
+        {
+          "name": "Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives"
+        }
+      ]
     }
   ]
 }
