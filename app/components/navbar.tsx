@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { isBrowser, isMobile } from "react-device-detect";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ThemeSwitcher from './themeswitcher';
 
 export default function Navbar() {
   const pathname: string = usePathname();
@@ -23,15 +24,15 @@ export default function Navbar() {
   return (
     <>
       {(isBrowser || (!isBrowser && !isMobile)) && (
-        <nav className="@container relative z-[10000]">
-          <div className="dropdown group sticky right-full bottom-full inline-block">
+        <nav className="z-[10000] flex items-center justify-between">
+          <div className="dropdown group inline-block">
             <button
               type="button"
-              className="dropbtn hover:animate-btn-hvr top-full left-full z-[1] cursor-pointer rounded-r-md border-none bg-[var(--nav-btn-bg)] p-4 text-lg text-[hsl(0,0%,93%)] transition-all duration-500 ease-in-out"
+              className="hover:animate-btn-hvr cursor-pointer rounded-r-md border-none bg-[var(--nav-btn-bg)] p-4 text-lg text-[hsl(0,0%,93%)] transition-all duration-500 ease-in-out"
             >
               Pages
             </button>
-            <div className="dropdown-content absolute z-[1] hidden min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block">
+            <div className="dropdown-content absolute hidden min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block">
               {pathname === "/" ? null : (
                 <Link
                   href="/"
@@ -71,6 +72,9 @@ export default function Navbar() {
                 Links
               </Link>
             </div>
+          </div>
+          <div className="flex items-center">
+            <ThemeSwitcher />
           </div>
         </nav>
       )}
@@ -115,6 +119,7 @@ export default function Navbar() {
             >
               Links
             </Link>
+            <ThemeSwitcher />
           </div>
         </nav>
       )}
