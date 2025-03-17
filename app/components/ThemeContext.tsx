@@ -18,6 +18,20 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     return 'light';
   });
 
+  const [isOverridden, setIsOverridden] = useState(false);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!isOverridden) {
+        const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const newTheme = userPrefersDark ? 'dark' : 'light';
+        setTheme(newTheme);
+      }
+    }, 300);
+
+    return () => clearInterval(intervalId);
+  }, [isOverridden]);
+
   useEffect(() => {
     document.documentElement.classList.add(theme);
     return () => {
@@ -26,6 +40,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   }, [theme]);
 
   const toggleTheme = () => {
+    setIsOverridden(true);
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
   };
