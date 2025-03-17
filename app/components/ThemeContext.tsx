@@ -9,6 +9,8 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+let userPrefersDark = false;
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -43,6 +45,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     setIsOverridden(true);
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
+    if (((userPrefersDark = true) && (newTheme === 'dark')) || ((userPrefersDark = false) && (newTheme === 'light'))) {
+      setIsOverridden(false);
+    }
   };
 
   return (
