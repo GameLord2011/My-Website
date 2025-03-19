@@ -9,24 +9,25 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-let userPrefersDark = false;
-
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      return userPrefersDark ? 'dark' : 'light';
-    }
-    return 'light';
-  });
-
+  const [, setUserPrefersDark] = useState(false);
+  const [theme, setTheme] = useState('light');
   const [isOverridden, setIsOverridden] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setUserPrefersDark(prefersDark);
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!isOverridden) {
-        const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const newTheme = userPrefersDark ? 'dark' : 'light';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setUserPrefersDark(prefersDark);
+        const newTheme = prefersDark ? 'dark' : 'light';
         setTheme(newTheme);
       }
     }, 300);
@@ -39,15 +40,14 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       document.documentElement.classList.remove(theme);
     };
-  }, [theme, userPrefersDark]);
+  }, [theme]);
 
   const toggleTheme = () => {
-    setIsOverridden(true);
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    if (((userPrefersDark = true) && (newTheme === 'dark')) || ((userPrefersDark = false) && (newTheme === 'light'))) {
-      setIsOverridden(false);
-    }
+    setIsOverridden(true);
+    console.log('Theme:', newTheme);
+    console.log('is overridden:', isOverridden);
   };
 
   return (

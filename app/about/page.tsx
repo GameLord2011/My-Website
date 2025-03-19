@@ -76,7 +76,7 @@ export default function About() {
           <li>
             Clone this repository to your local machine:
             <pre>
-              <code className="bash">
+              <code className="bash transition-all duration-500 ease-in-out">
                 git clone https://github.com/&lt;your-username&gt;/your-repo.git
               </code>
             </pre>
@@ -84,19 +84,19 @@ export default function About() {
           <li>
             Navigate to the project directory:
             <pre>
-              <code className="bash">cd your-repo</code>
+              <code className="bash transition-all duration-500 ease-in-out">cd your-repo</code>
             </pre>
           </li>
           <li>
             Install the dependencies:
             <pre>
-              <code className="bash">pnpm i</code>
+              <code className="bash transition-all duration-500 ease-in-out">pnpm i</code>
             </pre>
           </li>
           <li>
             Start the development server:
             <pre>
-              <code className="bash">pnpm dev</code>
+              <code className="bash transition-all duration-500 ease-in-out">pnpm dev</code>
             </pre>
           </li>
         </ol>
