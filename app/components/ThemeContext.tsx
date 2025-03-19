@@ -39,7 +39,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       document.documentElement.classList.remove(theme);
     };
-  }, [theme]);
+  }, [theme, userPrefersDark]);
 
   const toggleTheme = () => {
     setIsOverridden(true);
