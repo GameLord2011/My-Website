@@ -4,7 +4,7 @@ import TSParticles from "components/TSParticles";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
-import { ThemeProvider } from 'components/ThemeContext';
+import { ThemeProvider } from "components/ThemeContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -188,7 +188,7 @@ export default function RootLayout({
             </ul>
           </noscript>
           <div className="yescript">
-              <ThemeProvider>
+            <ThemeProvider>
               <Navbar />
               <TSParticles />
               {children}

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { isBrowser, isMobile } from "react-device-detect";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import ThemeSwitcher from './themeswitcher';
+import ThemeSwitcher from "./themeswitcher";
 
 export default function Navbar() {
   const pathname: string = usePathname();
@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <>
       {(isBrowser || (!isBrowser && !isMobile)) && (
-        <nav className="z-[10000] flex items-center justify-between relative">
+        <nav className="relative z-[10000] flex items-center justify-between">
           <div className="dropdown group inline-block">
             <button
               type="button"

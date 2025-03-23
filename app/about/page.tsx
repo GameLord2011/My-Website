@@ -84,19 +84,25 @@ export default function About() {
           <li>
             Navigate to the project directory:
             <pre>
-              <code className="bash transition-all duration-500 ease-in-out">cd your-repo</code>
+              <code className="bash transition-all duration-500 ease-in-out">
+                cd your-repo
+              </code>
             </pre>
           </li>
           <li>
             Install the dependencies:
             <pre>
-              <code className="bash transition-all duration-500 ease-in-out">pnpm i</code>
+              <code className="bash transition-all duration-500 ease-in-out">
+                pnpm i
+              </code>
             </pre>
           </li>
           <li>
             Start the development server:
             <pre>
-              <code className="bash transition-all duration-500 ease-in-out">pnpm dev</code>
+              <code className="bash transition-all duration-500 ease-in-out">
+                pnpm dev
+              </code>
             </pre>
           </li>
         </ol>
@@ -120,7 +126,7 @@ export default function About() {
           ). I also love the <Link href="https://www.marvel.com/">Marvel</Link>{" "}
           and <Link href="https://starwars.com/">Star Wars</Link> movies. I am a
           big fan of <Link href="https://itsfoss.com/">F.O.S.S.</Link> and{" "}
-          <Link href="https://www.github.com/">GitHub</Link>! I use VSCode and 
+          <Link href="https://www.github.com/">GitHub</Link>! I use VSCode and
           Visual Studio for programming.
         </p>
       </div>
