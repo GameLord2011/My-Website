@@ -10,30 +10,29 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [, setUserPrefersDark] = useState(false);
+  const [prefersDark, setprefersDark] = useState(true);
   const [theme, setTheme] = useState('light');
   const [isOverridden, setIsOverridden] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setUserPrefersDark(prefersDark);
+      setprefersDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
       setTheme(prefersDark ? 'dark' : 'light');
+      console.info('prefersDark:', prefersDark);
     }
-  }, []);
+  }, [prefersDark]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!isOverridden) {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setUserPrefersDark(prefersDark);
+        setprefersDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
         const newTheme = prefersDark ? 'dark' : 'light';
         setTheme(newTheme);
       }
     }, 300);
 
     return () => clearInterval(intervalId);
-  }, [isOverridden]);
+  }, [isOverridden, prefersDark]);
 
   useEffect(() => {
     document.documentElement.classList.add(theme);
@@ -45,7 +44,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    setIsOverridden(true);
+    if ((prefersDark && newTheme === 'dark') || (!prefersDark && newTheme === 'light')) {
+      setIsOverridden(false);
+    } else {
+      setIsOverridden(true);
+    }
     console.log('Theme:', newTheme);
     console.log('is overridden:', isOverridden);
   };
