@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <>
       {(isBrowser || (!isBrowser && !isMobile)) && (
-        <nav className="z-[10000] flex items-center justify-between">
+        <nav className="z-[10000] flex items-center justify-between relative">
           <div className="dropdown group inline-block">
             <button
               type="button"
