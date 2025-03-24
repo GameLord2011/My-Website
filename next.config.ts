@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
-const { default: classnamesMinifier } = require('@nimpl/classnames-minifier');
-
+import withClassnamesMinifier from "@nimpl/classnames-minifier";
 
 const nextConfig: NextConfig = {
   images: {
@@ -9,8 +8,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withClassnamesMinifier = classnamesMinifier({
+const classnamesMinifierConfig = {
   disabled: process.env.NODE_ENV === 'development',
-});
+};
 
-export default withClassnamesMinifier(nextConfig);
+export default withClassnamesMinifier(classnamesMinifierConfig)(nextConfig);
