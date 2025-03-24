@@ -18,7 +18,7 @@
     "eslint-config-prettier": "10.0.1",
     "highlight.js": "11.11.1",
     "isbot": "5.1.21",
-    "next": "15.1.6",
+    "next": "15.2.3",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.11",
     "react": "^19.0.0",
