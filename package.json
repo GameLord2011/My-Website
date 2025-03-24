@@ -10,11 +10,11 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
-    "@nimpl/classnames-minifier": "4.0.0",
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "3.8.1",
     "@vercel/speed-insights": "1.1.0",
+    "cssnano": "7.0.6",
     "eslint-config-prettier": "10.0.1",
     "highlight.js": "11.11.1",
     "isbot": "5.1.21",

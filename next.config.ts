@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import withClassnamesMinifier from "@nimpl/classnames-minifier";
 
 const nextConfig: NextConfig = {
   images: {
@@ -8,8 +7,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-const classnamesMinifierConfig = {
-  disabled: process.env.NODE_ENV === 'development',
-};
-
-export default withClassnamesMinifier(classnamesMinifierConfig)(nextConfig);
+export default nextConfig;
