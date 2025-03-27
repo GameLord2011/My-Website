@@ -14,10 +14,11 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "3.8.1",
     "@vercel/speed-insights": "1.1.0",
+    "age-ts": "0.0.1",
     "eslint-config-prettier": "10.0.1",
     "highlight.js": "11.11.1",
     "isbot": "5.1.21",
-    "next": "15.2.3",
+    "next": "15.2.4",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "0.6.11",
     "react": "^19.0.0",
@@ -28,14 +29,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.0.15",
+    "@tailwindcss/postcss": "^4.0.17",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/node": "^22.13.13",
+    "@types/node": "^22.13.14",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/sass-loader": "^8.0.9",
     "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.0",
+    "css-minimizer-webpack-plugin": "^7.0.2",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.1.3",
     "mini-css-extract-plugin": "^2.9.2",
@@ -43,12 +44,16 @@
     "sass": "^1.86.0",
     "sass-loader": "16.0.4",
     "style-loader": "^4.0.0",
-    "tailwindcss": "^4.0.15",
+    "tailwindcss": "^4.0.17",
     "typescript": "^5.8.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@vercel/speed-insights"
-    ]
+      "@parcel/watcher",
+      "@tsparticles/engine",
+      "@vercel/speed-insights",
+      "sharp"
+    ],
+    "overrides": {}
   }
 }

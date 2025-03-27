@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { calculateAge } from "components/calculateAge";
+import { useEffect, useRef } from "react";
+import Age from "age-ts";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 
 export default function Home() {
-  const el = React.useRef(null);
+  const el = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const typed = new Typed(el.current, {
       strings: [
         '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
@@ -29,18 +29,6 @@ export default function Home() {
     };
   }, []);
 
-  const [age, setAge] = useState<number | null>(null);
-  const birthdate = process.env.NEXT_PUBLIC_BIRTHDATE || "";
-
-  useEffect(() => {
-    const fetchAge = async () => {
-      const calculatedAge = await calculateAge(birthdate);
-      setAge(calculatedAge);
-    };
-
-    fetchAge();
-  }, [birthdate]);
-
   return (
     <>
       <main className="flex flex-col items-center justify-center">
@@ -54,8 +42,7 @@ export default function Home() {
         </div>
         <div>
           <p>
-            I am a {Number.isNaN(age) ? "Error" : age !== null ? age : "..."}{" "}
-            year old <span ref={el}></span>.
+            I am a <Age /> year old <span ref={el}></span>.
           </p>
           <p>I program in:</p>
           <ul className="list-inside">
