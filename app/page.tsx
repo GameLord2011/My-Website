@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Age from "age-ts";
+import Age from "@gamelord2011/age-calc";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 
@@ -29,6 +29,10 @@ export default function Home() {
     };
   }, []);
 
+  console.log(
+    "██╗    ███╗   ██╗███████╗███████╗██████╗     ██╗  ██╗███████╗██╗     ██████╗ \n██║    ████╗  ██║██╔════╝██╔════╝██╔══██╗    ██║  ██║██╔════╝██║     ██╔══██╗ \n██║    ██╔██╗ ██║█████╗  █████╗  ██║  ██║    ███████║█████╗  ██║     ██████╔╝ \n██║    ██║╚██╗██║██╔══╝  ██╔══╝  ██║  ██║    ██╔══██║██╔══╝  ██║     ██╔═══╝ \n██║    ██║ ╚████║███████╗███████╗██████╔╝    ██║  ██║███████╗███████╗██║██╗  \n╚═╝    ╚═╝  ╚═══╝╚══════╝╚══════╝╚═════╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝ \nIf you find an error in this site, please report it at https://github.com/gamelord2011/my-website/issues \n\n",
+  );
+
   return (
     <>
       <main className="flex flex-col items-center justify-center">
@@ -42,7 +46,8 @@ export default function Home() {
         </div>
         <div>
           <p>
-            I am a <Age /> year old <span ref={el}></span>.
+            I am a <Age birthdate={process.env.NEXT_PUBLIC_BIRTHDATE} /> year
+            old <span ref={el}></span>.
           </p>
           <p>I program in:</p>
           <ul className="list-inside">
