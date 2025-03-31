@@ -61,9 +61,9 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={clsx(
-                    "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
+                    'hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out',
                     {
-                      hidden: pathname === link.href,
+                      'hidden': pathname === link.href,
                     },
                   )}
                   key={link.name}
@@ -85,9 +85,9 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 className={clsx(
-                  "hover:animate-nvbr-lnk-hvr @max[240px]:py-[16px] block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[240px]:px-[12px]",
+                  'hover:animate-nvbr-lnk-hvr @max[240px]:py-[16px] block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[240px]:px-[12px]',
                   {
-                    hidden: pathname === link.href,
+                    'hidden': pathname === link.href,
                   },
                 )}
                 key={link.name}
