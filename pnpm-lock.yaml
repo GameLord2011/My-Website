@@ -7,9 +7,6 @@ settings:
 importers:
   .:
     dependencies:
-      "@gamelord2011/age-calc":
-        specifier: 1.0.7
-        version: 1.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       "@tsparticles/engine":
         specifier: ^3.8.1
         version: 3.8.1
@@ -22,6 +19,9 @@ importers:
       "@vercel/speed-insights":
         specifier: 1.2.0
         version: 1.2.0(next@15.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.0))(react@19.1.0)
+      age-ts:
+        specifier: 1.0.0
+        version: 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       eslint-config-prettier:
         specifier: 10.1.1
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
@@ -201,15 +201,6 @@ packages:
         integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==,
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
-
-  "@gamelord2011/age-calc@1.0.7":
-    resolution:
-      {
-        integrity: sha512-ParTBcbEaSkXFOPFPdKtdFShW0bgkcCsywnOu/cCaWRFruRdPBtJIB62xeVlAB3+LX79rFIufpogurK68E29uw==,
-      }
-    peerDependencies:
-      react: ">=17.0.2"
-      react-dom: ">=17.0.2"
 
   "@humanfs/core@0.19.1":
     resolution:
@@ -1558,6 +1549,15 @@ packages:
       }
     engines: { node: ">=0.4.0" }
     hasBin: true
+
+  age-ts@1.0.0:
+    resolution:
+      {
+        integrity: sha512-CdNsfWssoLVgcxgBkPzi7kJFCyACfyW5XZmdFr7VulsLua/yG/fFHBpOs8O6uunU0fF3kiY6sihry5Ot+lpwXQ==,
+      }
+    peerDependencies:
+      react: ">=17.0.2"
+      react-dom: ">=17.0.2"
 
   ajv-formats@2.1.1:
     resolution:
@@ -4651,14 +4651,6 @@ snapshots:
       "@eslint/core": 0.12.0
       levn: 0.4.1
 
-  "@gamelord2011/age-calc@1.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)":
-    dependencies:
-      "@types/node": 22.13.14
-      "@types/react": 19.0.12
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      typescript: 5.8.2
-
   "@humanfs/core@0.19.1": {}
 
   "@humanfs/node@0.16.6":
@@ -5455,6 +5447,14 @@ snapshots:
       acorn: 8.14.1
 
   acorn@8.14.1: {}
+
+  age-ts@1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      "@types/node": 22.13.14
+      "@types/react": 19.0.12
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      typescript: 5.8.2
 
   ajv-formats@2.1.1(ajv@8.17.1):
     optionalDependencies:
