@@ -7,7 +7,6 @@
     "YoavBls.pretty-ts-errors",
     "jawandarajbir.react-vscode-extension-pack",
     "mrmlnc.vscode-scss",
-    "bradlc.vscode-tailwindcss",
-    "stivo.tailwind-fold"
+    "bradlc.vscode-tailwindcss"
   ]
 }

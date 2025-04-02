@@ -96,76 +96,54 @@ a {
   --nav-hvr-bkg: hsl(0, 0%, 27%);
 }
 
-@-webkit-keyframes nvbr-btn-clr-cng {
+@mixin nvbr-btn-clr-cng {
   from {
     background-color: var(--nav-btn-bg);
   }
   to {
     background-color: var(--nav-btn-hvr-bkg);
   }
+}
+
+@-webkit-keyframes nvbr-btn-clr-cng {
+  @include nvbr-btn-clr-cng;
 }
 
 @-moz-keyframes nvbr-btn-clr-cng {
-  from {
-    background-color: var(--nav-btn-bg);
-  }
-  to {
-    background-color: var(--nav-btn-hvr-bkg);
-  }
+  @include nvbr-btn-clr-cng;
 }
 
 @-o-keyframes nvbr-btn-clr-cng {
-  from {
-    background-color: var(--nav-btn-bg);
-  }
-  to {
-    background-color: var(--nav-btn-hvr-bkg);
-  }
+  @include nvbr-btn-clr-cng;
 }
 
 @keyframes nvbr-btn-clr-cng {
+  @include nvbr-btn-clr-cng;
+}
+
+@mixin nvbr-lnk-clr-cng {
   from {
-    background-color: var(--nav-btn-bg);
+    background-color: var(--nav-bkg);
   }
   to {
-    background-color: var(--nav-btn-hvr-bkg);
+    background-color: var(--nav-hvr-bkg);
   }
 }
 
 @-webkit-keyframes nvbr-lnk-clr-cng {
-  from {
-    background-color: var(--nav-bkg);
-  }
-  to {
-    background-color: var(--nav-hvr-bkg);
-  }
+  @include nvbr-lnk-clr-cng;
 }
 
 @-moz-keyframes nvbr-lnk-clr-cng {
-  from {
-    background-color: var(--nav-bkg);
-  }
-  to {
-    background-color: var(--nav-hvr-bkg);
-  }
+  @include nvbr-lnk-clr-cng;
 }
 
 @-o-keyframes nvbr-lnk-clr-cng {
-  from {
-    background-color: var(--nav-bkg);
-  }
-  to {
-    background-color: var(--nav-hvr-bkg);
-  }
+  @include nvbr-lnk-clr-cng;
 }
 
 @keyframes nvbr-lnk-clr-cng {
-  from {
-    background-color: var(--nav-bkg);
-  }
-  to {
-    background-color: var(--nav-hvr-bkg);
-  }
+  @include nvbr-lnk-clr-cng;
 }
 
 // Selection Mixin

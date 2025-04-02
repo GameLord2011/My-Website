@@ -70,7 +70,7 @@ export default function RootLayout({
         <div className="displaynotonie">
           <SpeedInsights />
           <noscript>
-            <style>{`.yescript{display:none;}`}</style>
+            <style>{`.yescript {display: none;}`}</style>
           </noscript>
           <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
             Please enable JavaScript to run this site, if you do not know how to

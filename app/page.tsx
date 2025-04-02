@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Age from "age-ts";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
+import Image from "next/image";
 
 export default function Home() {
   const el = useRef(null);
@@ -46,7 +47,16 @@ export default function Home() {
         </div>
         <div>
           <p>
-            I am a <Age /> year old <span ref={el}></span>.
+            I am a <Age /> year old <span ref={el}></span> in the{" "}
+            <Image
+              width={0}
+              src={"/american_flag.svg"}
+              height={0}
+              className="inline-flex max-w-none border-none bg-transparent align-text-top w-auto h-[1rem]"
+              alt="United States of America"
+              aria-label="United States of America"
+            />
+            .
           </p>
           <p>I program in:</p>
           <ul className="list-inside">
