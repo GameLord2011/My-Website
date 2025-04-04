@@ -52,7 +52,7 @@ export default function Home() {
               width={0}
               src={"/american_flag.svg"}
               height={0}
-              className="inline-flex max-w-none border-none bg-transparent align-text-top w-auto h-[1rem]"
+              className="inline-flex h-[1rem] w-auto max-w-none border-none bg-transparent align-text-top"
               alt="United States of America"
               aria-label="United States of America"
             />
