@@ -14,7 +14,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "3.8.1",
     "@vercel/speed-insights": "1.2.0",
-    "age-ts": "1.1.0",
+    "age-ts": "2.0.0",
     "clsx": "2.1.1",
     "eslint-config-prettier": "10.1.1",
     "highlight.js": "11.11.1",

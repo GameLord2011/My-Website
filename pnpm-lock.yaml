@@ -21,8 +21,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(next@15.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.3))(react@19.1.0)
       age-ts:
-        specifier: 1.1.0
-        version: 1.1.0
+        specifier: 2.0.0
+        version: 2.0.0
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -964,8 +964,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  age-ts@1.1.0:
-    resolution: {integrity: sha512-RmHp/DF3wSVG+U5OfHeBYERCignV6+Zf0l8e2GwNCxm7ewFpGJYHTnYsbOJYDhg+mI/vlqyCJqKo3gZ8cYdP3A==}
+  age-ts@2.0.0:
+    resolution: {integrity: sha512-wJp8YIqBbVy4SVpfx7oitpyrkShhsKOWKx2jXot3rlnkOavc/H8xe3ZRCb0kv+uX8r51sX0pi9T0iKe368+HKg==}
 
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
@@ -3664,7 +3664,7 @@ snapshots:
 
   acorn@8.14.1: {}
 
-  age-ts@1.1.0:
+  age-ts@2.0.0:
     dependencies:
       '@types/node': 22.14.1
       '@types/react': 19.1.1
