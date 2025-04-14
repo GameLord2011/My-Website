@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import hljs from "highlight.js/lib/core";
-import "./theme.scss";
+import "./theme.css";
 import bash from "highlight.js/lib/languages/bash";
 import Age from "age-ts";
 
