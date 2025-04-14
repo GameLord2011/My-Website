@@ -64,7 +64,8 @@ export default function About() {
             Clone this repository to your local machine:
             <pre>
               <code className="bash transition-all duration-500 ease-in-out">
-                git clone https://github.com/&lt;your-username&gt;/my-website.git
+                git clone
+                https://github.com/&lt;your-username&gt;/my-website.git
               </code>
             </pre>
           </li>
