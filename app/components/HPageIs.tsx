@@ -24,7 +24,7 @@ export default function HPageIs() {
 
   return (
     <>
-      {isBrowser && !bot && (
+      {(isBrowser || (!isBrowser && !isMobile)) && !bot && (
         <div>
           <Link href="https://github-readme-stats.vercel.app/">
             <div
