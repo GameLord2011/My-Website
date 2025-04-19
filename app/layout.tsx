@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.scss";
+import "styles/globals.scss";
 import TSParticles from "components/TSParticles";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
