@@ -166,6 +166,17 @@ body {
   font-family: "Cascadia Code";
   font-size: small;
   text-align: center;
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-track {
+    width: 0 !important;
+    height: 0 !important;
+    background-color: transparent;
+    -webkit-appearance: none;
+    display: none;
+  }
+  -ms-scrollbar-style: none;
+  overflow-y: scroll;
 }
 
 ul li::marker {

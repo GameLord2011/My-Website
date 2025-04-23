@@ -80,7 +80,7 @@ export default function Navbar() {
       )}
       {isMobile && (
         <nav>
-          <div className="mobile-navbar-content sticky top-full left-0 z-[1] flex w-full justify-center bg-[var(--nav-bkg)] text-center">
+          <div className="mobile-navbar-content sticky top-full left-0 z-[1] flex w-full max-w-full justify-center bg-[var(--nav-bkg)] text-center">
             {links.map((link) => (
               <Link
                 href={link.href}
