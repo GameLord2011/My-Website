@@ -5,8 +5,12 @@ import { Pokemon, PokemonClient } from "pokenode-ts";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+interface PageParams {
+  name: string;
+}
+
 export default function PokemonPage({ params }: { params: { name: string } }) {
-  const resolvedParams = React.use(params as Usable<any>);
+  const resolvedParams = React.use(params as Usable<PageParams>);
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isShiny, setIsShiny] = useState(false);
   const [error, setError] = useState("");
