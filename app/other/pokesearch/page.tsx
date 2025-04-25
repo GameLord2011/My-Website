@@ -13,17 +13,6 @@ interface PokemonResult {
   url: string;
 }
 
-function debounce<T extends (...args: any[]) => void>(
-  func: T,
-  wait: number,
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-
 export default function Page() {
   const api = new PokemonClient();
   const router = useRouter();
@@ -44,7 +33,7 @@ export default function Page() {
     setFocused(false);
   };
 
-  const searchPokemon = async (query: PokemonName) => {
+  const searchPokemon = useCallback(async (query: PokemonName) => {
     try {
       setError("");
       const response = await fetch(
@@ -75,7 +64,7 @@ export default function Page() {
       setError(`Pokemon not found: ${errorMessage}`);
       setPokemons([]);
     }
-  };
+  }, [api, setError, setPokemons, setSuggestions]);
 
   const debouncedSearch = useCallback(
     (query: string) => searchPokemon(query),
