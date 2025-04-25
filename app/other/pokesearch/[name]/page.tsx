@@ -1,16 +1,16 @@
 "use client";
 
-import React, { Usable } from "react";
 import { Pokemon, PokemonClient } from "pokenode-ts";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface PageParams {
-  name: string;
+  params: {
+    name: string;
+  };
 }
 
-export default function PokemonPage({ params }: { params: { name: string } }) {
-  const resolvedParams = React.use(params as Usable<PageParams>);
+export default function PokemonPage({ params }: PageParams) {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isShiny, setIsShiny] = useState(false);
   const [error, setError] = useState("");
@@ -19,14 +19,14 @@ export default function PokemonPage({ params }: { params: { name: string } }) {
     const fetchPokemon = async () => {
       try {
         const api = new PokemonClient();
-        const data = await api.getPokemonByName(resolvedParams.name);
+        const data = await api.getPokemonByName(params.name);
         setPokemon(data);
       } catch (error) {
         setError(`Pokemon not found ${error}`);
       }
     };
     fetchPokemon();
-  }, [resolvedParams.name]);
+  }, [params.name]);
 
   const playCry = () => {
     if (pokemon) {
@@ -56,8 +56,8 @@ export default function PokemonPage({ params }: { params: { name: string } }) {
               <Image
                 src={
                   isShiny
-                    ? (pokemon.sprites.front_shiny ??
-                      pokemon.sprites.front_default ??
+                    ? (pokemon.sprites.front_shiny ?? 
+                      pokemon.sprites.front_default ?? 
                       "")
                     : (pokemon.sprites.front_default ?? "")
                 }
