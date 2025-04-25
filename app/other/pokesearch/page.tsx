@@ -8,6 +8,11 @@ import PokemonSearchSuggestions from "components/pokesearchSuggestions";
 
 type PokemonName = string;
 
+interface PokemonResult {
+  name: string;
+  url: string;
+}
+
 function debounce<T extends (...args: any[]) => void>(
   func: T,
   wait: number,
@@ -42,25 +47,21 @@ export default function Page() {
   const searchPokemon = async (query: PokemonName) => {
     try {
       setError("");
-      // Get all Pokemon names for suggestions
       const response = await fetch(
         "https://pokeapi.co/api/v2/pokemon?limit=1000",
       );
       const data = await response.json();
-      const allPokemon = data.results.map((p: any) => p.name);
+      const allPokemon = data.results.map((p: PokemonResult) => p.name);
 
-      // Filter suggestions based on query
       const matchedPokemon = allPokemon
         .filter((name: string) => name.includes(query.toLowerCase()))
         .slice(0, 5);
       setSuggestions(query ? matchedPokemon : []);
 
-      // If exact match, get full Pokemon data
       if (allPokemon.includes(query.toLowerCase())) {
         const pokemonData = await api.getPokemonByName(query.toLowerCase());
         setPokemons([pokemonData]);
       } else if (query) {
-        // Get multiple matching Pokemon
         const matchPromises: Promise<Pokemon>[] = matchedPokemon.map(
           (name: string) => api.getPokemonByName(name),
         );
@@ -69,15 +70,16 @@ export default function Page() {
       } else {
         setPokemons([]);
       }
-    } catch (error) {
-      setError("Pokemon not found");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      setError(`Pokemon not found: ${errorMessage}`);
       setPokemons([]);
     }
   };
 
   const debouncedSearch = useCallback(
-    debounce((query: string) => searchPokemon(query), 300),
-    [],
+    (query: string) => searchPokemon(query),
+    [searchPokemon]
   );
 
   useEffect(() => {
@@ -89,7 +91,7 @@ export default function Page() {
       setPokemons([]);
       setSuggestions([]);
     }
-  }, [searchParams]);
+  }, [searchParams, searchPokemon]);
 
   return (
     <main className="p-8">
@@ -121,7 +123,7 @@ export default function Page() {
                 suggestions={suggestions}
                 visible={focused}
                 onSelect={handleSuggestionSelect}
-                inputRef={inputRef as any}
+                inputRef={inputRef as React.RefObject<HTMLInputElement>}
               />
             </div>
           </div>

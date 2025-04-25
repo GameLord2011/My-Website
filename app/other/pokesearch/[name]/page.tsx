@@ -22,7 +22,7 @@ export default function PokemonPage({ params }: { params: { name: string } }) {
         const data = await api.getPokemonByName(resolvedParams.name);
         setPokemon(data);
       } catch (error) {
-        setError("Pokemon not found");
+        setError(`Pokemon not found ${error}`);
       }
     };
     fetchPokemon();
