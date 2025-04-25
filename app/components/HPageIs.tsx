@@ -2,29 +2,33 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { isBrowser, isMobile } from "react-device-detect";
+import { UAParser } from "ua-parser-js";
 import { isbot } from "isbot";
 
 export default function HPageIs() {
   const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    const parser = new UAParser();
+    const result = parser.getResult();
+    setIsMobile(result.device.type === "mobile");
     setIsClient(true);
+    setIsLoaded(true);
   }, []);
 
-  if (!isClient) {
+  if (!isClient || !isLoaded) {
     return null;
   }
 
   const bot = isbot(navigator.userAgent);
-
   const message = bot ? "You are a bot" : "You are not a bot";
-
   console.log(message);
 
   return (
     <>
-      {(isBrowser || (!isBrowser && !isMobile)) && !bot && (
+      {!isMobile && !bot && (
         <div>
           <Link href="https://github-readme-stats.vercel.app/">
             <div

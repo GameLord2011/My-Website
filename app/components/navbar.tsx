@@ -1,11 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { isBrowser, isMobile } from "react-device-detect";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import ThemeSwitcher from "./themeswitcher";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { UAParser } from "ua-parser-js";
+import ThemeSwitcher from "./themeswitcher";
 
 const links = [
   {
@@ -25,29 +25,39 @@ const links = [
     href: "/repos",
   },
   {
-    name: "Links",
-    href: "https://linktr.ee/GameLord2011",
+    name: "Other",
+    mobileHref: "/other",
+    href: "",
+    subLinks: [
+      {
+        name: "pokésearch",
+        href: "/other/pokesearch",
+      },
+      {
+        name: "Links",
+        href: "https://linktr.ee/GameLord2011",
+      },
+    ],
   },
 ];
 
 export default function Navbar() {
   const pathname: string = usePathname();
-
-  console.info(`Your path is: ${pathname}`);
-
-  const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    const parser = new UAParser();
+    const result = parser.getResult();
+    setIsMobile(result.device.type === "mobile");
+    setIsLoaded(true);
   }, []);
 
-  if (!isClient) {
-    return null;
-  }
+  if (!isLoaded) return null;
 
   return (
     <>
-      {(isBrowser || (!isBrowser && !isMobile)) && (
+      {!isMobile && (
         <nav className="relative z-[10000] flex items-center justify-between">
           <div className="dropdown group inline-block">
             <button
@@ -58,18 +68,38 @@ export default function Navbar() {
             </button>
             <div className="dropdown-content absolute hidden min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block">
               {links.map((link) => (
-                <Link
-                  href={link.href}
-                  className={clsx(
-                    "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
-                    {
-                      hidden: pathname === link.href,
-                    },
+                <div key={link.name} className="group/sub relative">
+                  <Link
+                    href={link.href}
+                    className={clsx(
+                      "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
+                      {
+                        hidden: pathname === link.href,
+                      },
+                    )}
+                  >
+                    {link.name}
+                    {link.subLinks && <span className="float-right">▶</span>}
+                  </Link>
+                  {link.subLinks && (
+                    <div className="dropdown-subcontent absolute top-0 left-full hidden min-w-[150px] rounded-md bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover/sub:block">
+                      {link.subLinks.map((subLink) => (
+                        <Link
+                          href={subLink.href}
+                          key={subLink.name}
+                          className={clsx(
+                            "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
+                            {
+                              hidden: pathname === subLink.href,
+                            },
+                          )}
+                        >
+                          {subLink.name}
+                        </Link>
+                      ))}
+                    </div>
                   )}
-                  key={link.name}
-                >
-                  {link.name}
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -83,7 +113,7 @@ export default function Navbar() {
           <div className="mobile-navbar-content sticky top-full left-0 z-[1] flex w-full max-w-full justify-center bg-[var(--nav-bkg)] text-center">
             {links.map((link) => (
               <Link
-                href={link.href}
+                href={(link.href || link.mobileHref) as string}
                 className={clsx(
                   "hover:animate-nvbr-lnk-hvr @max[240px]:py-[16px] block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[240px]:px-[12px]",
                   {
