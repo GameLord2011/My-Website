@@ -21,7 +21,7 @@ function getRoutes(dir, basePath = "") {
       const routePath = relativePath
         .replace(/\\/g, "/")
         .replace("/page.tsx", "");
-      
+
       // Skip dynamic routes (containing square brackets)
       if (routePath.includes("[") && routePath.includes("]")) {
         continue;

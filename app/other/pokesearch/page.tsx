@@ -33,42 +33,45 @@ export default function Page() {
     setFocused(false);
   };
 
-  const searchPokemon = useCallback(async (query: PokemonName) => {
-    try {
-      setError("");
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=1000",
-      );
-      const data = await response.json();
-      const allPokemon = data.results.map((p: PokemonResult) => p.name);
-
-      const matchedPokemon = allPokemon
-        .filter((name: string) => name.includes(query.toLowerCase()))
-        .slice(0, 5);
-      setSuggestions(query ? matchedPokemon : []);
-
-      if (allPokemon.includes(query.toLowerCase())) {
-        const pokemonData = await api.getPokemonByName(query.toLowerCase());
-        setPokemons([pokemonData]);
-      } else if (query) {
-        const matchPromises: Promise<Pokemon>[] = matchedPokemon.map(
-          (name: string) => api.getPokemonByName(name),
+  const searchPokemon = useCallback(
+    async (query: PokemonName) => {
+      try {
+        setError("");
+        const response = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=1000",
         );
-        const results = await Promise.all(matchPromises);
-        setPokemons(results);
-      } else {
+        const data = await response.json();
+        const allPokemon = data.results.map((p: PokemonResult) => p.name);
+
+        const matchedPokemon = allPokemon
+          .filter((name: string) => name.includes(query.toLowerCase()))
+          .slice(0, 5);
+        setSuggestions(query ? matchedPokemon : []);
+
+        if (allPokemon.includes(query.toLowerCase())) {
+          const pokemonData = await api.getPokemonByName(query.toLowerCase());
+          setPokemons([pokemonData]);
+        } else if (query) {
+          const matchPromises: Promise<Pokemon>[] = matchedPokemon.map(
+            (name: string) => api.getPokemonByName(name),
+          );
+          const results = await Promise.all(matchPromises);
+          setPokemons(results);
+        } else {
+          setPokemons([]);
+        }
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        setError(`Pokemon not found: ${errorMessage}`);
         setPokemons([]);
       }
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : String(err);
-      setError(`Pokemon not found: ${errorMessage}`);
-      setPokemons([]);
-    }
-  }, [api, setError, setPokemons, setSuggestions]);
+    },
+    [api, setError, setPokemons, setSuggestions],
+  );
 
   const debouncedSearch = useCallback(
     (query: string) => searchPokemon(query),
-    [searchPokemon]
+    [searchPokemon],
   );
 
   useEffect(() => {
@@ -83,7 +86,7 @@ export default function Page() {
 
   return (
     <main className="p-8">
-      <div className="mx-auto max-w-4xl z-[999]">
+      <div className="z-[999] mx-auto max-w-4xl">
         <div className="relative rounded-lg bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-800/80">
           <h1 className="mb-6 text-center text-3xl font-bold dark:text-white">
             Pokémon Search

@@ -41,11 +41,7 @@ export default function PokemonPage({
 
   const playCry = () => {
     if (pokemon) {
-      const audio = new Audio(
-        pokemon.name.toLowerCase() === "type-null"
-          ? "https://play.pokemonshowdown.com/audio/cries/typenull.mp3"
-          : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`
-      );
+      const audio = new Audio(pokemon.name.search(/-/i) !== 1 ? `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.replace(/-/i, "")}.mp3` : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`)
       audio.play();
     }
   };
@@ -62,8 +58,8 @@ export default function PokemonPage({
               <Image
                 src={
                   isShiny
-                    ? (pokemon.sprites.front_shiny ?? 
-                      pokemon.sprites.front_default ?? 
+                    ? (pokemon.sprites.front_shiny ??
+                      pokemon.sprites.front_default ??
                       "")
                     : (pokemon.sprites.front_default ?? "")
                 }
