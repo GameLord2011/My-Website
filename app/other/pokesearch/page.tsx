@@ -1,7 +1,7 @@
 "use client";
 
 import { Pokemon, PokemonClient } from "pokenode-ts";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PokemonCard from "components/pokemonCard";
 import PokemonSearchSuggestions from "components/pokesearchSuggestions";
@@ -14,7 +14,7 @@ interface PokemonResult {
 }
 
 export default function Page() {
-  const api = new PokemonClient();
+  const api = useMemo(() => new PokemonClient(), []);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -74,7 +74,6 @@ export default function Page() {
   useEffect(() => {
     const query = searchParams.get("q");
     if (query) {
-      setSearch(query);
       searchPokemon(query);
     } else {
       setPokemons([]);

@@ -21,16 +21,22 @@ function getRoutes(dir, basePath = "") {
       const routePath = relativePath
         .replace(/\\/g, "/")
         .replace("/page.tsx", "");
-      if (routePath === "page.tsx") {
+      
+      // Skip dynamic routes (containing square brackets)
+      if (routePath.includes("[") && routePath.includes("]")) {
+        continue;
+      }
+
+      if (routePath === "") {
         routes.push({
           path: "/",
         });
         console.log("Found route: /");
       } else {
         routes.push({
-          path: routePath === "" ? "/" : `/${routePath}`,
+          path: `/${routePath}`,
         });
-        console.log("Found route:", routePath === "" ? "/" : `/${routePath}`);
+        console.log("Found route:", `/${routePath}`);
       }
     }
   }

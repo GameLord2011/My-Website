@@ -4,48 +4,54 @@ import { Pokemon, PokemonClient } from "pokenode-ts";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-interface PageParams {
-  params: {
-    name: string;
-  };
-}
+export const dynamic = "force-dynamic";
 
-export default function PokemonPage({ params }: PageParams) {
+export default function PokemonPage({
+  params: paramsPromise,
+}: {
+  params: Promise<{ name: string }>;
+}) {
+  const [params, setParams] = useState<{ name: string } | null>(null);
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isShiny, setIsShiny] = useState(false);
   const [error, setError] = useState("");
 
+  // Unwrap the params Promise
   useEffect(() => {
+    paramsPromise
+      .then((resolvedParams) => setParams(resolvedParams))
+      .catch((err) => setError(`Failed to load params: ${err}`));
+  }, [paramsPromise]);
+
+  // Fetch Pokémon data when params are available
+  useEffect(() => {
+    if (!params) return;
+
     const fetchPokemon = async () => {
       try {
         const api = new PokemonClient();
         const data = await api.getPokemonByName(params.name);
         setPokemon(data);
       } catch (error) {
-        setError(`Pokemon not found ${error}`);
+        setError(`Pokemon not found: ${error}`);
       }
     };
     fetchPokemon();
-  }, [params.name]);
+  }, [params]);
 
   const playCry = () => {
     if (pokemon) {
-      if (pokemon.name.toLowerCase() === "type-null") {
-        const audio = new Audio(
-          "https://play.pokemonshowdown.com/audio/cries/typenull.mp3",
-        );
-        audio.play();
-        return;
-      }
       const audio = new Audio(
-        `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
+        pokemon.name.toLowerCase() === "type-null"
+          ? "https://play.pokemonshowdown.com/audio/cries/typenull.mp3"
+          : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`
       );
       audio.play();
     }
   };
 
   if (error) return <div className="p-8 text-red-500">{error}</div>;
-  if (!pokemon) return <div className="p-8">Loading...</div>;
+  if (!params || !pokemon) return <div className="p-8">Loading...</div>;
 
   return (
     <main className="p-8">
