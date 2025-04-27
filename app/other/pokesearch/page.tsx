@@ -13,6 +13,17 @@ interface PokemonResult {
   url: string;
 }
 
+function debounce<T extends (...args: string[]) => void>(
+  func: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
 export default function Page() {
   const api = useMemo(() => new PokemonClient(), []);
   const router = useRouter();
@@ -69,8 +80,8 @@ export default function Page() {
     [api, setError, setPokemons, setSuggestions],
   );
 
-  const debouncedSearch = useCallback(
-    (query: string) => searchPokemon(query),
+  const debouncedSearch = useMemo(
+    () => debounce((query: string) => searchPokemon(query), 300),
     [searchPokemon],
   );
 
