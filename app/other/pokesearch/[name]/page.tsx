@@ -15,6 +15,11 @@ export default function PokemonPage({
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isShiny, setIsShiny] = useState(false);
   const [error, setError] = useState("");
+  const [useMetric, setUseMetric] = useState(true); // State to toggle between metric and imperial
+
+  const toggleUnits = () => {
+    setUseMetric((prev) => !prev);
+  };
 
   // Unwrap the params Promise
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function PokemonPage({
   return (
     <main className="p-8">
       <div className="mx-auto max-w-4xl">
-        <div className="rounded-lg bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-800/80">
+        <div className="rounded-lg bg-white/80 p-6 shadow-lg dark:bg-gray-800/80">
           <div className="mb-6 flex items-center">
             <div className="relative">
               <Image
@@ -67,7 +72,8 @@ export default function PokemonPage({
                 width={200}
                 height={200}
                 className="h-50 w-50"
-                priority={false}
+                priority={true}
+                placeholder="empty"
               />
               <button
                 onClick={() => setIsShiny(!isShiny)}
@@ -102,7 +108,6 @@ export default function PokemonPage({
               </div>
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-6">
             <div>
               <h2 className="mb-3 text-xl font-semibold dark:text-white">
@@ -132,11 +137,26 @@ export default function PokemonPage({
               <h2 className="mb-3 text-xl font-semibold dark:text-white">
                 Details
               </h2>
+              <div className="flex items-center justify-center mb-4">
+                <span className="mr-2 text-gray-700 dark:text-gray-200">m</span>
+                <label className="relative inline-flex items-center cursor-pointer self-center content-center">
+                  <label htmlFor="units" className="sr-only">Toggle Units</label>
+                  <input
+                    type="checkbox"
+                    id="units"
+                    checked={!useMetric}
+                    onChange={toggleUnits}
+                    className="self-center sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                </label>
+                <span className="ml-2 text-gray-700 dark:text-gray-200">i</span>
+              </div>
               <p className="dark:text-gray-200">
-                Height: {pokemon.height / 10}m
+                Height: {useMetric ? `${pokemon.height / 10} m` : `${(pokemon.height / 10) * 3.281} ft`}
               </p>
               <p className="dark:text-gray-200">
-                Weight: {pokemon.weight / 10}kg
+                Weight: {useMetric ? `${pokemon.weight / 10} kg` : `${(pokemon.weight / 10) * 2.205} lbs`}
               </p>
               <div className="mt-4">
                 <h3 className="mb-2 font-medium dark:text-gray-200">
