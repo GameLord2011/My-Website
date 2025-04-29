@@ -26,12 +26,14 @@ export default function TSParticles() {
   useEffect(() => {
     if (!particles) return;
 
-    // Pause particles when the route changes
-    particles.pause();
+    // Debounce the pause/play logic to prevent strobing
+    const timeout = setTimeout(() => {
+      particles.pause();
+      particles.play();
+    }, 100); // Adjust the delay as needed
 
-    // Play particles after the route change is complete
-    particles.play();
-  }, [pathname, searchParams, particles]); // Trigger this effect when the path or query parameters change
+    return () => clearTimeout(timeout); // Cleanup the timeout
+  }, [pathname, searchParams, particles]);
 
   const particlesLoaded = async (container?: Container) => {
     console.info(container);
