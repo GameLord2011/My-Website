@@ -5,6 +5,7 @@ import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -190,7 +191,9 @@ export default function RootLayout({
           <div className="yescript">
             <ThemeProvider>
               <Navbar />
-              <TSParticles />
+              <Suspense fallback={<div className="loading">Loading...</div>}>
+                <TSParticles />
+              </Suspense>
               {children}
             </ThemeProvider>
           </div>

@@ -15,7 +15,7 @@ export default function TSParticles() {
   const searchParams = useSearchParams(); // Detects query parameters
   const particles = tsParticles.domItem(0);
 
-  useEffect(() => {
+  useEffect(() => { 
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => {
