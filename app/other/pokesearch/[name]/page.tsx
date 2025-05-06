@@ -46,7 +46,11 @@ export default function PokemonPage({
 
   const playCry = () => {
     if (pokemon) {
-      const audio = new Audio(pokemon.name.search(/-/i) !== 1 ? `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.replace(/-/i, "")}.mp3` : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`)
+      const audio = new Audio(
+        pokemon.name.search(/-/i) !== 1
+          ? `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.replace(/-/i, "")}.mp3`
+          : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
+      );
       audio.play();
     }
   };
@@ -137,26 +141,34 @@ export default function PokemonPage({
               <h2 className="mb-3 text-xl font-semibold dark:text-white">
                 Details
               </h2>
-              <div className="flex items-center justify-center mb-4">
+              <div className="mb-4 flex items-center justify-center">
                 <span className="mr-2 text-gray-700 dark:text-gray-200">m</span>
-                <label className="relative inline-flex items-center cursor-pointer self-center content-center">
-                  <label htmlFor="units" className="sr-only">Toggle Units</label>
+                <label className="relative inline-flex cursor-pointer content-center items-center self-center">
+                  <label htmlFor="units" className="sr-only">
+                    Toggle Units
+                  </label>
                   <input
                     type="checkbox"
                     id="units"
                     checked={!useMetric}
                     onChange={toggleUnits}
-                    className="self-center sr-only peer"
+                    className="peer sr-only self-center"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                  <div className="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-indigo-600 peer-focus:ring-4 peer-focus:ring-indigo-300 peer-focus:outline-none after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-indigo-800"></div>
                 </label>
                 <span className="ml-2 text-gray-700 dark:text-gray-200">i</span>
               </div>
               <p className="dark:text-gray-200">
-                Height: {useMetric ? `${pokemon.height / 10} m` : `${(pokemon.height / 10) * 3.281} ft`}
+                Height:{" "}
+                {useMetric
+                  ? `${pokemon.height / 10} m`
+                  : `${(pokemon.height / 10) * 3.281} ft`}
               </p>
               <p className="dark:text-gray-200">
-                Weight: {useMetric ? `${pokemon.weight / 10} kg` : `${(pokemon.weight / 10) * 2.205} lbs`}
+                Weight:{" "}
+                {useMetric
+                  ? `${pokemon.weight / 10} kg`
+                  : `${(pokemon.weight / 10) * 2.205} lbs`}
               </p>
               <div className="mt-4">
                 <h3 className="mb-2 font-medium dark:text-gray-200">

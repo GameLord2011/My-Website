@@ -22,11 +22,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setprefersDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       setTheme(prefersDark ? "dark" : "light");
-      console.info("prefersDark:", prefersDark);
     }
-  }, [prefersDark]);
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -52,16 +53,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    if (
-      (prefersDark && newTheme === "dark") ||
-      (!prefersDark && newTheme === "light")
-    ) {
-      setIsOverridden(false);
-    } else {
-      setIsOverridden(true);
-    }
-    console.log("Theme:", newTheme);
-    console.log("is overridden:", isOverridden);
+    setIsOverridden(
+      newTheme !==
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"),
+    );
   };
 
   return (

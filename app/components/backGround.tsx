@@ -5,10 +5,11 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { usePathname } from "next/navigation";
+import AnimatedSVGBackground from "./AnimatedSVGBackground";
 
 export const dynamic = "force-dynamic";
 
-export default function TSParticles() {
+export default function Background() {
   const [init, setInit] = useState(false);
   const pathname = usePathname();
 
@@ -26,12 +27,16 @@ export default function TSParticles() {
 
   return (
     <>
-      {init && (pathname === "/other/pokesearch") && (
-        <Particles
-          id="tsparticles"
-          url="/particles.json"
-          particlesLoaded={particlesLoaded}
-        />
+      {pathname === "/other/pokesearch" ? (
+        <AnimatedSVGBackground />
+      ) : (
+        init && (
+          <Particles
+            id="tsparticles"
+            url="/particles.json"
+            particlesLoaded={particlesLoaded}
+          />
+        )
       )}
     </>
   );

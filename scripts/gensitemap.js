@@ -18,16 +18,18 @@ function getRoutes(dir, basePath = "") {
     if (entry.isDirectory()) {
       routes = routes.concat(getRoutes(fullPath, relativePath));
     } else if (entry.isFile() && entry.name === "page.tsx") {
-      const routePath = relativePath
-        .replace(/\\/g, "/")
-        .replace("/page.tsx", "");
+      let routePath = relativePath.replace(/\\/g, "/").replace("/page.tsx", "");
 
       // Skip dynamic routes (containing square brackets)
       if (routePath.includes("[") && routePath.includes("]")) {
         continue;
       }
+      if (routePath.includes("page.tsx")) {
+        console.log("Found page.tsx:", routePath);
+        routePath = "";
+      }
 
-      if (routePath === "") {
+      if (routePath === "" || routePath === "/page.tsx") {
         routes.push({
           path: "/",
         });

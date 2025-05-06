@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "styles/globals.scss";
-import TSParticles from "components/TSParticles";
+import Background from "components/backGround";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
@@ -192,7 +192,7 @@ export default function RootLayout({
             <ThemeProvider>
               <Navbar />
               <Suspense fallback={<div className="loading">Loading...</div>}>
-                <TSParticles />
+                <Background />
               </Suspense>
               {children}
             </ThemeProvider>
