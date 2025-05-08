@@ -62,6 +62,9 @@ importers:
       "@eslint/eslintrc":
         specifier: ^3.3.1
         version: 3.3.1
+      "@next/eslint-plugin-next":
+        specifier: 15.3.1
+        version: 15.3.1
       "@tailwindcss/postcss":
         specifier: ^4.1.5
         version: 4.1.5
@@ -95,6 +98,12 @@ importers:
       eslint-config-prettier:
         specifier: 10.1.1
         version: 10.1.1(eslint@9.26.0(jiti@2.4.2))
+      eslint-plugin-react:
+        specifier: 7.37.5
+        version: 7.37.5(eslint@9.26.0(jiti@2.4.2))
+      eslint-plugin-react-hooks:
+        specifier: 5.2.0
+        version: 5.2.0(eslint@9.26.0(jiti@2.4.2))
       mini-css-extract-plugin:
         specifier: ^2.9.2
         version: 2.9.2(webpack@5.98.0)
@@ -495,6 +504,12 @@ packages:
     resolution:
       {
         integrity: sha512-oeP1vnc5Cq9UoOb8SYHAEPbCXMzOgG70l+Zfd+Ie00R25FOm+CCVNrcIubJvB1tvBgakXE37MmqSycksXVPRqg==,
+      }
+
+  "@next/eslint-plugin-next@15.3.1":
+    resolution:
+      {
+        integrity: sha512-oEs4dsfM6iyER3jTzMm4kDSbrQJq8wZw5fmT6fg2V3SMo+kgG+cShzLfEV20senZzv8VF+puNLheiGPlBGsv2A==,
       }
 
   "@next/swc-darwin-arm64@15.3.1":
@@ -1187,12 +1202,6 @@ packages:
     resolution:
       {
         integrity: sha512-dWWMGPX8uselSQ1MLzDvQnVz5Qy1pe7SJuUl1Yqi2NCNRkrk5DmHlP44VZmTWm+buR2T217+5zEAPbAmTwKIOQ==,
-      }
-
-  "@types/node@22.15.12":
-    resolution:
-      {
-        integrity: sha512-K0fpC/ZVeb8G9rm7bH7vI0KAec4XHEhBam616nVJCV51bKzJ6oA3luG4WdKoaztxe70QaNjS/xBmcDLmr4PiGw==,
       }
 
   "@types/node@22.15.17":
@@ -2529,10 +2538,10 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
-  eslint-plugin-react@7.37.4:
+  eslint-plugin-react@7.37.5:
     resolution:
       {
-        integrity: sha512-BGP0jRmfYyvOyvMoRX/uoUeW+GqNj9y16bPQzqAHf3AYII/tDs+jMN0dBVkl88/OZwNGwrVFxE7riHsXVfy/LQ==,
+        integrity: sha512-Qteup0SqU15kdocexFNAJMvCJEfa2xUKNV4CC1xsVMrIIqEy3SQ/rqyxCWNzfrd3/ldy6HMlD2e0JDVpDg2qIA==,
       }
     engines: { node: ">=4" }
     peerDependencies:
@@ -5360,6 +5369,10 @@ snapshots:
     dependencies:
       fast-glob: 3.3.1
 
+  "@next/eslint-plugin-next@15.3.1":
+    dependencies:
+      fast-glob: 3.3.1
+
   "@next/swc-darwin-arm64@15.3.1":
     optional: true
 
@@ -5762,10 +5775,6 @@ snapshots:
   "@types/node-sass@4.11.8":
     dependencies:
       "@types/node": 22.15.17
-
-  "@types/node@22.15.12":
-    dependencies:
-      undici-types: 6.21.0
 
   "@types/node@22.15.17":
     dependencies:
@@ -6633,7 +6642,7 @@ snapshots:
       eslint-import-resolver-typescript: 3.10.0(eslint-plugin-import@2.31.0)(eslint@9.26.0(jiti@2.4.2))
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.28.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.0)(eslint@9.26.0(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.26.0(jiti@2.4.2))
-      eslint-plugin-react: 7.37.4(eslint@9.26.0(jiti@2.4.2))
+      eslint-plugin-react: 7.37.5(eslint@9.26.0(jiti@2.4.2))
       eslint-plugin-react-hooks: 5.2.0(eslint@9.26.0(jiti@2.4.2))
     optionalDependencies:
       typescript: 5.8.3
@@ -6732,7 +6741,7 @@ snapshots:
     dependencies:
       eslint: 9.26.0(jiti@2.4.2)
 
-  eslint-plugin-react@7.37.4(eslint@9.26.0(jiti@2.4.2)):
+  eslint-plugin-react@7.37.5(eslint@9.26.0(jiti@2.4.2)):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlast: 1.2.5
@@ -7227,7 +7236,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      "@types/node": 22.15.12
+      "@types/node": 22.15.17
       merge-stream: 2.0.0
       supports-color: 8.1.1
 

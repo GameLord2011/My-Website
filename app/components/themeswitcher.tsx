@@ -11,7 +11,7 @@ const ThemeSwitcher = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
     const parser = new UAParser();
     const result = parser.getResult();
@@ -29,8 +29,8 @@ const ThemeSwitcher = () => {
           "rounded bg-[var(--nav-bkg)] transition-all duration-300 ease-in-out",
           {
             "p-[0px]": isMobile,
-            "p-2": !isMobile 
-          }
+            "p-2": !isMobile,
+          },
         )}
       >
         {theme === "light" ? "🌙" : "☀️"}

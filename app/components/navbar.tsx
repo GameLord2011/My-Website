@@ -118,7 +118,9 @@ export default function Navbar() {
                 className={clsx(
                   "hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-[1px] @max-[241px]:py-[1px]",
                   {
-                    hidden: ((pathname === link.href) || (pathname.includes(link.mobileHref as string))),
+                    hidden:
+                      pathname === link.href ||
+                      pathname.includes(link.mobileHref as string),
                   },
                 )}
                 key={link.name}
