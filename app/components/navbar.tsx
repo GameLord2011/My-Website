@@ -3,7 +3,8 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { UAParser } from "ua-parser-js";
 import ThemeSwitcher from "./themeswitcher";
 
@@ -115,9 +116,9 @@ export default function Navbar() {
               <Link
                 href={(link.href || link.mobileHref) as string}
                 className={clsx(
-                  "hover:animate-nvbr-lnk-hvr @max[240px]:py-[16px] block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[240px]:px-[12px]",
+                  "hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-[1px] @max-[241px]:py-[1px]",
                   {
-                    hidden: pathname === link.href,
+                    hidden: ((pathname === link.href) || (pathname.includes(link.mobileHref as string))),
                   },
                 )}
                 key={link.name}

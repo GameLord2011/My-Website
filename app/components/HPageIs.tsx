@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { UAParser } from "ua-parser-js";
 import { isbot } from "isbot";

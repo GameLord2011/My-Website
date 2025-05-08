@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 
 interface PokemonSearchSuggestionsProps {
   suggestions: string[];
@@ -17,31 +18,45 @@ export default function PokemonSearchSuggestions({
   inputRef,
 }: PokemonSearchSuggestionsProps) {
   const router = useRouter();
+  const [position, setPosition] = useState({ width: 0, left: 0, top: 0 });
+
+  useEffect(() => {
+    const updatePosition = () => {
+      const rect = inputRef.current?.getBoundingClientRect();
+      setPosition({
+        width: rect?.width ?? 0,
+        left: rect?.left ?? 0,
+        top: (rect?.bottom ?? 0) + window.scrollY,
+      });
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [inputRef]);
 
   if (!visible || suggestions.length === 0 || typeof window === "undefined") {
     return null;
   }
 
-  const rect = inputRef.current?.getBoundingClientRect();
-  const width = rect?.width ?? 0;
-  const left = rect?.left ?? 0;
-  const top = (rect?.bottom ?? 0) + window.scrollY;
-
   return createPortal(
     <>
       <style jsx>{`
         .ws {
-          width: ${width}px;
+          width: ${position.width}px;
         }
         .ls {
-          left: ${left}px;
+          left: ${position.left}px;
         }
         .ts {
-          top: ${top + 4}px;
+          top: ${position.top + 4}px;
         }
       `}</style>
       <div
-        className={`ws ls ts fixed z-[9999] rounded-lg border border-gray-300 bg-white/80 shadow-lg backdrop-blur-sm dark:border-gray-600 dark:bg-gray-800/80`}
+        className={`ws ls ts absolute z-[9999] rounded-lg border border-gray-300 bg-white/80 shadow-lg backdrop-blur-sm dark:border-gray-600 dark:bg-gray-800/80`}
       >
         {suggestions.map((name) => (
           <button

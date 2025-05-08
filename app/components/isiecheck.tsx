@@ -1,7 +1,8 @@
 "use client";
 
 import { UAParser } from "ua-parser-js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Isiecheck() {
   const [isOldBrowser, setIsOldBrowser] = useState(false);

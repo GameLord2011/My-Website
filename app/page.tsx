@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import Age from "age-ts";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
