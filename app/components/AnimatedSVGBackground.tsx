@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { Fragment } from "react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 export const dynamic = "force-dynamic";
