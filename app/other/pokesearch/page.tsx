@@ -1,8 +1,14 @@
 "use client";
 
-import { Pokemon, PokemonClient } from "pokenode-ts";
-import { useEffect, useState, useCallback, useRef, useMemo } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Pokemon } from "pokenode-ts";
+import { PokemonClient } from "pokenode-ts";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useCallback } from "react";
+import { useRef } from "react";
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import PokemonCard from "components/pokemonCard";
 import PokemonSearchSuggestions from "components/pokesearchSuggestions";
 

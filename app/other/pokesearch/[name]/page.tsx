@@ -1,7 +1,9 @@
 "use client";
 
-import { Pokemon, PokemonClient } from "pokenode-ts";
-import { useEffect, useState } from "react";
+import { Pokemon } from "pokenode-ts";
+import { PokemonClient } from "pokenode-ts";
+import { useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";

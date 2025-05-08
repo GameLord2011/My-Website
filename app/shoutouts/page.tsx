@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { VFXProvider, VFXImg } from "react-vfx";
+import { VFXProvider } from "react-vfx";
+import { VFXImg } from "react-vfx";
 import Link from "next/link";
 
 export default function Shoutouts() {

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { UAParser } from "ua-parser-js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);

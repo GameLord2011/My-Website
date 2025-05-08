@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 interface PokemonSearchSuggestionsProps {
   suggestions: string[];
