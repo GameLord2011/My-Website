@@ -50,7 +50,7 @@ export default function Navbar() {
   useEffect(() => {
     const parser = new UAParser();
     const result = parser.getResult();
-    setIsMobile(result.device.type === "mobile");
+    setIsMobile((result.device.type === "mobile") || (result.device.type === "xr") || (result.device.type === "tablet") || (result.device.type === "embedded") || (result.device.type === "console") || (result.device.type === "smarttv") || (result.device.type === "wearable") || (result.device.type === "xr"));
     setIsLoaded(true);
   }, []);
 
