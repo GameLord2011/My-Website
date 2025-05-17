@@ -59,40 +59,40 @@ export default function Page() {
     if (repos.length === 0) return;
     anchorcontent.current.forEach((el) => {
       gsap.to(el, {
-        duration: 3,
+        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
         scrambleText: {
           text: el?.innerText as string,
           chars:
             'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: 0.5,
+          revealDelay: (() => gsap.utils.random(0.1, 1))(),
           tweenLength: true,
-          speed: 0.9,
+          speed: (() => gsap.utils.random(0.5, 1))(),
         },
       });
     });
     desccontent.current.forEach((el) => {
       gsap.to(el, {
-        duration: 3,
+        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
         scrambleText: {
           text: el?.innerText as string,
           chars:
             'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: 0.5,
+          revealDelay: (() => gsap.utils.random(0.1, 1))(),
           tweenLength: true,
-          speed: 0.9,
+          speed: (() => gsap.utils.random(0.5, 1))(),
         },
       });
     });
     forkedcontent.current.forEach((el) => {
       gsap.to(el, {
-        duration: 3,
+        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
         scrambleText: {
           text: el?.innerText as string,
           chars:
             'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: 0.5,
+          revealDelay: (() => gsap.utils.random(0.1, 1))(),
           tweenLength: true,
-          speed: 0.9,
+          speed: (() => gsap.utils.random(0.5, 1))(),
         },
       });
     });

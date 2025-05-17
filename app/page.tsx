@@ -19,14 +19,14 @@ export default function Home() {
 
   useGSAP(() => {
     gsap.to(content.current, {
-      duration: 3,
+      duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
       scrambleText: {
         text: content?.current?.innerText as string,
         chars:
           'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-        revealDelay: 0.5,
+        revealDelay: (() => gsap.utils.random(0.1, 1))(),
         tweenLength: true,
-        speed: 0.9,
+        speed: (() => gsap.utils.random(0.5, 1))(),
       },
     });
   }, []);
