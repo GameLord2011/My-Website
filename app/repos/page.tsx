@@ -53,40 +53,40 @@ export default function Page() {
     if (reposFetched.current) {
       anchorcontent.current.forEach((el) => {
         gsap.to(el, {
-          duration: Math.random() * 3,
+          duration: 3,
           scrambleText: {
             text: el?.innerText as string,
             chars:
               'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: Math.random(),
+            revealDelay: 0.5,
             tweenLength: true,
-            speed: Math.random(),
+            speed: 0.9,
           },
         });
       });
       desccontent.current.forEach((el) => {
         gsap.to(el, {
-          duration: Math.random() * 3,
+          duration: 3,
           scrambleText: {
             text: el?.innerText as string,
             chars:
               'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: Math.random(),
+            revealDelay: 0.5,
             tweenLength: true,
-            speed: Math.random(),
+            speed: 0.9,
           },
         });
       });
       forkedcontent.current.forEach((el) => {
         gsap.to(el, {
-          duration: Math.random() * 3,
+          duration: 3,
           scrambleText: {
             text: el?.innerText as string,
             chars:
               'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: Math.random(),
+            revealDelay: 0.5,
             tweenLength: true,
-            speed: Math.random(),
+            speed: 0.9,
           },
         });
       });
