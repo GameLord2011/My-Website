@@ -166,6 +166,8 @@ export default function Page() {
         emojis[part.slice(1, -1)]
       ) {
         return (
+          <>
+          {" "}
           <Image
             key={index}
             src={emojis[part.slice(1, -1)]}
@@ -176,7 +178,8 @@ export default function Page() {
             className="box-content inline-flex aspect-square max-w-none border-none bg-transparent align-text-top"
             loading="eager"
             aria-label={part.slice(1, -1)}
-          />
+          />{" "}
+          </>
         );
       }
       return (
