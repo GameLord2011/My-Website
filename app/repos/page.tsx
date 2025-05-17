@@ -26,6 +26,12 @@ export default function Page() {
   const desccontent = useRef<HTMLSpanElement[]>([]);
   const forkedcontent = useRef<HTMLParagraphElement[]>([]);
 
+  useEffect(() => {
+    anchorcontent.current = [];
+    desccontent.current = [];
+    forkedcontent.current = [];
+  }, [repos]);
+
   const setAnchorRef = (el: HTMLAnchorElement | null) => {
     if (el && !anchorcontent.current.includes(el)) {
       anchorcontent.current.push(el);
@@ -50,47 +56,46 @@ export default function Page() {
   gsap.registerPlugin(ScrambleTextPlugin);
 
   useGSAP(() => {
-    if (reposFetched.current) {
-      anchorcontent.current.forEach((el) => {
-        gsap.to(el, {
-          duration: 3,
-          scrambleText: {
-            text: el?.innerText as string,
-            chars:
-              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: 0.5,
-            tweenLength: true,
-            speed: 0.9,
-          },
-        });
+    if (repos.length === 0) return;
+    anchorcontent.current.forEach((el) => {
+      gsap.to(el, {
+        duration: 3,
+        scrambleText: {
+          text: el?.innerText as string,
+          chars:
+            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+          revealDelay: 0.5,
+          tweenLength: true,
+          speed: 0.9,
+        },
       });
-      desccontent.current.forEach((el) => {
-        gsap.to(el, {
-          duration: 3,
-          scrambleText: {
-            text: el?.innerText as string,
-            chars:
-              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: 0.5,
-            tweenLength: true,
-            speed: 0.9,
-          },
-        });
+    });
+    desccontent.current.forEach((el) => {
+      gsap.to(el, {
+        duration: 3,
+        scrambleText: {
+          text: el?.innerText as string,
+          chars:
+            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+          revealDelay: 0.5,
+          tweenLength: true,
+          speed: 0.9,
+        },
       });
-      forkedcontent.current.forEach((el) => {
-        gsap.to(el, {
-          duration: 3,
-          scrambleText: {
-            text: el?.innerText as string,
-            chars:
-              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-            revealDelay: 0.5,
-            tweenLength: true,
-            speed: 0.9,
-          },
-        });
+    });
+    forkedcontent.current.forEach((el) => {
+      gsap.to(el, {
+        duration: 3,
+        scrambleText: {
+          text: el?.innerText as string,
+          chars:
+            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+          revealDelay: 0.5,
+          tweenLength: true,
+          speed: 0.9,
+        },
       });
-    }
+    });
   }, [reposFetched.current]);
 
   // Fetch repositories & emojis from GitHub API

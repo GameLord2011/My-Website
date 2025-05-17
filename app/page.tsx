@@ -11,7 +11,6 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 
 export default function Home() {
-
   const el = useRef<HTMLSpanElement>(null);
   const content = useRef<HTMLElement>(null);
 
@@ -19,16 +18,17 @@ export default function Home() {
   gsap.registerPlugin(ScrambleTextPlugin);
 
   useGSAP(() => {
-        gsap.to(content.current, {
-            duration: 3,
-            scrambleText: {
-                text: content?.current?.innerText as string,
-                chars: "ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・.\"=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋",
-                revealDelay: 0.5,
-                tweenLength: true,
-                speed: 0.9,
-        },
-      });
+    gsap.to(content.current, {
+      duration: 3,
+      scrambleText: {
+        text: content?.current?.innerText as string,
+        chars:
+          'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+        revealDelay: 0.5,
+        tweenLength: true,
+        speed: 0.9,
+      },
+    });
   }, []);
 
   useEffect(() => {
@@ -61,10 +61,11 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center">
         <div className="jio2:w-full jio2:text-xs bz30:w-2/3 bz30:rounded-sm bz30:border-2 bz30:border-dotted bz30:border-Gween-300 bz30:text-xl bz30:dark:border-Gween-600 flex h-1/5 flex-row content-center justify-center self-center p-10 text-center transition-all duration-500 ease-in-out">
           <p>
-            <span>
-              I&#39;m{" "}
-            </span>
-            <b ref={content} className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 rounded-md border-4 border-double border-white font-serif text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black">
+            <span>I&#39;m </span>
+            <b
+              ref={content}
+              className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 rounded-md border-4 border-double border-white font-serif text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
+            >
               &#64;GameLord2011
             </b>
           </p>
