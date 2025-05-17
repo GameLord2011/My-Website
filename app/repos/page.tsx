@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { useGSAP } from "@gsap/react";
 
 export default function Page() {
   console.log("process.env.NODE_ENV: ", process.env.NODE_ENV);
@@ -18,6 +21,77 @@ export default function Page() {
   const [emojis, setEmojis] = useState<{ [key: string]: string }>({}); // To store GitHub emojis
 
   const username = "gamelord2011";
+
+  const anchorcontent = useRef<HTMLAnchorElement[]>([]);
+  const desccontent = useRef<HTMLSpanElement[]>([]);
+  const forkedcontent = useRef<HTMLParagraphElement[]>([]);
+
+  const setAnchorRef = (el: HTMLAnchorElement | null) => {
+    if (el && !anchorcontent.current.includes(el)) {
+      anchorcontent.current.push(el);
+    }
+  };
+
+  const setDescRef = (el: HTMLSpanElement | null) => {
+    if (el && !desccontent.current.includes(el)) {
+      desccontent.current.push(el);
+    }
+  };
+
+  const setForkedRef = (el: HTMLParagraphElement | null) => {
+    if (el && !forkedcontent.current.includes(el)) {
+      forkedcontent.current.push(el);
+    }
+  };
+
+  console.log("anchorcontent: ", anchorcontent.current);
+
+  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(ScrambleTextPlugin);
+
+  useGSAP(() => {
+    if (reposFetched.current) {
+      anchorcontent.current.forEach((el) => {
+        gsap.to(el, {
+          duration: 3,
+          scrambleText: {
+            text: el?.innerText as string,
+            chars:
+              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+            revealDelay: 0.5,
+            tweenLength: true,
+            speed: 0.9,
+          },
+        });
+      });
+      desccontent.current.forEach((el) => {
+        gsap.to(el, {
+          duration: 3,
+          scrambleText: {
+            text: el?.innerText as string,
+            chars:
+              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+            revealDelay: 0.5,
+            tweenLength: true,
+            speed: 0.9,
+          },
+        });
+      });
+      forkedcontent.current.forEach((el) => {
+        gsap.to(el, {
+          duration: 3,
+          scrambleText: {
+            text: el?.innerText as string,
+            chars:
+              'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+            revealDelay: 0.5,
+            tweenLength: true,
+            speed: 0.9,
+          },
+        });
+      });
+    }
+  }, [reposFetched.current]);
 
   // Fetch repositories & emojis from GitHub API
   useEffect(() => {
@@ -100,7 +174,11 @@ export default function Page() {
           />
         );
       }
-      return <span key={index}>{part}</span>; // Render regular text as-is
+      return (
+        <span ref={setDescRef} key={index}>
+          {part}
+        </span>
+      ); // Render regular text as-is
     });
   };
 
@@ -125,7 +203,10 @@ export default function Page() {
             className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30"
           >
             <h2 className="text-xl">
-              <Link href={`https://github.com/${username}/${repo.name}/`}>
+              <Link
+                ref={setAnchorRef}
+                href={`https://github.com/${username}/${repo.name}/`}
+              >
                 {repo.name}
               </Link>
             </h2>
@@ -134,7 +215,11 @@ export default function Page() {
                 {renderWithEmojis(repo.description)}
               </p>
             )}
-            {repo.fork && <p className="font-ui">Forked repo.</p>}
+            {repo.fork && (
+              <p ref={setForkedRef} className="font-ui">
+                Forked repo.
+              </p>
+            )}
           </div>
         ))}
       </div>
