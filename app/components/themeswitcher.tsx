@@ -24,6 +24,7 @@ const ThemeSwitcher = () => {
   return (
     <div className="flex justify-end pr-[8px]">
       <button
+        type="button"
         onClick={toggleTheme}
         className={clsx(
           "rounded bg-[var(--nav-bkg)] transition-all duration-300 ease-in-out",

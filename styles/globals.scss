@@ -1,3 +1,7 @@
+/*
+  Janky TailwindCss4 implementation by @GameLord2011
+*/
+
 @use "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -180,7 +184,7 @@ body {
 }
 
 ul li::marker {
-  content: "\2623 ";
+  content: "\2623  ";
   color: var(--foreground);
 }
 

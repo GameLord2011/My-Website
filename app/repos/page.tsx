@@ -57,6 +57,7 @@ export default function Page() {
 
   useGSAP(() => {
     if (repos.length === 0) return;
+
     anchorcontent.current.forEach((el) => {
       gsap.to(el, {
         duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
@@ -70,6 +71,7 @@ export default function Page() {
         },
       });
     });
+
     desccontent.current.forEach((el) => {
       gsap.to(el, {
         duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
@@ -83,6 +85,7 @@ export default function Page() {
         },
       });
     });
+
     forkedcontent.current.forEach((el) => {
       gsap.to(el, {
         duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
@@ -208,7 +211,7 @@ export default function Page() {
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-black/30 p-4 backdrop-blur-xs dark:bg-white/30"
+            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full p-4 backdrop-blur-xs bg-white/30"
           >
             <h2 className="text-xl">
               <Link
