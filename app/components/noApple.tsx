@@ -16,7 +16,7 @@ export default function NoApple() {
   if (isApple) {
     return (
       <>
-        <style>{`.displaynotonie{display:none;}`}</style>
+      <style>{`.content{display:none;}`}</style>
         <div className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
           <br />
           <h1 className="text-2xl">NO</h1>

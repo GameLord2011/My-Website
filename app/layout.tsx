@@ -70,7 +70,7 @@ export default function RootLayout({
       <body className="h-screen w-screen transition-all duration-500 ease-in-out">
         <Isiecheck />
         <NoApple />
-        <div className="displaynotonie">
+        <div className="content">
           <SpeedInsights />
           <noscript>
             <style>{`.yescript {display: none;}`}</style>
