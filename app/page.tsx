@@ -95,7 +95,16 @@ export default function Home() {
   useEffect(() => {
     const parser = new UAParser();
     const result = parser.getResult();
-    setIsMobile(result.device.type === "mobile");
+    setIsMobile(
+      result.device.type === "mobile" ||
+        result.device.type === "xr" ||
+        result.device.type === "tablet" ||
+        result.device.type === "embedded" ||
+        result.device.type === "console" ||
+        result.device.type === "smarttv" ||
+        result.device.type === "wearable" ||
+        result.device.type === "xr",
+    );
     console.log(isMobile);
     setIsLoaded(true);
   }, [isMobile]);
@@ -105,12 +114,13 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-center">
+        {isMobile && <br />}
         <div className="jio2:w-full jio2:text-xs bz30:w-2/3 bz30:rounded-sm bz30:border-2 bz30:border-dotted bz30:border-Gween-300 bz30:text-xl bz30:dark:border-Gween-600 flex h-1/5 flex-row content-center justify-center self-center p-10 text-center transition-all duration-500 ease-in-out">
           <p>
             I&#39;m {isMobile && <br />}
             <b
               ref={content}
-              className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 rounded-md border-4 border-double border-white font-serif text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
+              className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
             >
               &#64;GameLord2011
             </b>

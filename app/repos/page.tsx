@@ -211,7 +211,7 @@ export default function Page() {
         {repos.map((repo) => (
           <div
             key={repo.id}
-            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full p-4 backdrop-blur-xs bg-white/30"
+            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-white/30 p-4 backdrop-blur-xs"
           >
             <h2 className="text-xl">
               <Link
