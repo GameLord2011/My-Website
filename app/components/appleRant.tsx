@@ -10,7 +10,7 @@ import { useGSAP } from "@gsap/react";
 
 const LOCAL_STORAGE_KEY = "appleRantDismissed";
 
-export default function NoApple() {
+export default function AppleRant() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isApple, setIsApple] = useState<boolean>(false);
   const [appleRantDismissed, setAppleRantDissmised] = useState<boolean>(false);

@@ -6,7 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
 import { Suspense } from "react";
-import NoApple from "components/noApple";
+import AppleRant from "@/app/components/appleRant";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -69,7 +69,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-screen w-screen transition-all duration-500 ease-in-out">
         <Isiecheck />
-        <NoApple />
+        <AppleRant />
         <div className="content">
           <SpeedInsights />
           <noscript>
