@@ -72,6 +72,7 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           />
           <button
             onClick={toggleShiny}
+            type="button"
             className="absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
             title={`Switch to ${isShiny ? "normal" : "shiny"} form`}
           >
@@ -83,6 +84,7 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             <h2 className="text-lg font-semibold capitalize">{pokemon.name}</h2>
             <button
               onClick={playCry}
+              type="button"
               className="rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
               title="Play cry"
             >
