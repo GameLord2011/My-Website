@@ -133,7 +133,7 @@ export default function NoApple() {
         <div className="x-0 y-0 relative z-50 m-0 flex h-full w-full flex-col items-center p-0">
           <br />
           <h1 className="text-2xl" ref={setH1Ref}>
-            NO
+            Wait!
           </h1>
           <br />
           <p className="w-1/2" ref={setPRef}>
