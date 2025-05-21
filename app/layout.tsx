@@ -72,6 +72,7 @@ export default function RootLayout({
         <AppleRant />
         <div className="content">
           <SpeedInsights />
+          {/*TODO: Remove noscript section for bingbots */}
           <noscript>
             <style>{`.yescript {display: none;}`}</style>
           </noscript>
