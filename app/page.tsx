@@ -16,6 +16,7 @@ import { useGSAP } from "@gsap/react";
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isTilted, setIsTilted] = useState(false);
 
   const el = useRef<HTMLSpanElement>(null);
   const content = useRef<HTMLElement>(null);
@@ -137,6 +138,18 @@ export default function Home() {
     return 10;
   }
 
+  const rotatedCheck = () => {
+    const number = pick();
+
+    if(isTilted) {
+      setIsTilted(false);
+      return number
+    }
+
+    setIsTilted(true);
+    return 10
+  }
+
   return (
     <>
       <main className="flex flex-col items-center justify-center">
@@ -158,6 +171,13 @@ export default function Home() {
                 gsap.to(content.current, {
                   rotation: 0,
                   duration: 0.5,
+                  ease: "elastic.inOut"
+                })
+              }}
+              onClick={() => {
+                gsap.to(content.current, {
+                  rotation: rotatedCheck(),
+                  duration: 0.05,
                   ease: "elastic.inOut"
                 })
               }}
