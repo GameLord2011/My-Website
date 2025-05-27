@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { Fragment } from "react";
+import { useRef } from "react";
 import { useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export const dynamic = "force-dynamic";
 
 const AnimatedSVGBackground = () => {
   const [isClient, setIsClient] = useState(false);
+  const circleRefs = useRef<(SVGCircleElement | null)[]>([]);
 
   useEffect(() => {
     setIsClient(true);
@@ -21,13 +24,37 @@ const AnimatedSVGBackground = () => {
       dur: Math.random() * 3 + 2,
       moveX: Math.random() * 50 - 25,
       moveY: Math.random() * 50 - 25,
-    })),
+    }))
   );
+
+  useGSAP(() => {
+    if (!isClient) return;
+    circleRefs.current.forEach((circle, i) => {
+      if (!circle) return;
+      const c = circles[i];
+      gsap.to(circle, {
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        attr: {
+          cx: c.cx + c.moveX + "%",
+          cy: c.cy + c.moveY + "%",
+        },
+        ease: "sine.inOut",
+      });
+      gsap.to(circle, {
+        duration: c.dur,
+        repeat: -1,
+        yoyo: true,
+        opacity: 0.5,
+        ease: "sine.inOut",
+      });
+    });
+  }, [isClient, circles]);
 
   if (!isClient) {
     return null; // Render nothing until the client is ready
   }
-
   return (
     <>
       <svg
@@ -41,50 +68,17 @@ const AnimatedSVGBackground = () => {
             <stop offset="100%" stopColor="#00000000" />
           </linearGradient>
         </defs>
+        {/* Draw circles */}
         {circles.map((circle, i) => (
-          <Fragment key={i}>
-            <style jsx key={i}>{`
-              .circle-${i} {
-                animation:
-                  move-circle-${i} 10s infinite,
-                  pulse-circle-${i} ${circle.dur}s infinite;
-              }
-              @keyframes move-circle-${i} {
-                0% {
-                  cx: ${circle.cx}%;
-                  cy: ${circle.cy}%;
-                }
-                50% {
-                  cx: ${circle.cx + circle.moveX}%;
-                  cy: ${circle.cy + circle.moveY}%;
-                }
-                100% {
-                  cx: ${circle.cx}%;
-                  cy: ${circle.cy}%;
-                }
-              }
-              @keyframes pulse-circle-${i} {
-                0%,
-                100% {
-                  r: 10;
-                  opacity: 0.7;
-                }
-                50% {
-                  r: 20;
-                  opacity: 0.5;
-                }
-              }
-            `}</style>
-            <circle
-              key={i}
-              className={`circle-${i}`}
-              cx={`${circle.cx}%`}
-              cy={`${circle.cy}%`}
-              r={circle.r}
-              fill="url(#gradient)"
-              opacity="0.7"
-            />
-          </Fragment>
+          <circle
+            key={i}
+            ref={el => { circleRefs.current[i] = el; }}
+            cx={`${circle.cx}%`}
+            cy={`${circle.cy}%`}
+            r={circle.r}
+            fill="url(#gradient)"
+            opacity="0.7"
+          />
         ))}
       </svg>
     </>
