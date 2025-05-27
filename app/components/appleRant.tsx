@@ -13,117 +13,71 @@ const LOCAL_STORAGE_KEY = "appleRantDismissed";
 export default function AppleRant() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isApple, setIsApple] = useState<boolean>(false);
-  const [appleRantDismissed, setAppleRantDissmised] = useState<boolean>(false);
+  const [appleRantDismissed, setAppleRantDismissed] = useState<boolean>(false);
 
-  gsap.registerPlugin(useGSAP);
-  gsap.registerPlugin(ScrambleTextPlugin);
+  useEffect(() => {
+    gsap.registerPlugin(useGSAP);
+    gsap.registerPlugin(ScrambleTextPlugin);
+  }, []);
 
   const Pcontent = useRef<HTMLParagraphElement[]>([]);
   const liContent = useRef<HTMLLIElement[]>([]);
   const strongContent = useRef<HTMLElement[]>([]);
   const h1Content = useRef<HTMLHeadingElement[]>([]);
 
-  const setPRef = (el: HTMLParagraphElement | null) => {
-    if (el && !Pcontent.current.includes(el)) {
-      Pcontent.current.push(el);
+  // DRY up ref setters
+  const setRef = <T extends HTMLElement>(refArr: React.RefObject<T[]>) => (el: T | null) => {
+    if (el && !refArr.current.includes(el)) {
+      refArr.current.push(el);
     }
   };
-
-  const setLiRef = (el: HTMLLIElement | null) => {
-    if (el && !liContent.current.includes(el)) {
-      liContent.current.push(el);
-    }
-  };
-
-  const setStrongRef = (el: HTMLLIElement | null) => {
-    if (el && !strongContent.current.includes(el)) {
-      strongContent.current.push(el);
-    }
-  };
-
-  const setH1Ref = (el: HTMLHeadingElement | null) => {
-    if (el && !h1Content.current.includes(el)) {
-      h1Content.current.push(el);
-    }
-  };
+  const setPRef = setRef(Pcontent);
+  const setLiRef = setRef(liContent);
+  const setStrongRef = setRef(strongContent);
+  const setH1Ref = setRef(h1Content);
 
   useEffect(() => {
     const parser = new UAParser();
     const device = parser.getDevice();
     setIsApple(device.vendor === "Apple");
     setIsLoaded(true);
-  }, [setIsApple, setIsLoaded]);
+  }, []);
 
   useEffect(() => {
     const dismissed = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (dismissed) {
-      setAppleRantDissmised(true);
+      setAppleRantDismissed(true);
     }
   }, []);
 
+  // DRY up GSAP animation logic
+  const animateElements = (elements: HTMLElement[]) => {
+    elements.forEach((el) => {
+      gsap.to(el, {
+        duration: gsap.utils.random(1.5, 3, 0.1),
+        scrambleText: {
+          text: el?.innerText as string,
+          chars:
+            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+          revealDelay: gsap.utils.random(0.1, 1),
+          tweenLength: true,
+          speed: gsap.utils.random(0.5, 1),
+        },
+      });
+    });
+  };
+
   useGSAP(() => {
-    if (!isLoaded) if (!Pcontent.current) return;
-
-    Pcontent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 3, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
-
-    liContent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 3, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
-
-    strongContent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 3, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
-
-    h1Content.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 3, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
+    if (!isLoaded) return;
+    animateElements(Pcontent.current);
+    animateElements(liContent.current);
+    animateElements(strongContent.current);
+    animateElements(h1Content.current);
   }, [isLoaded]);
 
-  const dissmiss = () => {
+  const dismiss = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, "true");
-    setAppleRantDissmised(true);
+    setAppleRantDismissed(true);
   };
 
   if (isApple && !appleRantDismissed) {
@@ -195,7 +149,7 @@ export default function AppleRant() {
           <button
             type="button"
             className="bg-Gween-300 dark:bg-Gween-600 bottom-full w-full p-4"
-            onClick={dissmiss}
+            onClick={dismiss}
           >
             Dissmiss
           </button>

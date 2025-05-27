@@ -8,18 +8,12 @@ import { UAParser } from "ua-parser-js";
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
-
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const parser = new UAParser();
-    const result = parser.getResult();
-    setIsMobile(result.device.type === "mobile");
-    setIsLoaded(true);
+    setIsMobile(parser.getResult().device.type === "mobile");
   }, []);
-
-  if (!isLoaded) return null;
 
   return (
     <div className="flex justify-end pr-[8px]">

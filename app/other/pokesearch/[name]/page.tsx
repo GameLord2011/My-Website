@@ -103,6 +103,7 @@ export default function PokemonPage({
                 placeholder="empty"
               />
               <button
+                type="button"
                 onClick={() => setIsShiny(!isShiny)}
                 className="absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                 title={`Switch to ${isShiny ? "normal" : "shiny"} form`}
@@ -116,6 +117,7 @@ export default function PokemonPage({
                   {pokemon.name}
                 </h1>
                 <button
+                  type="button"
                   onClick={playCry}
                   className="rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                   title="Play cry"
