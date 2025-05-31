@@ -1,19 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { UAParser } from "ua-parser-js";
+import { isMobileCheck } from "components/isMobile";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Page() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = isMobileCheck();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const parser = new UAParser();
-    const result = parser.getResult();
-    setIsMobile(result.device.type === "mobile");
-    console.info(result.device.type);
     setIsLoaded(true);
   }, []);
 

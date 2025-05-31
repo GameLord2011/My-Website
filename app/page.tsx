@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import { UAParser } from "ua-parser-js";
 import Age from "age-ts";
 import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
@@ -12,11 +11,16 @@ import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { isMobileCheck } from "components/isMobile";
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = isMobileCheck();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isTilted, setIsTilted] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const el = useRef<HTMLSpanElement>(null);
   const content = useRef<HTMLElement>(null);
@@ -35,26 +39,30 @@ export default function Home() {
 
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrambleTextPlugin);
-  gsap.registerPlugin(SplitText) 
+  gsap.registerPlugin(SplitText);
   const timeline = gsap.timeline();
-  const duration =  () => gsap.utils.random(1.5, 4, 0.1);
+  const duration = () => gsap.utils.random(1.5, 4, 0.1);
 
   const namedur = duration();
 
   useGSAP(() => {
     if (!content.current) return;
 
-    timeline.to(content.current, {
-      duration: namedur,
-      scrambleText: {
-        text: content?.current?.innerText as string,
-        chars:
-          'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-        revealDelay: (() => gsap.utils.random(0.1, 1))(),
-        tweenLength: true,
-        speed: (() => gsap.utils.random(0.5, 1))(),
+    timeline.to(
+      content.current,
+      {
+        duration: namedur,
+        scrambleText: {
+          text: content?.current?.innerText as string,
+          chars:
+            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+          revealDelay: (() => gsap.utils.random(0.1, 1))(),
+          tweenLength: true,
+          speed: (() => gsap.utils.random(0.5, 1))(),
+        },
       },
-    }, 0);
+      0,
+    );
 
     liContent.current.forEach((el) => {
       gsap.to(el, {
@@ -76,8 +84,8 @@ export default function Home() {
       rotationY: 15,
       stagger: 0.01,
       ease: "elastic.inOut",
-      overwrite: "auto"
-    })
+      overwrite: "auto",
+    });
   }, [isLoaded]);
 
   useEffect(() => {
@@ -110,45 +118,29 @@ export default function Home() {
     "██╗    ███╗   ██╗███████╗███████╗██████╗     ██╗  ██╗███████╗██╗     ██████╗ \n██║    ████╗  ██║██╔════╝██╔════╝██╔══██╗    ██║  ██║██╔════╝██║     ██╔══██╗ \n██║    ██╔██╗ ██║█████╗  █████╗  ██║  ██║    ███████║█████╗  ██║     ██████╔╝ \n██║    ██║╚██╗██║██╔══╝  ██╔══╝  ██║  ██║    ██╔══██║██╔══╝  ██║     ██╔═══╝ \n██║    ██║ ╚████║███████╗███████╗██████╔╝    ██║  ██║███████╗███████╗██║██╗  \n╚═╝    ╚═╝  ╚═══╝╚══════╝╚══════╝╚═════╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝ \nIf you find an error in this site, please report it at https://github.com/gamelord2011/my-website/issues \n\n",
   );
 
-  useEffect(() => {
-    const parser = new UAParser();
-    const result = parser.getResult();
-    setIsMobile(
-      result.device.type === "mobile" ||
-        result.device.type === "xr" ||
-        result.device.type === "tablet" ||
-        result.device.type === "embedded" ||
-        result.device.type === "console" ||
-        result.device.type === "smarttv" ||
-        result.device.type === "wearable" ||
-        result.device.type === "xr",
-    );
-    setIsLoaded(true);
-  }, []);
-
   if (!isLoaded) return null;
 
   const pick = () => {
     const rand = Math.random();
 
-    if(rand > 0.5) {
+    if (rand > 0.5) {
       return -10;
     }
 
     return 10;
-  }
+  };
 
   const rotatedCheck = () => {
     const number = pick();
 
-    if(isTilted) {
+    if (isTilted) {
       setIsTilted(false);
-      return number
+      return 0;
     }
 
     setIsTilted(true);
-    return 10
-  }
+    return number;
+  };
 
   return (
     <>
@@ -159,27 +151,28 @@ export default function Home() {
             I&#39;m {isMobile && <br />}
             <b
               ref={content}
-              className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black inline-block"
+              className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
               onMouseEnter={() => {
                 gsap.to(content.current, {
                   rotation: pick,
                   duration: 0.5,
-                  ease: "elastic.inOut"
+                  ease: "elastic.inOut",
                 });
               }}
               onMouseLeave={() => {
                 gsap.to(content.current, {
                   rotation: 0,
                   duration: 0.5,
-                  ease: "elastic.inOut"
-                })
+                  ease: "elastic.inOut",
+                });
               }}
               onClick={() => {
+                 if(isMobile) {
                 gsap.to(content.current, {
                   rotation: rotatedCheck(),
                   duration: 0.05,
-                  ease: "elastic.inOut"
-                })
+                  ease: "elastic.inOut",
+                });}
               }}
             >
               &#64;GameLord2011

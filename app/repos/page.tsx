@@ -10,7 +10,6 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 
 export default function Page() {
-  console.log("process.env.NODE_ENV: ", process.env.NODE_ENV);
 
   const reposFetched = useRef(false);
   const emojisFetched = useRef(false);
@@ -49,8 +48,6 @@ export default function Page() {
       forkedcontent.current.push(el);
     }
   };
-
-  console.log("anchorcontent: ", anchorcontent.current);
 
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrambleTextPlugin);
@@ -142,7 +139,6 @@ export default function Page() {
             fork: repo.fork,
           }),
         );
-        console.log("Repos: ", formattedRepos);
         setRepos(formattedRepos);
         reposFetched.current = true;
 

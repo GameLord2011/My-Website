@@ -24,7 +24,7 @@ const AnimatedSVGBackground = () => {
       dur: Math.random() * 3 + 2,
       moveX: Math.random() * 50 - 25,
       moveY: Math.random() * 50 - 25,
-    }))
+    })),
   );
 
   useGSAP(() => {
@@ -72,7 +72,9 @@ const AnimatedSVGBackground = () => {
         {circles.map((circle, i) => (
           <circle
             key={i}
-            ref={el => { circleRefs.current[i] = el; }}
+            ref={(el) => {
+              circleRefs.current[i] = el;
+            }}
             cx={`${circle.cx}%`}
             cy={`${circle.cy}%`}
             r={circle.r}

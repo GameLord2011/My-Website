@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useState } from "react";
-import { UAParser } from "ua-parser-js";
+import { isMobileCheck } from "components/isMobile";
 import ThemeSwitcher from "./themeswitcher";
 
 const links = [
@@ -44,22 +44,10 @@ const links = [
 
 export default function Navbar() {
   const pathname: string = usePathname();
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = isMobileCheck();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const parser = new UAParser();
-    const result = parser.getResult();
-    setIsMobile(
-      result.device.type === "mobile" ||
-        result.device.type === "xr" ||
-        result.device.type === "tablet" ||
-        result.device.type === "embedded" ||
-        result.device.type === "console" ||
-        result.device.type === "smarttv" ||
-        result.device.type === "wearable" ||
-        result.device.type === "xr",
-    );
     setIsLoaded(true);
   }, []);
 

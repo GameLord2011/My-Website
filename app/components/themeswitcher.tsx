@@ -2,18 +2,11 @@
 
 import { useTheme } from "./ThemeContext";
 import clsx from "clsx";
-import { useEffect } from "react";
-import { useState } from "react";
-import { UAParser } from "ua-parser-js";
+import { isMobileCheck } from "components/isMobile";
 
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const parser = new UAParser();
-    setIsMobile(parser.getResult().device.type === "mobile");
-  }, []);
+  const isMobile = isMobileCheck();
 
   return (
     <div className="flex justify-end pr-[8px]">

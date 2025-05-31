@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Particles from "@tsparticles/react";
 import { initParticlesEngine } from "@tsparticles/react";
-import type { Container } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { usePathname } from "next/navigation";
 import AnimatedSVGBackground from "./AnimatedSVGBackground";
@@ -23,10 +22,6 @@ export default function Background() {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container) => {
-    console.info(container);
-  };
-
   return (
     <>
       {pathname === "/other/pokesearch" ? (
@@ -36,7 +31,6 @@ export default function Background() {
           <Particles
             id="tsparticles"
             url="/particles.json"
-            particlesLoaded={particlesLoaded}
           />
         )
       )}
