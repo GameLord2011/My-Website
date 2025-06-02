@@ -10,7 +10,6 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 
 export default function Page() {
-
   const reposFetched = useRef(false);
   const emojisFetched = useRef(false);
 

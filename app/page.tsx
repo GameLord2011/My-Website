@@ -167,12 +167,13 @@ export default function Home() {
                 });
               }}
               onClick={() => {
-                 if(isMobile) {
-                gsap.to(content.current, {
-                  rotation: rotatedCheck(),
-                  duration: 0.05,
-                  ease: "elastic.inOut",
-                });}
+                if (isMobile) {
+                  gsap.to(content.current, {
+                    rotation: rotatedCheck(),
+                    duration: 0.05,
+                    ease: "elastic.inOut",
+                  });
+                }
               }}
             >
               &#64;GameLord2011
