@@ -4,6 +4,7 @@ import { UAParser } from "ua-parser-js";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { useRouter } from 'next/navigation';
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
@@ -14,6 +15,7 @@ export default function AppleRant() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isApple, setIsApple] = useState<boolean>(false);
   const [appleRantDismissed, setAppleRantDismissed] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     gsap.registerPlugin(useGSAP);
@@ -80,6 +82,7 @@ export default function AppleRant() {
   const dismiss = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, "true");
     setAppleRantDismissed(true);
+    router.refresh();
   };
 
   if (isApple && !appleRantDismissed) {
