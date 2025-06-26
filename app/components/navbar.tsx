@@ -38,6 +38,10 @@ const links = [
         name: "Links",
         href: "https://linktr.ee/GameLord2011",
       },
+      {
+        name: "README",
+        href: "/other/readme",
+      },
     ],
   },
 ];
@@ -80,21 +84,36 @@ export default function Navbar() {
               )}
             >
               {links.map((link) => (
-                <div key={link.name} className="relative">
-                  <Link
-                    href={link.href}
-                    className={clsx(
-                      "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
-                      {
-                        hidden: pathname === link.href,
-                      },
-                    )}
-                  >
-                    {link.name}
-                    {link.subLinks && <span className="float-right">▶</span>}
-                  </Link>
+                <div key={link.name} className="sub-group relative">
+                  {!link.subLinks && (
+                    <Link
+                      href={link.href}
+                      className={clsx(
+                        "hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
+                        {
+                          hidden: pathname === link.href,
+                        },
+                      )}
+                    >
+                      {link.name}
+                      {link.subLinks && <span className="float-right">▶</span>}
+                    </Link>
+                  )}
                   {link.subLinks && (
-                    <div className="dropdown-subcontent absolute top-0 left-full hidden min-w-[150px] rounded-md bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover/sub:block">
+                    <span
+                      className={clsx(
+                        "link hover:animate-nvbr-lnk-hvr block px-[12px] py-[16px] transition-all duration-500 ease-in-out",
+                        {
+                          hidden: pathname === link.href,
+                        },
+                      )}
+                    >
+                      {link.name}
+                      <span className="float-right">▶</span>
+                    </span>
+                  )}
+                  {link.subLinks && (
+                    <div className="dropdown-subcontent sub-hover:block absolute top-0 left-full hidden min-w-[150px] rounded-md bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out">
                       {link.subLinks.map((subLink) => (
                         <Link
                           href={subLink.href}

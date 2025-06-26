@@ -7,7 +7,10 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
+import remarkGemoji from "remark-gemoji";
+import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css"; // Or another highlight.js theme
+import "github-markdown-css/github-markdown-dark.css";
 
 export default function Page() {
   const [html, setHtml] = useState<string>("");
@@ -20,9 +23,11 @@ export default function Page() {
       .then(async (markdown) => {
         const file = await remark()
           .use(remarkGfm)
-          .use(remarkRehype)
+          .use(remarkGemoji) // 👈 Emoji before rehype
+          .use(remarkRehype, { allowDangerousHtml: true })
+          .use(rehypeRaw) // 👈 rehypeRaw right after remarkRehype
           .use(rehypeHighlight)
-          .use(rehypeStringify)
+          .use(rehypeStringify, { allowDangerousHtml: true }) // 👈 allowDangerousHtml here too
           .process(markdown);
         setHtml(String(file));
       });
