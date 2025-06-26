@@ -27,12 +27,7 @@ export default function Background() {
       {pathname === "/other/pokesearch" ? (
         <AnimatedSVGBackground />
       ) : (
-        init && (
-          <Particles
-            id="tsparticles"
-            url="/particles.json"
-          />
-        )
+        init && <Particles id="tsparticles" url="/particles.json" />
       )}
     </>
   );

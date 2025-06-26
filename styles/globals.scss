@@ -79,6 +79,13 @@
   }
 }
 
+.link {
+  color: hsl(120, 100%, 20%);
+  &:hover {
+    color: hsl(120, 100%, 20%);
+  }
+}
+
 a {
   color: hsl(120, 99%, 41%);
   &:visited {
@@ -86,6 +93,14 @@ a {
   }
   &:hover {
     color: hsl(120, 100%, 20%);
+  }
+}
+
+.sub-hover\:block {
+  &:is(:where(.sub-group):hover *) {
+    @media (hover: hover) {
+      display: block;
+    }
   }
 }
 

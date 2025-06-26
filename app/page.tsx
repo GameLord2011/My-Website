@@ -1,10 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import Age from "age-ts";
-import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 import Image from "next/image";
 import gsap from "gsap";
@@ -12,6 +12,16 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
+
+const Age = dynamic(() => import("age-ts"), {
+  loading: () => <span>Loading...</span>,
+  ssr: false,
+});
+
+const HPageIs = dynamic(() => import("components/HPageIs"), {
+  loading: () => <span>Loading...</span>,
+  ssr: false,
+});
 
 export default function Home() {
   const isMobile = isMobileCheck();
@@ -66,7 +76,7 @@ export default function Home() {
 
     liContent.current.forEach((el) => {
       gsap.to(el, {
-        duration: duration,
+        duration: duration(),
         scrambleText: {
           text: el?.innerText as string,
           chars:
@@ -154,7 +164,7 @@ export default function Home() {
               className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
               onMouseEnter={() => {
                 gsap.to(content.current, {
-                  rotation: pick,
+                  rotation: pick(),
                   duration: 0.5,
                   ease: "elastic.inOut",
                 });
@@ -167,12 +177,13 @@ export default function Home() {
                 });
               }}
               onClick={() => {
-                 if(isMobile) {
-                gsap.to(content.current, {
-                  rotation: rotatedCheck(),
-                  duration: 0.05,
-                  ease: "elastic.inOut",
-                });}
+                if (isMobile) {
+                  gsap.to(content.current, {
+                    rotation: rotatedCheck(),
+                    duration: 0.05,
+                    ease: "elastic.inOut",
+                  });
+                }
               }}
             >
               &#64;GameLord2011

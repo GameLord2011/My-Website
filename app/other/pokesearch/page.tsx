@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { Pokemon } from "pokenode-ts";
 import { PokemonClient } from "pokenode-ts";
 import { useEffect } from "react";
@@ -9,8 +11,21 @@ import { useRef } from "react";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import PokemonCard from "components/pokemonCard";
-import PokemonSearchSuggestions from "components/pokesearchSuggestions";
+//import PokemonCard from "components/pokemonCard";
+//import PokemonSearchSuggestions from "components/pokesearchSuggestions";
+
+const PokemonCard = dynamic(() => import("components/pokemonCard"), {
+  loading: () => <span className="yellow-500">Loading...</span>,
+  ssr: false,
+});
+
+const PokemonSearchSuggestions = dynamic(
+  () => import("components/pokesearchSuggestions"),
+  {
+    loading: () => <span>Loading...</span>,
+    ssr: false,
+  },
+);
 
 type PokemonName = string;
 

@@ -10,7 +10,6 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 
 export default function Page() {
-
   const reposFetched = useRef(false);
   const emojisFetched = useRef(false);
 
@@ -153,7 +152,7 @@ export default function Page() {
     }
 
     fetchData();
-  }, []);
+  }, [username]);
 
   // Replace emoji shortcodes with React elements
   const renderWithEmojis = (text: string) => {
