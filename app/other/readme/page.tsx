@@ -26,7 +26,7 @@ export default function Page() {
           .process(markdown);
         setHtml(String(file));
       });
-  });
+  }, []);
 
   return (
     <main className="flex flex-col items-center justify-center">

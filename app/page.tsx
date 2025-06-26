@@ -1,10 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import Age from "age-ts";
-import HPageIs from "components/HPageIs";
 import Typed from "typed.js";
 import Image from "next/image";
 import gsap from "gsap";
@@ -12,6 +12,16 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
+
+const Age = dynamic(() => import("age-ts"), {
+  loading: () => <span>Loading...</span>,
+  ssr: false,
+});
+
+const HPageIs = dynamic(() => import("components/HPageIs"), {
+  loading: () => <span>Loading...</span>,
+  ssr: false,
+});
 
 export default function Home() {
   const isMobile = isMobileCheck();
