@@ -46,6 +46,7 @@ export default function Navbar() {
   const pathname: string = usePathname();
   const isMobile = isMobileCheck();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [linksOpen, setLinksOpen] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -61,12 +62,25 @@ export default function Navbar() {
             <button
               type="button"
               className="hover:animate-btn-hvr cursor-pointer rounded-r-md border-none bg-[var(--nav-btn-bg)] p-4 text-lg text-[hsl(0,0%,93%)] transition-all duration-500 ease-in-out"
+              onClick={() => {
+                if (isMobile) {
+                  setLinksOpen(!linksOpen);
+                }
+              }}
             >
               Pages
             </button>
-            <div className="dropdown-content absolute hidden min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block">
+            <div
+              className={clsx(
+                "absolute min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block",
+                {
+                  block: linksOpen,
+                  hidden: !linksOpen,
+                },
+              )}
+            >
               {links.map((link) => (
-                <div key={link.name} className="group/sub relative">
+                <div key={link.name} className="relative">
                   <Link
                     href={link.href}
                     className={clsx(

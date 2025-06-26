@@ -66,7 +66,7 @@ export default function Home() {
 
     liContent.current.forEach((el) => {
       gsap.to(el, {
-        duration: duration,
+        duration: duration(),
         scrambleText: {
           text: el?.innerText as string,
           chars:
@@ -154,7 +154,7 @@ export default function Home() {
               className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
               onMouseEnter={() => {
                 gsap.to(content.current, {
-                  rotation: pick,
+                  rotation: pick(),
                   duration: 0.5,
                   ease: "elastic.inOut",
                 });
