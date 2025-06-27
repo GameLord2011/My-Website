@@ -45,7 +45,7 @@ export default function PokemonPage({
   };
 
   // My brother suggested this Joke
-  const isButterfree = pokemon?.name?.toLowerCase() === "butterfree";
+  const isVivillon = pokemon?.name?.toLowerCase() === "vivillon";
 
   // Unwrap the params Promise
   useEffect(() => {
@@ -88,14 +88,14 @@ export default function PokemonPage({
     <main className="p-2 sm:p-4 md:p-6">
       <div
         className={
-          isButterfree
+          isVivillon
             ? "mx-auto max-w-full bg-red-900 sm:max-w-2xl md:max-w-4xl"
             : "mx-auto max-w-full sm:max-w-2xl md:max-w-4xl"
         }
       >
         <div
           className={
-            isButterfree
+            isVivillon
               ? "rounded-lg border-2 border-red-900 bg-red-900 p-2 shadow-lg sm:p-4 md:p-6"
               : "rounded-lg bg-white/80 p-2 shadow-lg sm:p-4 md:p-6 dark:bg-gray-800/80"
           }
@@ -114,7 +114,7 @@ export default function PokemonPage({
                 width={100}
                 height={100}
                 className={
-                  isButterfree
+                  isVivillon
                     ? "h-24 w-24 border-4 border-red-800 sm:h-36 sm:w-36 md:h-40 md:w-40"
                     : "h-24 w-24 sm:h-36 sm:w-36 md:h-40 md:w-40"
                 }
@@ -125,7 +125,7 @@ export default function PokemonPage({
                 type="button"
                 onClick={() => setIsShiny(!isShiny)}
                 className={
-                  isButterfree
+                  isVivillon
                     ? "absolute right-0 bottom-0 rounded-full border border-red-900 bg-red-800 p-1 transition-colors hover:bg-red-700 sm:p-2"
                     : "absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                 }
@@ -138,7 +138,7 @@ export default function PokemonPage({
               <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
                 <h1
                   className={
-                    isButterfree
+                    isVivillon
                       ? "text-xl font-bold text-red-100 capitalize sm:text-2xl md:text-3xl"
                       : "text-xl font-bold capitalize sm:text-2xl md:text-3xl dark:text-white"
                   }
@@ -149,7 +149,7 @@ export default function PokemonPage({
                   type="button"
                   onClick={playCry}
                   className={
-                    isButterfree
+                    isVivillon
                       ? "rounded-full border border-red-900 bg-red-800 p-1 transition-colors hover:bg-red-700 sm:p-2"
                       : "rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                   }
@@ -163,7 +163,7 @@ export default function PokemonPage({
                   <span
                     key={type.type.name}
                     className={
-                      isButterfree
+                      isVivillon
                         ? "rounded-full border border-red-900 bg-red-800 px-1 py-0.5 text-xs text-red-100 sm:px-2 sm:py-1 sm:text-sm"
                         : `rounded-full px-1 py-0.5 text-xs sm:px-2 sm:py-1 sm:text-sm ${typeColors[type.type.name] || "bg-gray-200 text-gray-800"}`
                     }
@@ -178,7 +178,7 @@ export default function PokemonPage({
             <div>
               <h2
                 className={
-                  isButterfree
+                  isVivillon
                     ? "mb-1 text-base font-semibold text-red-100 sm:mb-2 sm:text-lg"
                     : "mb-1 text-base font-semibold sm:mb-2 sm:text-lg dark:text-white"
                 }
@@ -189,7 +189,7 @@ export default function PokemonPage({
                 <div key={stat.stat.name} className="mb-1">
                   <div
                     className={
-                      isButterfree
+                      isVivillon
                         ? "flex justify-between text-red-100"
                         : "flex justify-between dark:text-gray-200"
                     }
@@ -201,7 +201,7 @@ export default function PokemonPage({
                   </div>
                   <div
                     className={
-                      isButterfree
+                      isVivillon
                         ? "h-1 w-full rounded-full bg-red-800"
                         : "h-1 w-full rounded-full bg-gray-200 dark:bg-gray-700"
                     }
@@ -213,7 +213,7 @@ export default function PokemonPage({
                     `}</style>
                     <div
                       className={
-                        isButterfree
+                        isVivillon
                           ? `h-1 rounded-full bg-red-600 width-${stat.stat.name}`
                           : `h-1 rounded-full bg-indigo-600 dark:bg-indigo-400 width-${stat.stat.name}`
                       }
@@ -226,7 +226,7 @@ export default function PokemonPage({
             <div>
               <h2
                 className={
-                  isButterfree
+                  isVivillon
                     ? "mb-1 text-base font-semibold text-red-100 sm:mb-2 sm:text-lg"
                     : "mb-1 text-base font-semibold sm:mb-2 sm:text-lg dark:text-white"
                 }
@@ -236,7 +236,7 @@ export default function PokemonPage({
               <div className="mb-2 flex items-center justify-center">
                 <span
                   className={
-                    isButterfree
+                    isVivillon
                       ? "mr-1 text-xs text-red-100 sm:text-sm"
                       : "mr-1 text-xs text-gray-700 sm:text-sm dark:text-gray-200"
                   }
@@ -245,7 +245,7 @@ export default function PokemonPage({
                 </span>
                 <label
                   className={
-                    isButterfree
+                    isVivillon
                       ? "relative inline-flex cursor-pointer content-center items-center self-center"
                       : "relative inline-flex cursor-pointer content-center items-center self-center"
                   }
@@ -262,7 +262,7 @@ export default function PokemonPage({
                   />
                   <div
                     className={
-                      isButterfree
+                      isVivillon
                         ? "peer h-4 w-8 rounded-full bg-red-800 peer-checked:bg-red-600 peer-focus:ring-4 peer-focus:ring-red-400 peer-focus:outline-none after:absolute after:top-0.5 after:left-0 after:h-3 after:w-3 after:rounded-full after:border after:border-red-900 after:bg-red-100 after:transition-all after:content-[''] peer-checked:after:translate-x-[1.25rem] peer-checked:after:border-white sm:h-5 sm:w-10 sm:after:h-4 sm:after:w-4 sm:peer-checked:after:translate-x-[1.5rem] dark:border-red-900 dark:bg-red-900 dark:peer-focus:ring-red-800"
                         : "peer h-4 w-8 rounded-full bg-gray-200 peer-checked:bg-indigo-600 peer-focus:ring-4 peer-focus:ring-indigo-300 peer-focus:outline-none after:absolute after:top-0.5 after:left-0 after:h-4 after:w-3 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-[1.25rem] peer-checked:after:border-white sm:h-5 sm:w-10 sm:after:h-4 sm:after:w-4 sm:peer-checked:after:translate-x-[1.5rem] dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-indigo-800"
                     }
@@ -270,7 +270,7 @@ export default function PokemonPage({
                 </label>
                 <span
                   className={
-                    isButterfree
+                    isVivillon
                       ? "ml-1 text-xs text-red-100 sm:text-sm"
                       : "ml-1 text-xs text-gray-700 sm:text-sm dark:text-gray-200"
                   }
@@ -280,7 +280,7 @@ export default function PokemonPage({
               </div>
               <p
                 className={
-                  isButterfree
+                  isVivillon
                     ? "text-xs text-red-100 sm:text-sm"
                     : "text-xs sm:text-sm dark:text-gray-200"
                 }
@@ -292,7 +292,7 @@ export default function PokemonPage({
               </p>
               <p
                 className={
-                  isButterfree
+                  isVivillon
                     ? "text-xs text-red-100 sm:text-sm"
                     : "text-xs sm:text-sm dark:text-gray-200"
                 }
@@ -305,7 +305,7 @@ export default function PokemonPage({
               <div className="mt-2">
                 <h3
                   className={
-                    isButterfree
+                    isVivillon
                       ? "mb-1 text-xs font-medium text-red-100 sm:text-sm"
                       : "mb-1 text-xs font-medium sm:text-sm dark:text-gray-200"
                   }
@@ -314,7 +314,7 @@ export default function PokemonPage({
                 </h3>
                 <ul
                   className={
-                    isButterfree
+                    isVivillon
                       ? "list-disc pl-3 text-xs text-red-100 sm:pl-4 sm:text-sm"
                       : "list-disc pl-3 text-xs sm:pl-4 sm:text-sm dark:text-gray-200"
                   }
@@ -323,7 +323,7 @@ export default function PokemonPage({
                     <li
                       key={ability.ability.name}
                       className={
-                        isButterfree
+                        isVivillon
                           ? "list-inside text-red-100 capitalize"
                           : "list-inside capitalize"
                       }
