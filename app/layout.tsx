@@ -6,7 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
 import { Suspense } from "react";
-import AppleRant from "@/app/components/appleRant";
+import AppleRant from "components/appleRant";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gamelord2011.vercel.app"),

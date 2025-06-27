@@ -15,7 +15,9 @@ export default function Page() {
   const [html, setHtml] = useState<string>("");
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/gamelord2011/gamelord2011/main/README.md")
+    fetch(
+      "https://raw.githubusercontent.com/gamelord2011/gamelord2011/main/README.md",
+    )
       .then((res) => res.text())
       .then(async (markdown) => {
         const file = await remark()
@@ -32,9 +34,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col items-center justify-center">
-      <div
-        className="bg-[#0d1117]"
-      >
+      <div className="bg-[#0d1117]">
         <div
           className="markdown-body max-w-none p-4 text-left"
           dangerouslySetInnerHTML={{ __html: html }}

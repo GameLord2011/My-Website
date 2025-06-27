@@ -29,6 +29,9 @@ const typeColors = {
 export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const [isShiny, setIsShiny] = useState(false);
 
+  // Joke for Pokémon nerds
+  const isButterfree = pokemon.name.toLowerCase() === "butterfree";
+
   const playCry = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -54,7 +57,13 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 
   return (
     <Link href={`/other/pokesearch/${pokemon.name}`} className="relative block">
-      <div className="rounded-lg bg-white p-4 shadow-lg transition-shadow hover:shadow-xl dark:bg-gray-800/80">
+      <div
+        className={
+          isButterfree
+            ? "rounded-lg border-2 border-red-900 bg-red-900 p-4 shadow-lg transition-shadow hover:shadow-xl"
+            : "rounded-lg bg-white p-4 shadow-lg transition-shadow hover:shadow-xl dark:bg-gray-800/80"
+        }
+      >
         <div className="relative">
           <Image
             src={
@@ -67,13 +76,19 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             alt={`${pokemon.name} ${isShiny ? "shiny" : "normal"}`}
             width={96}
             height={96}
-            className="mx-auto"
+            className={
+              isButterfree ? "mx-auto border-4 border-red-800" : "mx-auto"
+            }
             priority={false}
           />
           <button
             onClick={toggleShiny}
             type="button"
-            className="absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
+            className={
+              isButterfree
+                ? "absolute right-0 bottom-0 rounded-full border border-red-900 bg-red-800 p-1 transition-colors hover:bg-red-700"
+                : "absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
+            }
             title={`Switch to ${isShiny ? "normal" : "shiny"} form`}
           >
             ✨
@@ -81,11 +96,23 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         </div>
         <div className="mt-2 text-center">
           <div className="flex items-center justify-center gap-2">
-            <h2 className="text-lg font-semibold capitalize">{pokemon.name}</h2>
+            <h2
+              className={
+                isButterfree
+                  ? "text-lg font-semibold text-red-100 capitalize"
+                  : "text-lg font-semibold capitalize"
+              }
+            >
+              {pokemon.name}
+            </h2>
             <button
               onClick={playCry}
               type="button"
-              className="rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
+              className={
+                isButterfree
+                  ? "rounded-full border border-red-900 bg-red-800 p-1 transition-colors hover:bg-red-700"
+                  : "rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200"
+              }
               title="Play cry"
             >
               🔊
@@ -95,7 +122,11 @@ export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             {pokemon.types.map((type) => (
               <span
                 key={type.type.name}
-                className={`rounded-full px-2 py-0.5 text-xs text-white ${typeColors[type.type.name as keyof typeof typeColors] || "bg-gray-400"}`}
+                className={
+                  isButterfree
+                    ? "rounded-full border border-red-900 bg-red-800 px-2 py-0.5 text-xs text-red-100"
+                    : `rounded-full px-2 py-0.5 text-xs text-white ${typeColors[type.type.name as keyof typeof typeColors] || "bg-gray-400"}`
+                }
               >
                 {type.type.name}
               </span>
