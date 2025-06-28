@@ -193,6 +193,7 @@ export default function RootLayout({
           </noscript>
           <div className="yescript">
             <ThemeProvider>
+              
               <Navbar />
               <Suspense fallback={<div className="loading">Loading...</div>}>
                 <Background />
