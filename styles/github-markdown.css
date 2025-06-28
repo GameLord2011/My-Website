@@ -4,6 +4,8 @@
     color-scheme: dark;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     margin: 0;
     color: #f0f6fc;
     background-color: #0d1117;
@@ -1138,6 +1140,8 @@
     color-scheme: light;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     margin: 0;
     color: #1f2328;
     background-color: #ffffff;

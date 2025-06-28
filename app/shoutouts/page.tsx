@@ -4,6 +4,7 @@ import React from "react";
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
 import Link from "next/link";
+import GitHubHoverLink from "components/linkWrapper";
 
 export default function Shoutouts() {
   return (
@@ -13,7 +14,7 @@ export default function Shoutouts() {
         <br />
         <div className="text-sm">
           <p>
-            <Link href="https://github.com/fand">@fand</Link> for{" "}
+            <GitHubHoverLink href="https://github.com/fand">@fand</GitHubHoverLink> for{" "}
             <Link href="https://amagi.dev/react-vfx">
               <VFXImg
                 loading="eager"
@@ -21,8 +22,8 @@ export default function Shoutouts() {
                 className="hidden h-[1.3rem] overflow-clip dark:inline-block"
                 shader="rgbShift"
                 overflow={true}
-                alt="React-Vfx"
-                aria-label="React-Vfx"
+                alt="React-Vfx logo"
+                aria-label="React-Vfx logo"
               />
               <VFXImg
                 loading="eager"
@@ -30,19 +31,19 @@ export default function Shoutouts() {
                 className="inline-block h-[1.3rem] overflow-clip dark:hidden"
                 shader="rgbShift"
                 overflow={true}
-                alt="React-Vfx"
-                aria-label="React-Vfx"
+                alt="React-Vfx logo (light)"
+                aria-label="React-Vfx logo (light)"
               />
             </Link>
             !
           </p>
           <br />
           <p>
-            <Link href="https://github.com/vincentgarreau">
+            <GitHubHoverLink href="https://github.com/vincentgarreau">
               @vincentgarreau
-            </Link>
+            </GitHubHoverLink>
             , and{" "}
-            <Link href="https://github.com/matteobruni">@matteobruni</Link> for{" "}
+            <GitHubHoverLink href="https://github.com/matteobruni">@matteobruni</GitHubHoverLink> for{" "}
             <i>
               <Link href="https://github.com/tsparticles/tsparticles">
                 TSParticles
@@ -52,9 +53,9 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <Link href="https://github.com/facebook">Meta</Link>,{" "}
-            <Link href="https://github.com/microsoft">Microsoft</Link>, and{" "}
-            <Link href="https://github.com/vercel">Vercel</Link> for making this
+            <GitHubHoverLink href="https://github.com/facebook">Meta</GitHubHoverLink>,{" "}
+            <GitHubHoverLink href="https://github.com/microsoft">Microsoft</GitHubHoverLink>, and{" "}
+            <GitHubHoverLink href="https://github.com/vercel">Vercel</GitHubHoverLink> for making this
             site possible at all via{" "}
             <Link href="https://github.com/vercel/next.js">
               <svg
@@ -62,7 +63,7 @@ export default function Shoutouts() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 394 80"
-                aria-label="Next.js"
+                aria-label="Next.js logo"
               >
                 <path
                   fill="#000"
@@ -78,7 +79,7 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <Link href="https://github.com/torvalds">@torvalds</Link> for{" "}
+            <GitHubHoverLink href="https://github.com/torvalds">@torvalds</GitHubHoverLink> for{" "}
             <i>
               <Link href="https://github.com/torvalds/linux">Linux</Link>
             </i>
@@ -86,13 +87,13 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <Link href="https://github.com/willy-jl">@Willy-JL</Link>,{" "}
-            <Link href="https://github.com/sil333033">@Sil333033</Link>,{" "}
-            <Link href="https://github.com/haxsam">@HaxSam</Link>,{" "}
-            <Link href="https://github.com/matthewkukanich">
+            <GitHubHoverLink href="https://github.com/willy-jl">@Willy-JL</GitHubHoverLink>,{" "}
+            <GitHubHoverLink href="https://github.com/sil333033">@Sil333033</GitHubHoverLink>,{" "}
+            <GitHubHoverLink href="https://github.com/haxsam">@HaxSam</GitHubHoverLink>,{" "}
+            <GitHubHoverLink href="https://github.com/matthewkukanich">
               @MatthewKuKanich
-            </Link>
-            , and <Link href="https://github.com/956mb">@956MB</Link> for{" "}
+            </GitHubHoverLink>
+            , and <GitHubHoverLink href="https://github.com/956mb">@956MB</GitHubHoverLink> for{" "}
             <i>
               <Link href="https://github.com/next-flip/momentum-firmware">
                 Momentum Firmware

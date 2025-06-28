@@ -72,12 +72,17 @@ export default function PokemonPage({
 
   const playCry = () => {
     if (pokemon) {
+      if (pokemon.name.toLowerCase() === "type-null") {
       const audio = new Audio(
-        pokemon.name.search(/-/i) !== 1
-          ? `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.replace(/-/i, "")}.mp3`
-          : `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
+        "https://play.pokemonshowdown.com/audio/cries/typenull.mp3",
       );
       audio.play();
+    } else {
+      const audio = new Audio(
+        `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
+      );
+      audio.play();
+    }
     }
   };
 
@@ -120,6 +125,7 @@ export default function PokemonPage({
                 }
                 priority={true}
                 placeholder="empty"
+                aria-hidden="false"
               />
               <button
                 type="button"
@@ -130,6 +136,7 @@ export default function PokemonPage({
                     : "absolute right-0 bottom-0 rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                 }
                 title={`Switch to ${isShiny ? "normal" : "shiny"} form`}
+                aria-label={`Switch to ${isShiny ? "normal" : "shiny"} form`}
               >
                 ✨
               </button>
@@ -154,6 +161,7 @@ export default function PokemonPage({
                       : "rounded-full bg-indigo-100 p-1 transition-colors hover:bg-indigo-200 sm:p-2 dark:bg-indigo-900 dark:hover:bg-indigo-800"
                   }
                   title="Play cry"
+                  aria-label="Play cry"
                 >
                   🔊
                 </button>
@@ -167,6 +175,7 @@ export default function PokemonPage({
                         ? "rounded-full border border-red-900 bg-red-800 px-1 py-0.5 text-xs text-red-100 sm:px-2 sm:py-1 sm:text-sm"
                         : `rounded-full px-1 py-0.5 text-xs sm:px-2 sm:py-1 sm:text-sm ${typeColors[type.type.name] || "bg-gray-200 text-gray-800"}`
                     }
+                    aria-label={`Type: ${type.type.name}`}
                   >
                     {type.type.name}
                   </span>
@@ -222,7 +231,6 @@ export default function PokemonPage({
                 </div>
               ))}
             </div>
-
             <div>
               <h2
                 className={
