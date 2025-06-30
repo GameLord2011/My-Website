@@ -4,8 +4,8 @@ import Typed from "typed.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-//const shown = Math.floor(Math.random() * 10000) === 0;
-const shown = true;
+const shown = Math.floor(Math.random() * 10000) === 0;
+//const shown = true;
 
 export default function Opening() {
   const [show, setShow] = useState(false);
