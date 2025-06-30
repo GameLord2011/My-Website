@@ -6,14 +6,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Page() {
-  const isMobile = isMobileCheck();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const isMobile: boolean = isMobileCheck();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  const links = [
+  const links: {
+    name: string;
+    href: string;
+  }[] = [
     {
       name: "pokésearch",
       href: "/other/pokesearch",

@@ -11,16 +11,19 @@ export default function GitHubHoverLink({
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
   return (
-    <span className="relative"
+    <span
+      className="relative"
       onMouseEnter={() => {
-        clearTimeout((timeout.current) as NodeJS.Timeout);
+        clearTimeout(timeout.current as NodeJS.Timeout);
         setShow(true);
       }}
       onMouseLeave={() => {
         timeout.current = setTimeout(() => setShow(false), 200);
       }}
     >
-      <Link href={href} {...props}>{children}</Link>
+      <Link href={href} {...props}>
+        {children}
+      </Link>
       {show && <GitHubCard url={href as string} />}
     </span>
   );

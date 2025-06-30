@@ -40,12 +40,12 @@ export default function PokemonPage({
   const [error, setError] = useState("");
   const [useMetric, setUseMetric] = useState(true); // State to toggle between metric and imperial
 
-  const toggleUnits = () => {
+  const toggleUnits: () => void = () => {
     setUseMetric((prev) => !prev);
   };
 
   // My brother suggested this Joke
-  const isVivillon = pokemon?.name?.toLowerCase() === "vivillon";
+  const isVivillon: boolean = pokemon?.name?.toLowerCase() === "vivillon";
 
   // Unwrap the params Promise
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function PokemonPage({
   useEffect(() => {
     if (!params) return;
 
-    const fetchPokemon = async () => {
+    const fetchPokemon: () => Promise<void> = async () => {
       try {
         const api = new PokemonClient();
         const data = await api.getPokemonByName(params.name);
@@ -70,19 +70,19 @@ export default function PokemonPage({
     fetchPokemon();
   }, [params]);
 
-  const playCry = () => {
+  const playCry: () => void = () => {
     if (pokemon) {
       if (pokemon.name.toLowerCase() === "type-null") {
-      const audio = new Audio(
-        "https://play.pokemonshowdown.com/audio/cries/typenull.mp3",
-      );
-      audio.play();
-    } else {
-      const audio = new Audio(
-        `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
-      );
-      audio.play();
-    }
+        const audio = new Audio(
+          "https://play.pokemonshowdown.com/audio/cries/typenull.mp3",
+        );
+        audio.play();
+      } else {
+        const audio = new Audio(
+          `https://play.pokemonshowdown.com/audio/cries/${pokemon.name.toLowerCase()}.mp3`,
+        );
+        audio.play();
+      }
     }
   };
 
