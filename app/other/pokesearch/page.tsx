@@ -11,8 +11,6 @@ import { useRef } from "react";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-//import PokemonCard from "components/pokemonCard";
-//import PokemonSearchSuggestions from "components/pokesearchSuggestions";
 
 const PokemonCard = dynamic(() => import("components/pokemonCard"), {
   loading: () => <span className="yellow-500">Loading...</span>,
@@ -34,12 +32,12 @@ interface PokemonResult {
   url: string;
 }
 
-function debounce<T extends (...args: string[]) => void>(
-  func: T,
+function debounce<StringArgsFunction extends (...args: string[]) => void>(
+  func: StringArgsFunction,
   delay: number,
-): (...args: Parameters<T>) => void {
+): (...args: Parameters<StringArgsFunction>) => void {
   let timeout: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
+  return (...args: Parameters<StringArgsFunction>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), delay);
   };
@@ -54,11 +52,11 @@ export default function Page() {
     searchParams.get("q") || "",
   );
   const [suggestions, setSuggestions] = useState<PokemonName[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const [focused, setFocused] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSuggestionSelect = (name: string) => {
+  const handleSuggestionSelect = (name: string): void => {
     setSearch(name);
     searchPokemon(name);
     setSuggestions([]);
@@ -66,14 +64,21 @@ export default function Page() {
   };
 
   const searchPokemon = useCallback(
-    async (query: PokemonName) => {
+    async (query: PokemonName): Promise<void> => {
       try {
         setError("");
-        const response = await fetch(
+        const response: Response = await fetch(
           "https://pokeapi.co/api/v2/pokemon?limit=1000",
         );
-        const data = await response.json();
-        const allPokemon = data.results.map((p: PokemonResult) => p.name);
+        const data: {
+          count: number;
+          next: string | null;
+          previous: string | null;
+          results: { name: string; url: string }[];
+        } = await response.json();
+        const allPokemon: string[] = data.results.map(
+          (p: PokemonResult) => p.name,
+        );
 
         const matchedPokemon = allPokemon
           .filter((name: string) => name.includes(query.toLowerCase()))
@@ -81,19 +86,22 @@ export default function Page() {
         setSuggestions(query ? matchedPokemon : []);
 
         if (allPokemon.includes(query.toLowerCase())) {
-          const pokemonData = await api.getPokemonByName(query.toLowerCase());
+          const pokemonData: Pokemon = await api.getPokemonByName(
+            query.toLowerCase(),
+          );
           setPokemons([pokemonData]);
         } else if (query) {
           const matchPromises: Promise<Pokemon>[] = matchedPokemon.map(
             (name: string) => api.getPokemonByName(name),
           );
-          const results = await Promise.all(matchPromises);
+          const results: Pokemon[] = await Promise.all(matchPromises);
           setPokemons(results);
         } else {
           setPokemons([]);
         }
       } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : String(err);
+        const errorMessage: string =
+          err instanceof Error ? err.message : String(err);
         setError(`Pokemon not found: ${errorMessage}`);
         setPokemons([]);
       }
@@ -101,13 +109,13 @@ export default function Page() {
     [api, setError, setPokemons, setSuggestions],
   );
 
-  const debouncedSearch = useMemo(
+  const debouncedSearch = useMemo<(...args: string[]) => void>(
     () => debounce((query: string) => searchPokemon(query), 300),
     [searchPokemon],
   );
 
   useEffect(() => {
-    const query = searchParams.get("q");
+    const query: string | null = searchParams.get("q");
     if (query) {
       searchPokemon(query);
     } else {

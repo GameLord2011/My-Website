@@ -12,6 +12,7 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
+import Opening from "components/opening";
 
 const Age = dynamic(() => import("age-ts"), {
   loading: () => <span>Loading...</span>,
@@ -24,11 +25,11 @@ const HPageIs = dynamic(() => import("components/HPageIs"), {
 });
 
 export default function Home() {
-  const isMobile = isMobileCheck();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isTilted, setIsTilted] = useState(false);
+  const isMobile: boolean = isMobileCheck();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isTilted, setIsTilted] = useState<boolean>(false);
 
-  useEffect(() => {
+  useEffect((): void => {
     setIsLoaded(true);
   }, []);
 
@@ -37,11 +38,11 @@ export default function Home() {
   const liContent = useRef<HTMLLIElement[]>([]);
   const flag = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
+  useEffect((): void => {
     liContent.current = [];
   }, []);
 
-  const setLiRef = (el: HTMLLIElement | null) => {
+  const setLiRef = (el: HTMLLIElement | null): void => {
     if (el && !liContent.current.includes(el)) {
       liContent.current.push(el);
     }
@@ -50,12 +51,12 @@ export default function Home() {
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrambleTextPlugin);
   gsap.registerPlugin(SplitText);
-  const timeline = gsap.timeline();
-  const duration = () => gsap.utils.random(1.5, 4, 0.1);
+  const timeline: gsap.core.Timeline = gsap.timeline();
+  const duration: () => number = () => gsap.utils.random(1.5, 4, 0.1);
 
-  const namedur = duration();
+  const namedur: number = duration();
 
-  useGSAP(() => {
+  useGSAP((): void => {
     if (!content.current) return;
 
     timeline.to(
@@ -66,9 +67,9 @@ export default function Home() {
           text: content?.current?.innerText as string,
           chars:
             'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
+          revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
           tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
+          speed: (() => gsap.utils.random(0.5, 0.9))(),
         },
       },
       0,
@@ -87,23 +88,14 @@ export default function Home() {
         },
       });
     });
-
-    gsap.to(flag.current, {
-      duration: 1,
-      rotationX: 15,
-      rotationY: 15,
-      stagger: 0.01,
-      ease: "elastic.inOut",
-      overwrite: "auto",
-    });
   }, [isLoaded]);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isLoaded) return;
 
     if (!el.current) return;
 
-    const typed = new Typed(el.current, {
+    const typed: Typed = new Typed(el.current, {
       strings: [
         '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
         '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> fullstack web dev',
@@ -118,10 +110,7 @@ export default function Home() {
       smartBackspace: true,
     });
 
-    return () => {
-      // Destroy Typed instance during cleanup to stop animation
-      typed.destroy();
-    };
+    return typed.destroy();
   }, [isLoaded]);
 
   console.log(
@@ -130,8 +119,8 @@ export default function Home() {
 
   if (!isLoaded) return null;
 
-  const pick = () => {
-    const rand = Math.random();
+  const pick: () => -10 | 10 = () => {
+    const rand: number = Math.random();
 
     if (rand > 0.5) {
       return -10;
@@ -140,8 +129,8 @@ export default function Home() {
     return 10;
   };
 
-  const rotatedCheck = () => {
-    const number = pick();
+  const rotatedCheck: () => 0 | -10 | 10 = () => {
+    const number: -10 | 10 = pick();
 
     if (isTilted) {
       setIsTilted(false);
@@ -154,9 +143,11 @@ export default function Home() {
 
   return (
     <>
+      <Opening />
       <main
         className="flex flex-col items-center justify-center"
         aria-label="Homepage main content"
+        id="mainContent"
       >
         {isMobile && <br />}
         <div className="jio2:w-full jio2:text-xs bz30:w-2/3 bz30:rounded-sm bz30:border-2 bz30:border-dotted bz30:border-Gween-300 bz30:text-xl bz30:dark:border-Gween-600 flex h-1/5 flex-row content-center justify-center self-center p-10 text-center transition-all duration-500 ease-in-out">
@@ -218,14 +209,14 @@ export default function Home() {
             <li ref={setLiRef}>C</li>
             <li ref={setLiRef}>C++</li>
             <li ref={setLiRef}>C#</li>
-            <li ref={setLiRef}>Java Script</li>
+            <li ref={setLiRef}>Javascript</li>
             <li ref={setLiRef}>Html</li>
             <li ref={setLiRef}>Css</li>
             <li ref={setLiRef}>Bash</li>
             <li ref={setLiRef}>Batch</li>
             <li ref={setLiRef}>Powershell Script</li>
             <li ref={setLiRef}>Python</li>
-            <li ref={setLiRef}>Type Script</li>
+            <li ref={setLiRef}>Typescript</li>
             <li ref={setLiRef}>Json</li>
           </ul>
         </div>

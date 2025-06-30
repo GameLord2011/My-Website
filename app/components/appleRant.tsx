@@ -8,8 +8,9 @@ import { useRouter } from 'next/navigation';
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
+import { createRefSetter, animateScrambleText } from "components/utils";
 
-const LOCAL_STORAGE_KEY = "appleRantDismissed";
+const LOCAL_STORAGE_KEY: string = "appleRantDismissed";
 
 export default function AppleRant() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -28,58 +29,35 @@ export default function AppleRant() {
   const h1Content = useRef<HTMLHeadingElement[]>([]);
 
   // DRY up ref setters
-  const setRef =
-    <T extends HTMLElement>(refArr: React.RefObject<T[]>) =>
-    (el: T | null) => {
-      if (el && !refArr.current.includes(el)) {
-        refArr.current.push(el);
-      }
-    };
-  const setPRef = setRef(Pcontent);
-  const setLiRef = setRef(liContent);
-  const setStrongRef = setRef(strongContent);
-  const setH1Ref = setRef(h1Content);
+  const setPRef = createRefSetter(Pcontent);
+  const setLiRef = createRefSetter(liContent);
+  const setStrongRef = createRefSetter(strongContent);
+  const setH1Ref = createRefSetter(h1Content);
 
   useEffect(() => {
-    const parser = new UAParser();
-    const device = parser.getDevice();
+    const parser: UAParser = new UAParser();
+    const device: UAParser.IDevice = parser.getDevice();
     setIsApple(device.vendor === "Apple");
     setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const dismissed: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (dismissed) {
       setAppleRantDismissed(true);
     }
   }, []);
 
   // DRY up GSAP animation logic
-  const animateElements = (elements: HTMLElement[]) => {
-    elements.forEach((el) => {
-      gsap.to(el, {
-        duration: gsap.utils.random(1.5, 3, 0.1),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-<></>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: gsap.utils.random(0.1, 1),
-          tweenLength: true,
-          speed: gsap.utils.random(0.5, 1),
-        },
-      });
-    });
-  };
-
   useGSAP(() => {
     if (!isLoaded) return;
-    animateElements(Pcontent.current);
-    animateElements(liContent.current);
-    animateElements(strongContent.current);
-    animateElements(h1Content.current);
+    animateScrambleText(Pcontent.current);
+    animateScrambleText(liContent.current);
+    animateScrambleText(strongContent.current);
+    animateScrambleText(h1Content.current);
   }, [isLoaded]);
 
-  const dismiss = () => {
+  const dismiss = (): void => {
     localStorage.setItem(LOCAL_STORAGE_KEY, "true");
     setAppleRantDismissed(true);
     router.refresh();

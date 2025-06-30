@@ -39,18 +39,20 @@ export default function GitHubCard({ url }: GitHubCardProps) {
         <Image
           src={data.avatar_url}
           alt={(data?.login || data?.name) as string}
-          className="mb-2 h-12 w-12 rounded-full self-center"
+          className="mb-2 h-12 w-12 self-center rounded-full"
           width={0}
           height={0}
         />
       )}
-      <div className="font-bold">{data.full_name || data.name || data.login}</div>
+      <div className="font-bold">
+        {data.full_name || data.name || data.login}
+      </div>
       {data.description && <div className="text-sm">{data.description}</div>}
       {data.stargazers_count !== undefined && (
-        <div className="text-xs mt-2">⭐ {data.stargazers_count} stars</div>
+        <div className="mt-2 text-xs">⭐ {data.stargazers_count} stars</div>
       )}
       {data.followers !== undefined && (
-        <div className="text-xs mt-2">👥 {data.followers} followers</div>
+        <div className="mt-2 text-xs">👥 {data.followers} followers</div>
       )}
     </span>
   );

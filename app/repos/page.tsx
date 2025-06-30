@@ -3,11 +3,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { JSX } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
+import { createRefSetter, animateScrambleText } from "components/utils";
 
 export default function Page() {
   const reposFetched = useRef(false);
@@ -30,71 +32,18 @@ export default function Page() {
     forkedcontent.current = [];
   }, [repos]);
 
-  const setAnchorRef = (el: HTMLAnchorElement | null) => {
-    if (el && !anchorcontent.current.includes(el)) {
-      anchorcontent.current.push(el);
-    }
-  };
-
-  const setDescRef = (el: HTMLSpanElement | null) => {
-    if (el && !desccontent.current.includes(el)) {
-      desccontent.current.push(el);
-    }
-  };
-
-  const setForkedRef = (el: HTMLParagraphElement | null) => {
-    if (el && !forkedcontent.current.includes(el)) {
-      forkedcontent.current.push(el);
-    }
-  };
+  const setAnchorRef = createRefSetter(anchorcontent);
+  const setDescRef = createRefSetter(desccontent);
+  const setForkedRef = createRefSetter(forkedcontent);
 
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrambleTextPlugin);
 
   useGSAP(() => {
     if (repos.length === 0) return;
-
-    anchorcontent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
-
-    desccontent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
-
-    forkedcontent.current.forEach((el) => {
-      gsap.to(el, {
-        duration: (() => gsap.utils.random(1.5, 4, 0.1))(),
-        scrambleText: {
-          text: el?.innerText as string,
-          chars:
-            'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-          revealDelay: (() => gsap.utils.random(0.1, 1))(),
-          tweenLength: true,
-          speed: (() => gsap.utils.random(0.5, 1))(),
-        },
-      });
-    });
+    animateScrambleText(anchorcontent.current);
+    animateScrambleText(desccontent.current);
+    animateScrambleText(forkedcontent.current);
   }, [reposFetched.current]);
 
   // Fetch repositories & emojis from GitHub API
@@ -155,9 +104,9 @@ export default function Page() {
   }, [username]);
 
   // Replace emoji shortcodes with React elements
-  const renderWithEmojis = (text: string) => {
+  const renderWithEmojis = (text: string): JSX.Element[] => {
     const parts = text.split(/(:\w+:)/g); // Split text by emoji shortcodes
-    return parts.map((part, index) => {
+    return parts.map((part: string, index: number) => {
       if (
         part.startsWith(":") &&
         part.endsWith(":") &&

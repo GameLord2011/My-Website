@@ -14,7 +14,10 @@ export default function Shoutouts() {
         <br />
         <div className="text-sm">
           <p>
-            <GitHubHoverLink href="https://github.com/fand">@fand</GitHubHoverLink> for{" "}
+            <GitHubHoverLink href="https://github.com/fand">
+              @fand
+            </GitHubHoverLink>{" "}
+            for{" "}
             <Link href="https://amagi.dev/react-vfx">
               <VFXImg
                 loading="eager"
@@ -43,7 +46,10 @@ export default function Shoutouts() {
               @vincentgarreau
             </GitHubHoverLink>
             , and{" "}
-            <GitHubHoverLink href="https://github.com/matteobruni">@matteobruni</GitHubHoverLink> for{" "}
+            <GitHubHoverLink href="https://github.com/matteobruni">
+              @matteobruni
+            </GitHubHoverLink>{" "}
+            for{" "}
             <i>
               <Link href="https://github.com/tsparticles/tsparticles">
                 TSParticles
@@ -53,10 +59,18 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <GitHubHoverLink href="https://github.com/facebook">Meta</GitHubHoverLink>,{" "}
-            <GitHubHoverLink href="https://github.com/microsoft">Microsoft</GitHubHoverLink>, and{" "}
-            <GitHubHoverLink href="https://github.com/vercel">Vercel</GitHubHoverLink> for making this
-            site possible at all via{" "}
+            <GitHubHoverLink href="https://github.com/facebook">
+              Meta
+            </GitHubHoverLink>
+            ,{" "}
+            <GitHubHoverLink href="https://github.com/microsoft">
+              Microsoft
+            </GitHubHoverLink>
+            , and{" "}
+            <GitHubHoverLink href="https://github.com/vercel">
+              Vercel
+            </GitHubHoverLink>{" "}
+            for making this site possible at all via{" "}
             <Link href="https://github.com/vercel/next.js">
               <svg
                 className="inline-block h-[0.7rem] -translate-y-[1px] dark:invert"
@@ -79,7 +93,10 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <GitHubHoverLink href="https://github.com/torvalds">@torvalds</GitHubHoverLink> for{" "}
+            <GitHubHoverLink href="https://github.com/torvalds">
+              @torvalds
+            </GitHubHoverLink>{" "}
+            for{" "}
             <i>
               <Link href="https://github.com/torvalds/linux">Linux</Link>
             </i>
@@ -87,13 +104,26 @@ export default function Shoutouts() {
           </p>
           <br />
           <p>
-            <GitHubHoverLink href="https://github.com/willy-jl">@Willy-JL</GitHubHoverLink>,{" "}
-            <GitHubHoverLink href="https://github.com/sil333033">@Sil333033</GitHubHoverLink>,{" "}
-            <GitHubHoverLink href="https://github.com/haxsam">@HaxSam</GitHubHoverLink>,{" "}
+            <GitHubHoverLink href="https://github.com/willy-jl">
+              @Willy-JL
+            </GitHubHoverLink>
+            ,{" "}
+            <GitHubHoverLink href="https://github.com/sil333033">
+              @Sil333033
+            </GitHubHoverLink>
+            ,{" "}
+            <GitHubHoverLink href="https://github.com/haxsam">
+              @HaxSam
+            </GitHubHoverLink>
+            ,{" "}
             <GitHubHoverLink href="https://github.com/matthewkukanich">
               @MatthewKuKanich
             </GitHubHoverLink>
-            , and <GitHubHoverLink href="https://github.com/956mb">@956MB</GitHubHoverLink> for{" "}
+            , and{" "}
+            <GitHubHoverLink href="https://github.com/956mb">
+              @956MB
+            </GitHubHoverLink>{" "}
+            for{" "}
             <i>
               <Link href="https://github.com/next-flip/momentum-firmware">
                 Momentum Firmware
