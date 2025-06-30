@@ -27,7 +27,7 @@ export default function Background() {
   useEffect(() => {
     if (particles === null) return;
 
-    if (!particles && !shown) {
+    if (!particles || !shown) {
       setInit(true);
 
       const canvas: HTMLCanvasElement | null = canvasRef.current;
