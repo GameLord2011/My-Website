@@ -4,8 +4,8 @@ import Typed from "typed.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-//const shown = Math.floor(Math.random() * 10000) === 0;
-const shown = true;
+const shown = Math.floor(Math.random() * 10000) === 0;
+//const shown = true;
 
 export default function Opening() {
   const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ export default function Opening() {
     if (shown) {
       setTimeout(() => {
         setShow(true);
-      }, 4000);
+      }, 5000);
     }
   }, []);
 

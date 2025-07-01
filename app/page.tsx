@@ -90,7 +90,7 @@ export default function Home() {
     });
   }, [isLoaded]);
 
-  useEffect((): void => {
+  useEffect(() => {
     if (!isLoaded) return;
 
     if (!el.current) return;
@@ -110,7 +110,9 @@ export default function Home() {
       smartBackspace: true,
     });
 
-    return typed.destroy();
+    return () => {
+      typed.destroy();
+    };
   }, [isLoaded]);
 
   console.log(
