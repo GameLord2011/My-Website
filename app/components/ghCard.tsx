@@ -2,6 +2,19 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Image from "next/image";
 
+// Simple in-memory cache for GitHub API responses
+type GitHubCardData = {
+  avatar_url?: string;
+  login?: string;
+  name?: string;
+  full_name?: string;
+  stargazers_count?: string | number;
+  description?: string;
+  followers?: string | number;
+};
+
+const githubCardCache = new Map<string, GitHubCardData>();
+
 type GitHubCardProps = {
   url: string;
 };
@@ -18,17 +31,37 @@ export default function GitHubCard({ url }: GitHubCardProps) {
   } | null>(null);
 
   useEffect(() => {
+    // Check cache first
+    if (githubCardCache.has(url)) {
+      setData(githubCardCache.get(url) ?? null);
+      return;
+    }
     // Determine if it's a user/org or repo link
     const match = url.match(/github\.com\/([^\/]+)(?:\/([^\/]+))?/);
     if (!match) return;
     const [, user, repo] = match;
-    const apiUrl = repo
-      ? `https://api.github.com/repos/${user}/${repo}`
-      : `https://api.github.com/users/${user}`;
 
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then(setData);
+    if (
+      process.env.NODE_ENV === "development" ||
+      process.env.NODE_ENV === "test"
+    ) {
+      fetch("/Tests/user.json")
+        .then((res) => res.json())
+        .then((res) => {
+          setData(res);
+        });
+    } else {
+      const apiUrl = repo
+        ? `https://api.github.com/repos/${user}/${repo}`
+        : `https://api.github.com/users/${user}`;
+
+      fetch(apiUrl)
+        .then((res) => res.json())
+        .then((result) => {
+          githubCardCache.set(url, result);
+          setData(result);
+        });
+    }
   }, [url]);
 
   if (!data) return null;
@@ -39,20 +72,20 @@ export default function GitHubCard({ url }: GitHubCardProps) {
         <Image
           src={data.avatar_url}
           alt={(data?.login || data?.name) as string}
-          className="mb-2 h-12 w-12 self-center rounded-full"
+          className="left-5/12 mb-2 h-12 w-12 rounded-full relative"
           width={0}
           height={0}
         />
       )}
-      <div className="font-bold">
+      <span className="font-bold">
         {data.full_name || data.name || data.login}
-      </div>
-      {data.description && <div className="text-sm">{data.description}</div>}
+      </span>{" "}
+      {data.description && <span className="text-sm">{data.description}</span>}
       {data.stargazers_count !== undefined && (
-        <div className="mt-2 text-xs">⭐ {data.stargazers_count} stars</div>
+        <span className="mt-2 text-xs">⭐ {data.stargazers_count} stars</span>
       )}
       {data.followers !== undefined && (
-        <div className="mt-2 text-xs">👥 {data.followers} followers</div>
+        <span className="mt-2 text-xs">👥 {data.followers} followers</span>
       )}
     </span>
   );

@@ -11,6 +11,7 @@ import { useRef } from "react";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { PokemonResult, PokemonListResponse } from "components/complexTypes";
 
 const PokemonCard = dynamic(() => import("components/pokemonCard"), {
   loading: () => <span className="yellow-500">Loading...</span>,
@@ -26,11 +27,6 @@ const PokemonSearchSuggestions = dynamic(
 );
 
 type PokemonName = string;
-
-interface PokemonResult {
-  name: string;
-  url: string;
-}
 
 function debounce<StringArgsFunction extends (...args: string[]) => void>(
   func: StringArgsFunction,
@@ -70,12 +66,7 @@ export default function Page() {
         const response: Response = await fetch(
           "https://pokeapi.co/api/v2/pokemon?limit=1000",
         );
-        const data: {
-          count: number;
-          next: string | null;
-          previous: string | null;
-          results: { name: string; url: string }[];
-        } = await response.json();
+        const data: PokemonListResponse = await response.json();
         const allPokemon: string[] = data.results.map(
           (p: PokemonResult) => p.name,
         );

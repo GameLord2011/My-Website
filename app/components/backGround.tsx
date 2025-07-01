@@ -27,7 +27,7 @@ export default function Background() {
   useEffect(() => {
     if (particles === null) return;
 
-    if (!particles || !shown) {
+    if (!particles && !shown) {
       setInit(true);
 
       const canvas: HTMLCanvasElement | null = canvasRef.current;
@@ -42,19 +42,16 @@ export default function Background() {
 
       const fontSize = 21;
       const numDrops = Math.floor(width / fontSize) * 1.2;
-      // Uniform columns for initial wave
       if (!dropsRef.current || dropsRef.current.length !== numDrops) {
         dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
           x: (i * width) / numDrops,
           y: 0,
         }));
       }
-      //const drops = dropsRef.current;
 
       const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
       let animationFrameId: number;
 
-      // Draw function defined as an expression so it always reads latest randomModeRef.current
       const draw = () => {
         if (ctx && dropsRef.current) {
           const imageData = ctx.getImageData(0, 0, width, height);
@@ -95,7 +92,6 @@ export default function Background() {
         height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
-        // Update drops in place on resize
         if (dropsRef.current) {
           for (let i = 0; i < dropsRef.current.length; i++) {
             dropsRef.current[i].x = (i * width) / numDrops;

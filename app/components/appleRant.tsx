@@ -28,7 +28,6 @@ export default function AppleRant() {
   const strongContent = useRef<HTMLElement[]>([]);
   const h1Content = useRef<HTMLHeadingElement[]>([]);
 
-  // DRY up ref setters
   const setPRef = createRefSetter(Pcontent);
   const setLiRef = createRefSetter(liContent);
   const setStrongRef = createRefSetter(strongContent);
@@ -48,7 +47,6 @@ export default function AppleRant() {
     }
   }, []);
 
-  // DRY up GSAP animation logic
   useGSAP(() => {
     if (!isLoaded) return;
     animateScrambleText(Pcontent.current);

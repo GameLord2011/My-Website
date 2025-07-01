@@ -4,13 +4,7 @@ import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-
-interface PokemonSearchSuggestionsProps {
-  suggestions: string[];
-  visible: boolean;
-  onSelect: (name: string) => void;
-  inputRef: React.RefObject<HTMLInputElement>;
-}
+import { PokemonSearchSuggestionsProps } from "./complexTypes";
 
 export default function PokemonSearchSuggestions({
   suggestions,

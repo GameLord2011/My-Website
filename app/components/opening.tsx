@@ -19,7 +19,7 @@ export default function Opening() {
     if (shown) {
       setTimeout(() => {
         setShow(true);
-      }, 4000);
+      }, 5000);
     }
   }, []);
 
