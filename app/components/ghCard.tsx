@@ -72,7 +72,7 @@ export default function GitHubCard({ url }: GitHubCardProps) {
         <Image
           src={data.avatar_url}
           alt={(data?.login || data?.name) as string}
-          className="left-5/12 mb-2 h-12 w-12 rounded-full relative"
+          className="relative left-5/12 mb-2 h-12 w-12 rounded-full"
           width={0}
           height={0}
         />
