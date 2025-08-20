@@ -100,9 +100,9 @@ export default function About() {
         <p>
           I am a <Age /> year old developer. I program in a lot of languages,
           but I am best at TypeScript and Html. I also program in C# and some
-          java and batch. I mainly use windows, but I have ubuntu (WSL2) and a
-          raspberry pi 4b with retropie. I listen to music on spotify and I play
-          a lot of <Link href="https://www.minecraft.net/">Minecraft</Link> (
+          java and batch. I mainly use windows, but I have a raspberry pi 4b
+          with retropie. I listen to music on spotify and I play a lot of{" "}
+          <Link href="https://www.minecraft.net/">Minecraft</Link> (
           <Link href="https://namemc.com/profile/GameLord2011.1">
             my profile
           </Link>
