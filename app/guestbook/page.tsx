@@ -39,21 +39,23 @@ export default function Page() {
         <form onSubmit={handleSubmit}>
           <input
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Your name"
             required
           />
           <input
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Your message"
             required
           />
           <button type="submit">Sign</button>
         </form>
         <ul>
-          {messages.map(msg => (
-            <li key={msg.id}><b>{msg.name}:</b> {msg.message}</li>
+          {messages.map((msg) => (
+            <li key={msg.id}>
+              <b>{msg.name}:</b> {msg.message}
+            </li>
           ))}
         </ul>
       </div>
