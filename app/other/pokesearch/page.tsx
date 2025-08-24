@@ -68,7 +68,7 @@ export default function Page() {
         );
         const data: PokemonListResponse = await response.json();
         const allPokemon: string[] = data.results.map(
-          (p: PokemonResult) => p.name,
+          (pkmn: PokemonResult) => pkmn.name,
         );
 
         const matchedPokemon = allPokemon

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 
 interface GuestbookMessage {
@@ -56,7 +58,16 @@ export default function Page() {
             <li key={msg.id}>
               <b>{msg.name}:</b> {msg.message}
             </li>
-          ))}
+          ))}{Array.isArray(messages) ? (
+    messages.map((msg) => (
+      <li key={msg.id}>
+        <b>{msg.name}:</b> {msg.message}
+      </li>
+    ))
+  ) : (
+    <li>No messages found.</li>
+  )}
+
         </ul>
       </div>
     </main>
