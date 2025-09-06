@@ -26,6 +26,10 @@ const links = [
     href: "/repos",
   },
   {
+    name: "Guestbook",
+    href: "/guestbook",
+  },
+  {
     name: "Other",
     mobileHref: "/other",
     href: "",
