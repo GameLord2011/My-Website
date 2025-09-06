@@ -1,46 +1,63 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Pool } from "pg";
+import { neon } from "@neondatabase/serverless";
 
 export const runtime = "nodejs";
 
-let pool: Pool;
+const sql = neon(process.env.POSTGRES_URL!);
 
-if (process.env.NODE_ENV === "production") {
-  pool =
-    global.pgPool ||
-    new Pool({
-      connectionString: process.env.POSTGRES_URL!,
-      ssl: { rejectUnauthorized: false },
-    });
-  if (!global.pgPool) {
-    global.pgPool = pool;
+// Censor list cache
+let censorList: string[] | null = null;
+
+async function getCensorList() {
+  if (!censorList) {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/profanity_filter.wlist`
+    );
+    const base64 = await res.text();
+
+    const decoded = Buffer.from(base64, "base64").toString("utf-8");
+
+    censorList = decoded
+      .split("\n")
+      .map((w) => w.trim().toLowerCase())
+      .filter(Boolean);
+
+    console.log("Loaded censor list:", censorList.slice(0, 5)); // Debug preview
   }
+  return censorList;
 }
-if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
-  pool =
-    global.pgPool ||
-    new Pool({
-      connectionString: "/Tests/testDB.db",
-      ssl: { rejectUnauthorized: false },
-      host: "localhost",
-      port: 3000
-    });
-  if (!global.pgPool) {
-    global.pgPool = pool;
+
+function containsCensoredWord(message: string, list: string[]) {
+  const normalized = message
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/gi, " "); // Remove punctuation
+
+  for (const word of list) {
+    const pattern = new RegExp(`\\b${escapeRegExp(word)}\\b`, "i");
+    if (pattern.test(normalized)) {
+      console.log(`Blocked word detected: "${word}" in message "${message}"`);
+      return true;
+    }
   }
+
+  return false;
+}
+
+function escapeRegExp(word: string) {
+  return word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 export async function GET() {
   try {
-    const { rows } = await pool.query(
-      "SELECT id, name, message FROM guestbook ORDER BY id DESC LIMIT 100",
-    );
+    const rows = await sql`
+      SELECT id, name, message FROM guestbook ORDER BY id DESC LIMIT 100
+    `;
     return NextResponse.json(rows);
   } catch (err) {
     console.error("GET /guestbook error:", err);
     return NextResponse.json(
       { error: "Failed to fetch guestbook entries" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -48,7 +65,6 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const { name, message } = await req.json();
-
     const trimmedName = name?.trim();
     const trimmedMessage = message?.trim();
 
@@ -56,17 +72,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    await pool.query("INSERT INTO guestbook (name, message) VALUES ($1, $2)", [
-      trimmedName,
-      trimmedMessage,
-    ]);
+    const list = await getCensorList();
+
+    if (containsCensoredWord(trimmedMessage, list)) {
+      return NextResponse.json(
+        { error: "Message contains inappropriate language." },
+        { status: 400 }
+      );
+    }
+
+    await sql`
+      INSERT INTO guestbook (name, message) VALUES (${trimmedName}, ${trimmedMessage})
+    `;
 
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("POST /guestbook error:", err);
     return NextResponse.json(
       { error: "Failed to submit guestbook entry" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
