@@ -44,7 +44,7 @@ export default function Page() {
         );
       } else {
         alert(
-          "You have triggered the censor list too many times. You cannot submit again until you reload the page.",
+          "You have triggered the censor list too many times. You cannot submit again.",
         );
         setBlocked(true);
       }
