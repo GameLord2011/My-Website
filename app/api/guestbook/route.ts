@@ -11,7 +11,7 @@ let censorList: string[] | null = null;
 async function getCensorList() {
   if (!censorList) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/profanity_filter.wlist`
+      `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/profanity_filter.wlist`,
     );
     const base64 = await res.text();
 
@@ -28,9 +28,7 @@ async function getCensorList() {
 }
 
 function containsCensoredWord(message: string, list: string[]) {
-  const normalized = message
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/gi, " "); // Remove punctuation
+  const normalized = message.toLowerCase().replace(/[^a-z0-9\s]/gi, " "); // Remove punctuation
 
   for (const word of list) {
     const pattern = new RegExp(`\\b${escapeRegExp(word)}\\b`, "i");
@@ -57,7 +55,7 @@ export async function GET() {
     console.error("GET /guestbook error:", err);
     return NextResponse.json(
       { error: "Failed to fetch guestbook entries" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -77,7 +75,7 @@ export async function POST(req: NextRequest) {
     if (containsCensoredWord(trimmedMessage, list)) {
       return NextResponse.json(
         { error: "Message contains inappropriate language." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -90,7 +88,7 @@ export async function POST(req: NextRequest) {
     console.error("POST /guestbook error:", err);
     return NextResponse.json(
       { error: "Failed to submit guestbook entry" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
