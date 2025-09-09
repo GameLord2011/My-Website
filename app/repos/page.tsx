@@ -177,6 +177,7 @@ export default function Page() {
             )}
           </div>
         ))}
+        <br />
       </div>
     </main>
   );

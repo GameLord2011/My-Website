@@ -8,6 +8,25 @@ import { useState } from "react";
 import { isMobileCheck } from "components/isMobile";
 import ThemeSwitcher from "./themeswitcher";
 
+export const subLinks = [
+  {
+    name: "pokésearch",
+    href: "/other/pokesearch",
+  },
+  {
+    name: "Links",
+    href: "https://linktr.ee/GameLord2011",
+  },
+  {
+    name: "README",
+    href: "/other/readme",
+  },
+  {
+    name: "Guestbook",
+    href: "/other/guestbook",
+  },
+]
+
 const links = [
   {
     name: "Home",
@@ -26,27 +45,10 @@ const links = [
     href: "/repos",
   },
   {
-    name: "Guestbook",
-    href: "/guestbook",
-  },
-  {
     name: "Other",
     mobileHref: "/other",
     href: "",
-    subLinks: [
-      {
-        name: "pokésearch",
-        href: "/other/pokesearch",
-      },
-      {
-        name: "Links",
-        href: "https://linktr.ee/GameLord2011",
-      },
-      {
-        name: "README",
-        href: "/other/readme",
-      },
-    ],
+    subLinks: true
   },
 ];
 
@@ -89,7 +91,7 @@ export default function Navbar() {
             >
               {links.map((link) => (
                 <div key={link.name} className="sub-group relative">
-                  {!link.subLinks && (
+                  {link.subLinks && (
                     <Link
                       href={link.href}
                       className={clsx(
@@ -118,7 +120,7 @@ export default function Navbar() {
                   )}
                   {link.subLinks && (
                     <div className="dropdown-subcontent sub-hover:block absolute top-0 left-full hidden min-w-[150px] rounded-md bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out">
-                      {link.subLinks.map((subLink) => (
+                      {subLinks.map((subLink) => (
                         <Link
                           href={subLink.href}
                           key={subLink.name}
