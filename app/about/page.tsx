@@ -117,6 +117,7 @@ export default function About() {
           Visual Studio for programming.
         </p>
       </div>
+      <br />
     </main>
   );
 }

@@ -18,7 +18,7 @@ export default function Page() {
   const [dun, setDun] = useState(false);
 
   useEffect(() => {
-    fetch("/api/guestbook")
+    fetch("/api/other/guestbook")
       .then((res) => res.json())
       .then(setMessages);
   }, []);
@@ -30,7 +30,7 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !message || blocked || censorTries >= 3) return;
-    const res = await fetch("/api/guestbook", {
+    const res = await fetch("/api/other/guestbook", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, message }),
@@ -54,18 +54,18 @@ export default function Page() {
     setCensorTries(0);
     setName("");
     setMessage("");
-    fetch("/api/guestbook")
+    fetch("/api/other/guestbook")
       .then((res) => res.json())
       .then(setMessages);
   };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-cover bg-center">
-      <div className="relative w-full max-w-lg rounded-xl border-8 border-[#c2b280] bg-[#f5ecd7]/90 p-8 shadow-2xl">
+      <div className="relative w-full max-w-lg rounded-xl jio2:border-8 border-0 border-[#c2b280] bg-[#f5ecd7]/90 jio2:p-8 py-4 px-1 shadow-2xl">
         <h1 className="papyrus_font mb-4 text-center font-bold text-[#7c5c2a] drop-shadow">
           Guestbook
         </h1>
-        <table className="papyrus_font w-full table-fixed border-separate border-spacing-y-2 text-left text-lg">
+        <table className="papyrus_font w-full table-fixed border-separate border-spacing-y-2 text-left jio2:text-lg text-xs">
           <thead>
             <tr className="text-[#7c5c2a]">
               <th className="w-1/3 border-b border-[#c2b280] pb-2 text-left">
@@ -81,29 +81,29 @@ export default function Page() {
               messages.length > 0 &&
               messages.map((msg) => (
                 <tr key={msg.id} className="border-b border-[#c2b280]/40">
-                  <td className="w-1/3 text-[#7c5c2a]">{msg.name}</td>
-                  <td className="w-2/3 pl-4 text-[#4b3a1a]">{msg.message}</td>
+                  <td className="w-1/3 text-[#7c5c2a] jio2:text-base text-xs">{msg.name}</td>
+                  <td className="w-2/3 pl-4 text-[#4b3a1a] jio2:text-base text-xs">{msg.message}</td>
                 </tr>
               ))}
             {!dun ? (
               <tr>
-                <td className="relative w-1/3">
+                <td className="relative w-1/3 jio2:text-base text-xs">
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your name"
                     required
-                    className="papyrus_font w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
+                    className="papyrus_font w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none jio2:text-base text-xs"
                   />
                 </td>
-                <td className="relative w-2/3">
+                <td className="relative w-2/3 jio2:text-base text-xs">
                   <form onSubmit={handleSubmit}>
                     <input
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Your message"
                       required
-                      className="papyrus_font w-2/3 rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
+                      className="papyrus_font w-2/3 rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none jio2:text-base text-xs"
                       disabled={blocked || censorTries >= 3}
                     />
                     <button

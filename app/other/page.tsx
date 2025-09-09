@@ -4,6 +4,7 @@ import Link from "next/link";
 import { isMobileCheck } from "components/isMobile";
 import { useEffect } from "react";
 import { useState } from "react";
+import { subLinks } from "components/navbar";
 
 export default function Page() {
   const isMobile: boolean = isMobileCheck();
@@ -13,7 +14,7 @@ export default function Page() {
     setIsLoaded(true);
   }, []);
 
-  const links: {
+  /*const links: {
     name: string;
     href: string;
   }[] = [
@@ -25,7 +26,15 @@ export default function Page() {
       name: "Links",
       href: "https://linktr.ee/GameLord2011",
     },
-  ];
+    {
+      name: "README",
+      href: "/other/readme"
+    },
+    {
+      name: "Guestbook",
+      href: "/other/guestbook",
+    },
+  ];*/
 
   if (!isLoaded) return null;
 
@@ -38,7 +47,7 @@ export default function Page() {
       )}
       {isMobile && (
         <main className="flex flex-col items-center justify-center">
-          {links.map((link) => (
+          {subLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
