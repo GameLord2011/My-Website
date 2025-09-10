@@ -31,18 +31,22 @@ const links = [
   {
     name: "Home",
     href: "/",
+    subLinks: false
   },
   {
     name: "About",
     href: "/about",
+    subLinks: false
   },
   {
     name: "Shoutouts",
     href: "/shoutouts",
+    subLinks: false
   },
   {
     name: "Repos",
     href: "/repos",
+    subLinks: false
   },
   {
     name: "Other",
@@ -91,7 +95,7 @@ export default function Navbar() {
             >
               {links.map((link) => (
                 <div key={link.name} className="sub-group relative">
-                  {link.subLinks && (
+                  {!link.subLinks && (
                     <Link
                       href={link.href}
                       className={clsx(
