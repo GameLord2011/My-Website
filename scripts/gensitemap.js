@@ -43,8 +43,7 @@ function generateSitemapXml(routes) {
     .map(
       ({ path }) =>
         `<url><loc>${BASE_URL}${path}</loc><lastmod>${now}</lastmod><priority>${path === "/" ? "1" : "0.7"}</priority><changefreq>always</changefreq></url>`,
-    )
-    .replace("\n", "")}</urlset>`;
+    )}</urlset>`;
 }
 
 async function generateSitemap() {
