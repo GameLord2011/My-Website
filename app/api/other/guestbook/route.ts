@@ -8,6 +8,7 @@ const sql = neon(process.env.POSTGRES_URL!);
 // Censor list cache
 let censorList: string[] | null = null;
 
+//TODO: Replace w/ https://www.npmjs.com/package/obscenity
 async function getCensorList() {
   if (!censorList) {
     const res = await fetch(

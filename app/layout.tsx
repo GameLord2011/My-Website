@@ -127,7 +127,8 @@ export default function RootLayout({
                     Under <b>Content</b>, click on <b>JavaScript</b>.<br />
                   </li>
                   <li>
-                    Toggle the switch to <b>Unblock</b>.<br />
+                    Toggle the switch to <b>Unblock</b>.
+                    <br />
                   </li>
                 </ol>
               </li>
@@ -158,7 +159,8 @@ export default function RootLayout({
                     <br />
                   </li>
                   <li>
-                    Find <code>javascript.enabled</code>.<br />
+                    Find <code>javascript.enabled</code>.
+                    <br />
                   </li>
                   <li>
                     Double-click the preference to change its value to{" "}

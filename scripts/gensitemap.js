@@ -39,12 +39,12 @@ function getRoutes(dir, basePath = "") {
 
 function generateSitemapXml(routes) {
   const now = new Date().toISOString();
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
+  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes
     .map(
       ({ path }) =>
-        `<url>\n<loc>${BASE_URL}${path}</loc>\n<lastmod>${now}</lastmod>\n<priority>${path === "/" ? "1" : "0.7"}</priority>\n<changefreq>always</changefreq>\n</url>`,
+        `<url><loc>${BASE_URL}${path}</loc><lastmod>${now}</lastmod><priority>${path === "/" ? "1" : "0.7"}</priority><changefreq>always</changefreq></url>`,
     )
-    .join("\n")}\n</urlset>\n`;
+    .replace("\n", "")}</urlset>`;
 }
 
 async function generateSitemap() {

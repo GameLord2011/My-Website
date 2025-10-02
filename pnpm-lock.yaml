@@ -7,6 +7,12 @@ settings:
 importers:
   .:
     dependencies:
+      7.css:
+        specifier: 0.21.1
+        version: 0.21.1
+      98.css:
+        specifier: 0.1.21
+        version: 0.1.21
       "@gsap/react":
         specifier: 2.1.2
         version: 2.1.2(gsap@3.13.0)(react@19.1.1)
@@ -178,6 +184,18 @@ importers:
         version: 5.9.2
 
 packages:
+  7.css@0.21.1:
+    resolution:
+      {
+        integrity: sha512-Q+/aFUpGemoR/Zltj4a7yvHonyxfb+9cgiwBL+j/Lm+H28EOoLzWoJki7MdGPV+3mLCvKSCVqr3M2x2uNYyeWw==,
+      }
+
+  98.css@0.1.21:
+    resolution:
+      {
+        integrity: sha512-ddk5qtUWyapM0Bzd5jwGExoE5fdSEGrP+F5VbYjyZLf2c9UVmn6w2NPTvCsoD4BWdGsjdLjlkQGhWwWTJcYQJQ==,
+      }
+
   "@alloc/quick-lru@5.2.0":
     resolution:
       {
@@ -5783,6 +5801,10 @@ packages:
       }
 
 snapshots:
+  7.css@0.21.1: {}
+
+  98.css@0.1.21: {}
+
   "@alloc/quick-lru@5.2.0": {}
 
   "@emnapi/core@1.4.5":
