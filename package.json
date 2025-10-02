@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "7.css": "0.21.1",
+    "98.css": "0.1.21",
     "@gsap/react": "2.1.2",
     "@neondatabase/serverless": "^1.0.1",
     "@tsparticles/engine": "^3.9.1",

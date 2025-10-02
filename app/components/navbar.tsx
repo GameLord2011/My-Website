@@ -25,34 +25,34 @@ export const subLinks = [
     name: "Guestbook",
     href: "/other/guestbook",
   },
-]
+];
 
 const links = [
   {
     name: "Home",
     href: "/",
-    subLinks: false
+    subLinks: false,
   },
   {
     name: "About",
     href: "/about",
-    subLinks: false
+    subLinks: false,
   },
   {
     name: "Shoutouts",
     href: "/shoutouts",
-    subLinks: false
+    subLinks: false,
   },
   {
     name: "Repos",
     href: "/repos",
-    subLinks: false
+    subLinks: false,
   },
   {
     name: "Other",
     mobileHref: "/other",
     href: "",
-    subLinks: true
+    subLinks: true,
   },
 ];
 

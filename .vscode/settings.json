@@ -1,8 +1,5 @@
 {
-  "vscode-edge-devtools.browserFlavor": "Default",
   "css.customData": ["./.vscode/css-data.json"],
   "iridium.npm.showSupportIcon": false,
-  "chat.instructionsFilesLocations": {
-    "../COPILOTCONFIG.md": true
-  }
+  "chat.useAgentsMdFile": true
 }
