@@ -8,13 +8,13 @@
     "build": "node scripts/gensitemap.js && next build",
     "msm": "node scripts/gensitemap.js",
     "prettier": "prettier --write .",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "debug_server": "cross-env NODE_OPTIONS='--inspect' next dev"
   },
   "dependencies": {
     "7.css": "0.21.1",
-    "98.css": "0.1.21",
     "@gsap/react": "2.1.2",
-    "@neondatabase/serverless": "^1.0.1",
+    "@neondatabase/serverless": "^1.0.2",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "3.9.1",
@@ -27,11 +27,12 @@
     "gsap": "3.13.0",
     "highlight.js": "11.11.1",
     "isbot": "5.1.28",
-    "next": "15.5.0",
+    "next": "15.5.4",
+    "obscenity": "0.4.5",
     "pg": "8.16.3",
     "pokenode-ts": "1.20.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-vfx": "0.11.0",
     "rehype-highlight": "^7.0.2",
     "rehype-raw": "7.0.0",
@@ -47,17 +48,18 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@next/eslint-plugin-next": "15.3.1",
-    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/postcss": "^4.1.14",
     "@types/commonmark": "^0.27.10",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/node": "^22.17.2",
+    "@types/node": "^22.18.8",
     "@types/pg": "^8.15.5",
-    "@types/react": "^19.1.11",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "@types/sass-loader": "^8.0.9",
+    "cross-env": "^10.1.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
-    "eslint": "^9.34.0",
+    "eslint": "^9.36.0",
     "eslint-config-next": "15.3.4",
     "eslint-config-prettier": "10.1.1",
     "eslint-plugin-react": "7.37.5",
@@ -66,18 +68,20 @@
     "postcss": "^8.5.6",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
-    "sass": "^1.90.0",
+    "sass": "^1.93.2",
     "sass-loader": "16.0.4",
     "style-loader": "^4.0.0",
-    "tailwindcss": "^4.1.12",
-    "typescript": "^5.9.2"
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "@tailwindcss/oxide",
       "@tsparticles/engine",
       "@vercel/speed-insights",
-      "sharp"
+      "sharp",
+      "unrs-resolver"
     ],
     "overrides": {}
   }

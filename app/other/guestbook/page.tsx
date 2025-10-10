@@ -30,7 +30,10 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-    setDun(localStorage.getItem("hasSignedGuestbook") === "true");
+    setDun(
+      localStorage.getItem("hasSignedGuestbook") === "true" ||
+        localStorage.getItem("blocked") === "yes",
+    );
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,6 +54,8 @@ export default function Page() {
         setOtherDialogMessage(true);
         dialogRef.current?.show();
         setBlocked(true);
+        localStorage.setItem("blocked", "yes");
+        location.reload();
       }
       return;
     }
@@ -61,11 +66,13 @@ export default function Page() {
     fetch("/api/other/guestbook")
       .then((res) => res.json())
       .then(setMessages);
+    localStorage.setItem("hasSignedGuestbook", "true");
+    location.reload();
   };
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-cover bg-center">
-      <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7]/90 px-1 py-4 shadow-2xl">
+      <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7]/90 px-1 shadow-2xl">
         <h1 className="papyrus_font mb-4 text-center font-bold text-[#7c5c2a] drop-shadow">
           Guestbook
         </h1>
@@ -102,6 +109,7 @@ export default function Page() {
                     placeholder="Your name"
                     required
                     className="papyrus_font jio2:text-base w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
+                    disabled={blocked || censorTries >= 3}
                   />
                 </td>
                 <td className="jio2:text-base relative w-2/3 text-xs">
@@ -145,7 +153,7 @@ export default function Page() {
           ) : (
             <p>
               YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TO MANY TIMES, THE BAN
-              HAMMER HAS BEEN USED!
+              HAMMER HATH BEEN SWUNG!
             </p>
           )}
         </Win7Dialog>

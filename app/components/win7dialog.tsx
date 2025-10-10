@@ -44,8 +44,8 @@ const Win7Dialog = forwardRef<
     if (!dialogEl || !titleBarEl) return;
 
     dialogEl.style.position = "fixed";
-    dialogEl.style.left = "calc(50vw - 314px/2)";
-    dialogEl.style.top = "calc(50vh - 152px/2)";
+    dialogEl.style.left = "calc(50vw - 124px)";
+    dialogEl.style.top = "calc(50vh - 44px)";
 
     let offsetX = 0,
       offsetY = 0;
@@ -72,8 +72,28 @@ const Win7Dialog = forwardRef<
     const onMouseMove = (e: MouseEvent) => {
       if (!dragging) return;
       e.preventDefault();
+      // console.log(window.innerWidth, "w");
+      // console.log(window.innerHeight, "h");
+      // eslint-disable-next-lin
+      //console.log((dialogEl.style.left.replace("px", "") as any as number))
       dialogEl.style.left = e.clientX - offsetX + "px";
+      // eslint-disable-next-line
+      if (((dialogEl.style.left.replace("px", "") as any as number) < 0)) {
+        dialogEl.style.left = "0px"
+      }
+      // eslint-disable-next-line
+      if(((dialogEl.style.left.replace("px", "") as any as number) > (window.innerWidth - 250))) {
+        dialogEl.style.left = `${window.innerWidth - 250}px`
+      }
       dialogEl.style.top = e.clientY - offsetY + "px";
+      // eslint-disable-next-line
+      if (((dialogEl.style.top.replace("px", "") as any as number) > (window.innerHeight - 88))) {
+        dialogEl.style.top = `${window.innerHeight - 88}px`
+      }
+      // eslint-disable-next-line
+      if (((dialogEl.style.top.replace("px", "") as any as number) < 0)) {
+        dialogEl.style.top = "0px"
+      }
       setLoc({ x: dialogEl.style.left, y: dialogEl.style.top });
     };
 
@@ -101,15 +121,11 @@ const Win7Dialog = forwardRef<
     >
       <div
         className="window glass active"
-        style={
-          {
-            margin: "32px",
-            width: "250px",
-            "--w7-w-bg": "hsl(120, 100%, 20%)",
-            display: "flex",
-            flexDirection: "column",
-          } as React.CSSProperties
-        }
+        style={{
+          width: "250px",
+          display: "flex",
+          flexDirection: "column",
+        }}
         ref={windowRef}
       >
         <div className="title-bar select-none" ref={titleBarRef}>
