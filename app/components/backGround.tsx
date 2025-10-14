@@ -22,7 +22,7 @@ export default function Background() {
     setParticles(Math.random() < 0.5);
   }, []);
 
-  console.log(particles);
+  // console.log(particles);
 
   useEffect(() => {
     if (particles === null) return;

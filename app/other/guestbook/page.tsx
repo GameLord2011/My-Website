@@ -55,7 +55,9 @@ export default function Page() {
         dialogRef.current?.show();
         setBlocked(true);
         localStorage.setItem("blocked", "yes");
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
       return;
     }
@@ -152,7 +154,7 @@ export default function Page() {
             </p>
           ) : (
             <p>
-              YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TO MANY TIMES, THE BAN
+              YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TOo MANY TIMES, THE BAN
               HAMMER HATH BEEN SWUNG!
             </p>
           )}

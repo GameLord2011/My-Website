@@ -14,32 +14,49 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [prefersDark, setprefersDark] = useState(true);
+  //const [prefersDark, setprefersDark] = useState(true);
   const [theme, setTheme] = useState("dark");
   const [isOverridden, setIsOverridden] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setTheme(prefersDark ? "dark" : "light");
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme !== null) {
+        setTheme(storedTheme);
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const defaultTheme = prefersDark ? "dark" : "light";
+        localStorage.setItem("theme", defaultTheme);
+        setTheme(defaultTheme);
+      }
     }
   }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!isOverridden) {
-        setprefersDark(
-          window.matchMedia("(prefers-color-scheme: dark)").matches,
-        );
-        const newTheme = prefersDark ? "dark" : "light";
-        setTheme(newTheme);
-      }
-    }, 300);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    return () => clearInterval(intervalId);
-  }, [isOverridden, prefersDark]);
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!isOverridden) {
+        const newTheme = e.matches ? "dark" : "light";
+        //setprefersDark(e.matches);
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+    };
+
+    // Initial check
+    //setprefersDark(mediaQuery.matches);
+
+    // Add listener
+    mediaQuery.addEventListener("change", handleChange);
+
+    // Cleanup
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, [isOverridden]);
 
   useEffect(() => {
     document.documentElement.classList.add(theme);
@@ -51,6 +68,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
     setIsOverridden(
       newTheme !==
         (window.matchMedia("(prefers-color-scheme: dark)").matches

@@ -4,7 +4,7 @@ import { UAParser } from "ua-parser-js";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";

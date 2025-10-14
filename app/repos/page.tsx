@@ -9,14 +9,21 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
-import { createRefSetter, animateScrambleText } from "components/utils";
+import { createRefSetter } from "components/utils";
+import { animateScrambleText } from "components/utils";
 
 export default function Page() {
   const reposFetched = useRef(false);
   const emojisFetched = useRef(false);
 
   const [repos, setRepos] = useState<
-    { name: string; description: string; id: number; fork: boolean }[]
+    {
+      name: string;
+      description: string;
+      id: number;
+      fork: boolean;
+      archived: boolean;
+    }[]
   >([]);
   const [emojis, setEmojis] = useState<{ [key: string]: string }>({}); // To store GitHub emojis
 
@@ -80,11 +87,13 @@ export default function Page() {
             description: string;
             id: number;
             fork: boolean;
+            archived: boolean;
           }) => ({
             name: repo.name || "No name available",
             description: repo.description || null,
             id: repo.id,
             fork: repo.fork,
+            archived: repo.archived,
           }),
         );
         setRepos(formattedRepos);
@@ -151,30 +160,32 @@ export default function Page() {
     <main className="flex flex-col items-center justify-center">
       <h1 className="text-2xl">My GitHub Repositories:</h1>
       <br />
-      <div className="novisited grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="novisited relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {repos.map((repo) => (
-          <div
-            key={repo.id}
-            className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-white/30 p-4 backdrop-blur-xs"
-          >
-            <h2 className="text-xl wrap-anywhere">
-              <Link
-                ref={setAnchorRef}
-                href={`https://github.com/${username}/${repo.name}/`}
-              >
-                {repo.name}
-              </Link>
-            </h2>
-            {repo.description !== null && (
-              <p className="font-ui hidden leading-[1.5] md:block">
-                {renderWithEmojis(repo.description)}
-              </p>
+          <div key={repo.id} className="relative">
+            {repo.archived && ( // JANK FTW!
+              <div className="bz30:rounded-sm pointer-events-none absolute top-0 left-0 z-[99] block h-full w-full bg-black/50 transition-all dark:bg-black/75" />
             )}
-            {repo.fork && (
-              <p ref={setForkedRef} className="font-ui">
-                Forked repo.
-              </p>
-            )}
+            <div className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-white/30 p-4 backdrop-blur-xs">
+              <h2 className="text-xl wrap-anywhere">
+                <Link
+                  ref={setAnchorRef}
+                  href={`https://github.com/${username}/${repo.name}/`}
+                >
+                  {repo.name}
+                </Link>
+              </h2>
+              {repo.description !== null && (
+                <p className="font-ui hidden leading-[1.5] md:block">
+                  {renderWithEmojis(repo.description)}
+                </p>
+              )}
+              {repo.fork && (
+                <p ref={setForkedRef} className="font-ui">
+                  Forked repo.
+                </p>
+              )}
+            </div>
           </div>
         ))}
         <br />

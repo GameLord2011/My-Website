@@ -78,21 +78,27 @@ const Win7Dialog = forwardRef<
       //console.log((dialogEl.style.left.replace("px", "") as any as number))
       dialogEl.style.left = e.clientX - offsetX + "px";
       // eslint-disable-next-line
-      if (((dialogEl.style.left.replace("px", "") as any as number) < 0)) {
-        dialogEl.style.left = "0px"
+      if ((dialogEl.style.left.replace("px", "") as any as number) < 0) {
+        dialogEl.style.left = "0px";
       }
       // eslint-disable-next-line
-      if(((dialogEl.style.left.replace("px", "") as any as number) > (window.innerWidth - 250))) {
-        dialogEl.style.left = `${window.innerWidth - 250}px`
+      if (
+        (dialogEl.style.left.replace("px", "") as any as number) >
+        window.innerWidth - 250
+      ) {
+        dialogEl.style.left = `${window.innerWidth - 250}px`;
       }
       dialogEl.style.top = e.clientY - offsetY + "px";
       // eslint-disable-next-line
-      if (((dialogEl.style.top.replace("px", "") as any as number) > (window.innerHeight - 88))) {
-        dialogEl.style.top = `${window.innerHeight - 88}px`
+      if (
+        (dialogEl.style.top.replace("px", "") as any as number) >
+        window.innerHeight - 88
+      ) {
+        dialogEl.style.top = `${window.innerHeight - 88}px`;
       }
       // eslint-disable-next-line
-      if (((dialogEl.style.top.replace("px", "") as any as number) < 0)) {
-        dialogEl.style.top = "0px"
+      if ((dialogEl.style.top.replace("px", "") as any as number) < 0) {
+        dialogEl.style.top = "0px";
       }
       setLoc({ x: dialogEl.style.left, y: dialogEl.style.top });
     };
