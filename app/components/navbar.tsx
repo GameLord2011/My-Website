@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useState } from "react";
 import { isMobileCheck } from "components/isMobile";
-import ThemeSwitcher from "./themeSwitcher";
+import ThemeSwitcher from "./themeswitcher";
 
 export const subLinks = [
   {

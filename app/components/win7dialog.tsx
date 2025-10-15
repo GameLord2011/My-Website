@@ -81,16 +81,16 @@ const Win7Dialog = forwardRef<
       if ((dialogEl.style.left.replace("px", "") as any as number) < 0) {
         dialogEl.style.left = "0px";
       }
-      // eslint-disable-next-line
       if (
+        // eslint-disable-next-line
         (dialogEl.style.left.replace("px", "") as any as number) >
         window.innerWidth - 250
       ) {
         dialogEl.style.left = `${window.innerWidth - 250}px`;
       }
       dialogEl.style.top = e.clientY - offsetY + "px";
-      // eslint-disable-next-line
       if (
+        // eslint-disable-next-line
         (dialogEl.style.top.replace("px", "") as any as number) >
         window.innerHeight - 88
       ) {
