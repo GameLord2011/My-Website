@@ -1,25 +1,25 @@
 {
-  "version": 1.1,
-  "atDirectives": [
-    {
-      "name": "@theme",
-      "description": "@theme configures the tailwindcss theme.",
-      "references": [
+    "version": 1.1,
+    "atDirectives": [
         {
-          "name": "Documentation",
-          "url": "https://tailwindcss.com/docs/theme"
-        }
-      ]
-    },
-    {
-      "name": "@custom-variant",
-      "description": "@custom-variant configures custom variants for tailwindcss.",
-      "references": [
+            "name": "@theme",
+            "description": "@theme configures the tailwindcss theme.",
+            "references": [
+                {
+                    "name": "Documentation",
+                    "url": "https://tailwindcss.com/docs/theme"
+                }
+            ]
+        },
         {
-          "name": "Documentation",
-          "url": "https://tailwindcss.com/docs/functions-and-directives"
+            "name": "@custom-variant",
+            "description": "@custom-variant configures custom variants for tailwindcss.",
+            "references": [
+                {
+                    "name": "Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

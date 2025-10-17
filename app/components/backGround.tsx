@@ -11,135 +11,233 @@ import { shown } from "components/opening";
 export const dynamic = "force-dynamic";
 
 export default function Background() {
-  const [init, setInit] = useState<boolean>(false);
+    const [init, setInit] = useState<boolean>(false);
+    const [particles, setParticles] = useState(false);
+    const [uniformPhase, setUniformPhase] = useState(true);
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const dropsRef = useRef<
+        {
+            x: number;
+            y: number;
+            speed: number;
+            trail: string[];
+            frameCount: number;
+            changeRate: number;
+        }[]
+    >(null);
 
-  const [particles, setParticles] = useState(false);
-  const dropsRef = useRef<{ x: number; y: number }[] | null>(null);
+    useEffect(() => {
+        setParticles(Math.random() > 0.5);
+    }, []);
 
-  useEffect(() => {
-    setParticles(Math.random() < 0.5);
-  }, []);
+    useEffect(() => {
+        if (particles === null) return;
 
-  // console.log(particles);
+        if (!particles && !shown) {
+            setInit(true);
 
-  useEffect(() => {
-    if (particles === null) return;
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
 
-    if (!particles && !shown) {
-      setInit(true);
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
 
-      const canvas: HTMLCanvasElement | null = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+            const fontSize = 21;
+            const numDrops = Math.floor(width / fontSize + 1);
+            const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
+            const trailLength = 7;
+            const openingSpeed = 2.5;
 
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-
-      const fontSize = 21;
-      const numDrops = Math.floor(width / fontSize) * 1.2;
-      if (!dropsRef.current || dropsRef.current.length !== numDrops) {
-        dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
-          x: (i * width) / numDrops,
-          y: 0,
-        }));
-      }
-
-      const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
-      let animationFrameId: number;
-
-      const draw = () => {
-        if (ctx && dropsRef.current) {
-          const imageData = ctx.getImageData(0, 0, width, height);
-          const data = imageData.data;
-          const fade = 0.8;
-          for (let i = 0; i < data.length; i += 4) {
-            const a = data[i + 3];
-            data[i + 3] = a * fade;
-            if (data[i + 3] < 2) data[i + 3] = 0;
-          }
-          ctx.putImageData(imageData, 0, 0);
-          ctx.save();
-          ctx.translate(width, 0);
-          ctx.scale(-1, 1);
-          ctx.globalAlpha = 0.7;
-          ctx.fillStyle = "rgb(0,143,17)";
-          ctx.font = fontSize + "px monospace";
-          for (let i = 0; i < dropsRef.current.length; i++) {
-            const drop = dropsRef.current[i];
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillText(text, drop.x, drop.y);
-            drop.y += fontSize * 0.7;
-            if (drop.y > height) {
-              drop.x = Math.random() * width;
-              drop.y = Math.random() * -1000;
+            if (!dropsRef.current || dropsRef.current.length !== numDrops) {
+                dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
+                    x: i * fontSize,
+                    y: -trailLength * fontSize,
+                    speed: openingSpeed,
+                    trail: Array.from({ length: trailLength }, () => "█"),
+                    frameCount: 0,
+                    changeRate: Math.floor(Math.random() * 10 + 5),
+                }));
             }
-          }
-          ctx.globalAlpha = 1.0;
-          ctx.restore();
-          animationFrameId = requestAnimationFrame(draw);
+
+            ctx.font = `${fontSize}px 'Courier New', monospace`;
+            ctx.shadowColor = "#00ff41";
+
+            let animationFrameId: number;
+
+            const draw = () => {
+                ctx.globalCompositeOperation = "destination-out";
+                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                ctx.fillRect(0, 0, width, height);
+
+                ctx.globalCompositeOperation = "source-over"; // or "source-over" for normal draw
+
+                if (!dropsRef.current) return;
+
+                let allReachedBottom = true;
+
+                for (let i = 0; i < dropsRef.current.length; i++) {
+                    const drop = dropsRef.current[i];
+
+                    if (uniformPhase) {
+                        drop.y += drop.speed;
+
+                        for (let j = 0; j < drop.trail.length; j++) {
+                            const trailY = drop.y - fontSize * j;
+                            const alpha = 1 - j / drop.trail.length;
+                            ctx.fillStyle = `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                            ctx.shadowBlur = j === 0 ? 8 : 0;
+                            ctx.fillText("█", drop.x, trailY);
+                        }
+
+                        if (drop.y < height + trailLength * fontSize) {
+                            allReachedBottom = false;
+                        }
+
+                        continue;
+                    }
+
+                    // Randomized phase
+                    drop.frameCount++;
+                    if (drop.frameCount > drop.changeRate) {
+                        drop.trail.pop();
+                        drop.trail.unshift(
+                            chars[Math.floor(Math.random() * chars.length)],
+                        );
+                        drop.frameCount = 0;
+                    }
+
+                    for (let j = 1; j < drop.trail.length; j++) {
+                        if (Math.random() < 0.05) {
+                            drop.trail[j] =
+                                chars[Math.floor(Math.random() * chars.length)];
+                        }
+                    }
+
+                    for (let j = 0; j < drop.trail.length; j++) {
+                        const trailY = drop.y - fontSize * j;
+                        const alpha = 1 - j / drop.trail.length;
+                        ctx.fillStyle =
+                            j === 0
+                                ? "#ccffcc"
+                                : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                        ctx.shadowBlur = j === 0 ? 8 : 0;
+                        ctx.fillText(drop.trail[j], drop.x, trailY);
+                    }
+
+                    drop.y += drop.speed;
+
+                    if (drop.y > height + Math.random() * 100) {
+                        drop.y = Math.random() * -100;
+                        drop.speed = Math.random() * 1.5 + 0.5;
+                    }
+                }
+
+                if (uniformPhase && allReachedBottom) {
+                    for (let i = 0; i < dropsRef.current.length; i++) {
+                        const drop = dropsRef.current[i];
+                        drop.y = Math.random() * -100;
+                        drop.speed = Math.random() * 1.5 + 0.5;
+                        drop.trail = Array.from(
+                            { length: trailLength },
+                            () =>
+                                chars[Math.floor(Math.random() * chars.length)],
+                        );
+                    }
+                    setUniformPhase(false);
+                }
+
+                animationFrameId = requestAnimationFrame(draw);
+            };
+
+            draw();
+
+            const handleResize = () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+
+                const newNumDrops = Math.floor(width / fontSize + 1);
+
+                // Reinitialize drops if count changes
+                if (
+                    !dropsRef.current ||
+                    dropsRef.current.length !== newNumDrops
+                ) {
+                    dropsRef.current = Array.from(
+                        { length: newNumDrops },
+                        (_, i) => ({
+                            x: i * fontSize,
+                            y: Math.random() * height,
+                            speed: uniformPhase
+                                ? 2.5
+                                : Math.random() * 1.5 + 0.5,
+                            trail: Array.from({ length: trailLength }, () =>
+                                uniformPhase
+                                    ? "█"
+                                    : chars[
+                                          Math.floor(
+                                              Math.random() * chars.length,
+                                          )
+                                      ],
+                            ),
+                            frameCount: 0,
+                            changeRate: Math.floor(Math.random() * 10 + 5),
+                        }),
+                    );
+                } else {
+                    // Just reposition existing drops
+                    for (let i = 0; i < dropsRef.current.length; i++) {
+                        dropsRef.current[i].x = i * fontSize;
+                        dropsRef.current[i].y = Math.random() * height;
+                    }
+                }
+            };
+
+            window.addEventListener("resize", handleResize);
+
+            return () => {
+                cancelAnimationFrame(animationFrameId);
+                window.removeEventListener("resize", handleResize);
+            };
+        } else {
+            initParticlesEngine(async (engine) => {
+                await loadSlim(engine);
+            }).then(() => {
+                setInit(true);
+            });
         }
-      };
+    }, [init, canvasRef, particles, uniformPhase]);
 
-      draw();
-
-      const handleResize = () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        if (dropsRef.current) {
-          for (let i = 0; i < dropsRef.current.length; i++) {
-            dropsRef.current[i].x = (i * width) / numDrops;
-            dropsRef.current[i].y = Math.random() * height;
-          }
-        }
-      };
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        cancelAnimationFrame(animationFrameId);
-        window.removeEventListener("resize", handleResize);
-      };
-    } else {
-      initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
-      }).then(() => {
-        setInit(true);
-      });
+    if (!init) {
+        return null;
     }
-  }, [init, canvasRef, particles]);
 
-  if (!init) {
-    return null;
-  }
-
-  return (
-    <>
-      {particles ? (
-        <Particles id="tsparticles" url="/particles.json" />
-      ) : (
+    return (
         <>
-          <style jsx>
-            {`
-              .canvas {
-                position: fixed;
-                display: inline-flex;
-                inset: 0;
-                z-index: -100000000;
-                width: 100vw;
-                height: 100vh;
-                pointerevents: none;
-              }
-            `}
-          </style>
-          <canvas ref={canvasRef} className="canvas" />{" "}
+            {particles ? (
+                <Particles id="tsparticles" url="/particles.json" />
+            ) : (
+                <>
+                    <style jsx>{`
+                        .canvas {
+                            position: fixed;
+                            display: inline-flex;
+                            inset: 0;
+                            z-index: -100000000;
+                            width: 100vw;
+                            height: 100vh;
+                            pointerevents: none;
+                        }
+                    `}</style>
+                    <canvas ref={canvasRef} className="canvas" />
+                </>
+            )}
         </>
-      )}
-    </>
-  );
+    );
 }

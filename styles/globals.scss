@@ -7,24 +7,24 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
 
-  --color-Gween-300: hsl(120, 99.05%, 41.18%);
-  --color-Gween-600: hsl(120, 100%, 19.61%);
+    --color-Gween-300: hsl(120, 99.05%, 41.18%);
+    --color-Gween-600: hsl(120, 100%, 19.61%);
 
-  --background-image-svgimg: url("https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github");
+    --background-image-svgimg: url("https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github");
 
-  --breakpoint-jio2: 241px;
-  --breakpoint-bz30: 360px;
-  --breakpoint-minsvgw: 1100px;
+    --breakpoint-jio2: 241px;
+    --breakpoint-bz30: 360px;
+    --breakpoint-minsvgw: 1100px;
 
-  --font-ui:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-ui:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
-  --animate-btn-hvr: nvbr-btn-clr-cng 0.5s linear forwards;
-  --animate-nvbr-lnk-hvr: nvbr-lnk-clr-cng 0.5s linear forwards;
+    --animate-btn-hvr: nvbr-btn-clr-cng 0.5s linear forwards;
+    --animate-nvbr-lnk-hvr: nvbr-lnk-clr-cng 0.5s linear forwards;
 }
 
 /*
@@ -36,177 +36,167 @@
     color utility to any element that depends on these defaults.
   */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
 }
 
 // Add the font-face for Cascadia Code
 @font-face {
-  font-family: "Cascadia Code";
-  src:
-    url("/Fonts/CascadiaCode.woff2") format("woff2"),
-    url("/Fonts/CascadiaCode-Regular.otf") format("opentype"),
-    url("/Fonts/CascadiaCode.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Cascadia Code";
+    src:
+        url("/Fonts/CascadiaCode.woff2") format("woff2"),
+        url("/Fonts/CascadiaCode-Regular.otf") format("opentype"),
+        url("/Fonts/CascadiaCode.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root {
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(0, 0%, 9%);
-  --highlight-bg: hsl(120, 99%, 41%);
-  --highlight-fg: hsl(0, 0%, 93%);
-  --nav-btn-bg: hsl(158, 95%, 34%);
-  --nav-btn-hvr-bkg: hsl(158, 95%, 24%);
-  --nav-bkg: hsl(0, 0%, 95%);
-  --nav-hvr-bkg: hsl(0, 0%, 87%);
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(0, 0%, 9%);
+    --highlight-bg: hsl(120, 99%, 41%);
+    --highlight-fg: hsl(0, 0%, 93%);
+    --nav-btn-bg: hsl(158, 95%, 34%);
+    --nav-btn-hvr-bkg: hsl(158, 95%, 24%);
+    --nav-bkg: hsl(0, 0%, 95%);
+    --nav-hvr-bkg: hsl(0, 0%, 87%);
 }
 
 .novisited {
-  a {
-    color: hsl(120, 99%, 41%);
-    &:visited {
-      color: hsl(120, 99%, 41%);
+    a {
+        color: hsl(120, 99%, 41%);
+        &:visited {
+            color: hsl(120, 99%, 41%);
+        }
+        &:hover {
+            color: hsl(120, 99%, 41%);
+        }
     }
-    &:hover {
-      color: hsl(120, 99%, 41%);
-    }
-  }
 }
 
 .link {
-  color: hsl(120, 100%, 20%);
-  &:hover {
     color: hsl(120, 100%, 20%);
-  }
+    &:hover {
+        color: hsl(120, 100%, 20%);
+    }
 }
 
 a {
-  color: hsl(120, 99%, 41%);
-  &:visited {
-    color: hsl(120, 100%, 20%);
-  }
-  &:hover {
-    color: hsl(120, 100%, 20%);
-  }
+    color: hsl(120, 99%, 41%);
+    &:visited {
+        color: hsl(120, 100%, 20%);
+    }
+    &:hover {
+        color: hsl(120, 100%, 20%);
+    }
 }
 
 .sub-hover\:block {
-  &:is(:where(.sub-group):hover *) {
-    @media (hover: hover) {
-      display: block;
+    &:is(:where(.sub-group):hover *) {
+        @media (hover: hover) {
+            display: block;
+        }
     }
-  }
 }
 
 .dark {
-  --background: hsl(0, 0%, 0%);
-  --foreground: hsl(0, 0%, 93%);
-  --highlight-bg: hsl(120, 100%, 20%);
-  --highlight-fg: hsl(0, 0%, 0%);
-  --nav-btn-bg: hsl(122, 39%, 30%);
-  --nav-btn-hvr-bkg: hsl(122, 39%, 40%);
-  --nav-bkg: hsl(0, 0%, 20%);
-  --nav-hvr-bkg: hsl(0, 0%, 27%);
+    --background: hsl(0, 0%, 0%);
+    --foreground: hsl(0, 0%, 93%);
+    --highlight-bg: hsl(120, 100%, 20%);
+    --highlight-fg: hsl(0, 0%, 0%);
+    --nav-btn-bg: hsl(122, 39%, 30%);
+    --nav-btn-hvr-bkg: hsl(122, 39%, 40%);
+    --nav-bkg: hsl(0, 0%, 20%);
+    --nav-hvr-bkg: hsl(0, 0%, 27%);
 }
 
 @mixin nvbr-btn-clr-cng {
-  from {
-    background-color: var(--nav-btn-bg);
-  }
-  to {
-    background-color: var(--nav-btn-hvr-bkg);
-  }
+    from {
+        background-color: var(--nav-btn-bg);
+    }
+    to {
+        background-color: var(--nav-btn-hvr-bkg);
+    }
 }
 
 @-webkit-keyframes nvbr-btn-clr-cng {
-  @include nvbr-btn-clr-cng;
+    @include nvbr-btn-clr-cng;
 }
 
 @-moz-keyframes nvbr-btn-clr-cng {
-  @include nvbr-btn-clr-cng;
+    @include nvbr-btn-clr-cng;
 }
 
 @-o-keyframes nvbr-btn-clr-cng {
-  @include nvbr-btn-clr-cng;
+    @include nvbr-btn-clr-cng;
 }
 
 @keyframes nvbr-btn-clr-cng {
-  @include nvbr-btn-clr-cng;
+    @include nvbr-btn-clr-cng;
 }
 
 @mixin nvbr-lnk-clr-cng {
-  from {
-    background-color: var(--nav-bkg);
-  }
-  to {
-    background-color: var(--nav-hvr-bkg);
-  }
+    from {
+        background-color: var(--nav-bkg);
+    }
+    to {
+        background-color: var(--nav-hvr-bkg);
+    }
 }
 
 @-webkit-keyframes nvbr-lnk-clr-cng {
-  @include nvbr-lnk-clr-cng;
+    @include nvbr-lnk-clr-cng;
 }
 
 @-moz-keyframes nvbr-lnk-clr-cng {
-  @include nvbr-lnk-clr-cng;
+    @include nvbr-lnk-clr-cng;
 }
 
 @-o-keyframes nvbr-lnk-clr-cng {
-  @include nvbr-lnk-clr-cng;
+    @include nvbr-lnk-clr-cng;
 }
 
 @keyframes nvbr-lnk-clr-cng {
-  @include nvbr-lnk-clr-cng;
+    @include nvbr-lnk-clr-cng;
 }
 
 // Selection Mixin
 @mixin selection {
-  background: var(--highlight-bg);
-  color: var(--highlight-fg);
+    background: var(--highlight-bg);
+    color: var(--highlight-fg);
 }
 
 ::selection {
-  @include selection;
+    @include selection;
 }
 
 ::-moz-selection {
-  @include selection;
+    @include selection;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Cascadia Code";
-  font-size: small;
-  text-align: center;
-  &::-webkit-scrollbar,
-  &::-webkit-scrollbar-thumb,
-  &::-webkit-scrollbar-track {
-    width: 0 !important;
-    height: 0 !important;
-    background-color: transparent;
-    -webkit-appearance: none;
-    display: none;
-  }
-  -ms-scrollbar-style: none;
-  overflow-y: scroll;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: "Cascadia Code";
+    font-size: small;
+    text-align: center;
+    max-width: calc(100vw - (100vw - 100%));
 }
 
 ul li::marker {
-  content: "\2623  ";
-  color: var(--foreground);
+    content: "\2623  ";
+    color: var(--foreground);
 }
 
 ol li::marker {
-  color: var(--foreground);
+    color: var(--foreground);
 }
 
 .papryus_font {
-  font-family: "Papyrus, fantasy";
+    font-family: "Papyrus, fantasy";
 }

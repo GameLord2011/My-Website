@@ -7,14 +7,14 @@ import { useState } from "react";
 import { subLinks } from "components/navbar";
 
 export default function Page() {
-  const isMobile: boolean = isMobileCheck();
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const isMobile: boolean = isMobileCheck();
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
 
-  /*const links: {
+    /*const links: {
     name: string;
     href: string;
   }[] = [
@@ -36,28 +36,31 @@ export default function Page() {
     },
   ];*/
 
-  if (!isLoaded) return null;
+    if (!isLoaded) return null;
 
-  return (
-    <>
-      {!isMobile && (
-        <main className="flex flex-col items-center justify-center">
-          <p>Wait, what are you doing here? This is a mobile only page.</p>
-        </main>
-      )}
-      {isMobile && (
-        <main className="flex flex-col items-center justify-center">
-          {subLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="m-2 rounded-lg bg-[var(--nav-bkg)] p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </main>
-      )}
-    </>
-  );
+    return (
+        <>
+            {!isMobile && (
+                <main className="flex flex-col items-center justify-center">
+                    <p>
+                        Wait, what are you doing here? This is a mobile only
+                        page.
+                    </p>
+                </main>
+            )}
+            {isMobile && (
+                <main className="flex flex-col items-center justify-center">
+                    {subLinks.map((link) => (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className="m-2 rounded-lg bg-[var(--nav-bkg)] p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                </main>
+            )}
+        </>
+    );
 }

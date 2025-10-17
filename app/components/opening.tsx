@@ -1,175 +1,278 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const shown = Math.floor(Math.random() * 10000) === 0;
-//const shown = true;
+// const shown = true;
 
 export default function Opening() {
-  const [show, setShow] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const typedRef1 = useRef<HTMLSpanElement>(null);
-  const typedRef2 = useRef<HTMLSpanElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const dropsRef = useRef<{ x: number; y: number }[] | null>(null);
+    const [show, setShow] = useState(false);
+    const [uniformPhase, setUniformPhase] = useState(true);
+    const [rainStarted, setRainStarted] = useState(false);
 
-  useEffect(() => {
-    if (shown) {
-      setTimeout(() => {
-        setShow(true);
-      }, 5000);
-    }
-  }, []);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const typedRef1 = useRef<HTMLSpanElement>(null);
+    const typedRef2 = useRef<HTMLSpanElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const typedInitialized = useRef(false);
 
-  useEffect(() => {
-    if (!show) return;
-    // Matrix code rain logic
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const dropsRef = useRef<
+        {
+            x: number;
+            y: number;
+            speed: number;
+            trail: string[];
+            frameCount: number;
+            changeRate: number;
+        }[]
+    >(null);
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    const fontSize = 21;
-    const numDrops = Math.floor(width / fontSize) * 1.2;
-    // Uniform columns for initial wave
-    if (!dropsRef.current || dropsRef.current.length !== numDrops) {
-      dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
-        x: (i * width) / numDrops,
-        y: 0,
-      }));
-    }
-    //const drops = dropsRef.current;
-
-    const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
-    let animationFrameId: number;
-
-    // Draw function defined as an expression so it always reads latest randomModeRef.current
-    const draw = () => {
-      if (ctx && dropsRef.current) {
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const data = imageData.data;
-        const fade = 0.8;
-        for (let i = 0; i < data.length; i += 4) {
-          const a = data[i + 3];
-          data[i + 3] = a * fade;
-          if (data[i + 3] < 2) data[i + 3] = 0;
+    useEffect(() => {
+        if (shown) {
+            setShow(true);
         }
-        ctx.putImageData(imageData, 0, 0);
-        ctx.save();
-        ctx.translate(width, 0);
-        ctx.scale(-1, 1);
-        ctx.globalAlpha = 0.7;
-        ctx.fillStyle = "rgb(0,143,17)";
-        ctx.font = fontSize + "px monospace";
-        for (let i = 0; i < dropsRef.current.length; i++) {
-          const drop = dropsRef.current[i];
-          const text = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(text, drop.x, drop.y);
-          drop.y += fontSize * 0.7;
-          if (drop.y > height) {
-            drop.x = Math.random() * width;
-            drop.y = Math.random() * -1000;
-          }
+    }, []);
+
+    useEffect(() => {
+        if (!show) return;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        const fontSize = 21;
+        const trailLength = 10;
+        const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
+        const openingSpeed = 2.5;
+
+        let numDrops = Math.floor(width / fontSize) + 1;
+
+        if (!dropsRef.current || dropsRef.current.length !== numDrops) {
+            dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
+                x: i * fontSize,
+                y: -trailLength * fontSize,
+                speed: openingSpeed,
+                trail: Array.from({ length: trailLength }, () => "█"),
+                frameCount: 0,
+                changeRate: Math.floor(Math.random() * 10 + 5),
+            }));
         }
-        ctx.globalAlpha = 1.0;
-        ctx.restore();
-        animationFrameId = requestAnimationFrame(draw);
-      }
-    };
 
-    draw();
+        ctx.font = `${fontSize}px 'Courier New', monospace`;
+        ctx.shadowColor = "#00ff41";
 
-    const handleResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      // Update drops in place on resize
-      if (dropsRef.current) {
-        for (let i = 0; i < dropsRef.current.length; i++) {
-          dropsRef.current[i].x = (i * width) / numDrops;
-          dropsRef.current[i].y = Math.random() * height;
+        let animationFrameId: number;
+
+        const draw = () => {
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = "source-over";
+
+            if (!dropsRef.current) return;
+
+            let allReachedBottom = true;
+
+            for (let i = 0; i < dropsRef.current.length; i++) {
+                const drop = dropsRef.current[i];
+
+                if (uniformPhase) {
+                    drop.y += drop.speed;
+
+                    for (let j = 0; j < drop.trail.length; j++) {
+                        const trailY = drop.y - fontSize * j;
+                        const alpha = 1 - j / drop.trail.length;
+                        ctx.fillStyle = `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                        ctx.shadowBlur = j === 0 ? 8 : 0;
+                        ctx.fillText("█", drop.x, trailY);
+                    }
+
+                    if (drop.y < height + trailLength * fontSize) {
+                        allReachedBottom = false;
+                    }
+
+                    continue;
+                }
+
+                // Randomized phase
+                drop.frameCount++;
+                if (drop.frameCount > drop.changeRate) {
+                    drop.trail.pop();
+                    drop.trail.unshift(
+                        chars[Math.floor(Math.random() * chars.length)],
+                    );
+                    drop.frameCount = 0;
+                }
+
+                for (let j = 1; j < drop.trail.length; j++) {
+                    if (Math.random() < 0.05) {
+                        drop.trail[j] =
+                            chars[Math.floor(Math.random() * chars.length)];
+                    }
+                }
+
+                for (let j = 0; j < drop.trail.length; j++) {
+                    const trailY = drop.y - fontSize * j;
+                    const alpha = 1 - j / drop.trail.length;
+                    ctx.fillStyle =
+                        j === 0
+                            ? "#ccffcc"
+                            : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                    ctx.shadowBlur = j === 0 ? 8 : 0;
+                    ctx.fillText(drop.trail[j], drop.x, trailY);
+                }
+
+                drop.y += drop.speed;
+
+                if (drop.y > height + Math.random() * 100) {
+                    drop.y = Math.random() * -100;
+                    drop.speed = Math.random() * 1.5 + 0.5;
+                }
+            }
+
+            if (uniformPhase && allReachedBottom) {
+                for (let i = 0; i < dropsRef.current.length; i++) {
+                    const drop = dropsRef.current[i];
+                    drop.y = Math.random() * -100;
+                    drop.speed = Math.random() * 1.5 + 0.5;
+                    drop.trail = Array.from(
+                        { length: trailLength },
+                        () => chars[Math.floor(Math.random() * chars.length)],
+                    );
+                }
+                setUniformPhase(false);
+                setRainStarted(true);
+            }
+
+            animationFrameId = requestAnimationFrame(draw);
+        };
+
+        draw();
+
+        const handleResize = () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            numDrops = Math.floor(width / fontSize) + 1;
+
+            if (!dropsRef.current || dropsRef.current.length !== numDrops) {
+                dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
+                    x: i * fontSize,
+                    y: Math.random() * height,
+                    speed: uniformPhase
+                        ? openingSpeed
+                        : Math.random() * 1.5 + 0.5,
+                    trail: Array.from({ length: trailLength }, () =>
+                        uniformPhase
+                            ? "█"
+                            : chars[Math.floor(Math.random() * chars.length)],
+                    ),
+                    frameCount: 0,
+                    changeRate: Math.floor(Math.random() * 10 + 5),
+                }));
+            } else {
+                for (let i = 0; i < dropsRef.current.length; i++) {
+                    dropsRef.current[i].x = i * fontSize;
+                    dropsRef.current[i].y = Math.random() * height;
+                }
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [show, uniformPhase]);
+
+    useGSAP(() => {
+        if (show && containerRef.current) {
+            gsap.fromTo(
+                containerRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 1, ease: "power2.out" },
+            );
         }
-      }
-    };
-    window.addEventListener("resize", handleResize);
+    }, [show]);
 
-    // Typed.js effect
-    let typed1: Typed | undefined;
-    let typed2: Typed | undefined;
-    if (typedRef1.current) {
-      typed1 = new Typed(typedRef1.current, {
-        strings: ["Wake up, Neo...", "The Matrix has you."],
-        typeSpeed: 100,
-        showCursor: false,
-        backSpeed: 100,
-        startDelay: 700,
-        smartBackspace: false,
-        onComplete: () => {
-          if (typedRef2.current) {
-            typed2 = new Typed(typedRef2.current, {
-              strings: ["Follow the white rabbit."],
-              typeSpeed: 100,
-              showCursor: false,
-              startDelay: 500,
-            });
-          }
-        },
-      });
-    }
+    useEffect(() => {
+        if (!rainStarted || typedInitialized.current || !typedRef1.current)
+            return;
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.clearTimeout(animationFrameId); // Clear the timeout on cleanup
-      typed1?.destroy();
-      typed2?.destroy();
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [show]);
+        typedInitialized.current = true;
 
-  useGSAP(() => {
-    if (show && containerRef.current) {
-      gsap.fromTo(
-        containerRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1, ease: "power2.out" },
-      );
-    }
-  }, [show]);
+        const typed1 = new Typed(typedRef1.current, {
+            strings: ["Wake up, Neo...", "The Matrix has you."],
+            typeSpeed: 100,
+            showCursor: false,
+            backSpeed: 100,
+            startDelay: 700,
+            smartBackspace: false,
+            onComplete: () => {
+                if (typedRef2.current) {
+                    new Typed(typedRef2.current, {
+                        strings: ["Follow the white rabbit."],
+                        typeSpeed: 100,
+                        showCursor: false,
+                        startDelay: 500,
+                    });
+                }
+            },
+        });
 
-  if (!show) return null;
+        return () => {
+            typed1.destroy();
+        };
+    }, [rainStarted]);
 
-  return (
-    <>
-      {show && (
-        <div
-          ref={containerRef}
-          className="fixed inset-0 z-[99999999999] flex flex-col items-center justify-center bg-black"
-        >
-          <canvas
-            ref={canvasRef}
-            width={typeof window !== "undefined" ? window.innerWidth : 1920}
-            height={typeof window !== "undefined" ? window.innerHeight : 1080}
-            className="pointer-events-none absolute inset-0 h-screen w-screen"
-          />
-          <div className="relative top-0 z-10 text-center font-mono text-4xl text-[#00ff41] drop-shadow-[0_0_8px_#00ff41]">
-            <span ref={typedRef1}></span>
-            <br />
-            <span ref={typedRef2} className="text-2xl opacity-80"></span>
-            <br />
-          </div>
-        </div>
-      )}
-    </>
-  );
+    if (!show) return null;
+
+    return (
+        <>
+            {show && (
+                <div
+                    ref={containerRef}
+                    className="fixed inset-0 z-[99999999999] flex flex-col items-center justify-center bg-black"
+                >
+                    <canvas
+                        ref={canvasRef}
+                        width={
+                            typeof window !== "undefined"
+                                ? window.innerWidth
+                                : 1920
+                        }
+                        height={
+                            typeof window !== "undefined"
+                                ? window.innerHeight
+                                : 1080
+                        }
+                        className="pointer-events-none absolute inset-0 h-screen w-screen"
+                    />
+                    <div className="relative top-0 z-10 text-center font-mono text-4xl text-[#00ff41] drop-shadow-[0_0_8px_#00ff41]">
+                        <span ref={typedRef1}></span>
+                        <br />
+                        <span
+                            ref={typedRef2}
+                            className="text-2xl opacity-80"
+                        ></span>
+                        <br />
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
 
 export { shown };
