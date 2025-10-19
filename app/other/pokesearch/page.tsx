@@ -11,7 +11,8 @@ import { useRef } from "react";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { PokemonResult, PokemonListResponse } from "components/complexTypes";
+import { PokemonResult } from "components/complexTypes";
+import { PokemonListResponse } from "components/complexTypes";
 
 const PokemonCard = dynamic(() => import("components/pokemonCard"), {
     loading: () => <span className="yellow-500">Loading...</span>,

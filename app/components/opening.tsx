@@ -4,11 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useAnimations } from "components/animationContext";
 
 const shown = Math.floor(Math.random() * 10000) === 0;
 // const shown = true;
 
 export default function Opening() {
+    const { anims } = useAnimations();
+
     const [show, setShow] = useState(false);
     const [uniformPhase, setUniformPhase] = useState(true);
     const [rainStarted, setRainStarted] = useState(false);
@@ -37,7 +40,7 @@ export default function Opening() {
     }, []);
 
     useEffect(() => {
-        if (!show) return;
+        if (!show || !anims) return;
 
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -49,10 +52,10 @@ export default function Opening() {
         canvas.width = width;
         canvas.height = height;
 
-        const fontSize = 21;
+        const fontSize = 20;
         const trailLength = 10;
         const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
-        const openingSpeed = 2.5;
+        const openingSpeed = 3;
 
         let numDrops = Math.floor(width / fontSize) + 1;
 
@@ -61,7 +64,10 @@ export default function Opening() {
                 x: i * fontSize,
                 y: -trailLength * fontSize,
                 speed: openingSpeed,
-                trail: Array.from({ length: trailLength }, () => "█"),
+                trail: Array.from(
+                    { length: trailLength },
+                    () => chars[Math.floor(Math.random() * chars.length)],
+                ),
                 frameCount: 0,
                 changeRate: Math.floor(Math.random() * 10 + 5),
             }));
@@ -86,17 +92,32 @@ export default function Opening() {
                 const drop = dropsRef.current[i];
 
                 if (uniformPhase) {
-                    drop.y += drop.speed;
+                    drop.frameCount++;
+                    if (drop.frameCount > drop.changeRate) {
+                        drop.trail.pop();
+                        drop.trail.unshift(
+                            chars[Math.floor(Math.random() * chars.length)],
+                        );
+                        drop.frameCount = 0;
+                    }
 
                     for (let j = 0; j < drop.trail.length; j++) {
                         const trailY = drop.y - fontSize * j;
                         const alpha = 1 - j / drop.trail.length;
-                        ctx.fillStyle = `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                        ctx.fillStyle =
+                            j === 0
+                                ? "#ccffcc"
+                                : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
                         ctx.shadowBlur = j === 0 ? 8 : 0;
-                        ctx.fillText("█", drop.x, trailY);
+                        ctx.fillText(drop.trail[j], drop.x, trailY);
                     }
 
-                    if (drop.y < height + trailLength * fontSize) {
+                    drop.y += drop.speed;
+
+                    if (
+                        drop.y <
+                        height + trailLength * fontSize + fontSize * 3
+                    ) {
                         allReachedBottom = false;
                     }
 
@@ -133,7 +154,7 @@ export default function Opening() {
 
                 drop.y += drop.speed;
 
-                if (drop.y > height + Math.random() * 100) {
+                if (drop.y > height + fontSize * trailLength) {
                     drop.y = Math.random() * -100;
                     drop.speed = Math.random() * 1.5 + 0.5;
                 }
@@ -195,7 +216,7 @@ export default function Opening() {
             window.removeEventListener("resize", handleResize);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [show, uniformPhase]);
+    }, [show, uniformPhase, anims]);
 
     useGSAP(() => {
         if (show && containerRef.current) {

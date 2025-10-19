@@ -12,6 +12,7 @@ import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
 import Opening from "components/opening";
+import { useAnimations } from "components/animationContext";
 
 const Age = dynamic(() => import("age-ts"), {
     loading: () => <span>Loading...</span>,
@@ -24,6 +25,8 @@ const HPageIs = dynamic(() => import("components/HPageIs"), {
 });
 
 export default function Home() {
+    const { anims } = useAnimations();
+
     const isMobile: boolean = isMobileCheck();
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [isTilted, setIsTilted] = useState<boolean>(false);
@@ -56,7 +59,7 @@ export default function Home() {
     const namedur: number = duration();
 
     useGSAP((): void => {
-        if (!content.current) return;
+        if (!content.current || !anims) return;
 
         timeline.to(
             content.current,
@@ -92,25 +95,29 @@ export default function Home() {
 
         if (!el.current) return;
 
-        const typed: Typed = new Typed(el.current, {
-            strings: [
-                '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
-                '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> fullstack web dev',
-                '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> gamer',
-                '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> C / C++ / C# developer',
-                "developer",
-            ],
-            typeSpeed: 90,
-            backDelay: 1000,
-            backSpeed: 90,
-            showCursor: false,
-            smartBackspace: true,
-        });
+        if (anims) {
+            const typed: Typed = new Typed(el.current, {
+                strings: [
+                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
+                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> fullstack web dev',
+                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> gamer',
+                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> C / C++ / C# developer',
+                    "developer",
+                ],
+                typeSpeed: 90,
+                backDelay: 1000,
+                backSpeed: 90,
+                showCursor: false,
+                smartBackspace: true,
+            });
 
-        return () => {
-            typed.destroy();
-        };
-    }, [isLoaded]);
+            return () => {
+                typed.destroy();
+            };
+        } else {
+            el.current.innerText = "developer";
+        }
+    }, [isLoaded, anims]);
 
     console.log(
         " ██████╗  █████╗ ███╗   ███╗███████╗██╗      ██████╗ ██████╗ ██████╗ ██████╗  ██████╗  ██╗ ██╗\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗╚════██╗██╔═████╗███║███║\n██║  ███╗███████║██╔████╔██║█████╗  ██║     ██║   ██║██████╔╝██║  ██║ █████╔╝██║██╔██║╚██║╚██║\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  ██║     ██║   ██║██╔══██╗██║  ██║██╔═══╝ ████╔╝██║ ██║ ██║\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗╚██████╔╝██║  ██║██████╔╝███████╗╚██████╔╝ ██║ ██║\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝  ╚═╝ ╚═╝ \n",
@@ -156,21 +163,25 @@ export default function Home() {
                             ref={content}
                             className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
                             onMouseEnter={() => {
-                                gsap.to(content.current, {
-                                    rotation: pick(),
-                                    duration: 0.5,
-                                    ease: "elastic.inOut",
-                                });
+                                if (anims) {
+                                    gsap.to(content.current, {
+                                        rotation: pick(),
+                                        duration: 0.5,
+                                        ease: "elastic.inOut",
+                                    });
+                                }
                             }}
                             onMouseLeave={() => {
-                                gsap.to(content.current, {
-                                    rotation: 0,
-                                    duration: 0.5,
-                                    ease: "elastic.inOut",
-                                });
+                                if (anims) {
+                                    gsap.to(content.current, {
+                                        rotation: 0,
+                                        duration: 0.5,
+                                        ease: "elastic.inOut",
+                                    });
+                                }
                             }}
                             onClick={() => {
-                                if (isMobile) {
+                                if (isMobile && anims) {
                                     gsap.to(content.current, {
                                         rotation: rotatedCheck(),
                                         duration: 0.05,

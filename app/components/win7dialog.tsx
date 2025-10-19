@@ -1,3 +1,5 @@
+"use client";
+
 import "7.css/dist/7.scoped.css";
 import React from "react";
 import { useRef } from "react";

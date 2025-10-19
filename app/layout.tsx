@@ -8,6 +8,7 @@ import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
 import { Suspense } from "react";
 import AppleRant from "components/appleRant";
+import { AnimationProvider } from "components/animationContext";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -206,17 +207,21 @@ export default function RootLayout({
                         </ul>
                     </noscript>
                     <div className="yescript">
-                        <ThemeProvider>
-                            <Navbar />
-                            <Suspense
-                                fallback={
-                                    <div className="loading">Loading...</div>
-                                }
-                            >
-                                <Background />
-                            </Suspense>
-                            {children}
-                        </ThemeProvider>
+                        <AnimationProvider>
+                            <ThemeProvider>
+                                <Navbar />
+                                <Suspense
+                                    fallback={
+                                        <div className="loading">
+                                            Loading...
+                                        </div>
+                                    }
+                                >
+                                    <Background />
+                                </Suspense>
+                                {children}
+                            </ThemeProvider>
+                        </AnimationProvider>
                     </div>
                 </div>
             </body>

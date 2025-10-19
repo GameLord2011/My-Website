@@ -6,8 +6,11 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { isMobileCheck } from "components/isMobile";
 import { isbot } from "isbot";
+import { useAnimations } from "components/animationContext";
 
 export default function HPageIs() {
+    const { anims } = useAnimations();
+
     const isMobile = isMobileCheck();
     const [isClient, setIsClient] = useState(false);
     const [bot, setBot] = useState(false);
@@ -17,7 +20,7 @@ export default function HPageIs() {
         setBot(isbot(navigator.userAgent));
     }, []);
 
-    if (!isClient) return null;
+    if (!isClient || !anims) return null;
 
     return (
         <>

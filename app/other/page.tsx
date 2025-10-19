@@ -14,28 +14,6 @@ export default function Page() {
         setIsLoaded(true);
     }, []);
 
-    /*const links: {
-    name: string;
-    href: string;
-  }[] = [
-    {
-      name: "pokésearch",
-      href: "/other/pokesearch",
-    },
-    {
-      name: "Links",
-      href: "https://linktr.ee/GameLord2011",
-    },
-    {
-      name: "README",
-      href: "/other/readme"
-    },
-    {
-      name: "Guestbook",
-      href: "/other/guestbook",
-    },
-  ];*/
-
     if (!isLoaded) return null;
 
     return (
@@ -50,15 +28,17 @@ export default function Page() {
             )}
             {isMobile && (
                 <main className="flex flex-col items-center justify-center">
-                    {subLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="m-2 rounded-lg bg-[var(--nav-bkg)] p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {subLinks
+                        .filter((link) => !("desktopHref" in link))
+                        .map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href || ""}
+                                className="m-2 rounded-lg bg-[var(--nav-bkg)] p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                 </main>
             )}
         </>

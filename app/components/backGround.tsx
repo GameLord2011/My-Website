@@ -7,10 +7,13 @@ import Particles from "@tsparticles/react";
 import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { shown } from "components/opening";
+import { useAnimations } from "components/animationContext";
 
 export const dynamic = "force-dynamic";
 
 export default function Background() {
+    const { anims } = useAnimations();
+
     const [init, setInit] = useState<boolean>(false);
     const [particles, setParticles] = useState(false);
     const [uniformPhase, setUniformPhase] = useState(true);
@@ -28,7 +31,8 @@ export default function Background() {
     >(null);
 
     useEffect(() => {
-        setParticles(Math.random() > 0.5);
+        //setParticles(Math.random() > 0.5);
+        setParticles(false);
     }, []);
 
     useEffect(() => {
@@ -47,18 +51,24 @@ export default function Background() {
             canvas.width = width;
             canvas.height = height;
 
-            const fontSize = 21;
+            const fontSize = 20;
             const numDrops = Math.floor(width / fontSize + 1);
-            const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç";
+            //const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç"; //old
+            const chars =
+                '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
+            //const chars = "37Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
             const trailLength = 7;
-            const openingSpeed = 2.5;
+            const openingSpeed = 3;
 
             if (!dropsRef.current || dropsRef.current.length !== numDrops) {
                 dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
                     x: i * fontSize,
                     y: -trailLength * fontSize,
                     speed: openingSpeed,
-                    trail: Array.from({ length: trailLength }, () => "█"),
+                    trail: Array.from(
+                        { length: trailLength },
+                        () => chars[Math.floor(Math.random() * chars.length)],
+                    ),
                     frameCount: 0,
                     changeRate: Math.floor(Math.random() * 10 + 5),
                 }));
@@ -84,17 +94,52 @@ export default function Background() {
                     const drop = dropsRef.current[i];
 
                     if (uniformPhase) {
-                        drop.y += drop.speed;
+                        drop.frameCount++;
+                        if (drop.frameCount > drop.changeRate) {
+                            drop.trail.pop();
+                            drop.trail.unshift(
+                                chars[Math.floor(Math.random() * chars.length)],
+                            );
+                            drop.frameCount = 0;
+                        }
 
                         for (let j = 0; j < drop.trail.length; j++) {
                             const trailY = drop.y - fontSize * j;
                             const alpha = 1 - j / drop.trail.length;
-                            ctx.fillStyle = `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
+                            const char = drop.trail[j];
+
+                            ctx.fillStyle =
+                                j === 0
+                                    ? "#ccffcc"
+                                    : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
                             ctx.shadowBlur = j === 0 ? 8 : 0;
-                            ctx.fillText("█", drop.x, trailY);
+
+                            ctx.save();
+                            ctx.translate(drop.x, trailY);
+
+                            if (char === "3") {
+                                ctx.scale(-1, 1);
+                                ctx.rotate(Math.PI);
+                                ctx.fillText(char, 0, fontSize / 2);
+                            } else if (["Z", "7"].includes(char)) {
+                                ctx.fillText(char, 0, 0);
+                            } else if (["日", "二"].includes(char)) {
+                                ctx.scale(0.5, 1); // shrink horizontally
+                                ctx.fillText(char, 0, 0);
+                            } else {
+                                ctx.scale(-1, 1);
+                                ctx.fillText(char, -fontSize / 2, 0);
+                            }
+
+                            ctx.restore();
                         }
 
-                        if (drop.y < height + trailLength * fontSize) {
+                        drop.y += drop.speed;
+
+                        if (
+                            drop.y <
+                            height + trailLength * fontSize + fontSize * 3
+                        ) {
                             allReachedBottom = false;
                         }
 
@@ -121,17 +166,37 @@ export default function Background() {
                     for (let j = 0; j < drop.trail.length; j++) {
                         const trailY = drop.y - fontSize * j;
                         const alpha = 1 - j / drop.trail.length;
+                        const char = drop.trail[j];
+
                         ctx.fillStyle =
                             j === 0
                                 ? "#ccffcc"
                                 : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
                         ctx.shadowBlur = j === 0 ? 8 : 0;
-                        ctx.fillText(drop.trail[j], drop.x, trailY);
+
+                        ctx.save();
+                        ctx.translate(drop.x, trailY);
+
+                        if (char === "3") {
+                            ctx.scale(-1, 1);
+                            ctx.rotate(Math.PI);
+                            ctx.fillText(char, 0, fontSize / 2);
+                        } else if (["Z", "7"].includes(char)) {
+                            ctx.fillText(char, 0, 0);
+                        } else if (["日", "二"].includes(char)) {
+                            ctx.scale(0.5, 1); // shrink horizontally
+                            ctx.fillText(char, 0, 0);
+                        } else {
+                            ctx.scale(-1, 1);
+                            ctx.fillText(char, -fontSize / 2, 0);
+                        }
+
+                        ctx.restore();
                     }
 
                     drop.y += drop.speed;
 
-                    if (drop.y > height + Math.random() * 100) {
+                    if (drop.y > height + fontSize * trailLength) {
                         drop.y = Math.random() * -100;
                         drop.speed = Math.random() * 1.5 + 0.5;
                     }
@@ -177,14 +242,12 @@ export default function Background() {
                             speed: uniformPhase
                                 ? 2.5
                                 : Math.random() * 1.5 + 0.5,
-                            trail: Array.from({ length: trailLength }, () =>
-                                uniformPhase
-                                    ? "█"
-                                    : chars[
-                                          Math.floor(
-                                              Math.random() * chars.length,
-                                          )
-                                      ],
+                            trail: Array.from(
+                                { length: trailLength },
+                                () =>
+                                    chars[
+                                        Math.floor(Math.random() * chars.length)
+                                    ],
                             ),
                             frameCount: 0,
                             changeRate: Math.floor(Math.random() * 10 + 5),
@@ -212,9 +275,9 @@ export default function Background() {
                 setInit(true);
             });
         }
-    }, [init, canvasRef, particles, uniformPhase]);
+    }, [init, canvasRef, particles, uniformPhase, anims]);
 
-    if (!init) {
+    if (!init || !anims) {
         return null;
     }
 
@@ -223,20 +286,10 @@ export default function Background() {
             {particles ? (
                 <Particles id="tsparticles" url="/particles.json" />
             ) : (
-                <>
-                    <style jsx>{`
-                        .canvas {
-                            position: fixed;
-                            display: inline-flex;
-                            inset: 0;
-                            z-index: -100000000;
-                            width: 100vw;
-                            height: 100vh;
-                            pointerevents: none;
-                        }
-                    `}</style>
-                    <canvas ref={canvasRef} className="canvas" />
-                </>
+                <canvas
+                    ref={canvasRef}
+                    className="pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-[100vh] w-[100vw]"
+                />
             )}
         </>
     );

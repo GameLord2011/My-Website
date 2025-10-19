@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkGemoji from "remark-gemoji";
@@ -36,7 +37,7 @@ export default function Page() {
         <main className="flex flex-col items-center justify-center">
             <div className="bg-[#0d1117]">
                 <div
-                    className="markdown-body max-w-none p-4 text-left"
+                    className="markdown-body p-4 text-left"
                     dangerouslySetInnerHTML={{ __html: html }}
                 />
             </div>

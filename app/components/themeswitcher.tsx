@@ -21,7 +21,7 @@ const ThemeSwitcher = ({ pad }: { pad?: boolean }) => {
                     },
                 )}
             >
-                {theme === "light" ? "🌙" : "☀️"}
+                {theme === "light" ? "☀️" : "🌙"}
             </button>
         </div>
     );
