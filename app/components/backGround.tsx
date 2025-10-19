@@ -31,8 +31,8 @@ export default function Background() {
     >(null);
 
     useEffect(() => {
-        //setParticles(Math.random() > 0.5);
-        setParticles(false);
+        setParticles(Math.random() > 0.5);
+        //setParticles(false);
     }, []);
 
     useEffect(() => {
