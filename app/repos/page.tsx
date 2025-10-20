@@ -1,5 +1,6 @@
 "use client";
 
+import { startTransition } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
@@ -98,12 +99,16 @@ export default function Page() {
                         archived: repo.archived,
                     }),
                 );
-                setRepos(formattedRepos);
+                startTransition(() => {
+                    setRepos(formattedRepos);
+                });
                 reposFetched.current = true;
 
                 if (emojisResponse && emojisResponse.ok) {
                     const emojisData = await emojisResponse.json();
-                    setEmojis(emojisData); // Store emojis as key-value pairs
+                    startTransition(() => {
+                        setEmojis(emojisData);
+                    });
                     emojisFetched.current = true;
                 }
             } catch (error) {

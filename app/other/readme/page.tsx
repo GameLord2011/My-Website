@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useState } from "react";
+import { startTransition } from "react";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkGemoji from "remark-gemoji";
@@ -29,7 +30,10 @@ export default function Page() {
                     .use(rehypeHighlight)
                     .use(rehypeStringify, { allowDangerousHtml: true })
                     .process(markdown);
-                setHtml(String(file));
+
+                startTransition(() => {
+                    setHtml(String(file));
+                });
             });
     }, []);
 

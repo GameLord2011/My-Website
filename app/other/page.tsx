@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { isMobileCheck } from "components/isMobile";
-import { useEffect } from "react";
+import { startTransition } from "react";
+import { useLayoutEffect } from "react";
 import { useState } from "react";
 import { subLinks } from "components/navbar";
 
@@ -10,8 +11,10 @@ export default function Page() {
     const isMobile: boolean = isMobileCheck();
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-    useEffect(() => {
-        setIsLoaded(true);
+    useLayoutEffect(() => {
+        startTransition(() => {
+            setIsLoaded(true);
+        });
     }, []);
 
     if (!isLoaded) return null;

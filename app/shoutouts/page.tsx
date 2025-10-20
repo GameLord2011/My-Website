@@ -4,8 +4,12 @@ import React from "react";
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
 import GitHubHoverLink from "components/linkWrapper";
+import { useAnimations } from "components/animationContext";
+import Image from "next/image";
 
 export default function Shoutouts() {
+    const { anims } = useAnimations();
+
     return (
         <VFXProvider>
             <main className="flex flex-col items-center justify-center p-4">
@@ -18,24 +22,57 @@ export default function Shoutouts() {
                         </GitHubHoverLink>{" "}
                         for{" "}
                         <GitHubHoverLink href="https://github.com/fand/vfx-js/tree/main">
-                            <VFXImg
-                                loading="eager"
-                                src="/react-vfx.png"
-                                className="hidden h-[1.3rem] overflow-clip dark:inline-block"
-                                shader="rgbShift"
-                                overflow={true}
-                                alt="React-Vfx logo"
-                                aria-label="React-Vfx logo"
-                            />
-                            <VFXImg
-                                loading="eager"
-                                src="/react-vfx-light.png"
-                                className="inline-block h-[1.3rem] overflow-clip dark:hidden"
-                                shader="rgbShift"
-                                overflow={true}
-                                alt="React-Vfx logo (light)"
-                                aria-label="React-Vfx logo (light)"
-                            />
+                            {anims ? (
+                                <>
+                                    <VFXImg
+                                        loading="eager"
+                                        src="/react-vfx.png"
+                                        className="hidden h-[1.3rem] overflow-clip dark:inline-block"
+                                        shader="rgbShift"
+                                        overflow={true}
+                                        alt="React-Vfx"
+                                        aria-label="React-Vfx"
+                                    />
+                                    <VFXImg
+                                        loading="eager"
+                                        src="/react-vfx-light.png"
+                                        className="inline-block h-[1.3rem] overflow-clip dark:hidden"
+                                        shader="rgbShift"
+                                        overflow={true}
+                                        alt="React-Vfx"
+                                        aria-label="React-Vfx"
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <Image
+                                        loading="eager"
+                                        src="/react-vfx.png"
+                                        className="hidden overflow-clip dark:inline-block"
+                                        width={0}
+                                        height={0}
+                                        style={{
+                                            height: "1.3rem",
+                                            width: "auto",
+                                        }}
+                                        alt="React-Vfx"
+                                        aria-label="React-Vfx"
+                                    />
+                                    <Image
+                                        loading="eager"
+                                        src="/react-vfx-light.png"
+                                        className="inline-block overflow-clip dark:hidden"
+                                        width={0}
+                                        height={0}
+                                        style={{
+                                            height: "1.3rem",
+                                            width: "auto",
+                                        }}
+                                        alt="React-Vfx"
+                                        aria-label="React-Vfx"
+                                    />
+                                </>
+                            )}
                         </GitHubHoverLink>
                         !
                     </p>

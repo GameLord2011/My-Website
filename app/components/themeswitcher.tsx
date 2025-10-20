@@ -1,25 +1,16 @@
 "use client";
 
 import { useTheme } from "./ThemeContext";
-import clsx from "clsx";
-import { isMobileCheck } from "components/isMobile";
 
-const ThemeSwitcher = ({ pad }: { pad?: boolean }) => {
+const ThemeSwitcher = () => {
     const { theme, toggleTheme } = useTheme();
-    const isMobile = isMobileCheck();
 
     return (
         <div className="flex justify-end pr-[8px]">
             <button
                 type="button"
                 onClick={toggleTheme}
-                className={clsx(
-                    "rounded bg-[var(--nav-bkg)] transition-all duration-300 ease-in-out",
-                    {
-                        "p-[0px]": isMobile && pad,
-                        "p-2": !isMobile || (isMobile && !pad),
-                    },
-                )}
+                className="rounded bg-[var(--nav-bkg)] p-2 transition-all duration-300 ease-in-out"
             >
                 {theme === "light" ? "☀️" : "🌙"}
             </button>

@@ -4,6 +4,8 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useLayoutEffect } from "react";
+import { startTransition } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { isMobileCheck } from "components/isMobile";
@@ -65,8 +67,10 @@ export default function Navbar() {
 
     const navRef = useRef<HTMLElement>(null);
 
-    useEffect(() => {
-        setIsLoaded(true);
+    useLayoutEffect(() => {
+        startTransition(() => {
+            setIsLoaded(true);
+        });
     }, []);
 
     useEffect(() => {

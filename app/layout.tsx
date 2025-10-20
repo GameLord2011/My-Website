@@ -7,7 +7,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
 import { Suspense } from "react";
-import AppleRant from "components/appleRant";
 import { AnimationProvider } from "components/animationContext";
 
 export const metadata: Metadata = {
@@ -73,7 +72,6 @@ export default function RootLayout({
         <html lang="en">
             <body className="transition-all duration-500 ease-in-out">
                 <Isiecheck />
-                <AppleRant />
                 <div className="content">
                     <SpeedInsights />
                     {/*TODO: Remove noscript section for bingbots */}

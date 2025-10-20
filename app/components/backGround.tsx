@@ -8,6 +8,7 @@ import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { shown } from "components/opening";
 import { useAnimations } from "components/animationContext";
+import { startTransition } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export default function Background() {
     const { anims } = useAnimations();
 
     const [init, setInit] = useState<boolean>(false);
-    const [particles, setParticles] = useState(false);
+    const [particles] = useState(() => Math.random() < 0.5);
     const [uniformPhase, setUniformPhase] = useState(true);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -31,15 +32,12 @@ export default function Background() {
     >(null);
 
     useEffect(() => {
-        setParticles(Math.random() > 0.5);
-        //setParticles(false);
-    }, []);
-
-    useEffect(() => {
         if (particles === null) return;
 
         if (!particles && !shown) {
-            setInit(true);
+            startTransition(() => {
+                setInit(true);
+            });
 
             const canvas = canvasRef.current;
             if (!canvas) return;

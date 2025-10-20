@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import { startTransition } from "react";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import Link from "next/link";
 import { isMobileCheck } from "components/isMobile";
 import { isbot } from "isbot";
@@ -15,9 +15,11 @@ export default function HPageIs() {
     const [isClient, setIsClient] = useState(false);
     const [bot, setBot] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-        setBot(isbot(navigator.userAgent));
+    useLayoutEffect(() => {
+        startTransition(() => {
+            setIsClient(true);
+            setBot(isbot(navigator.userAgent));
+        });
     }, []);
 
     if (!isClient || !anims) return null;

@@ -1,23 +1,11 @@
 "use client";
 
 import ThemeSwitcher from "components/themeswitcher";
-import { useState } from "react";
-import { useEffect } from "react";
 import "7.css/dist/7.scoped.css";
 import { useAnimations } from "components/animationContext";
 
 export default function Page() {
-    //TODO: make this do anything at all.
-
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        setIsLoaded(true);
-    }, []);
-
     const { anims, toggleAnims } = useAnimations();
-
-    if (!isLoaded) return null;
 
     return (
         <main className="flex flex-col items-center justify-center">

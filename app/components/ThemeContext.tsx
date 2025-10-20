@@ -1,10 +1,11 @@
 "use client";
 
-import { createContext } from "react";
+import { createContext, startTransition } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { ReactNode } from "react";
 import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 type ThemeContextType = {
     theme: string;
@@ -18,18 +19,22 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [theme, setTheme] = useState("dark");
     const [isOverridden, setIsOverridden] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (typeof window !== "undefined") {
             const storedTheme = localStorage.getItem("theme");
             if (storedTheme !== null) {
-                setTheme(storedTheme);
+                startTransition(() => {
+                    setTheme(storedTheme);
+                });
             } else {
                 const prefersDark = window.matchMedia(
                     "(prefers-color-scheme: dark)",
                 ).matches;
                 const defaultTheme = prefersDark ? "dark" : "light";
                 localStorage.setItem("theme", defaultTheme);
-                setTheme(defaultTheme);
+                startTransition(() => {
+                    setTheme(defaultTheme);
+                });
             }
         }
     }, []);

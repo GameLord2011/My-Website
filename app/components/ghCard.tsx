@@ -33,9 +33,12 @@ export default function GitHubCard({ url }: GitHubCardProps) {
     useEffect(() => {
         // Check cache first
         if (githubCardCache.has(url)) {
-            setData(githubCardCache.get(url) ?? null);
+            Promise.resolve().then(() => {
+                setData(githubCardCache.get(url) ?? null);
+            });
             return;
         }
+
         // Determine if it's a user/org or repo link
         const match = url.match(/github\.com\/([^\/]+)(?:\/([^\/]+))?/);
         if (!match) return;

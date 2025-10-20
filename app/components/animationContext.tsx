@@ -3,6 +3,7 @@
 import { createContext } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
+import { startTransition } from "react";
 import { useState } from "react";
 
 const AnimationContext = createContext({
@@ -19,7 +20,9 @@ export const AnimationProvider = ({
 
     useEffect(() => {
         const stored = localStorage.getItem("animations");
-        setAnims(stored?.includes("yurp") ? true : false);
+        startTransition(() => {
+            setAnims(stored?.includes("yurp") ? true : false);
+        });
     }, []);
 
     useEffect(() => {

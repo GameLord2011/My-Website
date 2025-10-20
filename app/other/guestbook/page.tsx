@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { useLayoutEffect } from "react";
+import { startTransition } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import Win7Dialog from "components/win7dialog";
@@ -30,11 +32,13 @@ export default function Page() {
             .then(setMessages);
     }, []);
 
-    useEffect(() => {
-        setDun(
-            localStorage.getItem("hasSignedGuestbook") === "true" ||
-                localStorage.getItem("blocked") === "yes",
-        );
+    useLayoutEffect(() => {
+        startTransition(() => {
+            setDun(
+                localStorage.getItem("hasSignedGuestbook") === "true" ||
+                    localStorage.getItem("blocked") === "yes",
+            );
+        });
     }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {

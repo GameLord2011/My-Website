@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import Link from "next/link";
 import hljs from "highlight.js/lib/core";
 import "styles/theme.css";
@@ -10,7 +10,7 @@ import Age from "age-ts";
 hljs.registerLanguage("bash", bash);
 
 export default function About() {
-    useEffect(() => {
+    useLayoutEffect(() => {
         hljs.highlightAll();
     }, []);
 

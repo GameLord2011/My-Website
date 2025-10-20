@@ -1,20 +1,23 @@
 "use client";
 
 import { UAParser } from "ua-parser-js";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
+import { startTransition } from "react";
 import { useState } from "react";
 
 export default function Isiecheck() {
     const [isOldBrowser, setIsOldBrowser] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const parser = new UAParser();
         const browser = parser.getBrowser();
-        setIsOldBrowser(
-            browser.name === "IE" ||
-                (browser.name === "Edge" &&
-                    parseInt(browser.version || "0") < 79),
-        );
+        startTransition(() => {
+            setIsOldBrowser(
+                browser.name === "IE" ||
+                    (browser.name === "Edge" &&
+                        parseInt(browser.version || "0") < 79),
+            );
+        });
     }, []);
 
     if (isOldBrowser) {
