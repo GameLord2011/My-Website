@@ -10,7 +10,7 @@ const ThemeSwitcher = () => {
             <button
                 type="button"
                 onClick={toggleTheme}
-                className="rounded bg-[var(--nav-bkg)] p-2 transition-all duration-300 ease-in-out"
+                className="rounded bg-(--nav-bkg) p-2 transition-all duration-300 ease-in-out"
             >
                 {theme === "light" ? "☀️" : "🌙"}
             </button>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Viewport } from "next";
-import "styles/globals.scss";
 import Background from "components/backGround";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -8,6 +7,7 @@ import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
 import { Suspense } from "react";
 import { AnimationProvider } from "components/animationContext";
+import "styles/globals.scss";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -69,7 +69,27 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html suppressHydrationWarning lang="en">
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
+                        __html: `
+                        (function() {
+                            try {
+                                const storedTheme = localStorage.getItem("theme");
+                                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                                const theme = storedTheme || (prefersDark ? "dark" : "light");
+                                document.documentElement.classList.add(theme);
+                            } catch (e) {
+                                document.documentElement.classList.add("dark");
+                                console.error(\`error: \$\{e\}\`)
+                            }
+                        })();
+                    `,
+                    }}
+                />
+            </head>
             <body className="transition-all duration-500 ease-in-out">
                 <Isiecheck />
                 <div className="content">

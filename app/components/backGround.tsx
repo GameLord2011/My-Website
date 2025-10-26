@@ -44,8 +44,8 @@ export default function Background() {
             const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
-            let width = window.innerWidth;
-            let height = window.innerHeight;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
 
@@ -220,11 +220,15 @@ export default function Background() {
             draw();
 
             const handleResize = () => {
-                width = window.innerWidth;
-                height = window.innerHeight;
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+
+                const width = window.innerWidth;
+                const height = window.innerHeight;
                 canvas.width = width;
                 canvas.height = height;
 
+                const fontSize = 20; // Fixed font size
                 const newNumDrops = Math.floor(width / fontSize + 1);
 
                 // Reinitialize drops if count changes
@@ -258,6 +262,13 @@ export default function Background() {
                         dropsRef.current[i].y = Math.random() * height;
                     }
                 }
+
+                // Reset font size on canvas context
+                const ctx = canvas.getContext("2d");
+                if (ctx) {
+                    ctx.font = `${fontSize}px 'Courier New', monospace`;
+                    ctx.shadowColor = "#00ff41";
+                }
             };
 
             window.addEventListener("resize", handleResize);
@@ -286,7 +297,7 @@ export default function Background() {
             ) : (
                 <canvas
                     ref={canvasRef}
-                    className="pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-[100vh] w-[100vw]"
+                    className="pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen"
                 />
             )}
         </>

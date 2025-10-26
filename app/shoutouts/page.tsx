@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
 import GitHubHoverLink from "components/linkWrapper";
@@ -109,7 +108,7 @@ export default function Shoutouts() {
                         for making this site possible at all via{" "}
                         <GitHubHoverLink href="https://github.com/vercel/next.js">
                             <svg
-                                className="inline-block h-[0.7rem] -translate-y-[1px] dark:invert"
+                                className="inline-block h-[0.7rem] -translate-y-px dark:invert"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 394 80"

@@ -96,13 +96,13 @@ export default function Navbar() {
         <>
             {!isMobile && (
                 <nav
-                    className="relative z-[10000] flex items-center justify-between"
+                    className="relative z-10000 flex items-center justify-between"
                     ref={navRef}
                 >
                     <div className="dropdown group inline-block">
                         <button
                             type="button"
-                            className="hover:animate-btn-hvr cursor-pointer rounded-br-md border-none bg-[var(--nav-btn-bg)] p-4 text-lg text-[hsl(0,0%,93%)] transition-all duration-500 ease-in-out"
+                            className="hover:animate-btn-hvr cursor-pointer rounded-br-md border-none bg-(--nav-btn-bg) p-4 text-lg text-[hsl(0,0%,93%)] transition-all duration-500 ease-in-out"
                             onClick={() => {
                                 setLinksOpen(!linksOpen);
                             }}
@@ -111,7 +111,7 @@ export default function Navbar() {
                         </button>
                         <div
                             className={clsx(
-                                "absolute min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out group-hover:block",
+                                "absolute min-w-[150px] rounded-md rounded-tl-none bg-(--nav-bkg) shadow-lg transition-all duration-500 ease-in-out group-hover:block",
                                 {
                                     block: linksOpen,
                                     hidden: !linksOpen,
@@ -158,7 +158,7 @@ export default function Navbar() {
                                         {link.subLinks && (
                                             <div
                                                 className={clsx(
-                                                    "dropdown-subcontent sub-hover:block absolute top-0 left-full min-w-[150px] rounded-md rounded-tl-none bg-[var(--nav-bkg)] shadow-lg transition-all duration-500 ease-in-out",
+                                                    "dropdown-subcontent sub-hover:block absolute top-0 left-full min-w-[150px] rounded-md rounded-tl-none bg-(--nav-bkg) shadow-lg transition-all duration-500 ease-in-out",
                                                     {
                                                         block: subLinksOpen,
                                                         hidden: !subLinksOpen,
@@ -195,8 +195,10 @@ export default function Navbar() {
                             <Link
                                 href="/settings"
                                 className={clsx(
-                                    "rounded bg-[var(--nav-bkg)] p-2 transition-all duration-300 ease-in-out",
-                                    { hidden: pathname.includes("/settings") },
+                                    "rounded bg-(--nav-bkg) p-2 transition-all duration-300 ease-in-out",
+                                    {
+                                        hidden: pathname.includes("/settings"),
+                                    },
                                 )}
                             >
                                 ⚙️
@@ -207,12 +209,12 @@ export default function Navbar() {
             )}
             {isMobile && (
                 <nav>
-                    <div className="sticky top-full left-0 z-[1] flex w-full max-w-full justify-center bg-[var(--nav-bkg)] text-center text-xs">
+                    <div className="sticky top-full left-0 z-1 flex w-full max-w-full justify-center bg-(--nav-bkg) text-center text-xs">
                         {links.map((link) => (
                             <Link
                                 href={(link.href || link.mobileHref) as string}
                                 className={clsx(
-                                    "hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-[1px] @max-[241px]:py-[1px]",
+                                    "hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px",
                                     {
                                         hidden:
                                             pathname === link.href ||
@@ -230,8 +232,10 @@ export default function Navbar() {
                             <Link
                                 href="/settings"
                                 className={clsx(
-                                    "flex items-center justify-center rounded bg-[var(--nav-bkg)] p-[0px] transition-all duration-300 ease-in-out",
-                                    { hidden: pathname.includes("/settings") },
+                                    "flex items-center justify-center rounded bg-(--nav-bkg) p-[0px] transition-all duration-300 ease-in-out",
+                                    {
+                                        hidden: pathname.includes("/settings"),
+                                    },
                                 )}
                             >
                                 ⚙️

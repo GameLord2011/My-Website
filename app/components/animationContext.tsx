@@ -3,11 +3,13 @@
 import { createContext } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { startTransition } from "react";
 import { useState } from "react";
 
 const AnimationContext = createContext({
-    anims: true,
+    anims: false,
+    hasLoadedAnims: false,
     toggleAnims: () => {},
 });
 
@@ -17,12 +19,21 @@ export const AnimationProvider = ({
     children: React.ReactNode;
 }) => {
     const [anims, setAnims] = useState(true);
+    const [hasLoadedAnims, setHasLoadedAnims] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const stored = localStorage.getItem("animations");
-        startTransition(() => {
-            setAnims(stored?.includes("yurp") ? true : false);
-        });
+        if (stored === null) {
+            startTransition(() => {
+                setAnims(true);
+                setHasLoadedAnims(true);
+            });
+        } else {
+            startTransition(() => {
+                setAnims(stored?.includes("yurp") ? true : false);
+                setHasLoadedAnims(true);
+            });
+        }
     }, []);
 
     useEffect(() => {
@@ -32,7 +43,9 @@ export const AnimationProvider = ({
     const toggleAnims = () => setAnims((prev) => !prev);
 
     return (
-        <AnimationContext.Provider value={{ anims, toggleAnims }}>
+        <AnimationContext.Provider
+            value={{ anims, toggleAnims, hasLoadedAnims }}
+        >
             {children}
         </AnimationContext.Provider>
     );

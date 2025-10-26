@@ -15,23 +15,28 @@ export default function PokemonSearchSuggestions({
     const router = useRouter();
     const [position, setPosition] = useState({ width: 0, left: 0, top: 0 });
 
-    useEffect(() => {
-        const updatePosition = () => {
-            const rect = inputRef.current?.getBoundingClientRect();
+    const updatePosition = () => {
+        const rect = inputRef.current?.getBoundingClientRect();
+        if (rect) {
             setPosition({
-                width: rect?.width ?? 0,
-                left: rect?.left ?? 0,
-                top: (rect?.bottom ?? 0) + window.scrollY,
+                width: rect.width,
+                left: rect.left + window.scrollX,
+                top: rect.bottom + window.scrollY,
             });
-        };
+        }
+    };
 
-        updatePosition();
+    useEffect(() => {
+        updatePosition(); // initial
+
         window.addEventListener("resize", updatePosition);
+        window.addEventListener("scroll", updatePosition);
 
         return () => {
             window.removeEventListener("resize", updatePosition);
+            window.removeEventListener("scroll", updatePosition);
         };
-    }, [inputRef]);
+    }, [inputRef, suggestions, visible]);
 
     if (!visible || suggestions.length === 0 || typeof window === "undefined") {
         return null;
@@ -51,7 +56,7 @@ export default function PokemonSearchSuggestions({
                 }
             `}</style>
             <div
-                className={`ws ls ts absolute z-[9999] rounded-lg border border-gray-300 bg-white/80 shadow-lg backdrop-blur-sm dark:border-gray-600 dark:bg-gray-800/80`}
+                className={`ws ls ts absolute z-9999 rounded-lg border border-gray-300 bg-white/80 shadow-lg backdrop-blur-sm dark:border-gray-600 dark:bg-gray-800/80`}
             >
                 {suggestions.map((name) => (
                     <button

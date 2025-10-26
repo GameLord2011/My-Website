@@ -12,8 +12,11 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import { createRefSetter } from "components/utils";
 import { animateScrambleText } from "components/utils";
+import { useAnimations } from "components/animationContext";
 
 export default function Page() {
+    const { anims, hasLoadedAnims } = useAnimations();
+
     const reposFetched = useRef(false);
     const emojisFetched = useRef(false);
 
@@ -48,11 +51,13 @@ export default function Page() {
     gsap.registerPlugin(ScrambleTextPlugin);
 
     useGSAP(() => {
-        if (repos.length === 0) return;
-        animateScrambleText(anchorcontent.current);
-        animateScrambleText(desccontent.current);
-        animateScrambleText(forkedcontent.current);
-    }, [reposFetched.current]);
+        if (anims && hasLoadedAnims) {
+            if (repos.length === 0) return;
+            animateScrambleText(anchorcontent.current);
+            animateScrambleText(desccontent.current);
+            animateScrambleText(forkedcontent.current);
+        }
+    }, [reposFetched.current, anims, hasLoadedAnims]);
 
     // Fetch repositories & emojis from GitHub API
     useEffect(() => {
@@ -171,7 +176,7 @@ export default function Page() {
                 {repos.map((repo) => (
                     <div key={repo.id} className="relative">
                         {repo.archived && ( // JANK FTW!
-                            <div className="bz30:rounded-sm pointer-events-none absolute top-0 left-0 z-[99] block h-full w-full bg-black/50 transition-all dark:bg-black/75" />
+                            <div className="bz30:rounded-sm pointer-events-none absolute top-0 left-0 z-99 block h-full w-full bg-black/50 transition-all dark:bg-black/75" />
                         )}
                         <div className="bz30:rounded-sm bz30:border bz30:border-black bz30:dark:border-white max-jio2:w-full bg-white/30 p-4 backdrop-blur-xs">
                             <h2 className="text-xl wrap-anywhere">

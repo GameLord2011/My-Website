@@ -15,11 +15,25 @@ export interface Win7DialogHandle {
 
 const Win7Dialog = forwardRef<
     Win7DialogHandle,
-    { children: React.ReactNode; title?: string }
->(({ children, title }, ref) => {
+    { children: React.ReactNode; title?: string; barColor?: string }
+>(({ children, title, barColor }, ref) => {
     const win7DialogRef = useRef<HTMLDialogElement>(null);
     const titleBarRef = useRef<HTMLDivElement>(null);
     const windowRef = useRef<HTMLDivElement>(null);
+
+    const barColorVar = barColor
+        ? {
+              "--w7-w-bg": barColor,
+          }
+        : {};
+
+    const normWinStyles = {
+        width: "250px",
+        display: "flex",
+        flexDirection: "column",
+    };
+
+    const combinedStyle = { ...normWinStyles, ...barColorVar };
 
     const [maximized, setMaximized] = useState<boolean>(false);
     const [loc, setLoc] = useState<{ x: string; y: string }>({
@@ -125,20 +139,13 @@ const Win7Dialog = forwardRef<
         >
             <div
                 className="window glass active"
-                style={{
-                    width: "250px",
-                    display: "flex",
-                    flexDirection: "column",
-                }}
+                style={combinedStyle as React.CSSProperties}
                 ref={windowRef}
             >
                 <div className="title-bar select-none" ref={titleBarRef}>
                     <div className="title-bar-text">{title || "Dialog"}</div>
                     <div className="title-bar-controls">
-                        <button
-                            aria-label="Minimize"
-                            onClick={closeDialog}
-                        ></button>
+                        <button aria-label="Minimize" onClick={closeDialog} />
                         {!maximized && (
                             <button
                                 aria-label="Maximize"

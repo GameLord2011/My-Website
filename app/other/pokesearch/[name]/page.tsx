@@ -58,7 +58,7 @@ export default function PokemonPage({
     useEffect(() => {
         if (!params) return;
 
-        const fetchPokemon: () => Promise<void> = async () => {
+        (async () => {
             try {
                 const api = new PokemonClient();
                 const data = await api.getPokemonByName(params.name);
@@ -66,8 +66,7 @@ export default function PokemonPage({
             } catch (error) {
                 setError(`Pokemon not found: ${error}`);
             }
-        };
-        fetchPokemon();
+        })();
     }, [params]);
 
     const playCry: () => void = () => {

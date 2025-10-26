@@ -43,15 +43,13 @@ export default function Opening() {
         const drawGlitch = () => {
             ctx.clearRect(0, 0, width, height);
 
-            // B) Fade-in black overlay using globalAlpha
-            const fadeOpacity = fadeFrame / 100; // fade over 100 frames
+            const fadeOpacity = fadeFrame / 100;
             ctx.save();
             ctx.globalAlpha = fadeOpacity;
             ctx.fillStyle = `rgba(0, 0, 0, ${fadeOpacity})`;
             ctx.fillRect(0, 0, width, height);
             ctx.restore();
 
-            // A) Glitch visuals
             for (let i = 0; i < 25; i++) {
                 const x = Math.random() * width;
                 const y = Math.random() * height;
@@ -63,7 +61,6 @@ export default function Opening() {
 
             fadeFrame++;
 
-            // C) Stop glitching and trigger Typed.js
             if (fadeFrame < 125) {
                 animationFrameId = requestAnimationFrame(drawGlitch);
             } else {
@@ -127,7 +124,7 @@ export default function Opening() {
     return (
         <>
             {show && (
-                <div className="pointer-none fixed inset-0 z-[99999999999] flex flex-col items-center justify-center bg-transparent">
+                <div className="pointer-none fixed inset-0 z-99999999999 flex flex-col items-center justify-center bg-transparent">
                     <canvas
                         ref={canvasRef}
                         width={

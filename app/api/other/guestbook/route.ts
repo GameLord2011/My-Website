@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
         if (list.hasMatch(message) || list.hasMatch(name)) {
             return NextResponse.json(
                 { error: "Message contains inappropriate language." },
-                { status: 400 },
+                { status: 422 },
             );
         }
 
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
             INSERT INTO guestbook (name, message) VALUES (${trimmedName}, ${trimmedMessage})
         `;
 
-        return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true }, { status: 200 });
     } catch (err) {
         console.error("POST /guestbook error:", err);
         return NextResponse.json(

@@ -57,7 +57,7 @@ export default function Page() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, message }),
         });
-        if (res.status === 400) {
+        if (res.status === 422) {
             const next = censorTries + 1;
             setCensorTries(next);
             if (next < 3) {

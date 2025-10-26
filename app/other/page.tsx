@@ -37,7 +37,7 @@ export default function Page() {
                             <Link
                                 key={link.name}
                                 href={link.href || ""}
-                                className="m-2 rounded-lg bg-[var(--nav-bkg)] p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
+                                className="m-2 rounded-lg bg-(--nav-bkg) p-4 text-center shadow-lg transition-all duration-500 hover:scale-105"
                             >
                                 {link.name}
                             </Link>

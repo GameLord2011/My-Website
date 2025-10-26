@@ -25,7 +25,7 @@ const HPageIs = dynamic(() => import("components/HPageIs"), {
 });
 
 export default function Home() {
-    const { anims } = useAnimations();
+    const { anims, hasLoadedAnims } = useAnimations();
 
     const isMobile: boolean = isMobileCheck();
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -59,43 +59,47 @@ export default function Home() {
     const namedur: number = duration();
 
     useGSAP((): void => {
-        if (!content.current || !anims) return;
+        if (hasLoadedAnims && anims) {
+            if (!content.current) return;
 
-        timeline.to(
-            content.current,
-            {
-                duration: namedur,
-                scrambleText: {
-                    text: content?.current?.innerText as string,
-                    chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-                    revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
-                    tweenLength: true,
-                    speed: (() => gsap.utils.random(0.5, 0.9))(),
+            timeline.to(
+                content.current,
+                {
+                    duration: namedur,
+                    scrambleText: {
+                        text: content?.current?.innerText as string,
+                        chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+                        revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
+                        tweenLength: true,
+                        speed: (() => gsap.utils.random(0.5, 0.9))(),
+                    },
                 },
-            },
-            0,
-        );
+                0,
+            );
 
-        liContent.current.forEach((el) => {
-            gsap.to(el, {
-                duration: duration(),
-                scrambleText: {
-                    text: el?.innerText as string,
-                    chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
-                    revealDelay: (() => gsap.utils.random(0.1, 1))(),
-                    tweenLength: true,
-                    speed: (() => gsap.utils.random(0.5, 1))(),
-                },
+            liContent.current.forEach((el) => {
+                gsap.to(el, {
+                    duration: duration(),
+                    scrambleText: {
+                        text: el?.innerText as string,
+                        chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+                        revealDelay: (() => gsap.utils.random(0.1, 1))(),
+                        tweenLength: true,
+                        speed: (() => gsap.utils.random(0.5, 1))(),
+                    },
+                });
             });
-        });
-    }, [isLoaded]);
+        } else {
+            return;
+        }
+    }, [isLoaded, hasLoadedAnims, anims]);
 
     useEffect(() => {
         if (!isLoaded) return;
 
         if (!el.current) return;
 
-        if (anims) {
+        if (hasLoadedAnims && anims) {
             const typed: Typed = new Typed(el.current, {
                 strings: [
                     '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
@@ -117,7 +121,7 @@ export default function Home() {
         } else {
             el.current.innerText = "developer";
         }
-    }, [isLoaded, anims]);
+    }, [isLoaded, hasLoadedAnims]);
 
     console.log(
         " ██████╗  █████╗ ███╗   ███╗███████╗██╗      ██████╗ ██████╗ ██████╗ ██████╗  ██████╗  ██╗ ██╗\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗╚════██╗██╔═████╗███║███║\n██║  ███╗███████║██╔████╔██║█████╗  ██║     ██║   ██║██████╔╝██║  ██║ █████╔╝██║██╔██║╚██║╚██║\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  ██║     ██║   ██║██╔══██╗██║  ██║██╔═══╝ ████╔╝██║ ██║ ██║\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗╚██████╔╝██║  ██║██████╔╝███████╗╚██████╔╝ ██║ ██║\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝  ╚═╝ ╚═╝ \n",

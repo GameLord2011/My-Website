@@ -15,6 +15,7 @@ import "highlight.js/styles/github-dark.css";
 
 export default function Page() {
     const [html, setHtml] = useState<string>("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch(
@@ -33,17 +34,23 @@ export default function Page() {
 
                 startTransition(() => {
                     setHtml(String(file));
+                    setLoading(false);
                 });
             });
     }, []);
 
     return (
         <main className="flex flex-col items-center justify-center">
+            <br />
             <div className="bg-[#0d1117]">
-                <div
-                    className="markdown-body p-4 text-left"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                />
+                {loading ? (
+                    <div className="p-4 text-gray-400">Loading README...</div>
+                ) : (
+                    <div
+                        className="markdown-body p-4 text-left"
+                        dangerouslySetInnerHTML={{ __html: html }}
+                    />
+                )}
             </div>
         </main>
     );

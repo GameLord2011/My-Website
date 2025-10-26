@@ -136,7 +136,7 @@ export default function Page() {
 
     return (
         <main className="p-8">
-            <div className="z-[999] mx-auto max-w-4xl">
+            <div className="z-999 mx-auto max-w-4xl">
                 <div className="relative rounded-lg bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-800/80">
                     <h1 className="mb-6 text-center text-3xl font-bold dark:text-white">
                         Pokémon Search
