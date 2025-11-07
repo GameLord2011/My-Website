@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
         remotePatterns: [new URL("https://github.githubassets.com/**")],
         unoptimized: true,
     },
-    trailingSlash: true,
 };
 
 export default nextConfig;

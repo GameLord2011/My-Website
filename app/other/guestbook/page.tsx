@@ -44,6 +44,8 @@ export default function Page() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!name || !message || blocked || censorTries >= 3) return;
+        name.replaceAll(/\‌+/g, ""); // These are needed.
+        message.replaceAll (/\‌+/g, "");
         if (name.length > 100 || message.length > 100) {
             setName("");
             setMessage("");
@@ -176,12 +178,12 @@ export default function Page() {
                             </p>
                         ) : !overFlowMessage ? (
                             <p>
-                                YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TOo
+                                YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TOO
                                 MANY TIMES, THE BAN HAMMER HATH BEEN SWUNG!
                             </p>
                         ) : (
                             <p>
-                                You cant have a name or message &gt; 100
+                                You can't have a name or message &gt; 100
                                 characters.
                             </p>
                         )}

@@ -1,5 +1,5 @@
 /*
-  Janky TailwindCss4 implementation by @GameLord2011
+    Janky TailwindCss4 implementation by @GameLord2011
 */
 
 @use "tailwindcss";
@@ -10,7 +10,8 @@
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 
-    --color-Gween-300: hsl(120, 99.05%, 41.18%);
+    --color-Gween-300: hsl(120, 100%, 41.18%);
+    --color-Gween-500: hsl(120, 100%, 30%);
     --color-Gween-600: hsl(120, 100%, 19.61%);
 
     --background-image-svgimg: url("https://github-readme-stats.vercel.app/api?username=GameLord2011&theme=shadow_green&show_icons=true&rank_icon=github");
@@ -27,14 +28,6 @@
     --animate-nvbr-lnk-hvr: nvbr-lnk-clr-cng 0.5s linear forwards;
 }
 
-/*
-    The default border color has changed to `currentColor` in Tailwind CSS v4,
-    so we've added these compatibility styles to make sure everything still
-    looks the same as it did with Tailwind CSS v3.
-  
-    If we ever want to remove these styles, we need to add an explicit border
-    color utility to any element that depends on these defaults.
-  */
 @layer base {
     *,
     ::after,
@@ -43,17 +36,6 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
-}
-
-// Add the font-face for Cascadia Code
-@font-face {
-    font-family: "Cascadia Code";
-    src:
-        url("/fonts/CascadiaCode.woff2") format("woff2"),
-        url("/fonts/CascadiaCode-Regular.otf") format("opentype"),
-        url("/fonts/CascadiaCode.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
 
 :root {
@@ -65,6 +47,17 @@
     --nav-btn-hvr-bkg: hsl(158, 95%, 24%);
     --nav-bkg: hsl(0, 0%, 95%);
     --nav-hvr-bkg: hsl(0, 0%, 87%);
+}
+
+.dark {
+    --background: hsl(0, 0%, 0%);
+    --foreground: hsl(0, 0%, 93%);
+    --highlight-bg: hsl(120, 100%, 20%);
+    --highlight-fg: hsl(0, 0%, 0%);
+    --nav-btn-bg: hsl(122, 39%, 30%);
+    --nav-btn-hvr-bkg: hsl(122, 39%, 40%);
+    --nav-bkg: hsl(0, 0%, 20%);
+    --nav-hvr-bkg: hsl(0, 0%, 27%);
 }
 
 .novisited {
@@ -102,17 +95,6 @@ a {
             display: block;
         }
     }
-}
-
-.dark {
-    --background: hsl(0, 0%, 0%);
-    --foreground: hsl(0, 0%, 93%);
-    --highlight-bg: hsl(120, 100%, 20%);
-    --highlight-fg: hsl(0, 0%, 0%);
-    --nav-btn-bg: hsl(122, 39%, 30%);
-    --nav-btn-hvr-bkg: hsl(122, 39%, 40%);
-    --nav-bkg: hsl(0, 0%, 20%);
-    --nav-hvr-bkg: hsl(0, 0%, 27%);
 }
 
 @mixin nvbr-btn-clr-cng {
@@ -165,7 +147,6 @@ a {
     @include nvbr-lnk-clr-cng;
 }
 
-// Selection Mixin
 @mixin selection {
     background: var(--highlight-bg);
     color: var(--highlight-fg);
@@ -182,10 +163,9 @@ a {
 body {
     color: var(--foreground);
     background: var(--background);
-    font-family: "Cascadia Code";
     font-size: small;
     text-align: center;
-    max-width: calc(100vw - (100vw - 100%));
+    max-width: 100%;
 }
 
 ul li::marker {

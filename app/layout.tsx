@@ -5,9 +5,15 @@ import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
 import { ThemeProvider } from "components/ThemeContext";
-import { Suspense } from "react";
 import { AnimationProvider } from "components/animationContext";
+import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
+
+const cascadiaMono = Cascadia_Mono({
+    subsets: ["latin"],
+    preload: true,
+    fallback: ["monospace"],
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://gamelord2011.vercel.app"),
@@ -31,8 +37,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "/opengraph.png",
-                width: 512,
-                height: 512,
+                width: 2480,
+                height: 1200,
             },
         ],
         title: "@GameLord2011",
@@ -48,13 +54,14 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "/opengraph.png",
-                width: 512,
-                height: 512,
+                width: 2480,
+                height: 1200,
             },
         ],
     },
     manifest: "/manifest.webmanifest",
 };
+
 export const viewport: Viewport = {
     width: "device-width",
     height: "device-height",
@@ -75,22 +82,24 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{
                         // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
                         __html: `
-                        (function() {
-                            try {
-                                const storedTheme = localStorage.getItem("theme");
-                                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                                const theme = storedTheme || (prefersDark ? "dark" : "light");
-                                document.documentElement.classList.add(theme);
-                            } catch (e) {
-                                document.documentElement.classList.add("dark");
-                                console.error(\`error: \$\{e\}\`)
-                            }
-                        })();
-                    `,
+                            (function() {
+                                try {
+                                    const storedTheme = localStorage.getItem("theme");
+                                    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                                    const theme = storedTheme || (prefersDark ? "dark" : "light");
+                                    document.documentElement.classList.add(theme);
+                                } catch (e) {
+                                    document.documentElement.classList.add("dark");
+                                    console.error(\`[THEMECODE]: error: \$\{e\}\`);
+                                }
+                            })();
+                        `,
                     }}
                 />
             </head>
-            <body className="transition-all duration-500 ease-in-out">
+            <body
+                className={`${cascadiaMono.className} antialiased transition-all duration-500 ease-in-out`}
+            >
                 <Isiecheck />
                 <div className="content">
                     <SpeedInsights />
@@ -228,15 +237,7 @@ export default function RootLayout({
                         <AnimationProvider>
                             <ThemeProvider>
                                 <Navbar />
-                                <Suspense
-                                    fallback={
-                                        <div className="loading">
-                                            Loading...
-                                        </div>
-                                    }
-                                >
-                                    <Background />
-                                </Suspense>
+                                <Background />
                                 {children}
                             </ThemeProvider>
                         </AnimationProvider>

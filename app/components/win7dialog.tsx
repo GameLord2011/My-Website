@@ -5,18 +5,27 @@ import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { forwardRef } from "react";
 import { useImperativeHandle } from "react";
+import { createPortal } from "react-dom";
 
 export interface Win7DialogHandle {
     show: () => void;
     close: () => void;
 }
 
-const Win7Dialog = forwardRef<
-    Win7DialogHandle,
-    { children: React.ReactNode; title?: string; barColor?: string }
->(({ children, title, barColor }, ref) => {
+type win7DialogProps = {
+    children: React.ReactNode;
+    title?: string;
+    barColor?: string;
+    ref?: React.Ref<Win7DialogHandle>;
+};
+
+export default function Win7Dialog({
+    children,
+    title,
+    barColor,
+    ref,
+}: win7DialogProps) {
     const win7DialogRef = useRef<HTMLDialogElement>(null);
     const titleBarRef = useRef<HTMLDivElement>(null);
     const windowRef = useRef<HTMLDivElement>(null);
@@ -36,6 +45,8 @@ const Win7Dialog = forwardRef<
     const combinedStyle = { ...normWinStyles, ...barColorVar };
 
     const [maximized, setMaximized] = useState<boolean>(false);
+
+    //TODO: make immovable when fullscreened, or add resize code?
     const [loc, setLoc] = useState<{ x: string; y: string }>({
         x: "0px",
         y: "0px",
@@ -88,30 +99,39 @@ const Win7Dialog = forwardRef<
         const onMouseMove = (e: MouseEvent) => {
             if (!dragging) return;
             e.preventDefault();
+
+            /*
+                So, for some reason, I had to make the distance the width/height of the
+                dialog minus one pixel to make it sit flush, I don't know why, methinks
+                that there is a default padding of one pixel somewhere.
+            */
+
             dialogEl.style.left = e.clientX - offsetX + "px";
-            // eslint-disable-next-line
-            if ((dialogEl.style.left.replace("px", "") as any as number) < 0) {
+            if (
+                (dialogEl.style.left.replace("px", "") as unknown as number) < 0
+            ) {
                 dialogEl.style.left = "0px";
             }
             if (
-                // eslint-disable-next-line
-                (dialogEl.style.left.replace("px", "") as any as number) >
-                window.innerWidth - 250
+                (dialogEl.style.left.replace("px", "") as unknown as number) >
+                document.documentElement.clientWidth - 249
             ) {
-                dialogEl.style.left = `${window.innerWidth - 250}px`;
+                dialogEl.style.left = `${document.documentElement.clientWidth - 249}px`;
             }
+
             dialogEl.style.top = e.clientY - offsetY + "px";
             if (
-                // eslint-disable-next-line
-                (dialogEl.style.top.replace("px", "") as any as number) >
-                window.innerHeight - 88
+                (dialogEl.style.top.replace("px", "") as unknown as number) >
+                document.documentElement.clientHeight - 103
             ) {
-                dialogEl.style.top = `${window.innerHeight - 88}px`;
+                dialogEl.style.top = `${document.documentElement.clientHeight - 103}px`;
             }
-            // eslint-disable-next-line
-            if ((dialogEl.style.top.replace("px", "") as any as number) < 0) {
+            if (
+                (dialogEl.style.top.replace("px", "") as unknown as number) < 0
+            ) {
                 dialogEl.style.top = "0px";
             }
+
             setLoc({ x: dialogEl.style.left, y: dialogEl.style.top });
         };
 
@@ -130,10 +150,10 @@ const Win7Dialog = forwardRef<
         };
     }, []);
 
-    return (
+    return createPortal(
         <dialog
             open
-            className="win7 z-[99999999999999999999999999999999999999999999] bg-[#0000] text-black"
+            className="win7 z-10001 bg-[#0000] text-black"
             id="win7Dialog"
             ref={win7DialogRef}
         >
@@ -155,13 +175,10 @@ const Win7Dialog = forwardRef<
                                         windowRef.current &&
                                         win7DialogRef.current
                                     ) {
-                                        win7DialogRef.current.style.width =
-                                            "100vw";
-                                        win7DialogRef.current.style.height =
-                                            "100vh";
-                                        windowRef.current.style.width = "100vw";
-                                        windowRef.current.style.height =
-                                            "100vh";
+                                        win7DialogRef.current.style.width = `${document.documentElement.clientWidth}px`;
+                                        win7DialogRef.current.style.height = `${document.documentElement.clientHeight}px`;
+                                        windowRef.current.style.width = `${document.documentElement.clientWidth}px`;
+                                        windowRef.current.style.height = `${document.documentElement.clientHeight}px`;
                                         windowRef.current.style.margin = "0px";
                                         win7DialogRef.current.style.top = "0px";
                                         win7DialogRef.current.style.left =
@@ -182,17 +199,19 @@ const Win7Dialog = forwardRef<
                                         win7DialogRef.current
                                     ) {
                                         win7DialogRef.current.style.width =
-                                            "auto";
+                                            "250px";
                                         win7DialogRef.current.style.height =
-                                            "auto";
+                                            "104px";
                                         windowRef.current.style.width = "250px";
-                                        windowRef.current.style.height = "auto";
+                                        windowRef.current.style.height =
+                                            "104px";
                                         windowRef.current.style.margin = "32px";
                                         win7DialogRef.current.style.top = loc.y;
                                         win7DialogRef.current.style.left =
                                             loc.x;
                                         windowRef.current.style.borderRadius =
                                             "";
+                                        windowRef.current.style.margin = "0px";
                                     }
                                 }}
                             ></button>
@@ -223,10 +242,9 @@ const Win7Dialog = forwardRef<
                     </section>
                 </div>
             </div>
-        </dialog>
+        </dialog>,
+        document.body,
     );
-});
+}
 
 Win7Dialog.displayName = "Win7Dialog";
-
-export default Win7Dialog;

@@ -6,9 +6,7 @@ export function isMobileCheck(): boolean {
     const result = parser.getResult();
     const teslaRegex = /(Tesla|QtCarBrowser|QtCarWebEngine)/i;
     const isTesla = teslaRegex.test(window.navigator.userAgent);
-    const isSmallScreen = window.innerWidth < 768;
     return (
-        isSmallScreen ||
         isTesla ||
         result.device.type === "mobile" ||
         result.device.type === "xr" ||

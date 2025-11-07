@@ -37,8 +37,10 @@ export const AnimationProvider = ({
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("animations", anims ? "yurp" : "nope");
-    }, [anims]);
+        if (hasLoadedAnims) {
+            localStorage.setItem("animations", anims ? "yurp" : "nope");
+        }
+    }, [anims, hasLoadedAnims]);
 
     const toggleAnims = () => setAnims((prev) => !prev);
 

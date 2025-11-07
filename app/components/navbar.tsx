@@ -96,7 +96,7 @@ export default function Navbar() {
         <>
             {!isMobile && (
                 <nav
-                    className="relative z-10000 flex items-center justify-between"
+                    className="relative z-10000 flex justify-between"
                     ref={navRef}
                 >
                     <div className="dropdown group inline-block">
@@ -210,19 +210,12 @@ export default function Navbar() {
             {isMobile && (
                 <nav>
                     <div className="sticky top-full left-0 z-1 flex w-full max-w-full justify-center bg-(--nav-bkg) text-center text-xs">
-                        {links.map((link) => (
+                        {links
+                            .filter((link) => link.href !== pathname)
+                            .map((link) => (
                             <Link
                                 href={(link.href || link.mobileHref) as string}
-                                className={clsx(
-                                    "hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px",
-                                    {
-                                        hidden:
-                                            pathname === link.href ||
-                                            pathname.includes(
-                                                link.mobileHref as string,
-                                            ),
-                                    },
-                                )}
+                                className="hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px"
                                 key={link.name}
                             >
                                 {link.name}
