@@ -7,11 +7,82 @@ import { useState } from "react";
 import { useRef } from "react";
 import Win7Dialog from "components/win7dialog";
 import { Win7DialogHandle } from "components/win7dialog";
+import { Jacquard_24 } from "next/font/google";
+import { Mea_Culpa } from "next/font/google";
+import { Montez } from "next/font/google";
+import { Splash } from "next/font/google";
+import { Permanent_Marker } from "next/font/google";
+import { Caveat } from "next/font/google";
+import { Sofia } from "next/font/google";
+
+const jacquard = Jacquard_24({
+    weight: "400",
+    subsets: ["latin"],
+    preload: true
+})
+
+const meaCulpa = Mea_Culpa({
+    weight: "400"
+})
+
+const montez = Montez({
+    weight: "400"
+})
+
+const splash = Splash({
+    weight: "400"
+})
+
+const permanentMarker = Permanent_Marker({
+    weight: "400"
+})
+
+const caveat = Caveat({
+    weight: "400"
+})
+
+const sofia = Sofia({
+    weight: "400"
+})
 
 interface GuestbookMessage {
     id: number;
     name: string;
     message: string;
+}
+
+const fonts = [
+    meaCulpa.className,
+    montez.className,
+    splash.className,
+    permanentMarker.className,
+    caveat.className,
+    sofia.className,
+];  
+
+/*
+    It's fine, everything's fine.
+*/
+function MessageRow({ msg }: { msg: GuestbookMessage }) {
+    const [fontClass, setFontClass] = useState('');
+
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * fonts.length);
+        setFontClass(fonts[randomIndex]);
+    }, []);
+
+    return (
+        <tr
+            className={`${fontClass} border-b border-[#c2b280]/40`}
+        >
+            <td className="jio2:text-base w-1/3 wrap-anywhere text-[#7c5c2a]">
+                {msg.name}
+            </td>
+            <td className="jio2:text-base w-2/3 pl-4 wrap-anywhere text-[#4b3a1a]">
+                {msg.message}
+            </td>
+        </tr>
+    );
 }
 
 export default function Page() {
@@ -83,9 +154,9 @@ export default function Page() {
 
     return (
         <>
-            <main className="flex min-h-screen items-center justify-center bg-cover bg-center">
+            <main className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}>
                 <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7] px-1 shadow-2xl">
-                    <h1 className="papyrus_font mb-4 text-center font-bold text-[#7c5c2a] drop-shadow">
+                    <h1 className="papyrus_font mb-4 text-center font-bold text-[#7c5c2a] drop-shadow text-2xl">
                         Guestbook
                     </h1>
                     <table className="papyrus_font jio2:text-lg w-full table-fixed border-separate border-spacing-y-2 text-left text-xs">
@@ -103,21 +174,11 @@ export default function Page() {
                             {Array.isArray(messages) &&
                                 messages.length > 0 &&
                                 messages.map((msg) => (
-                                    <tr
-                                        key={msg.id}
-                                        className="border-b border-[#c2b280]/40"
-                                    >
-                                        <td className="jio2:text-base w-1/3 text-xs wrap-anywhere text-[#7c5c2a]">
-                                            {msg.name}
-                                        </td>
-                                        <td className="jio2:text-base w-2/3 pl-4 text-xs wrap-anywhere text-[#4b3a1a]">
-                                            {msg.message}
-                                        </td>
-                                    </tr>
+                                    <MessageRow key={msg.id} msg={msg} />
                                 ))}
                             {!dun ? (
                                 <tr>
-                                    <td className="jio2:text-base relative w-1/3 text-xs">
+                                    <td className="jio2:text-base relative w-1/3 text-base">
                                         <input
                                             value={name}
                                             onChange={(e) =>
@@ -125,13 +186,13 @@ export default function Page() {
                                             }
                                             placeholder="Your name"
                                             required
-                                            className="papyrus_font jio2:text-base w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
+                                            className="jio2:text-base w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
                                             disabled={
                                                 blocked || censorTries >= 3
                                             }
                                         />
                                     </td>
-                                    <td className="jio2:text-base relative w-2/3 text-xs">
+                                    <td className="jio2:text-base relative w-2/3 text-base">
                                         <form onSubmit={handleSubmit}>
                                             <input
                                                 value={message}
@@ -140,14 +201,14 @@ export default function Page() {
                                                 }
                                                 placeholder="Your message"
                                                 required
-                                                className="papyrus_font jio2:text-base w-2/3 rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
+                                                className="jio2:text-base w-2/3 rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
                                                 disabled={
                                                     blocked || censorTries >= 3
                                                 }
                                             />
                                             <button
                                                 type="submit"
-                                                className="papyrus_font w-1/3 rounded bg-[#c2b280] px-4 py-1 font-bold text-white shadow transition hover:bg-[#a68b5b]"
+                                                className="w-1/3 rounded bg-[#c2b280] px-4 py-1 font-bold text-white shadow transition hover:bg-[#a68b5b]"
                                                 disabled={
                                                     blocked || censorTries >= 3
                                                 }
@@ -160,14 +221,6 @@ export default function Page() {
                             ) : null}
                         </tbody>
                     </table>
-                    <style jsx>{`
-                        main,
-                        table,
-                        input,
-                        button {
-                            font-family: "Papyrus, fantasy";
-                        }
-                    `}</style>
                 </div>
                 {dialogOpen && (
                     <Win7Dialog title="Censorship Warning" ref={dialogRef}>

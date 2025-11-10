@@ -29,6 +29,7 @@ export default function Win7Dialog({
     const win7DialogRef = useRef<HTMLDialogElement>(null);
     const titleBarRef = useRef<HTMLDivElement>(null);
     const windowRef = useRef<HTMLDivElement>(null);
+    const maximizedRef = useRef(false);
 
     const barColorVar = barColor
         ? {
@@ -46,7 +47,6 @@ export default function Win7Dialog({
 
     const [maximized, setMaximized] = useState<boolean>(false);
 
-    //TODO: make immovable when fullscreened, or add resize code?
     const [loc, setLoc] = useState<{ x: string; y: string }>({
         x: "0px",
         y: "0px",
@@ -64,6 +64,10 @@ export default function Win7Dialog({
         show: showDialog,
         close: closeDialog,
     }));
+
+    useEffect(() => {
+        maximizedRef.current = maximized;
+    }, [maximized]);
 
     useEffect(() => {
         const dialogEl = win7DialogRef.current;
@@ -98,6 +102,7 @@ export default function Win7Dialog({
 
         const onMouseMove = (e: MouseEvent) => {
             if (!dragging) return;
+            if (maximizedRef.current) return;
             e.preventDefault();
 
             /*

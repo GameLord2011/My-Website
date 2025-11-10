@@ -123,7 +123,7 @@ export default function Navbar() {
                                 .map((link) => (
                                     <div
                                         key={link.name}
-                                        className="sub-group hover:animate-nvbr-lnk-hvr relative first:rounded-tr-md last:rounded-br-md"
+                                        className="sub-group hover:animate-nvbr-lnk-hvr relative first:rounded-tr-md last:rounded-br-md last:rounded-bl-md"
                                     >
                                         {!link.subLinks && (
                                             <Link
@@ -135,14 +135,7 @@ export default function Navbar() {
                                         )}
                                         {link.subLinks && (
                                             <span
-                                                className={clsx(
-                                                    "link block rounded-b-md px-[12px] py-[16px] transition-all duration-500 ease-in-out",
-                                                    {
-                                                        hidden:
-                                                            pathname ===
-                                                            link.href,
-                                                    },
-                                                )}
+                                                className="link block rounded-b-md px-[12px] py-[16px] transition-all duration-500 ease-in-out"
                                                 onClick={() => {
                                                     setSubLinksOpen(
                                                         !subLinksOpen,
@@ -158,7 +151,7 @@ export default function Navbar() {
                                         {link.subLinks && (
                                             <div
                                                 className={clsx(
-                                                    "dropdown-subcontent sub-hover:block absolute top-0 left-full min-w-[150px] rounded-md rounded-tl-none bg-(--nav-bkg) shadow-lg transition-all duration-500 ease-in-out",
+                                                    "dropdown-subcontent sub-hover-block absolute top-0 left-full min-w-[150px] rounded-md rounded-tl-none bg-(--nav-bkg) shadow-lg transition-all duration-500 ease-in-out",
                                                     {
                                                         block: subLinksOpen,
                                                         hidden: !subLinksOpen,

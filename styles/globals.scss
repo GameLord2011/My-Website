@@ -89,7 +89,7 @@ a {
     }
 }
 
-.sub-hover\:block {
+.sub-hover-block {
     &:is(:where(.sub-group):hover *) {
         @media (hover: hover) {
             display: block;
