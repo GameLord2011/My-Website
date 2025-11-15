@@ -12,7 +12,7 @@ import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
 import Opening from "components/opening";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 
 const Age = dynamic(() => import("age-ts"), {
     loading: () => <span>Loading...</span>,

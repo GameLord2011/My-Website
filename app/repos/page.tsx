@@ -12,7 +12,7 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
 import { createRefSetter } from "components/utils";
 import { animateScrambleText } from "components/utils";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 
 export default function Page() {
     const { anims, hasLoadedAnims } = useAnimations();

@@ -4,8 +4,9 @@ import Background from "components/backGround";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Isiecheck from "components/isiecheck";
-import { ThemeProvider } from "components/ThemeContext";
-import { AnimationProvider } from "components/animationContext";
+//import { ThemeProvider } from "components/ThemeContext";
+//import { AnimationProvider } from "components/animationContext";
+import SettingsProvider from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
 
@@ -234,13 +235,11 @@ export default function RootLayout({
                         </ul>
                     </noscript>
                     <div className="yescript">
-                        <AnimationProvider>
-                            <ThemeProvider>
+                        <SettingsProvider>
                                 <Navbar />
                                 <Background />
                                 {children}
-                            </ThemeProvider>
-                        </AnimationProvider>
+                        </SettingsProvider>
                     </div>
                 </div>
             </body>

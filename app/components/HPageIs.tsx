@@ -6,7 +6,7 @@ import { useLayoutEffect } from "react";
 import Link from "next/link";
 import { isMobileCheck } from "components/isMobile";
 import { isbot } from "isbot";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 
 export default function HPageIs() {
     const { anims } = useAnimations();

@@ -7,8 +7,17 @@ import Particles from "@tsparticles/react";
 import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { shown } from "components/opening";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
+import { Cascadia_Mono } from "next/font/google";
 import { startTransition } from "react";
+
+const cascadiaMono = Cascadia_Mono({
+    subsets: ["latin"],
+    weight: "700",
+    preload: true,
+    fallback: ["monospace"],
+    variable: "--font-cascadia-mono",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -72,7 +81,7 @@ export default function Background() {
                 }));
             }
 
-            ctx.font = `${fontSize}px 'Courier New', monospace`;
+            ctx.font = `${fontSize}px 'Cascadia Mono', monospace`;
             ctx.shadowColor = "#00ff41";
 
             let animationFrameId: number;
@@ -297,7 +306,7 @@ export default function Background() {
             ) : (
                 <canvas
                     ref={canvasRef}
-                    className="pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen"
+                    className={`pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen ${cascadiaMono.className}`}
                 />
             )}
         </>

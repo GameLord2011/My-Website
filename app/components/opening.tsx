@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import Typed from "typed.js";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 
 const shown = Math.floor(Math.random() * 10000) === 0;
 // const shown = true;

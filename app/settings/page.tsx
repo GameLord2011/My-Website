@@ -2,7 +2,7 @@
 
 import ThemeSwitcher from "components/themeswitcher";
 import "7.css/dist/7.scoped.css";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 
 export default function Page() {
     const { anims, toggleAnims } = useAnimations();

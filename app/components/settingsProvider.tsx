@@ -13,9 +13,41 @@ type ThemeContextType = {
     toggleTheme: () => void;
 };
 
+const AnimationContext = createContext({
+    anims: false,
+    hasLoadedAnims: false,
+    toggleAnims: () => {},
+});
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export default function SettingsProvider({ children }: { children: ReactNode }) {
+    const [anims, setAnims] = useState(true);
+    const [hasLoadedAnims, setHasLoadedAnims] = useState(false);
+
+    useLayoutEffect(() => {
+        const stored = localStorage.getItem("animations");
+        if (stored === null) {
+            startTransition(() => {
+                setAnims(true);
+                setHasLoadedAnims(true);
+            });
+        } else {
+            startTransition(() => {
+                setAnims(stored?.includes("yurp") ? true : false);
+                setHasLoadedAnims(true);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (hasLoadedAnims) {
+            localStorage.setItem("animations", anims ? "yurp" : "nope");
+        }
+    }, [anims, hasLoadedAnims]);
+
+    const toggleAnims = () => setAnims((prev) => !prev);
+
     const [theme, setTheme] = useState<string>("dark");
     const [isOverridden, setIsOverridden] = useState<boolean>(false);
 
@@ -60,13 +92,17 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         setTheme(newTheme);
         setIsOverridden(true);
     };
-
+    
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
+            <AnimationContext.Provider
+                value={{ anims, toggleAnims, hasLoadedAnims }}
+            >
+                {children}
+            </AnimationContext.Provider>
         </ThemeContext.Provider>
-    );
-};
+    )
+}
 
 export const useTheme = () => {
     const context = useContext(ThemeContext);
@@ -75,3 +111,5 @@ export const useTheme = () => {
     }
     return context;
 };
+
+export const useAnimations = () => useContext(AnimationContext);

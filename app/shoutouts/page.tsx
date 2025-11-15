@@ -3,7 +3,7 @@
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
 import GitHubHoverLink from "components/linkWrapper";
-import { useAnimations } from "components/animationContext";
+import { useAnimations } from "components/settingsProvider";
 import Image from "next/image";
 
 export default function Shoutouts() {
