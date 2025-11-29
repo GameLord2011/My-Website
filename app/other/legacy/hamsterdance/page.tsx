@@ -1,5 +1,6 @@
 import "styles/hamsterdance.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
     return (
@@ -1643,7 +1644,10 @@ export default function Page() {
                     />
                 </center>
             </dt>
-            
+            <hr />
+            <center>
+                Go back to the <Link href="/other/legacy">legacy</Link> page
+            </center>
         </>
     );
 }
