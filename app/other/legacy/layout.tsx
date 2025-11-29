@@ -5,10 +5,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "/",
     },
-    title: "@GameLord2011 | About",
-    description: "@GameLord2011 about page",
+    title: "@GameLord2011 | Legacy",
+    description: "@GameLord2011 recreates legacy sites",
     generator: "NextJS",
-    applicationName: "@GameLord2011 about page",
+    applicationName: "@GameLord2011 recreates legacy sites",
     creator: "@GameLord2011",
     formatDetection: {
         email: false,
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
         { name: "@GameLord2011", url: "https://github.com/gamelord2011" },
     ],
     openGraph: {
-        title: "@GameLord2011 | About",
+        title: "@GameLord2011 | Legacy",
         description: "@GameLord2011's site",
-        url: "https://gamelord2011.vercel.app/about",
+        url: "https://gamelord2011.vercel.app/legacy",
         type: "website",
-        siteName: "@GameLord2011 about page",
+        siteName: "@GameLord2011 recreates legacy sites",
         images: [
             {
                 url: "/opengraph.png",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        site: "@GameLord2011 | About",
+        site: "@GameLord2011 | Leagacy",
         creator: "@GameLord2011",
         images: [
             {

@@ -236,9 +236,9 @@ export default function RootLayout({
                     </noscript>
                     <div className="yescript">
                         <SettingsProvider>
-                                <Navbar />
-                                <Background />
-                                {children}
+                            <Navbar />
+                            <Background />
+                            {children}
                         </SettingsProvider>
                     </div>
                 </div>

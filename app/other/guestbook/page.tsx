@@ -18,32 +18,32 @@ import { Sofia } from "next/font/google";
 const jacquard = Jacquard_24({
     weight: "400",
     subsets: ["latin"],
-    preload: true
-})
+    preload: true,
+});
 
 const meaCulpa = Mea_Culpa({
-    weight: "400"
-})
+    weight: "400",
+});
 
 const montez = Montez({
-    weight: "400"
-})
+    weight: "400",
+});
 
 const splash = Splash({
-    weight: "400"
-})
+    weight: "400",
+});
 
 const permanentMarker = Permanent_Marker({
-    weight: "400"
-})
+    weight: "400",
+});
 
 const caveat = Caveat({
-    weight: "400"
-})
+    weight: "400",
+});
 
 const sofia = Sofia({
-    weight: "400"
-})
+    weight: "400",
+});
 
 interface GuestbookMessage {
     id: number;
@@ -58,13 +58,13 @@ const fonts = [
     permanentMarker.className,
     caveat.className,
     sofia.className,
-];  
+];
 
 /*
     It's fine, everything's fine.
 */
 function MessageRow({ msg }: { msg: GuestbookMessage }) {
-    const [fontClass, setFontClass] = useState('');
+    const [fontClass, setFontClass] = useState("");
 
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * fonts.length);
@@ -72,9 +72,7 @@ function MessageRow({ msg }: { msg: GuestbookMessage }) {
     }, []);
 
     return (
-        <tr
-            className={`${fontClass} border-b border-[#c2b280]/40`}
-        >
+        <tr className={`${fontClass} border-b border-[#c2b280]/40`}>
             <td className="jio2:text-base w-1/3 wrap-anywhere text-[#7c5c2a]">
                 {msg.name}
             </td>
@@ -116,7 +114,7 @@ export default function Page() {
         e.preventDefault();
         if (!name || !message || blocked || censorTries >= 3) return;
         name.replaceAll(/\‌+/g, ""); // These are needed.
-        message.replaceAll (/\‌+/g, "");
+        message.replaceAll(/\‌+/g, "");
         if (name.length > 100 || message.length > 100) {
             setName("");
             setMessage("");
@@ -154,9 +152,11 @@ export default function Page() {
 
     return (
         <>
-            <main className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}>
+            <main
+                className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}
+            >
                 <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7] px-1 shadow-2xl">
-                    <h1 className="papyrus_font mb-4 text-center font-bold text-[#7c5c2a] drop-shadow text-2xl">
+                    <h1 className="papyrus_font mb-4 text-center text-2xl font-bold text-[#7c5c2a] drop-shadow">
                         Guestbook
                     </h1>
                     <table className="papyrus_font jio2:text-lg w-full table-fixed border-separate border-spacing-y-2 text-left text-xs">

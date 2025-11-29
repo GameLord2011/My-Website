@@ -5,10 +5,10 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "/",
     },
-    title: "@GameLord2011 | About",
-    description: "@GameLord2011 about page",
+    title: "The Hamster Dance",
+    description: "@GameLord2011 recreates Hamster Dance",
     generator: "NextJS",
-    applicationName: "@GameLord2011 about page",
+    applicationName: "@GameLord2011 recreates Hamster Dance",
     creator: "@GameLord2011",
     formatDetection: {
         email: false,
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
         { name: "@GameLord2011", url: "https://github.com/gamelord2011" },
     ],
     openGraph: {
-        title: "@GameLord2011 | About",
-        description: "@GameLord2011's site",
-        url: "https://gamelord2011.vercel.app/about",
+        title: "The Hamster Dance",
+        description: "@GameLord2011 recreates Hamster Dance",
+        url: "https://gamelord2011.vercel.app/legacy/hamsterdance",
         type: "website",
-        siteName: "@GameLord2011 about page",
+        siteName: "@GameLord2011 recreates Hamster Dance",
         images: [
             {
                 url: "/opengraph.png",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        site: "@GameLord2011 | About",
+        site: "The Hamster Dance",
         creator: "@GameLord2011",
         images: [
             {

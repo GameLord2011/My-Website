@@ -10,6 +10,7 @@ import { shown } from "components/opening";
 import { useAnimations } from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import { startTransition } from "react";
+import { usePathname } from "next/navigation";
 
 const cascadiaMono = Cascadia_Mono({
     subsets: ["latin"],
@@ -22,6 +23,7 @@ const cascadiaMono = Cascadia_Mono({
 export const dynamic = "force-dynamic";
 
 export default function Background() {
+    const pathname: string = usePathname();
     const { anims } = useAnimations();
 
     const [init, setInit] = useState<boolean>(false);
@@ -299,6 +301,7 @@ export default function Background() {
         return null;
     }
 
+    if (pathname.includes('other/legacy')) return null;
     return (
         <>
             {particles ? (

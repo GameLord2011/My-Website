@@ -21,7 +21,11 @@ const AnimationContext = createContext({
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export default function SettingsProvider({ children }: { children: ReactNode }) {
+export default function SettingsProvider({
+    children,
+}: {
+    children: ReactNode;
+}) {
     const [anims, setAnims] = useState(true);
     const [hasLoadedAnims, setHasLoadedAnims] = useState(false);
 
@@ -92,7 +96,7 @@ export default function SettingsProvider({ children }: { children: ReactNode }) 
         setTheme(newTheme);
         setIsOverridden(true);
     };
-    
+
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             <AnimationContext.Provider
@@ -101,7 +105,7 @@ export default function SettingsProvider({ children }: { children: ReactNode }) 
                 {children}
             </AnimationContext.Provider>
         </ThemeContext.Provider>
-    )
+    );
 }
 
 export const useTheme = () => {

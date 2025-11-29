@@ -92,6 +92,8 @@ export default function Navbar() {
 
     if (!isLoaded) return null;
 
+    if (pathname.includes('other/legacy')) return null;
+
     return (
         <>
             {!isMobile && (
@@ -206,14 +208,16 @@ export default function Navbar() {
                         {links
                             .filter((link) => link.href !== pathname)
                             .map((link) => (
-                            <Link
-                                href={(link.href || link.mobileHref) as string}
-                                className="hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px"
-                                key={link.name}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                                <Link
+                                    href={
+                                        (link.href || link.mobileHref) as string
+                                    }
+                                    className="hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px"
+                                    key={link.name}
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
                         <div className="flex justify-end">
                             <Link
                                 href="/settings"
