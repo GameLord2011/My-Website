@@ -92,7 +92,7 @@ export default function Navbar() {
 
     if (!isLoaded) return null;
 
-    if (pathname.includes('other/legacy')) return null;
+    if (pathname.includes("other/legacy")) return null;
 
     return (
         <>

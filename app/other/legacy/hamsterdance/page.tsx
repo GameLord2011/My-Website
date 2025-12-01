@@ -6,10 +6,7 @@ export default function Page() {
     return (
         <>
             <audio loop autoPlay>
-                <source
-                    src="/originaldedodedo.wav"
-                    type="audio/x-wav"
-                />
+                <source src="/originaldedodedo.wav" type="audio/x-wav" />
             </audio>
             <center>
                 <h1>THE HAMPSTER DANCE</h1>

@@ -1,5 +1,6 @@
 {
     "css.customData": ["./.vscode/css-data.json"],
     "iridium.npm.showSupportIcon": false,
-    "chat.useAgentsMdFile": true
+    "chat.useAgentsMdFile": true,
+    "tailwindCSS.experimental.configFile": "./styles/globals.scss"
 }
