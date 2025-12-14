@@ -65,8 +65,9 @@ export default function Background() {
             //const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç"; //old
             const chars =
                 '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
-            //const chars = "37Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
-            const trailLength = 7;
+            //const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
+            //const chars = "日"
+            const trailLength = 10;
             const openingSpeed = 3;
 
             if (!dropsRef.current || dropsRef.current.length !== numDrops) {
@@ -90,10 +91,10 @@ export default function Background() {
 
             const draw = () => {
                 ctx.globalCompositeOperation = "destination-out";
-                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
                 ctx.fillRect(0, 0, width, height);
 
-                ctx.globalCompositeOperation = "source-over"; // or "source-over" for normal draw
+                ctx.globalCompositeOperation = "source-over";
 
                 if (!dropsRef.current) return;
 
@@ -114,30 +115,108 @@ export default function Background() {
 
                         for (let j = 0; j < drop.trail.length; j++) {
                             const trailY = drop.y - fontSize * j;
-                            const alpha = 1 - j / drop.trail.length;
                             const char = drop.trail[j];
+
+                            const fade = 1 - j / drop.trail.length;
 
                             ctx.fillStyle =
                                 j === 0
-                                    ? "#ccffcc"
-                                    : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
-                            ctx.shadowBlur = j === 0 ? 8 : 0;
+                                    ? "rgb(204,255,204)"
+                                    : `rgba(0,255,65,${fade.toFixed(2)})`;
+
+                            ctx.shadowBlur = 8 * fade;
 
                             ctx.save();
                             ctx.translate(drop.x, trailY);
 
                             if (char === "3") {
-                                ctx.scale(-1, 1);
-                                ctx.rotate(Math.PI);
-                                ctx.fillText(char, 0, fontSize / 2);
-                            } else if (["Z", "7"].includes(char)) {
-                                ctx.fillText(char, 0, 0);
+                                if (j === drop.trail.length - 1) {
+                                    ctx.shadowBlur = 0;
+                                    const gradient = ctx.createLinearGradient(
+                                        0,
+                                        5,
+                                        -2.07,
+                                        -21.21,
+                                    );
+                                    gradient.addColorStop(0, "rgba(0,0,0,0)");
+                                    gradient.addColorStop(
+                                        1,
+                                        `rgba(0,255,65,${fade.toFixed(2)})`,
+                                    );
+
+                                    ctx.fillStyle = gradient;
+                                    ctx.scale(-1, 1);
+                                    ctx.rotate(Math.PI);
+                                    ctx.fillText(char, 0, fontSize / 2);
+                                } else {
+                                    ctx.scale(-1, 1);
+                                    ctx.rotate(Math.PI);
+                                    ctx.fillText(char, 0, fontSize / 2);
+                                }
+                            } else if (["Z", "7", "1"].includes(char)) {
+                                if (j === drop.trail.length - 1) {
+                                    ctx.shadowBlur = 0;
+                                    const gradient = ctx.createLinearGradient(
+                                        0,
+                                        5,
+                                        -2.07,
+                                        -21.21,
+                                    );
+                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                    gradient.addColorStop(
+                                        0,
+                                        `rgba(0,255,65,${fade.toFixed(2)})`,
+                                    );
+                                    ctx.fillStyle = gradient;
+
+                                    ctx.fillText(char, 0, 0);
+                                } else {
+                                    ctx.fillText(char, 0, 0);
+                                }
                             } else if (["日", "二"].includes(char)) {
-                                ctx.scale(0.5, 1); // shrink horizontally
-                                ctx.fillText(char, 0, 0);
+                                if (j === drop.trail.length - 1) {
+                                    ctx.shadowBlur = 0;
+                                    const gradient = ctx.createLinearGradient(
+                                        0,
+                                        5,
+                                        -2.07,
+                                        -21.21,
+                                    );
+                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                    gradient.addColorStop(
+                                        0,
+                                        `rgba(0,255,65,${fade.toFixed(2)})`,
+                                    );
+                                    ctx.fillStyle = gradient;
+
+                                    ctx.scale(-0.5, 1); // shrink horizontally
+                                    ctx.fillText(char, -fontSize, 0);
+                                } else {
+                                    ctx.scale(0.5, 1); // shrink horizontally
+                                    ctx.fillText(char, 0, 0);
+                                }
                             } else {
-                                ctx.scale(-1, 1);
-                                ctx.fillText(char, -fontSize / 2, 0);
+                                if (j === drop.trail.length - 1) {
+                                    ctx.shadowBlur = 0;
+                                    const gradient = ctx.createLinearGradient(
+                                        0,
+                                        5,
+                                        -2.07,
+                                        -21.21,
+                                    );
+                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                    gradient.addColorStop(
+                                        0,
+                                        `rgba(0,255,65,${fade.toFixed(2)})`,
+                                    );
+                                    ctx.fillStyle = gradient;
+
+                                    ctx.scale(-1, 1);
+                                    ctx.fillText(char, -fontSize / 2, 0);
+                                } else {
+                                    ctx.scale(-1, 1);
+                                    ctx.fillText(char, -fontSize / 2, 0);
+                                }
                             }
 
                             ctx.restore();
@@ -174,30 +253,108 @@ export default function Background() {
 
                     for (let j = 0; j < drop.trail.length; j++) {
                         const trailY = drop.y - fontSize * j;
-                        const alpha = 1 - j / drop.trail.length;
                         const char = drop.trail[j];
+
+                        const fade = 1 - j / drop.trail.length;
 
                         ctx.fillStyle =
                             j === 0
-                                ? "#ccffcc"
-                                : `rgba(0, 255, 65, ${alpha.toFixed(2)})`;
-                        ctx.shadowBlur = j === 0 ? 8 : 0;
+                                ? "rgb(204,255,204)"
+                                : `rgba(0,255,65,${fade.toFixed(2)})`;
+
+                        ctx.shadowBlur = 8 * fade;
 
                         ctx.save();
                         ctx.translate(drop.x, trailY);
 
                         if (char === "3") {
-                            ctx.scale(-1, 1);
-                            ctx.rotate(Math.PI);
-                            ctx.fillText(char, 0, fontSize / 2);
-                        } else if (["Z", "7"].includes(char)) {
-                            ctx.fillText(char, 0, 0);
+                            if (j === drop.trail.length - 1) {
+                                ctx.shadowBlur = 0;
+                                const gradient = ctx.createLinearGradient(
+                                    0,
+                                    5,
+                                    -2.07,
+                                    -21.21,
+                                );
+                                gradient.addColorStop(0, "rgba(0,0,0,0)");
+                                gradient.addColorStop(
+                                    1,
+                                    `rgba(0,255,65,${fade.toFixed(2)})`,
+                                );
+
+                                ctx.fillStyle = gradient;
+                                ctx.scale(-1, 1);
+                                ctx.rotate(Math.PI);
+                                ctx.fillText(char, 0, fontSize / 2);
+                            } else {
+                                ctx.scale(-1, 1);
+                                ctx.rotate(Math.PI);
+                                ctx.fillText(char, 0, fontSize / 2);
+                            }
+                        } else if (["Z", "7", "1"].includes(char)) {
+                            if (j === drop.trail.length - 1) {
+                                ctx.shadowBlur = 0;
+                                const gradient = ctx.createLinearGradient(
+                                    0,
+                                    5,
+                                    -2.07,
+                                    -21.21,
+                                );
+                                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                gradient.addColorStop(
+                                    0,
+                                    `rgba(0,255,65,${fade.toFixed(2)})`,
+                                );
+                                ctx.fillStyle = gradient;
+
+                                ctx.fillText(char, 0, 0);
+                            } else {
+                                ctx.fillText(char, 0, 0);
+                            }
                         } else if (["日", "二"].includes(char)) {
-                            ctx.scale(0.5, 1); // shrink horizontally
-                            ctx.fillText(char, 0, 0);
+                            if (j === drop.trail.length - 1) {
+                                ctx.shadowBlur = 0;
+                                const gradient = ctx.createLinearGradient(
+                                    0,
+                                    5,
+                                    -2.07,
+                                    -21.21,
+                                );
+                                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                gradient.addColorStop(
+                                    0,
+                                    `rgba(0,255,65,${fade.toFixed(2)})`,
+                                );
+                                ctx.fillStyle = gradient;
+
+                                ctx.scale(-0.5, 1); // shrink horizontally
+                                ctx.fillText(char, -fontSize, 0);
+                            } else {
+                                ctx.scale(0.5, 1); // shrink horizontally
+                                ctx.fillText(char, 0, 0);
+                            }
                         } else {
-                            ctx.scale(-1, 1);
-                            ctx.fillText(char, -fontSize / 2, 0);
+                            if (j === drop.trail.length - 1) {
+                                ctx.shadowBlur = 0;
+                                const gradient = ctx.createLinearGradient(
+                                    0,
+                                    5,
+                                    -2.07,
+                                    -21.21,
+                                );
+                                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                                gradient.addColorStop(
+                                    0,
+                                    `rgba(0,255,65,${fade.toFixed(2)})`,
+                                );
+                                ctx.fillStyle = gradient;
+
+                                ctx.scale(-1, 1);
+                                ctx.fillText(char, -fontSize / 2, 0);
+                            } else {
+                                ctx.scale(-1, 1);
+                                ctx.fillText(char, -fontSize / 2, 0);
+                            }
                         }
 
                         ctx.restore();

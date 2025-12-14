@@ -4,8 +4,9 @@ export function isMobileCheck(): boolean {
     if (typeof window === "undefined") return false;
     const parser = new UAParser();
     const result = parser.getResult();
-    const teslaRegex = /(Tesla|QtCarBrowser|QtCarWebEngine)/i;
-    const isTesla = teslaRegex.test(window.navigator.userAgent);
+    const isTesla = /(Tesla|QtCarBrowser|QtCarWebEngine)/i.test(
+        window.navigator.userAgent,
+    );
     return (
         isTesla ||
         result.device.type === "mobile" ||
