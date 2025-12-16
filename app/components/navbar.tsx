@@ -27,6 +27,10 @@ export const subLinks = [
         name: "Guestbook",
         href: "/other/guestbook",
     },
+    {
+        name: "Legacy",
+        href: "/other/legacy",
+    },
 ];
 
 const links = [
@@ -92,7 +96,7 @@ export default function Navbar() {
 
     if (!isLoaded) return null;
 
-    if (pathname.includes("other/legacy")) return null;
+    if (pathname.includes("other/legacy/")) return null;
 
     return (
         <>

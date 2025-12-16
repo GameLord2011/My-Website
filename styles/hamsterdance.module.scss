@@ -1,0 +1,30 @@
+.container {
+    background-color: #fff;
+    color: #000;
+
+    ::selection {
+        background: #0074ffcc;
+        color: #fff;
+    }
+
+    center {
+        font-family:
+            ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        font-weight: 700;
+    }
+
+    a {
+        color: #00f;
+        &:visited {
+            color: #55188b;
+        }
+        &:hover {
+            color: #00f;
+        }
+    }
+
+    img {
+        display: inline;
+        vertical-align: baseline;
+    }
+}

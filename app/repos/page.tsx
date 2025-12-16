@@ -200,7 +200,6 @@ export default function Page() {
                         </div>
                     </div>
                 ))}
-                <br />
             </div>
         </main>
     );

@@ -458,9 +458,12 @@ export default function Background() {
         return null;
     }
 
-    if (pathname.includes("other/legacy")) return null;
     return (
-        <>
+        <div
+            style={{
+                display: pathname.includes("other/legacy/") ? "none" : "block",
+            }}
+        >
             {particles ? (
                 <Particles id="tsparticles" url="/particles.json" />
             ) : (
@@ -469,6 +472,6 @@ export default function Background() {
                     className={`pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen ${cascadiaMono.className}`}
                 />
             )}
-        </>
+        </div>
     );
 }
