@@ -4,7 +4,6 @@ import Link from "next/link";
 import HamsterDanceAudio from "components/hamsterDanceAudio";
 
 export default function Page() {
-
     return (
         <div className={styles.container}>
             <HamsterDanceAudio />

@@ -158,7 +158,7 @@ export default function Win7Dialog({
     return createPortal(
         <dialog
             open
-            className="win7 z-10001 bg-[#0000] text-black"
+            className="win7 z-10001 bg-[#0000] text-black duration-[0]"
             id="win7Dialog"
             ref={win7DialogRef}
         >
@@ -180,10 +180,12 @@ export default function Win7Dialog({
                                         windowRef.current &&
                                         win7DialogRef.current
                                     ) {
-                                        win7DialogRef.current.style.width = `${document.documentElement.clientWidth}px`;
-                                        win7DialogRef.current.style.height = `${document.documentElement.clientHeight}px`;
-                                        windowRef.current.style.width = `${document.documentElement.clientWidth}px`;
-                                        windowRef.current.style.height = `${document.documentElement.clientHeight}px`;
+                                        win7DialogRef.current.style.width =
+                                            "100%";
+                                        win7DialogRef.current.style.height =
+                                            "100%";
+                                        windowRef.current.style.width = "100%";
+                                        windowRef.current.style.height = "100%";
                                         windowRef.current.style.margin = "0px";
                                         win7DialogRef.current.style.top = "0px";
                                         win7DialogRef.current.style.left =
@@ -192,7 +194,7 @@ export default function Win7Dialog({
                                             "0px";
                                     }
                                 }}
-                            ></button>
+                            />
                         )}
                         {maximized && (
                             <button
@@ -219,28 +221,17 @@ export default function Win7Dialog({
                                         windowRef.current.style.margin = "0px";
                                     }
                                 }}
-                            ></button>
+                            />
                         )}
-                        <button
-                            aria-label="Close"
-                            onClick={closeDialog}
-                        ></button>
+                        <button aria-label="Close" onClick={closeDialog} />
                     </div>
                 </div>
-                <div className="window-body has-space relative box-border flex h-full flex-col justify-between overflow-clip pb-[6px] select-none">
+                <div className="window-body has-space relative box-border flex h-full flex-col justify-between overflow-clip select-none">
                     <div className="text-left select-none">{children}</div>
-                    <section
-                        style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            justifyContent: "flex-end",
-                            alignContent: "baseline",
-                            position: "relative",
-                            gap: "6px",
-                            alignSelf: "flex-end",
-                        }}
-                    >
+                    <section className="relative flex flex-wrap content-baseline justify-end gap-[6px] self-end">
                         <button className="default" onClick={closeDialog}>
+                            {" "}
+                            {/* I would use a <form>, but that messes up the padding. */}
                             OK
                         </button>
                         <button onClick={closeDialog}>Cancel</button>

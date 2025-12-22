@@ -224,15 +224,15 @@ export default function Page() {
                 </div>
                 {dialogOpen && (
                     <Win7Dialog title="Censorship Warning" ref={dialogRef}>
-                        {!otherDialogMessage ? (
+                        {overFlowMessage ? (
+                            <p>
+                                You can't have a name or message &gt; 100
+                                characters.
+                            </p>
+                        ) : !otherDialogMessage ? (
                             <p>
                                 Please dont use bad words! You have{" "}
                                 {3 - censorTries} tries left.
-                            </p>
-                        ) : !overFlowMessage ? (
-                            <p>
-                                YOU HAVE ATTEMPTED TO USE CENSCORED WORDS TOO
-                                MANY TIMES, THE BAN HAMMER HATH BEEN SWUNG!
                             </p>
                         ) : (
                             <p>
