@@ -44,7 +44,7 @@ export default function PokemonPage({
         setUseMetric((prev) => !prev);
     };
 
-    // My brother suggested this Joke
+    // My brother suggested this Joke, Vivillon is #666 in the pokédex, so blood red seems appropriate.
     const isVivillon: boolean = pokemon?.name?.toLowerCase() === "vivillon";
 
     // Unwrap the params Promise

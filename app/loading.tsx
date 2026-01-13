@@ -1,4 +1,4 @@
 export default function Loading() {
-    // Or a custom loading skeleton component
+    // EXTREMELY SUPERFLOUS, THIS NEEDS TO BE SMALLER!
     return <p>Loading...</p>;
 }

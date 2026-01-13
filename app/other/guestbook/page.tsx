@@ -96,7 +96,12 @@ export default function Page() {
     const dialogRef = useRef<Win7DialogHandle>(null);
 
     useEffect(() => {
-        fetch("/api/other/guestbook")
+        fetch("/api/other/guestbook", {
+            method: 'GET',
+            headers: {
+                "isFromGmlrd": "yep"
+            }
+        })
             .then((res) => res.json())
             .then(setMessages);
     }, []);
@@ -125,7 +130,7 @@ export default function Page() {
         }
         const res = await fetch("/api/other/guestbook", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "isFromGmlrd": "yep" },
             body: JSON.stringify({ name, message }),
         });
         if (res.status === 422) {

@@ -3,9 +3,6 @@ import { Viewport } from "next";
 import Background from "components/backGround";
 import Navbar from "components/navbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Isiecheck from "components/isiecheck";
-//import { ThemeProvider } from "components/ThemeContext";
-//import { AnimationProvider } from "components/animationContext";
 import SettingsProvider from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
@@ -32,7 +29,10 @@ export const metadata: Metadata = {
         telephone: false,
     },
     authors: [
-        { name: "@GameLord2011", url: "https://github.com/gamelord2011" },
+        {
+            name: "@GameLord2011",
+            url: "https://github.com/gamelord2011"
+        },
     ],
     openGraph: {
         images: [
@@ -80,28 +80,15 @@ export default function RootLayout({
         <html suppressHydrationWarning lang="en">
             <head>
                 <script
+                    // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
                     dangerouslySetInnerHTML={{
-                        // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
-                        __html: `
-                            (function() {
-                                try {
-                                    const storedTheme = localStorage.getItem("theme");
-                                    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                                    const theme = storedTheme || (prefersDark ? "dark" : "light");
-                                    document.documentElement.classList.add(theme);
-                                } catch (e) {
-                                    document.documentElement.classList.add("dark");
-                                    console.error(\`[THEMECODE]: error: \$\{e\}\`);
-                                }
-                            })();
-                        `,
+                        __html: `(function(){try{const a=localStorage.getItem("theme"),b=window.matchMedia("(prefers-color-scheme: dark)").matches,c=a||(b?"dark":"light");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");console.error(\`[GAMELORD'S THEMECODE]: error: \$\{e\}\`);}})();`, // prettier-ignore
                     }}
                 />
             </head>
             <body
                 className={`${cascadiaMono.className} antialiased transition-all duration-500 ease-in-out`}
             >
-                <Isiecheck />
                 <div className="content">
                     <SpeedInsights />
                     {/*TODO: Remove noscript section for bingbots */}
@@ -109,130 +96,7 @@ export default function RootLayout({
                         <style>{`.yescript {display: none;}`}</style>
                     </noscript>
                     <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
-                        Please enable JavaScript to run this site, if you do not
-                        know how to enable JavaScript,
-                        <br />
-                        then read the section that corresponds to your browser:
-                        <ul>
-                            <li>
-                                <b>Edge</b>:
-                                <br />
-                                <ol>
-                                    <li>
-                                        Click the three dots in the top-right
-                                        corner.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Go to <b>Settings</b>.<br />
-                                    </li>
-                                    <li>
-                                        Select{" "}
-                                        <b>Cookies and site permissions</b> from
-                                        the left pane.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Click on <b>JavaScript</b>.<br />
-                                    </li>
-                                    <li>
-                                        Toggle the switch to <b>On</b>.<br />
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <b>Chrome</b>:
-                                <br />
-                                <ol>
-                                    <li>
-                                        Click the three dots in the top-right
-                                        corner.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Go to <b>Settings</b>.<br />
-                                    </li>
-                                    <li>
-                                        Scroll down and click on{" "}
-                                        <b>Privacy and security</b>.<br />
-                                    </li>
-                                    <li>
-                                        Click on <b>Site settings</b>.<br />
-                                    </li>
-                                    <li>
-                                        Under <b>Content</b>, click on{" "}
-                                        <b>JavaScript</b>.<br />
-                                    </li>
-                                    <li>
-                                        Toggle the switch to <b>Unblock</b>.
-                                        <br />
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <b>Safari</b>:
-                                <br />
-                                <ol>
-                                    <li>
-                                        Go to <b>Preferences</b> &#40;or press{" "}
-                                        <code>Cmd + ,</code>
-                                        &#41;.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Go to the <b>Security</b> tab.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Check the box next to{" "}
-                                        <b>Enable JavaScript</b>.<br />
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <b>Firefox</b>:
-                                <br />
-                                <ol>
-                                    <li>
-                                        Type <code>about:config</code> in the
-                                        address bar.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Find <code>javascript.enabled</code>.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        Double-click the preference to change
-                                        its value to <code>True</code>.
-                                    </li>
-                                </ol>
-                            </li>
-                            <li>
-                                <b>Opera</b>:
-                                <br />
-                                <ol>
-                                    <li>
-                                        Select <b>Opera</b> from the menu bar,
-                                        then select Preferences.
-                                        <br />
-                                    </li>
-                                    <li>
-                                        In the left menu pane, select{" "}
-                                        <b>Advanced</b>.<br />
-                                    </li>
-                                    <li>
-                                        Select <b>Site Settings</b>.<br />
-                                    </li>
-                                    <li>
-                                        Select <b>JavaScript</b>.<br />
-                                    </li>
-                                    <li>
-                                        Switch the Toggle to <b>On</b>.<br />
-                                    </li>
-                                </ol>
-                            </li>
-                        </ul>
+                        Please enable JavaScript to run this site.
                     </noscript>
                     <div className="yescript">
                         <SettingsProvider>

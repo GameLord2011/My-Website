@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import Typed from "typed.js";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -19,44 +18,38 @@ const Age = dynamic(() => import("age-ts"), {
     ssr: false,
 });
 
-const HPageIs = dynamic(() => import("components/HPageIs"), {
-    loading: () => <span>Loading...</span>,
-    ssr: false,
-});
-
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
-
     const isMobile: boolean = isMobileCheck();
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [isTilted, setIsTilted] = useState<boolean>(false);
-
-    useEffect((): void => {
-        setIsLoaded(true);
-    }, []);
-
-    const el = useRef<HTMLSpanElement>(null);
+    const chars: string =
+        'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋';
     const content = useRef<HTMLElement>(null);
     const liContent = useRef<HTMLLIElement[]>([]);
-    const flag = useRef<HTMLImageElement>(null);
-
-    useEffect((): void => {
-        liContent.current = [];
-    }, []);
-
+    const timeline: gsap.core.Timeline = gsap.timeline();
     const setLiRef = (el: HTMLLIElement | null): void => {
         if (el && !liContent.current.includes(el)) {
             liContent.current.push(el);
         }
     };
+    const pick: () => -10 | 10 = () => {
+        const rand: number = Math.random();
+
+        if (rand > 0.5) {
+            return -10;
+        }
+
+        return 10;
+    };
+
+    useEffect((): void => {
+        setIsLoaded(true);
+    }, []);
 
     gsap.registerPlugin(useGSAP);
     gsap.registerPlugin(ScrambleTextPlugin);
     gsap.registerPlugin(SplitText);
-    const timeline: gsap.core.Timeline = gsap.timeline();
-    const duration: () => number = () => gsap.utils.random(1.5, 4, 0.1);
-
-    const namedur: number = duration();
 
     useGSAP((): void => {
         if (hasLoadedAnims && anims) {
@@ -65,10 +58,10 @@ export default function Home() {
             timeline.to(
                 content.current,
                 {
-                    duration: namedur,
+                    duration: gsap.utils.random(1.5, 4, 0.1),
                     scrambleText: {
                         text: content?.current?.innerText as string,
-                        chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+                        chars: chars,
                         revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
                         tweenLength: true,
                         speed: (() => gsap.utils.random(0.5, 0.9))(),
@@ -79,10 +72,10 @@ export default function Home() {
 
             liContent.current.forEach((el) => {
                 gsap.to(el, {
-                    duration: duration(),
+                    duration: gsap.utils.random(1.5, 4, 0.1),
                     scrambleText: {
                         text: el?.innerText as string,
-                        chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+                        chars: chars,
                         revealDelay: (() => gsap.utils.random(0.1, 1))(),
                         tweenLength: true,
                         speed: (() => gsap.utils.random(0.5, 1))(),
@@ -94,50 +87,9 @@ export default function Home() {
         }
     }, [isLoaded, hasLoadedAnims, anims]);
 
-    useEffect(() => {
-        if (!isLoaded) return;
-
-        if (!el.current) return;
-
-        if (hasLoadedAnims && anims) {
-            const typed: Typed = new Typed(el.current, {
-                strings: [
-                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> programmer',
-                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> fullstack web dev',
-                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> gamer',
-                    '<span class="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">amateur</span> C / C++ / C# developer',
-                    "developer",
-                ],
-                typeSpeed: 90,
-                backDelay: 1000,
-                backSpeed: 90,
-                showCursor: false,
-                smartBackspace: true,
-            });
-
-            return () => {
-                typed.destroy();
-            };
-        } else {
-            el.current.innerText = "developer";
-        }
-    }, [isLoaded, hasLoadedAnims]);
-
     console.log(
         " ██████╗  █████╗ ███╗   ███╗███████╗██╗      ██████╗ ██████╗ ██████╗ ██████╗  ██████╗  ██╗ ██╗\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗╚════██╗██╔═████╗███║███║\n██║  ███╗███████║██╔████╔██║█████╗  ██║     ██║   ██║██████╔╝██║  ██║ █████╔╝██║██╔██║╚██║╚██║\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  ██║     ██║   ██║██╔══██╗██║  ██║██╔═══╝ ████╔╝██║ ██║ ██║\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗╚██████╔╝██║  ██║██████╔╝███████╗╚██████╔╝ ██║ ██║\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝  ╚═╝ ╚═╝ \n",
     );
-
-    if (!isLoaded) return null;
-
-    const pick: () => -10 | 10 = () => {
-        const rand: number = Math.random();
-
-        if (rand > 0.5) {
-            return -10;
-        }
-
-        return 10;
-    };
 
     const rotatedCheck: () => 0 | -10 | 10 = () => {
         const number: -10 | 10 = pick();
@@ -200,21 +152,14 @@ export default function Home() {
                 </div>
                 <div>
                     <p>
-                        I am a <Age /> year old{" "}
-                        <span ref={el}>
-                            <span className="underline decoration-red-700 decoration-wavy decoration-1 underline-offset-1">
-                                amateur
-                            </span>
-                        </span>{" "}
-                        in the{" "}
+                        I am a <Age /> year old developer in the{" "}
                         <Image
-                            ref={flag}
                             width={0}
                             src={"/american_flag.svg"}
                             height={0}
                             className="inline-block h-[1rem] w-auto max-w-none border-none bg-transparent align-text-top transition-all duration-500 ease-in-out"
-                            alt="United States flag"
-                            aria-label="United States flag"
+                            alt="United States"
+                            aria-label="United States"
                         />
                         .
                     </p>
@@ -232,10 +177,10 @@ export default function Home() {
                         <li ref={setLiRef}>Python</li>
                         <li ref={setLiRef}>Typescript</li>
                         <li ref={setLiRef}>Json</li>
+                        <li ref={setLiRef}>Java</li>
                     </ul>
                 </div>
             </main>
-            <HPageIs />
         </>
     );
 }

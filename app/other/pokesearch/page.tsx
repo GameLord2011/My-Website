@@ -42,7 +42,6 @@ export default function Page() {
     const [focused, setFocused] = useState<boolean>(true);
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
-    //const debounceTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const searchPokemon = useCallback(
         async (query: PokemonName) => {

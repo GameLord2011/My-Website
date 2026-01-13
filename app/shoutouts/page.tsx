@@ -137,7 +137,7 @@ export default function Shoutouts() {
                                 Linux
                             </GitHubHoverLink>
                         </i>
-                        !
+                        , which this site is hosted on!
                     </p>
                     <br />
                     <p>

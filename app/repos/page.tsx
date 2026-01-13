@@ -104,9 +104,11 @@ export default function Page() {
                         archived: repo.archived,
                     }),
                 );
+
                 startTransition(() => {
                     setRepos(formattedRepos);
                 });
+
                 reposFetched.current = true;
 
                 if (emojisResponse && emojisResponse.ok) {
@@ -116,6 +118,7 @@ export default function Page() {
                     });
                     emojisFetched.current = true;
                 }
+
             } catch (error) {
                 console.error("Failed to fetch data: ", error);
             }
@@ -146,10 +149,12 @@ export default function Page() {
                             className="box-content inline-flex aspect-square max-w-none border-none bg-transparent align-text-top"
                             loading="eager"
                             aria-label={part.slice(1, -1) + " emoji"}
-                        />{" "}
+                        />
+                        {" "}
                     </>
                 );
             }
+
             return (
                 <span ref={setDescRef} key={index}>
                     {part}
