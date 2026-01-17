@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     authors: [
         {
             name: "@GameLord2011",
-            url: "https://github.com/gamelord2011"
+            url: "https://github.com/gamelord2011",
         },
     ],
     openGraph: {

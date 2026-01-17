@@ -97,10 +97,10 @@ export default function Page() {
 
     useEffect(() => {
         fetch("/api/other/guestbook", {
-            method: 'GET',
+            method: "GET",
             headers: {
-                "isFromGmlrd": "yep"
-            }
+                isFromGmlrd: "yep",
+            },
         })
             .then((res) => res.json())
             .then(setMessages);
@@ -130,7 +130,7 @@ export default function Page() {
         }
         const res = await fetch("/api/other/guestbook", {
             method: "POST",
-            headers: { "Content-Type": "application/json", "isFromGmlrd": "yep" },
+            headers: { "Content-Type": "application/json", isFromGmlrd: "yep" },
             body: JSON.stringify({ name, message }),
         });
         if (res.status === 422) {

@@ -34,7 +34,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-    if(!req.headers.has("isFromGmlrd")) return;
+    if (!req.headers.has("isFromGmlrd")) return;
 
     try {
         const { name, message } = await req.json();
