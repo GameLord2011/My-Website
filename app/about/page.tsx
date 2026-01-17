@@ -27,7 +27,7 @@ export default function About() {
                     I am a big fan of{" "}
                     <Link href="https://en.wikipedia.org/wiki/Free_and_open-source_software">F.O.S.S.</Link> and{" "}
                     <Link href="https://www.github.com/">GitHub</Link>! I use
-                    VSCode and Wdit for programming. 
+                    VSCode and Edit for programming. 
                 </p>
             </div>
         </main>
