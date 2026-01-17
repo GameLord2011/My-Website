@@ -18,7 +18,6 @@
 
     --breakpoint-jio2: 241px;
     --breakpoint-bz30: 360px;
-    --breakpoint-minsvgw: 1100px;
 
     --font-ui:
         -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
@@ -165,11 +164,10 @@ body {
     max-width: 100%;
 }
 
-ul li::marker {
-    content: "\2623  ";
+li::marker {
     color: var(--foreground);
 }
 
-ol li::marker {
-    color: var(--foreground);
+ul li::marker {
+    content: "\2623  ";
 }

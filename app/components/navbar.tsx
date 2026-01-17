@@ -216,12 +216,13 @@ export default function Navbar() {
                                     href={
                                         (link.href || link.mobileHref) as string
                                     }
-                                    className="hover:animate-nvbr-lnk-hvr block px-[5px] py-[12px] transition-all duration-500 ease-in-out @max-[241px]:px-px @max-[241px]:py-px"
+                                    className="hover:animate-nvbr-lnk-hvr block jio2:px-[5px] jio2:py-[12px] transition-all duration-500 ease-in-out px-[0.2em] py-1"
                                     key={link.name}
                                 >
                                     {link.name}
                                 </Link>
-                            ))}
+                            ))
+                        }
                         <div className="flex justify-end">
                             <Link
                                 href="/settings"
