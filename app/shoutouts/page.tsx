@@ -141,8 +141,8 @@ export default function Shoutouts() {
                     </p>
                     <br />
                     <p>
-                        <GitHubHoverLink href="https://github.com/willy-jl">
-                            @Willy-JL
+                        <GitHubHoverLink href="https://github.com/willyjl">
+                            @WillyJL
                         </GitHubHoverLink>
                         ,{" "}
                         <GitHubHoverLink href="https://github.com/sil333033">

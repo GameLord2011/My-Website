@@ -6,7 +6,7 @@ import { useState } from "react";
 import Typed from "typed.js";
 import { useAnimations } from "components/settingsProvider";
 
-const shown = Math.floor(Math.random() * 10000) === 0;
+const shown = (Math.random() * 10000) <= 1;
 // const shown = true;
 
 export default function Opening() {
@@ -104,9 +104,7 @@ export default function Opening() {
             ],
             typeSpeed: 100,
             showCursor: false,
-            //backSpeed: 100,
             startDelay: 700,
-            //smartBackspace: true,
             onComplete: () => {
                 setTimeout(() => {
                     location.reload();

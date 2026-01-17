@@ -228,10 +228,9 @@ export default function Win7Dialog({
                 </div>
                 <div className="window-body has-space relative box-border flex h-full flex-col justify-between overflow-clip select-none">
                     <div className="text-left select-none">{children}</div>
+                    {/* I would use a <form>, but that messes up the padding. */}
                     <section className="relative flex flex-wrap content-baseline justify-end gap-[6px] self-end">
                         <button className="default" onClick={closeDialog}>
-                            {" "}
-                            {/* I would use a <form>, but that messes up the padding. */}
                             OK
                         </button>
                         <button onClick={closeDialog}>Cancel</button>
