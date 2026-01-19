@@ -11,7 +11,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import "styles/github-markdown.css";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github-dark.min.css";
 
 export default function Page() {
     const [html, setHtml] = useState<string>("");
