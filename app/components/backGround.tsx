@@ -9,7 +9,6 @@ import { loadSlim } from "@tsparticles/slim";
 import { shown } from "components/opening";
 import { useAnimations } from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
-import { startTransition } from "react";
 import { usePathname } from "next/navigation";
 
 const cascadiaMono = Cascadia_Mono({
@@ -26,7 +25,7 @@ export default function Background() {
     const pathname: string = usePathname();
     const { anims } = useAnimations();
 
-    const [init, setInit] = useState<boolean>(false);
+    const init = useRef<boolean>(false);
     const [particles] = useState(() => Math.random() < 0.5);
     const [uniformPhase, setUniformPhase] = useState(true);
 
@@ -46,9 +45,7 @@ export default function Background() {
         if (particles === null) return;
 
         if (!particles && !shown) {
-            startTransition(() => {
-                setInit(true);
-            });
+            init.current = true;
 
             const canvas = canvasRef.current;
             if (!canvas) return;
@@ -62,10 +59,9 @@ export default function Background() {
 
             const fontSize = 20;
             const numDrops = Math.floor(width / fontSize + 1);
-            //const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ日012345789Z¦|ｸç"; //old
             const chars =
                 '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
-            //const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
+            // const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
             //const chars = "日"
             const trailLength = 10;
             const openingSpeed = 3;
@@ -449,12 +445,13 @@ export default function Background() {
             initParticlesEngine(async (engine) => {
                 await loadSlim(engine);
             }).then(() => {
-                setInit(true);
+                init.current = true;
+                console.log('test');
             });
         }
-    }, [init, canvasRef, particles, uniformPhase, anims]);
+    }, [init.current, canvasRef, particles, uniformPhase, anims]);
 
-    if (!init || !anims) {
+    if (!init.current || !anims) {
         return null;
     }
 

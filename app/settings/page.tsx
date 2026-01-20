@@ -18,7 +18,7 @@ export default function Page() {
                     one character width.
                 */}
                 <p className="py-[1ch] pr-[1ch]">Theme:</p>
-                    <div className="flex justify-end pr-[8px]">
+                <div className="flex justify-end pr-[8px]">
                     <button
                         type="button"
                         onClick={toggleTheme}

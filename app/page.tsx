@@ -21,7 +21,6 @@ const Age = dynamic(() => import("age-ts"), {
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
     const isMobile: boolean = isMobileCheck();
-    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [isTilted, setIsTilted] = useState<boolean>(false);
     const chars: string =
         'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋';
@@ -42,10 +41,6 @@ export default function Home() {
 
         return 10;
     };
-
-    useEffect((): void => {
-        setIsLoaded(true);
-    }, []);
 
     gsap.registerPlugin(useGSAP);
     gsap.registerPlugin(ScrambleTextPlugin);
@@ -85,7 +80,7 @@ export default function Home() {
         } else {
             return;
         }
-    }, [isLoaded, hasLoadedAnims, anims]);
+    }, [hasLoadedAnims, anims]);
 
     console.log(
         " ██████╗  █████╗ ███╗   ███╗███████╗██╗      ██████╗ ██████╗ ██████╗ ██████╗  ██████╗  ██╗ ██╗\n██╔════╝ ██╔══██╗████╗ ████║██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗╚════██╗██╔═████╗███║███║\n██║  ███╗███████║██╔████╔██║█████╗  ██║     ██║   ██║██████╔╝██║  ██║ █████╔╝██║██╔██║╚██║╚██║\n██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  ██║     ██║   ██║██╔══██╗██║  ██║██╔═══╝ ████╔╝██║ ██║ ██║\n╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗╚██████╔╝██║  ██║██████╔╝███████╗╚██████╔╝ ██║ ██║\n ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝  ╚═╝ ╚═╝ \n",

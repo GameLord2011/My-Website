@@ -12,13 +12,11 @@ export default function About() {
                 <p className="jio2:w-1/2 w-full place-self-center">
                     I am a <Age /> year old developer. I mainly use windows. I
                     listen to music on spotify and I play a lot of{" "}
-                    <Link href="https://www.minecraft.net/">Minecraft</Link>{" "}
-                    (
+                    <Link href="https://www.minecraft.net/">Minecraft</Link> (
                     <Link href="https://namemc.com/profile/GameLord2011.1">
                         my profile
                     </Link>
-                    ) and{" "}
-                    <Link href="https://fortnite.com/">Fortnite</Link> (
+                    ) and <Link href="https://fortnite.com/">Fortnite</Link> (
                     <Link href="https://fortnitetracker.com/profile/all/TRGameLord2011">
                         my Fortnite profile
                     </Link>

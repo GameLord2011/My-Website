@@ -82,29 +82,27 @@ export default function RootLayout({
                 <script
                     // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
                     dangerouslySetInnerHTML={{
-                        __html: `(function(){try{const a=localStorage.getItem("theme"),b=window.matchMedia("(prefers-color-scheme: dark)").matches,c=a||(b?"dark":"light");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");console.error(\`[GAMELORD'S THEMECODE]: error: \$\{e\}\`);}})();`, // prettier-ignore
+                        // prettier-ignore-next-line
+                        __html: `(function(){try{const a=localStorage.getItem("theme"),b=window.matchMedia("(prefers-color-scheme: dark)").matches,c=a||(b?"dark":"light");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");console.error(\`[GAMELORD'S THEMECODE]: error: \$\{e\}\`);}})();`,
                     }}
                 />
             </head>
             <body
                 className={`${cascadiaMono.className} antialiased transition-all duration-500 ease-in-out`}
             >
-                <div className="content">
+                <noscript>
+                    <style>{`.yescript {display: none;}`}</style>
+                </noscript>
+                <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
+                    Please enable JavaScript to run this site.
+                </noscript>
+                <div className="yescript">
                     <SpeedInsights />
-                    {/*TODO: Remove noscript section for bingbots */}
-                    <noscript>
-                        <style>{`.yescript {display: none;}`}</style>
-                    </noscript>
-                    <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
-                        Please enable JavaScript to run this site.
-                    </noscript>
-                    <div className="yescript">
-                        <SettingsProvider>
-                            <Navbar />
-                            <Background />
-                            {children}
-                        </SettingsProvider>
-                    </div>
+                    <SettingsProvider>
+                        <Navbar />
+                        <Background />
+                        {children}
+                    </SettingsProvider>
                 </div>
             </body>
         </html>
