@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRef } from "react";
-import { useState } from "react";
 import Particles from "@tsparticles/react";
 import { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -20,14 +19,100 @@ const cascadiaMono = Cascadia_Mono({
 });
 
 export const dynamic = "force-dynamic";
+const fontSize = 20;
+
+function drawChars(
+    ctx: CanvasRenderingContext2D,
+    drop: {
+        x: number;
+        y: number;
+        speed: number;
+        trail: string[];
+        frameCount: number;
+        changeRate: number;
+    },
+) {
+    for (let j = 0; j < drop.trail.length; j++) {
+        const trailY = drop.y - fontSize * j;
+        const char = drop.trail[j];
+
+        const fade = 1 - j / drop.trail.length;
+
+        ctx.fillStyle =
+            j === 0 ? "rgb(204,255,204)" : `rgba(0,255,65,${fade.toFixed(2)})`;
+
+        ctx.shadowBlur = 8 * fade;
+
+        ctx.save();
+        ctx.translate(drop.x, trailY);
+        if (char === "3") {
+            if (j === drop.trail.length - 1) {
+                ctx.shadowBlur = 0;
+                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+                gradient.addColorStop(0, "rgba(0,0,0,0)");
+                gradient.addColorStop(1, `rgba(0,255,65,${fade.toFixed(2)})`);
+
+                ctx.fillStyle = gradient;
+                ctx.scale(-1, 1);
+                ctx.rotate(Math.PI);
+                ctx.fillText(char, 0, fontSize / 2);
+            } else {
+                ctx.scale(-1, 1);
+                ctx.rotate(Math.PI);
+                ctx.fillText(char, 0, fontSize / 2);
+            }
+        } else if (["Z", "7", "1"].includes(char)) {
+            if (j === drop.trail.length - 1) {
+                ctx.shadowBlur = 0;
+                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
+                ctx.fillStyle = gradient;
+
+                ctx.fillText(char, 0, 0);
+            } else {
+                ctx.fillText(char, 0, 0);
+            }
+        } else if (["日", "二"].includes(char)) {
+            if (j === drop.trail.length - 1) {
+                ctx.shadowBlur = 0;
+                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
+                ctx.fillStyle = gradient;
+
+                ctx.scale(-0.5, 1); // shrink horizontally
+                ctx.fillText(char, -fontSize, 0);
+            } else {
+                ctx.scale(0.5, 1); // shrink horizontally
+                ctx.fillText(char, 0, 0);
+            }
+        } else {
+            if (j === drop.trail.length - 1) {
+                ctx.shadowBlur = 0;
+                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+                gradient.addColorStop(1, "rgba(0,0,0,0)");
+                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
+                ctx.fillStyle = gradient;
+
+                ctx.scale(-1, 1);
+                ctx.fillText(char, -fontSize / 2, 0);
+            } else {
+                ctx.scale(-1, 1);
+                ctx.fillText(char, -fontSize / 2, 0);
+            }
+        }
+        ctx.restore();
+    }
+}
 
 export default function Background() {
     const pathname: string = usePathname();
     const { anims } = useAnimations();
 
     const init = useRef<boolean>(false);
-    const [particles] = useState(() => Math.random() < 0.5);
-    const [uniformPhase, setUniformPhase] = useState(true);
+    const particles = useRef(Math.random() < 0.5);
+    let uniformPhase = true;
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const dropsRef = useRef<
@@ -42,9 +127,9 @@ export default function Background() {
     >(null);
 
     useEffect(() => {
-        if (particles === null) return;
+        if (particles.current === null) return;
 
-        if (!particles && !shown) {
+        if (!particles.current && !shown) {
             init.current = true;
 
             const canvas = canvasRef.current;
@@ -57,12 +142,11 @@ export default function Background() {
             canvas.width = width;
             canvas.height = height;
 
-            const fontSize = 20;
             const numDrops = Math.floor(width / fontSize + 1);
             const chars =
                 '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
             // const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
-            //const chars = "日"
+            // const chars = "日" // *wide putin theme plays*
             const trailLength = 10;
             const openingSpeed = 3;
 
@@ -109,114 +193,7 @@ export default function Background() {
                             drop.frameCount = 0;
                         }
 
-                        for (let j = 0; j < drop.trail.length; j++) {
-                            const trailY = drop.y - fontSize * j;
-                            const char = drop.trail[j];
-
-                            const fade = 1 - j / drop.trail.length;
-
-                            ctx.fillStyle =
-                                j === 0
-                                    ? "rgb(204,255,204)"
-                                    : `rgba(0,255,65,${fade.toFixed(2)})`;
-
-                            ctx.shadowBlur = 8 * fade;
-
-                            ctx.save();
-                            ctx.translate(drop.x, trailY);
-
-                            if (char === "3") {
-                                if (j === drop.trail.length - 1) {
-                                    ctx.shadowBlur = 0;
-                                    const gradient = ctx.createLinearGradient(
-                                        0,
-                                        5,
-                                        -2.07,
-                                        -21.21,
-                                    );
-                                    gradient.addColorStop(0, "rgba(0,0,0,0)");
-                                    gradient.addColorStop(
-                                        1,
-                                        `rgba(0,255,65,${fade.toFixed(2)})`,
-                                    );
-
-                                    ctx.fillStyle = gradient;
-                                    ctx.scale(-1, 1);
-                                    ctx.rotate(Math.PI);
-                                    ctx.fillText(char, 0, fontSize / 2);
-                                } else {
-                                    ctx.scale(-1, 1);
-                                    ctx.rotate(Math.PI);
-                                    ctx.fillText(char, 0, fontSize / 2);
-                                }
-                            } else if (["Z", "7", "1"].includes(char)) {
-                                if (j === drop.trail.length - 1) {
-                                    ctx.shadowBlur = 0;
-                                    const gradient = ctx.createLinearGradient(
-                                        0,
-                                        5,
-                                        -2.07,
-                                        -21.21,
-                                    );
-                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                    gradient.addColorStop(
-                                        0,
-                                        `rgba(0,255,65,${fade.toFixed(2)})`,
-                                    );
-                                    ctx.fillStyle = gradient;
-
-                                    ctx.fillText(char, 0, 0);
-                                } else {
-                                    ctx.fillText(char, 0, 0);
-                                }
-                            } else if (["日", "二"].includes(char)) {
-                                if (j === drop.trail.length - 1) {
-                                    ctx.shadowBlur = 0;
-                                    const gradient = ctx.createLinearGradient(
-                                        0,
-                                        5,
-                                        -2.07,
-                                        -21.21,
-                                    );
-                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                    gradient.addColorStop(
-                                        0,
-                                        `rgba(0,255,65,${fade.toFixed(2)})`,
-                                    );
-                                    ctx.fillStyle = gradient;
-
-                                    ctx.scale(-0.5, 1); // shrink horizontally
-                                    ctx.fillText(char, -fontSize, 0);
-                                } else {
-                                    ctx.scale(0.5, 1); // shrink horizontally
-                                    ctx.fillText(char, 0, 0);
-                                }
-                            } else {
-                                if (j === drop.trail.length - 1) {
-                                    ctx.shadowBlur = 0;
-                                    const gradient = ctx.createLinearGradient(
-                                        0,
-                                        5,
-                                        -2.07,
-                                        -21.21,
-                                    );
-                                    gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                    gradient.addColorStop(
-                                        0,
-                                        `rgba(0,255,65,${fade.toFixed(2)})`,
-                                    );
-                                    ctx.fillStyle = gradient;
-
-                                    ctx.scale(-1, 1);
-                                    ctx.fillText(char, -fontSize / 2, 0);
-                                } else {
-                                    ctx.scale(-1, 1);
-                                    ctx.fillText(char, -fontSize / 2, 0);
-                                }
-                            }
-
-                            ctx.restore();
-                        }
+                        drawChars(ctx, drop);
 
                         drop.y += drop.speed;
 
@@ -247,114 +224,7 @@ export default function Background() {
                         }
                     }
 
-                    for (let j = 0; j < drop.trail.length; j++) {
-                        const trailY = drop.y - fontSize * j;
-                        const char = drop.trail[j];
-
-                        const fade = 1 - j / drop.trail.length;
-
-                        ctx.fillStyle =
-                            j === 0
-                                ? "rgb(204,255,204)"
-                                : `rgba(0,255,65,${fade.toFixed(2)})`;
-
-                        ctx.shadowBlur = 8 * fade;
-
-                        ctx.save();
-                        ctx.translate(drop.x, trailY);
-
-                        if (char === "3") {
-                            if (j === drop.trail.length - 1) {
-                                ctx.shadowBlur = 0;
-                                const gradient = ctx.createLinearGradient(
-                                    0,
-                                    5,
-                                    -2.07,
-                                    -21.21,
-                                );
-                                gradient.addColorStop(0, "rgba(0,0,0,0)");
-                                gradient.addColorStop(
-                                    1,
-                                    `rgba(0,255,65,${fade.toFixed(2)})`,
-                                );
-
-                                ctx.fillStyle = gradient;
-                                ctx.scale(-1, 1);
-                                ctx.rotate(Math.PI);
-                                ctx.fillText(char, 0, fontSize / 2);
-                            } else {
-                                ctx.scale(-1, 1);
-                                ctx.rotate(Math.PI);
-                                ctx.fillText(char, 0, fontSize / 2);
-                            }
-                        } else if (["Z", "7", "1"].includes(char)) {
-                            if (j === drop.trail.length - 1) {
-                                ctx.shadowBlur = 0;
-                                const gradient = ctx.createLinearGradient(
-                                    0,
-                                    5,
-                                    -2.07,
-                                    -21.21,
-                                );
-                                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                gradient.addColorStop(
-                                    0,
-                                    `rgba(0,255,65,${fade.toFixed(2)})`,
-                                );
-                                ctx.fillStyle = gradient;
-
-                                ctx.fillText(char, 0, 0);
-                            } else {
-                                ctx.fillText(char, 0, 0);
-                            }
-                        } else if (["日", "二"].includes(char)) {
-                            if (j === drop.trail.length - 1) {
-                                ctx.shadowBlur = 0;
-                                const gradient = ctx.createLinearGradient(
-                                    0,
-                                    5,
-                                    -2.07,
-                                    -21.21,
-                                );
-                                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                gradient.addColorStop(
-                                    0,
-                                    `rgba(0,255,65,${fade.toFixed(2)})`,
-                                );
-                                ctx.fillStyle = gradient;
-
-                                ctx.scale(-0.5, 1); // shrink horizontally
-                                ctx.fillText(char, -fontSize, 0);
-                            } else {
-                                ctx.scale(0.5, 1); // shrink horizontally
-                                ctx.fillText(char, 0, 0);
-                            }
-                        } else {
-                            if (j === drop.trail.length - 1) {
-                                ctx.shadowBlur = 0;
-                                const gradient = ctx.createLinearGradient(
-                                    0,
-                                    5,
-                                    -2.07,
-                                    -21.21,
-                                );
-                                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                                gradient.addColorStop(
-                                    0,
-                                    `rgba(0,255,65,${fade.toFixed(2)})`,
-                                );
-                                ctx.fillStyle = gradient;
-
-                                ctx.scale(-1, 1);
-                                ctx.fillText(char, -fontSize / 2, 0);
-                            } else {
-                                ctx.scale(-1, 1);
-                                ctx.fillText(char, -fontSize / 2, 0);
-                            }
-                        }
-
-                        ctx.restore();
-                    }
+                    drawChars(ctx, drop);
 
                     drop.y += drop.speed;
 
@@ -375,7 +245,7 @@ export default function Background() {
                                 chars[Math.floor(Math.random() * chars.length)],
                         );
                     }
-                    setUniformPhase(false);
+                    uniformPhase = false;
                 }
 
                 animationFrameId = requestAnimationFrame(draw);
@@ -446,10 +316,9 @@ export default function Background() {
                 await loadSlim(engine);
             }).then(() => {
                 init.current = true;
-                console.log('test');
             });
         }
-    }, [init.current, canvasRef, particles, uniformPhase, anims]);
+    }, [init.current, canvasRef, particles.current, anims]);
 
     if (!init.current || !anims) {
         return null;
@@ -461,7 +330,7 @@ export default function Background() {
                 display: pathname.includes("other/legacy/") ? "none" : "block",
             }}
         >
-            {particles ? (
+            {particles.current ? (
                 <Particles id="tsparticles" url="/particles.json" />
             ) : (
                 <canvas

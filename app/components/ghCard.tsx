@@ -47,13 +47,12 @@ export default function GitHubCard({ url, position, ref }: GitHubCardProps) {
 
         const match = url.match(/github\.com\/([^\/]+)(?:\/([^\/]+))?/);
         if (!match) return;
-        const [, user, repo] = match;
+        const [user, repo] = match;
 
-        const devbuild =
+        if (
             process.env.NODE_ENV === "development" ||
-            process.env.NODE_ENV === "test";
-
-        if (devbuild) {
+            process.env.NODE_ENV === "test"
+        ) {
             fetch("/Tests/user.json")
                 .then((res) => res.json())
                 .then((res) => {

@@ -1,9 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
 import { useRef } from "react";
-import { useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -21,7 +19,7 @@ const Age = dynamic(() => import("age-ts"), {
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
     const isMobile: boolean = isMobileCheck();
-    const [isTilted, setIsTilted] = useState<boolean>(false);
+    const isTilted = useRef<boolean>(false);
     const chars: string =
         'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋';
     const content = useRef<HTMLElement>(null);
@@ -89,12 +87,12 @@ export default function Home() {
     const rotatedCheck: () => 0 | -10 | 10 = () => {
         const number: -10 | 10 = pick();
 
-        if (isTilted) {
-            setIsTilted(false);
+        if (isTilted.current) {
+            isTilted.current = false;
             return 0;
         }
 
-        setIsTilted(true);
+        isTilted.current = true;
         return number;
     };
 

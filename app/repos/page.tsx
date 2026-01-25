@@ -10,9 +10,36 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
-import { createRefSetter } from "components/utils";
-import { animateScrambleText } from "components/utils";
 import { useAnimations } from "components/settingsProvider";
+
+function animateScrambleText(
+    elements: HTMLElement[],
+    scrambleOptions: Partial<Record<string, unknown>> = {},
+) {
+    elements.forEach((el) => {
+        gsap.to(el, {
+            duration: gsap.utils.random(1.5, 4, 0.1),
+            scrambleText: {
+                text: el?.innerText as string,
+                chars: 'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋',
+                revealDelay: gsap.utils.random(0.1, 1),
+                tweenLength: true,
+                speed: gsap.utils.random(0.5, 1),
+                ...scrambleOptions,
+            },
+        });
+    });
+}
+
+function createRefSetter<ElementType extends HTMLElement>(
+    refArr: React.RefObject<ElementType[]>,
+) {
+    return (el: ElementType | null) => {
+        if (el && !refArr.current.includes(el)) {
+            refArr.current.push(el);
+        }
+    };
+}
 
 export default function Page() {
     const { anims, hasLoadedAnims } = useAnimations();

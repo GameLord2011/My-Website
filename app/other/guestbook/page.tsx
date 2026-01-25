@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { useLayoutEffect } from "react";
-import { startTransition } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { useMemo } from "react";
 import Win7Dialog from "components/win7dialog";
 import { Win7DialogHandle } from "components/win7dialog";
 import { Jacquard_24 } from "next/font/google";
@@ -51,6 +50,8 @@ interface GuestbookMessage {
     message: string;
 }
 
+type DialogState = "none" | "overflow" | "censor" | "blocked";
+
 const fonts = [
     meaCulpa.className,
     montez.className,
@@ -64,11 +65,9 @@ const fonts = [
     It's fine, everything's fine.
 */
 function MessageRow({ msg }: { msg: GuestbookMessage }) {
-    const [fontClass, setFontClass] = useState("");
-
-    useEffect(() => {
+    const fontClass = useMemo(() => {
         const randomIndex = Math.floor(Math.random() * fonts.length);
-        setFontClass(fonts[randomIndex]);
+        return fonts[randomIndex];
     }, []);
 
     return (
@@ -87,12 +86,13 @@ export default function Page() {
     const [messages, setMessages] = useState<GuestbookMessage[]>([]);
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
-    const [censorTries, setCensorTries] = useState(0);
+    let censorTries = useRef(0);
     const [blocked, setBlocked] = useState(false);
-    const [dun, setDun] = useState(false);
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [otherDialogMessage, setOtherDialogMessage] = useState(false);
-    const [overFlowMessage, setOverFlowMessage] = useState(false);
+    const dun =
+        typeof window !== "undefined" &&
+        (localStorage.getItem("hasSignedGuestbook") === "true" ||
+            localStorage.getItem("blocked") === "yes");
+    const [dialogState, setDialogState] = useState<DialogState>("none");
     const dialogRef = useRef<Win7DialogHandle>(null);
 
     useEffect(() => {
@@ -106,25 +106,13 @@ export default function Page() {
             .then(setMessages);
     }, []);
 
-    useLayoutEffect(() => {
-        startTransition(() => {
-            setDun(
-                localStorage.getItem("hasSignedGuestbook") === "true" ||
-                    localStorage.getItem("blocked") === "yes",
-            );
-        });
-    }, []);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name || !message || blocked || censorTries >= 3) return;
+        if (!name || !message || blocked || censorTries.current >= 3) return;
         name.replaceAll(/\‌+/g, ""); // These are needed.
         message.replaceAll(/\‌+/g, "");
         if (name.length > 100 || message.length > 100) {
-            setName("");
-            setMessage("");
-            setOverFlowMessage(true);
-            setDialogOpen(true);
+            setDialogState("overflow");
             dialogRef.current?.show();
             return;
         }
@@ -134,13 +122,12 @@ export default function Page() {
             body: JSON.stringify({ name, message }),
         });
         if (res.status === 422) {
-            const next = censorTries + 1;
-            setCensorTries(next);
-            if (next < 3) {
-                setDialogOpen(true);
+            censorTries.current++;
+            if (censorTries.current < 3) {
+                setDialogState("censor");
                 dialogRef.current?.show();
             } else {
-                setOtherDialogMessage(true);
+                setDialogState("blocked");
                 dialogRef.current?.show();
                 setBlocked(true);
                 localStorage.setItem("blocked", "yes");
@@ -193,7 +180,8 @@ export default function Page() {
                                             required
                                             className="jio2:text-base w-full rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
                                             disabled={
-                                                blocked || censorTries >= 3
+                                                blocked ||
+                                                censorTries.current >= 3
                                             }
                                         />
                                     </td>
@@ -208,14 +196,16 @@ export default function Page() {
                                                 required
                                                 className="jio2:text-base w-2/3 rounded border border-[#c2b280] bg-[#f5ecd7] px-2 py-1 text-lg text-xs text-[#4b3a1a] shadow-inner focus:ring-2 focus:ring-[#c2b280] focus:outline-none"
                                                 disabled={
-                                                    blocked || censorTries >= 3
+                                                    blocked ||
+                                                    censorTries.current >= 3
                                                 }
                                             />
                                             <button
                                                 type="submit"
                                                 className="w-1/3 rounded bg-[#c2b280] px-4 py-1 font-bold text-white shadow transition hover:bg-[#a68b5b]"
                                                 disabled={
-                                                    blocked || censorTries >= 3
+                                                    blocked ||
+                                                    censorTries.current >= 3
                                                 }
                                             >
                                                 Sign
@@ -227,22 +217,24 @@ export default function Page() {
                         </tbody>
                     </table>
                 </div>
-                {dialogOpen && (
-                    <Win7Dialog title="Censorship Warning" ref={dialogRef}>
-                        {overFlowMessage ? (
+                {dialogState !== "none" && (
+                    <Win7Dialog title="Warning" ref={dialogRef}>
+                        {dialogState === "overflow" && (
                             <p>
                                 You can't have a name or message &gt; 100
                                 characters.
                             </p>
-                        ) : !otherDialogMessage ? (
+                        )}
+                        {dialogState === "censor" && (
                             <p>
                                 Please dont use bad words! You have{" "}
-                                {3 - censorTries} tries left.
+                                {3 - censorTries.current} tries left.
                             </p>
-                        ) : (
+                        )}
+                        {dialogState === "blocked" && (
                             <p>
-                                You can't have a name or message &gt; 100
-                                characters.
+                                YOU HAVE ATTEMPTED TO CUSS ONE TOO MANY TIMES,
+                                THE BAN HAMMER HATH BEEN SWUNG!
                             </p>
                         )}
                     </Win7Dialog>

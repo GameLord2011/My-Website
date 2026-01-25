@@ -2,12 +2,21 @@
 
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
+import { useEffect, useRef } from "react";
 import GitHubHoverLink from "components/linkWrapper";
 import { useAnimations } from "components/settingsProvider";
 import Image from "next/image";
 
 export default function Shoutouts() {
     const { anims } = useAnimations();
+    const isDark = useRef(false);
+
+    useEffect(() => {
+        if (document.documentElement.classList.contains("dark")) {
+            isDark.current = true;
+            console.log(isDark);
+        }
+    });
 
     return (
         <VFXProvider>
@@ -46,27 +55,14 @@ export default function Shoutouts() {
                                 <>
                                     <Image
                                         loading="eager"
-                                        src="/react-vfx.png"
-                                        className="hidden overflow-clip dark:inline-block"
-                                        width={0}
+                                        src={
+                                            isDark.current
+                                                ? "/react-vfx.png"
+                                                : "/react-vfx-light.png"
+                                        }
+                                        className="inline-block h-[1.3rem] w-auto overflow-clip"
                                         height={0}
-                                        style={{
-                                            height: "1.3rem",
-                                            width: "auto",
-                                        }}
-                                        alt="React-Vfx"
-                                        aria-label="React-Vfx"
-                                    />
-                                    <Image
-                                        loading="eager"
-                                        src="/react-vfx-light.png"
-                                        className="inline-block overflow-clip dark:hidden"
                                         width={0}
-                                        height={0}
-                                        style={{
-                                            height: "1.3rem",
-                                            width: "auto",
-                                        }}
                                         alt="React-Vfx"
                                         aria-label="React-Vfx"
                                     />

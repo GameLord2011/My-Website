@@ -29,7 +29,6 @@ export default function Win7Dialog({
     const win7DialogRef = useRef<HTMLDialogElement>(null);
     const titleBarRef = useRef<HTMLDivElement>(null);
     const windowRef = useRef<HTMLDivElement>(null);
-    const maximizedRef = useRef(false);
 
     const barColorVar = barColor
         ? {
@@ -47,7 +46,7 @@ export default function Win7Dialog({
 
     const [maximized, setMaximized] = useState<boolean>(false);
 
-    const [loc, setLoc] = useState<{ x: string; y: string }>({
+    const loc = useRef<{ x: string; y: string }>({
         x: "0px",
         y: "0px",
     });
@@ -64,10 +63,6 @@ export default function Win7Dialog({
         show: showDialog,
         close: closeDialog,
     }));
-
-    useEffect(() => {
-        maximizedRef.current = maximized;
-    }, [maximized]);
 
     useEffect(() => {
         const dialogEl = win7DialogRef.current;
@@ -102,7 +97,7 @@ export default function Win7Dialog({
 
         const onMouseMove = (e: MouseEvent) => {
             if (!dragging) return;
-            if (maximizedRef.current) return;
+            if (maximized) return;
             e.preventDefault();
 
             /*
@@ -137,7 +132,7 @@ export default function Win7Dialog({
                 dialogEl.style.top = "0px";
             }
 
-            setLoc({ x: dialogEl.style.left, y: dialogEl.style.top });
+            loc.current = { x: dialogEl.style.left, y: dialogEl.style.top };
         };
 
         const stopDrag = () => {
@@ -213,9 +208,9 @@ export default function Win7Dialog({
                                         windowRef.current.style.height =
                                             "104px";
                                         windowRef.current.style.margin = "32px";
-                                        win7DialogRef.current.style.top = loc.y;
+                                        win7DialogRef.current.style.top = loc.current.y;
                                         win7DialogRef.current.style.left =
-                                            loc.x;
+                                            loc.current.x;
                                         windowRef.current.style.borderRadius =
                                             "";
                                         windowRef.current.style.margin = "0px";
@@ -228,7 +223,7 @@ export default function Win7Dialog({
                 </div>
                 <div className="window-body has-space relative box-border flex h-full flex-col justify-between overflow-clip select-none">
                     <div className="text-left select-none">{children}</div>
-                    {/* I would use a <form>, but that messes up the padding. */}
+                    {/* I would use a <form>, but that messes up the padding :P */}
                     <section className="relative flex flex-wrap content-baseline justify-end gap-[6px] self-end">
                         <button className="default" onClick={closeDialog}>
                             OK

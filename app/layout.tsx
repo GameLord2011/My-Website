@@ -83,7 +83,7 @@ export default function RootLayout({
                     // Letting a looks-o-mainack near dangerouslySetInnerHTML and suppressHydrationWarning
                     dangerouslySetInnerHTML={{
                         // prettier-ignore-next-line
-                        __html: `(function(){try{const a=localStorage.getItem("theme"),b=window.matchMedia("(prefers-color-scheme: dark)").matches,c=a||(b?"dark":"light");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");console.error(\`[GAMELORD'S THEMECODE]: error: \$\{e\}\`);}})();`,
+                        __html: '!function(){try{var a=localStorage.getItem("theme"),b=window.matchMedia("(prefers-color-scheme:dark)").matches,c=a||(b?"dark":"light");document.documentElement.classList.add(c)}catch(e){document.documentElement.classList.add("dark");console.error(`[GAMELORD\'S THEMECODE]: error: $\{e\}`)}}()',
                     }}
                 />
             </head>
