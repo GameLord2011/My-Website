@@ -207,7 +207,6 @@ export default function Background() {
                         continue;
                     }
 
-                    // Randomized phase
                     drop.frameCount++;
                     if (drop.frameCount > drop.changeRate) {
                         drop.trail.pop();

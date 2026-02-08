@@ -2,6 +2,7 @@ import styles from "styles/hamsterdance.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import HamsterDanceAudio from "components/hamsterDanceAudio";
+import React from "react";
 
 export default function Page() {
     return (
@@ -15,203 +16,87 @@ export default function Page() {
             </center>
             <dt>
                 <center>
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
+                    {/* Some recursive mapping stuff */}
+                    {[...Array(2)].map((_, i) => (
+                        // I did not know that you could assign keys to these.
+                        <React.Fragment key={i}>
+                            {[...Array(5)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={144}
+                                    height={48}
+                                    key={j}
+                                    src="/anin.gif"
+                                />
+                            ))}
+                            {[...Array(12)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={60}
+                                    height={70}
+                                    key={j}
+                                    src="/hamu.gif"
+                                />
+                            ))}
+                        </React.Fragment>
                     ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/hamu.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/gerbil.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(14)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={53}
-                            height={74}
-                            key={i}
-                            src="/hamwalk.gif"
-                        />
-                    ))}
-                    {[...Array(10)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/hamu.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/gerbil.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(14)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={53}
-                            height={74}
-                            key={i}
-                            src="/hamwalk.gif"
-                        />
-                    ))}
-                    {[...Array(10)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/hamu.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/gerbil.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(14)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={53}
-                            height={74}
-                            key={i}
-                            src="/hamwalk.gif"
-                        />
-                    ))}
-                    {[...Array(10)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/hamu.gif"
-                        />
-                    ))}
-                    {[...Array(5)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={144}
-                            height={48}
-                            key={i}
-                            src="/anin.gif"
-                        />
-                    ))}
-                    {[...Array(12)].map((_, i) => (
-                        <Image
-                            alt="dancing hamster(s)"
-                            width={60}
-                            height={70}
-                            key={i}
-                            src="/gerbil.gif"
-                        />
+                    {[...Array(3)].map((_, i) => (
+                        <React.Fragment key={i}>
+                            {[...Array(5)].map((_, j) => ( // j because i is passed down
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={144}
+                                    height={48}
+                                    key={j}
+                                    src="/anin.gif"
+                                />
+                            ))}
+                            {[...Array(14)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={53}
+                                    height={74}
+                                    key={j}
+                                    src="/hamwalk.gif"
+                                />
+                            ))}
+                            {[...Array(10)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={144}
+                                    height={48}
+                                    key={j}
+                                    src="/anin.gif"
+                                />
+                            ))}
+                            {[...Array(12)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={60}
+                                    height={70}
+                                    key={j}
+                                    src="/hamu.gif"
+                                />
+                            ))}
+                            {[...Array(5)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={144}
+                                    height={48}
+                                    key={j}
+                                    src="/anin.gif"
+                                />
+                            ))}
+                            {[...Array(12)].map((_, j) => (
+                                <Image
+                                    alt="dancing hamster(s)"
+                                    width={60}
+                                    height={70}
+                                    key={j}
+                                    src="/gerbil.gif"
+                                />
+                            ))}
+                        </React.Fragment>
                     ))}
                     {[...Array(5)].map((_, i) => (
                         <Image

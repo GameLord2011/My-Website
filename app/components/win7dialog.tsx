@@ -208,7 +208,8 @@ export default function Win7Dialog({
                                         windowRef.current.style.height =
                                             "104px";
                                         windowRef.current.style.margin = "32px";
-                                        win7DialogRef.current.style.top = loc.current.y;
+                                        win7DialogRef.current.style.top =
+                                            loc.current.y;
                                         win7DialogRef.current.style.left =
                                             loc.current.x;
                                         windowRef.current.style.borderRadius =
