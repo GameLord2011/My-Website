@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -10,11 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
 import Opening from "components/opening";
 import { useAnimations } from "components/settingsProvider";
-
-const Age = dynamic(() => import("age-ts"), {
-    loading: () => <span>Loading...</span>,
-    ssr: false,
-});
+import Age from "age-ts";
 
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
@@ -100,10 +95,9 @@ export default function Home() {
                 aria-label="Homepage main content"
                 id="mainContent"
             >
-                {isMobile && <br />}
                 <div className="jio2:w-full jio2:text-xs bz30:w-1/2 bz30:rounded-sm bz30:border-2 bz30:border-dotted bz30:border-Gween-300 bz30:text-xl bz30:dark:border-Gween-600 flex h-1/5 flex-row content-center justify-center self-center p-10 text-center transition-all duration-500 ease-in-out">
                     <p>
-                        I&#39;m {isMobile && <br />}
+                        I&#39;m{" "}
                         <b
                             ref={content}
                             className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"

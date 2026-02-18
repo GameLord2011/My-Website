@@ -2,7 +2,7 @@ import styles from "styles/hamsterdance.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import HamsterDanceAudio from "components/hamsterDanceAudio";
-import React from "react";
+import { Fragment } from "react";
 
 export default function Page() {
     return (
@@ -19,8 +19,8 @@ export default function Page() {
                     {/* Some recursive mapping stuff */}
                     {[...Array(2)].map((_, i) => (
                         // I did not know that you could assign keys to these.
-                        <React.Fragment key={i}>
-                            {[...Array(5)].map((_, j) => (
+                        <Fragment key={i}>
+                            {[...Array(5)].map((_, j) => (// j because i is passed down
                                 <Image
                                     alt="dancing hamster(s)"
                                     width={144}
@@ -38,11 +38,11 @@ export default function Page() {
                                     src="/hamu.gif"
                                 />
                             ))}
-                        </React.Fragment>
+                        </Fragment>
                     ))}
                     {[...Array(3)].map((_, i) => (
-                        <React.Fragment key={i}>
-                            {[...Array(5)].map((_, j) => ( // j because i is passed down
+                        <Fragment key={i}>
+                            {[...Array(5)].map((_, j) => (
                                 <Image
                                     alt="dancing hamster(s)"
                                     width={144}
@@ -96,7 +96,7 @@ export default function Page() {
                                     src="/gerbil.gif"
                                 />
                             ))}
-                        </React.Fragment>
+                        </Fragment>
                     ))}
                     {[...Array(5)].map((_, i) => (
                         <Image

@@ -15,13 +15,13 @@ type GitHubCardData = {
     followers?: string | number;
 };
 
-const githubCardCache = new Map<string, GitHubCardData>();
-
 type GitHubCardProps = {
     url: string;
     position: { top: number; left: number };
     ref?: React.Ref<HTMLDivElement>;
 };
+
+const githubCardCache = new Map<string, GitHubCardData>();
 
 export default function GitHubCard({ url, position, ref }: GitHubCardProps) {
     const [data, setData] = useState<GitHubCardData | null>(null);

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Age from "age-ts";
 
@@ -12,7 +10,7 @@ export default function About() {
                 <p className="jio2:w-1/2 w-full place-self-center">
                     I am a <Age /> year old developer. I mainly use windows. I
                     listen to music on spotify and I play a lot of{" "}
-                    <Link href="https://www.minecraft.net/">Minecraft</Link> (
+                    <Link href="https://minecraft.net/">Minecraft</Link> (
                     <Link href="https://namemc.com/profile/GameLord2011.1">
                         my profile
                     </Link>
@@ -21,13 +19,13 @@ export default function About() {
                         my Fortnite profile
                     </Link>
                     ). I also love the{" "}
-                    <Link href="https://www.marvel.com/">Marvel</Link> and{" "}
+                    <Link href="https://marvel.com/">Marvel</Link> and{" "}
                     <Link href="https://starwars.com/">Star Wars</Link> movies.
                     I am a big fan of{" "}
                     <Link href="https://en.wikipedia.org/wiki/Free_and_open-source_software">
                         F.O.S.S.
                     </Link>{" "}
-                    and <Link href="https://www.github.com/">GitHub</Link>! I
+                    and <Link href="https://github.com/">GitHub</Link>! I
                     use VSCode and Edit for programming.
                 </p>
             </div>

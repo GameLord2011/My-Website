@@ -109,6 +109,7 @@ function drawChars(
 export default function Background() {
     const pathname: string = usePathname();
     const { anims } = useAnimations();
+    let width: number, height: number;
 
     const init = useRef<boolean>(false);
     const particles = useRef(Math.random() < 0.5);
@@ -137,8 +138,8 @@ export default function Background() {
             const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
-            const width = window.innerWidth;
-            const height = window.innerHeight;
+            width = window.innerWidth;
+            height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
 
@@ -256,8 +257,8 @@ export default function Background() {
                 const canvas = canvasRef.current;
                 if (!canvas) return;
 
-                const width = window.innerWidth;
-                const height = window.innerHeight;
+                width = window.innerWidth;
+                height = window.innerHeight;
                 canvas.width = width;
                 canvas.height = height;
 
@@ -299,7 +300,7 @@ export default function Background() {
                 // Reset font size on canvas context
                 const ctx = canvas.getContext("2d");
                 if (ctx) {
-                    ctx.font = `${fontSize}px 'Courier New', monospace`;
+                    ctx.font = `${fontSize}px Cascadia Mono, monospace`;
                     ctx.shadowColor = "#00ff41";
                 }
             };

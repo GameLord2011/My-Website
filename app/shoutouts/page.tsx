@@ -2,7 +2,8 @@
 
 import { VFXProvider } from "react-vfx";
 import { VFXImg } from "react-vfx";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import GitHubHoverLink from "components/linkWrapper";
 import { useAnimations } from "components/settingsProvider";
 import Image from "next/image";
@@ -14,7 +15,6 @@ export default function Shoutouts() {
     useEffect(() => {
         if (document.documentElement.classList.contains("dark")) {
             isDark.current = true;
-            console.log(isDark);
         }
     });
 
