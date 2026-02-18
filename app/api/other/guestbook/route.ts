@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     if (!req.headers.has("isFromGmlrd")) return;
 
     try {
-        const { name, message } = await req.json();
+        const { name, message }: { name: string, message: string } = await req.json();
         const trimmedName = name?.trim();
         const trimmedMessage = message?.trim();
 
