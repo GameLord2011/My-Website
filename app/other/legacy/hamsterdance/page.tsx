@@ -4,6 +4,8 @@ import Link from "next/link";
 import HamsterDanceAudio from "components/hamsterDanceAudio";
 import { Fragment } from "react";
 
+export const bg_hammy = false;
+
 export default function Page() {
     return (
         <div className={styles.container}>
@@ -20,15 +22,20 @@ export default function Page() {
                     {[...Array(2)].map((_, i) => (
                         // I did not know that you could assign keys to these.
                         <Fragment key={i}>
-                            {[...Array(5)].map((_, j) => (// j because i is passed down
-                                <Image
-                                    alt="dancing hamster(s)"
-                                    width={144}
-                                    height={48}
-                                    key={j}
-                                    src="/anin.gif"
-                                />
-                            ))}
+                            {[...Array(5)].map(
+                                (
+                                    _,
+                                    j, // j because i is passed down
+                                ) => (
+                                    <Image
+                                        alt="dancing hamster(s)"
+                                        width={144}
+                                        height={48}
+                                        key={j}
+                                        src="/anin.gif"
+                                    />
+                                ),
+                            )}
                             {[...Array(12)].map((_, j) => (
                                 <Image
                                     alt="dancing hamster(s)"

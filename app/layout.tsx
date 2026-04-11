@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import SettingsProvider from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
+import { bg_hammy } from "@/app/other/legacy/hamsterdance/page";
 
 const cascadiaMono = Cascadia_Mono({
     subsets: ["latin"],
@@ -76,6 +77,8 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const bg = bg_hammy;
+
     return (
         <html suppressHydrationWarning lang="en">
             <head>
@@ -100,7 +103,7 @@ export default function RootLayout({
                     <SpeedInsights />
                     <SettingsProvider>
                         <Navbar />
-                        <Background />
+                        <Background hide={bg} />
                         {children}
                     </SettingsProvider>
                 </div>

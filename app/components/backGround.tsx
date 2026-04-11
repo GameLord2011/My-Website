@@ -2,13 +2,9 @@
 
 import { useEffect } from "react";
 import { useRef } from "react";
-import Particles from "@tsparticles/react";
-import { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
 import { shown } from "components/opening";
 import { useAnimations } from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
-import { usePathname } from "next/navigation";
 
 const cascadiaMono = Cascadia_Mono({
     subsets: ["latin"],
@@ -29,7 +25,7 @@ function drawChars(
         speed: number;
         trail: string[];
         frameCount: number;
-        changeRate: number;
+        scale: number;
     },
 ) {
     for (let j = 0; j < drop.trail.length; j++) {
@@ -44,7 +40,8 @@ function drawChars(
         ctx.shadowBlur = 8 * fade;
 
         ctx.save();
-        ctx.translate(drop.x, trailY);
+        ctx.scale(drop.scale, drop.scale);
+        ctx.translate(drop.x / drop.scale, trailY);
         if (char === "3") {
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
@@ -106,13 +103,11 @@ function drawChars(
     }
 }
 
-export default function Background() {
-    const pathname: string = usePathname();
+export default function Background({ hide }: { hide: boolean }) {
     const { anims } = useAnimations();
     let width: number, height: number;
 
     const init = useRef<boolean>(false);
-    const particles = useRef(Math.random() < 0.5);
     let uniformPhase = true;
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -123,14 +118,12 @@ export default function Background() {
             speed: number;
             trail: string[];
             frameCount: number;
-            changeRate: number;
+            scale: number;
         }[]
     >(null);
 
     useEffect(() => {
-        if (particles.current === null) return;
-
-        if (!particles.current && !shown) {
+        if (!shown) {
             init.current = true;
 
             const canvas = canvasRef.current;
@@ -148,8 +141,8 @@ export default function Background() {
                 '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
             // const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
             // const chars = "日" // *wide putin theme plays*
-            const trailLength = 10;
-            const openingSpeed = 3;
+            const trailLength = 20;
+            const openingSpeed = 4;
 
             if (!dropsRef.current || dropsRef.current.length !== numDrops) {
                 dropsRef.current = Array.from({ length: numDrops }, (_, i) => ({
@@ -161,7 +154,7 @@ export default function Background() {
                         () => chars[Math.floor(Math.random() * chars.length)],
                     ),
                     frameCount: 0,
-                    changeRate: Math.floor(Math.random() * 10 + 5),
+                    scale: 1,
                 }));
             }
 
@@ -184,19 +177,26 @@ export default function Background() {
                 for (let i = 0; i < dropsRef.current.length; i++) {
                     const drop = dropsRef.current[i];
 
+                    for (let j = 1; j < drop.trail.length; j++) {
+                        if (Math.random() < 0.003) {
+                            drop.trail[j] =
+                                chars[Math.floor(Math.random() * chars.length)];
+                        }
+                    }
+
                     if (uniformPhase) {
                         drop.frameCount++;
-                        if (drop.frameCount > drop.changeRate) {
+
+                        if (drop.frameCount == drop.speed) {
                             drop.trail.pop();
                             drop.trail.unshift(
                                 chars[Math.floor(Math.random() * chars.length)],
                             );
                             drop.frameCount = 0;
+                            drop.y += fontSize;
                         }
 
                         drawChars(ctx, drop);
-
-                        drop.y += drop.speed;
 
                         if (
                             drop.y <
@@ -209,28 +209,45 @@ export default function Background() {
                     }
 
                     drop.frameCount++;
-                    if (drop.frameCount > drop.changeRate) {
+                    if (drop.frameCount > drop.speed) {
                         drop.trail.pop();
                         drop.trail.unshift(
                             chars[Math.floor(Math.random() * chars.length)],
                         );
                         drop.frameCount = 0;
-                    }
-
-                    for (let j = 1; j < drop.trail.length; j++) {
-                        if (Math.random() < 0.05) {
-                            drop.trail[j] =
-                                chars[Math.floor(Math.random() * chars.length)];
-                        }
+                        drop.y += fontSize;
                     }
 
                     drawChars(ctx, drop);
 
-                    drop.y += drop.speed;
+                    switch (drop.scale < 1) {
+                        case true:
+                            if (
+                                drop.y * drop.scale >
+                                height + fontSize * trailLength
+                            ) {
+                                drop.y = Math.random() * -100;
+                                drop.speed = Math.random() * 4;
+                                drop.x = Math.floor(
+                                    Math.random() * window.innerWidth,
+                                );
+                                drop.scale = Math.random() * 1.4 + 0.3;
+                            }
+                            break;
 
-                    if (drop.y > height + fontSize * trailLength) {
-                        drop.y = Math.random() * -100;
-                        drop.speed = Math.random() * 1.5 + 0.5;
+                        case false:
+                            if (drop.y > height + fontSize * trailLength) {
+                                drop.y = Math.random() * -100;
+                                drop.speed = Math.random() * 4;
+                                drop.x = Math.floor(
+                                    Math.random() * window.innerWidth,
+                                );
+                                drop.scale = Math.random() * 1.4 + 0.3;
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
                 }
 
@@ -238,12 +255,13 @@ export default function Background() {
                     for (let i = 0; i < dropsRef.current.length; i++) {
                         const drop = dropsRef.current[i];
                         drop.y = Math.random() * -100;
-                        drop.speed = Math.random() * 1.5 + 0.5;
+                        drop.speed = Math.random() * 4;
                         drop.trail = Array.from(
                             { length: trailLength },
                             () =>
                                 chars[Math.floor(Math.random() * chars.length)],
                         );
+                        drop.scale = Math.random() * 1.4 + 0.3;
                     }
                     uniformPhase = false;
                 }
@@ -275,9 +293,7 @@ export default function Background() {
                         (_, i) => ({
                             x: i * fontSize,
                             y: Math.random() * height,
-                            speed: uniformPhase
-                                ? 2.5
-                                : Math.random() * 1.5 + 0.5,
+                            speed: uniformPhase ? 3 : Math.random() * 4,
                             trail: Array.from(
                                 { length: trailLength },
                                 () =>
@@ -286,7 +302,7 @@ export default function Background() {
                                     ],
                             ),
                             frameCount: 0,
-                            changeRate: Math.floor(Math.random() * 10 + 5),
+                            scale: Math.random(),
                         }),
                     );
                 } else {
@@ -311,33 +327,19 @@ export default function Background() {
                 cancelAnimationFrame(animationFrameId);
                 window.removeEventListener("resize", handleResize);
             };
-        } else {
-            initParticlesEngine(async (engine) => {
-                await loadSlim(engine);
-            }).then(() => {
-                init.current = true;
-            });
         }
-    }, [init.current, canvasRef, particles.current, anims]);
+    }, [init.current, canvasRef, anims]);
 
-    if (!init.current || !anims) {
+    if (!init.current || !anims || hide) {
         return null;
     }
 
     return (
-        <div
-            style={{
-                display: pathname.includes("other/legacy/") ? "none" : "block",
-            }}
-        >
-            {particles.current ? (
-                <Particles id="tsparticles" url="/particles.json" />
-            ) : (
-                <canvas
-                    ref={canvasRef}
-                    className={`pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen ${cascadiaMono.className}`}
-                />
-            )}
+        <div>
+            <canvas
+                ref={canvasRef}
+                className={`pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen ${cascadiaMono.className}`}
+            />
         </div>
     );
 }

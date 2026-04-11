@@ -25,8 +25,8 @@ export default function About() {
                     <Link href="https://en.wikipedia.org/wiki/Free_and_open-source_software">
                         F.O.S.S.
                     </Link>{" "}
-                    and <Link href="https://github.com/">GitHub</Link>! I
-                    use VSCode and Edit for programming.
+                    and <Link href="https://github.com/">GitHub</Link>! I use
+                    VSCode and Edit for programming.
                 </p>
             </div>
         </main>
