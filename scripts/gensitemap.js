@@ -45,11 +45,9 @@ function generateSitemapXml(routes) {
     )}</urlset>`;
 }
 
-async function generateSitemap() {
+(async () => {
     const routes = getRoutes(appDirectory);
     const sitemap = generateSitemapXml(routes);
     writeFileSync(SITEMAP_PATH, sitemap, "utf8");
     console.log("Sitemap generated successfully!");
-}
-
-generateSitemap().catch(console.error);
+})().catch(console.error);

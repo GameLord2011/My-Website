@@ -55,12 +55,17 @@ export default function Shoutouts() {
                                 <>
                                     <Image
                                         loading="eager"
-                                        src={
-                                            isDark.current
-                                                ? "/react-vfx.png"
-                                                : "/react-vfx-light.png"
-                                        }
-                                        className="inline-block h-[1.3rem] w-auto overflow-clip"
+                                        src="/react-vfx.png"
+                                        className="hidden h-[1.3rem] w-auto overflow-clip dark:inline-block"
+                                        height={0}
+                                        width={0}
+                                        alt="React-Vfx"
+                                        aria-label="React-Vfx"
+                                    />
+                                    <Image
+                                        loading="eager"
+                                        src="/react-vfx-light.png"
+                                        className="inline-block h-[1.3rem] w-auto overflow-clip dark:hidden"
                                         height={0}
                                         width={0}
                                         alt="React-Vfx"
