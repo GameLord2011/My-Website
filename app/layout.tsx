@@ -7,6 +7,7 @@ import SettingsProvider from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
 import { bg_hammy } from "@/app/other/legacy/hamsterdance/page";
+import Script from "next/script";
 
 const cascadiaMono = Cascadia_Mono({
     subsets: ["latin"],

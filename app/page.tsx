@@ -4,79 +4,154 @@ import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { isMobileCheck } from "components/isMobile";
 import Opening from "components/opening";
 import { useAnimations } from "components/settingsProvider";
 import Age from "age-ts";
+import { siC } from "simple-icons";
+import { siGsap } from "simple-icons";
+import { siTypescript } from "simple-icons";
+import { siDotenv } from "simple-icons";
+import { siJavascript } from "simple-icons";
+import { siDotnet } from "simple-icons";
+import { siRust } from "simple-icons";
+import { siReact } from "simple-icons";
+import { siNextdotjs } from "simple-icons";
+import { siPnpm } from "simple-icons";
+import { siModrinth } from "simple-icons";
+import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+
+import type { SimpleIcon } from "simple-icons";
 
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
     const isMobile: boolean = isMobileCheck();
     const isTilted = useRef<boolean>(false);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const chars: string =
         'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋';
     const content = useRef<HTMLElement>(null);
-    const liContent = useRef<HTMLLIElement[]>([]);
-    const timeline: gsap.core.Timeline = gsap.timeline();
-    const setLiRef = (el: HTMLLIElement | null): void => {
-        if (el && !liContent.current.includes(el)) {
-            liContent.current.push(el);
-        }
-    };
-    const pick: () => -10 | 10 = () => {
+    const timeline: gsap.core.Timeline = gsap.timeline({
+        defaults: { duration: 1, ease: "expo.inOut" },
+        repeat: -1,
+    });
+    const pick: () => -20 | 20 = () => {
         const rand: number = Math.random();
 
         if (rand > 0.5) {
-            return -10;
+            return -20;
         }
 
-        return 10;
+        return 20;
     };
 
+    const icons: SimpleIcon[] = [ // Changing this array requires a full refresh to take effect.
+        siC,
+        siGsap,
+        siTypescript,
+        siJavascript,
+        siDotenv,
+        siDotnet,
+        siRust,
+        siReact,
+        siNextdotjs,
+        siPnpm,
+        siModrinth,
+    ];
+
+    let ctx: CanvasRenderingContext2D | null;
+
     gsap.registerPlugin(useGSAP);
+    gsap.registerPlugin(MorphSVGPlugin);
     gsap.registerPlugin(ScrambleTextPlugin);
-    gsap.registerPlugin(SplitText);
 
     useGSAP((): void => {
         if (hasLoadedAnims && anims) {
             if (!content.current) return;
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            ctx = canvas.getContext("2d");
+            if (!ctx) return;
 
-            timeline.to(
-                content.current,
-                {
-                    duration: gsap.utils.random(1.5, 4, 0.1),
-                    scrambleText: {
-                        text: content?.current?.innerText as string,
-                        chars: chars,
-                        revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
-                        tweenLength: true,
-                        speed: (() => gsap.utils.random(0.5, 0.9))(),
-                    },
+            // useGSAP runs twice if navigating from another page, so this is a dirty hack to
+            // fix the fact that it was scaling to 25x :P
+            if (ctx.getTransform().a !== 5) {
+                ctx.scale(5 / ctx.getTransform().a, 5 / ctx.getTransform().a);
+            }
+
+            function draw(rawPath: number[][], _target: unknown) {
+                if (ctx == null) return;
+                ctx.fillStyle = document.documentElement.classList.contains("light") ? "#000" : "#fff";
+                console.log(ctx.fillStyle);
+
+                let l, segment, j, i;
+                ctx.clearRect(0, 0, 130, 130);
+                ctx.beginPath();
+                for (j = 0; j < rawPath.length; j++) {
+                    segment = rawPath[j];
+                    l = segment.length;
+                    ctx.moveTo(segment[0], segment[1]);
+                    for (i = 2; i < l; i += 6) {
+                        ctx.bezierCurveTo(
+                            segment[i],
+                            segment[i + 1],
+                            segment[i + 2],
+                            segment[i + 3],
+                            segment[i + 4],
+                            segment[i + 5],
+                        );
+                    }
+                    if (j == rawPath.length - 1) {
+                        ctx.closePath();
+                    }
+                }
+                ctx.fill("evenodd");
+            }
+
+            draw(MorphSVGPlugin.stringToRawPath(siC.path), null);
+
+            gsap.to(content.current, {
+                duration: gsap.utils.random(1.5, 4, 0.1),
+                scrambleText: {
+                    text: content?.current?.innerText as string,
+                    chars: chars,
+                    revealDelay: (() => gsap.utils.random(0.1, 0.9))(),
+                    tweenLength: true,
+                    speed: (() => gsap.utils.random(0.5, 0.9))(),
                 },
-                0,
-            );
-
-            liContent.current.forEach((el) => {
-                gsap.to(el, {
-                    duration: gsap.utils.random(1.5, 4, 0.1),
-                    scrambleText: {
-                        text: el?.innerText as string,
-                        chars: chars,
-                        revealDelay: (() => gsap.utils.random(0.1, 1))(),
-                        tweenLength: true,
-                        speed: (() => gsap.utils.random(0.5, 1))(),
-                    },
-                });
             });
+
+            for (let i = 0; i < icons.length; i++) {
+                let nextshape;
+
+                if (i == icons.length - 1) {
+                    nextshape = icons[0].slug;
+                } else {
+                    nextshape = icons[i + 1].slug;
+                }
+
+                timeline.to(
+                    `#${icons[i].slug}`,
+                    {
+                        morphSVG: {
+                            shape: `#${nextshape}`,
+                            render: draw,
+                            updateTarget: false,
+                        },
+                    },
+                    "+=1",
+                );
+
+                console.log(icons[i].slug);
+            }
         } else {
             return;
         }
-    }, [hasLoadedAnims, anims]);
+    }, [hasLoadedAnims, anims, content]);
 
-    const rotatedCheck: () => 0 | -10 | 10 = () => {
-        const number: -10 | 10 = pick();
+    const rotatedCheck: () => 0 | -20 | 20 = () => {
+        const number: -20 | 20 = pick();
 
         if (isTilted.current) {
             isTilted.current = false;
@@ -123,7 +198,7 @@ export default function Home() {
                                 if (isMobile && anims) {
                                     gsap.to(content.current, {
                                         rotation: rotatedCheck(),
-                                        duration: 0.05,
+                                        duration: 0.5,
                                         ease: "elastic.inOut",
                                     });
                                 }
@@ -146,22 +221,24 @@ export default function Home() {
                         />
                         .
                     </p>
-                    <p>I program in:</p>
-                    <ul className="list-inside">
-                        <li ref={setLiRef}>C</li>
-                        <li ref={setLiRef}>C++</li>
-                        <li ref={setLiRef}>C#</li>
-                        <li ref={setLiRef}>Javascript</li>
-                        <li ref={setLiRef}>Html</li>
-                        <li ref={setLiRef}>Css</li>
-                        <li ref={setLiRef}>Bash</li>
-                        <li ref={setLiRef}>Batch</li>
-                        <li ref={setLiRef}>Powershell Script</li>
-                        <li ref={setLiRef}>Python</li>
-                        <li ref={setLiRef}>Typescript</li>
-                        <li ref={setLiRef}>Json</li>
-                        <li ref={setLiRef}>Java</li>
-                    </ul>
+                    <p>I use:</p>
+                    <div className="pt-2">
+                        <svg className="h-0 w-0" height={0} width={0}>
+                            {icons.map((icn, i) => (
+                                <path id={icn.slug} d={icn.path} key={i} />
+                                /*
+                                    Even when it's not seen in the view, for some
+                                    reason gsap uses the dom api to get the thingie.
+                                */
+                            ))}
+                        </svg>
+                        <canvas
+                            ref={canvasRef}
+                            height={120}
+                            width={120}
+                            className="place-self-center"
+                        />
+                    </div>
                 </div>
             </main>
         </>

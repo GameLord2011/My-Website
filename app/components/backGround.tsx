@@ -34,6 +34,10 @@ function drawChars(
 
         const fade = 1 - j / drop.trail.length;
 
+        const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+        gradient.addColorStop(0, "rgba(0,0,0,0)");
+        gradient.addColorStop(1, `rgba(0,255,65,${fade.toFixed(2)})`);
+
         ctx.fillStyle =
             j === 0 ? "rgb(204,255,204)" : `rgba(0,255,65,${fade.toFixed(2)})`;
 
@@ -45,25 +49,19 @@ function drawChars(
         if (char === "3") {
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
-                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
-                gradient.addColorStop(0, "rgba(0,0,0,0)");
-                gradient.addColorStop(1, `rgba(0,255,65,${fade.toFixed(2)})`);
 
                 ctx.fillStyle = gradient;
                 ctx.scale(-1, 1);
                 ctx.rotate(Math.PI);
-                ctx.fillText(char, 0, fontSize / 2);
+                ctx.fillText(char, 0, 10);
             } else {
                 ctx.scale(-1, 1);
                 ctx.rotate(Math.PI);
-                ctx.fillText(char, 0, fontSize / 2);
+                ctx.fillText(char, 0, 10);
             }
         } else if (["Z", "7", "1"].includes(char)) {
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
-                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
-                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
                 ctx.fillStyle = gradient;
 
                 ctx.fillText(char, 0, 0);
@@ -73,13 +71,10 @@ function drawChars(
         } else if (["日", "二"].includes(char)) {
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
-                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
-                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
                 ctx.fillStyle = gradient;
 
                 ctx.scale(-0.5, 1); // shrink horizontally
-                ctx.fillText(char, -fontSize, 0);
+                ctx.fillText(char, -20, 0);
             } else {
                 ctx.scale(0.5, 1); // shrink horizontally
                 ctx.fillText(char, 0, 0);
@@ -87,16 +82,13 @@ function drawChars(
         } else {
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
-                const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
-                gradient.addColorStop(1, "rgba(0,0,0,0)");
-                gradient.addColorStop(0, `rgba(0,255,65,${fade.toFixed(2)})`);
                 ctx.fillStyle = gradient;
 
                 ctx.scale(-1, 1);
-                ctx.fillText(char, -fontSize / 2, 0);
+                ctx.fillText(char, -10, 0);
             } else {
                 ctx.scale(-1, 1);
-                ctx.fillText(char, -fontSize / 2, 0);
+                ctx.fillText(char, -10, 0);
             }
         }
         ctx.restore();
@@ -226,7 +218,7 @@ export default function Background({ hide }: { hide: boolean }) {
                                 drop.y * drop.scale >
                                 height + fontSize * trailLength
                             ) {
-                                drop.y = Math.random() * -100;
+                                drop.y = Math.floor(Math.random() * -100);
                                 drop.speed = Math.random() * 4;
                                 drop.x = Math.floor(
                                     Math.random() * window.innerWidth,
@@ -237,7 +229,7 @@ export default function Background({ hide }: { hide: boolean }) {
 
                         case false:
                             if (drop.y > height + fontSize * trailLength) {
-                                drop.y = Math.random() * -100;
+                                drop.y = Math.floor(Math.random() * -100);
                                 drop.speed = Math.random() * 4;
                                 drop.x = Math.floor(
                                     Math.random() * window.innerWidth,
