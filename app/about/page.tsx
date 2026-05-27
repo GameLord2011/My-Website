@@ -7,16 +7,16 @@ export default function About() {
             <div>
                 <h1 className="text-2xl">About Me</h1>
                 <h2 className="p-5 text-xl">Hi, I'm @GameLord2011</h2>
-                <p className="jio2:w-1/2 w-full place-self-center">
+                <p className="jio2:w-1/2 w-full translate-x-1/2">
                     I am a <Age /> year old developer. I mainly use windows. I
                     listen to music on spotify and I play a lot of{" "}
                     <Link href="https://minecraft.net/">Minecraft</Link> (
                     <Link href="https://namemc.com/profile/GameLord2011.1">
-                        my profile
+                        NameMC Page
                     </Link>
                     ) and <Link href="https://fortnite.com/">Fortnite</Link> (
                     <Link href="https://fortnitetracker.com/profile/all/TRGameLord2011">
-                        my Fortnite profile
+                        Fortnite Tracker Page
                     </Link>
                     ). I also love the{" "}
                     <Link href="https://marvel.com/">Marvel</Link> and{" "}
@@ -25,8 +25,7 @@ export default function About() {
                     <Link href="https://en.wikipedia.org/wiki/Free_and_open-source_software">
                         F.O.S.S.
                     </Link>{" "}
-                    and <Link href="https://github.com/">GitHub</Link>! I use
-                    VSCode and Edit for programming.
+                    and <Link href="https://github.com/">GitHub</Link>!
                 </p>
             </div>
         </main>

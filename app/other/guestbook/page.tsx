@@ -1,48 +1,12 @@
+// IIRC this was written by AI. There has been some amount of changes since.
+
 "use client";
 
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { useMemo } from "react";
 import Win7Dialog from "components/win7dialog";
 import { Win7DialogHandle } from "components/win7dialog";
-import { Jacquard_24 } from "next/font/google";
-import { Mea_Culpa } from "next/font/google";
-import { Montez } from "next/font/google";
-import { Splash } from "next/font/google";
-import { Permanent_Marker } from "next/font/google";
-import { Caveat } from "next/font/google";
-import { Sofia } from "next/font/google";
-
-const jacquard = Jacquard_24({
-    weight: "400",
-    subsets: ["latin"],
-    preload: true,
-});
-
-const meaCulpa = Mea_Culpa({
-    weight: "400",
-});
-
-const montez = Montez({
-    weight: "400",
-});
-
-const splash = Splash({
-    weight: "400",
-});
-
-const permanentMarker = Permanent_Marker({
-    weight: "400",
-});
-
-const caveat = Caveat({
-    weight: "400",
-});
-
-const sofia = Sofia({
-    weight: "400",
-});
 
 interface GuestbookMessage {
     id: number;
@@ -51,36 +15,6 @@ interface GuestbookMessage {
 }
 
 type DialogState = "none" | "overflow" | "censor" | "blocked";
-
-const fonts = [
-    meaCulpa.className,
-    montez.className,
-    splash.className,
-    permanentMarker.className,
-    caveat.className,
-    sofia.className,
-];
-
-/*
-    It's fine, everything's fine.
-*/
-function MessageRow({ msg }: { msg: GuestbookMessage }) {
-    const fontClass = useMemo(() => {
-        const randomIndex = Math.floor(Math.random() * fonts.length);
-        return fonts[randomIndex];
-    }, []);
-
-    return (
-        <tr className={`${fontClass} border-b border-[#c2b280]/40`}>
-            <td className="jio2:text-base w-1/3 wrap-anywhere text-[#7c5c2a]">
-                {msg.name}
-            </td>
-            <td className="jio2:text-base w-2/3 pl-4 wrap-anywhere text-[#4b3a1a]">
-                {msg.message}
-            </td>
-        </tr>
-    );
-}
 
 export default function Page() {
     const [messages, setMessages] = useState<GuestbookMessage[]>([]);
@@ -106,8 +40,7 @@ export default function Page() {
             .then(setMessages);
     }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = async () => {
         if (!name || !message || blocked || censorTries.current >= 3) return;
         name.replaceAll(/\‌+/g, ""); // These are needed.
         message.replaceAll(/\‌+/g, "");
@@ -145,7 +78,8 @@ export default function Page() {
     return (
         <>
             <main
-                className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}
+                // className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}
+                className="flex min-h-screen items-center justify-center bg-cover bg-center"
             >
                 <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7] px-1 shadow-2xl">
                     <h1 className="papyrus_font mb-4 text-center text-2xl font-bold text-[#7c5c2a] drop-shadow">
@@ -165,8 +99,15 @@ export default function Page() {
                         <tbody>
                             {Array.isArray(messages) &&
                                 messages.length > 0 &&
-                                messages.map((msg) => (
-                                    <MessageRow key={msg.id} msg={msg} />
+                                messages.map((msg, i) => (
+                                    <tr className="border-b border-[#c2b280]/40" key={i}>
+                                        <td className="jio2:text-base w-1/3 wrap-anywhere text-[#7c5c2a]">
+                                            {msg.name}
+                                        </td>
+                                        <td className="jio2:text-base w-2/3 pl-4 wrap-anywhere text-[#4b3a1a]">
+                                            {msg.message}
+                                        </td>
+                                    </tr>
                                 ))}
                             {!dun ? (
                                 <tr>

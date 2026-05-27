@@ -1,3 +1,5 @@
+// Full disclosure, I vibecoded most of the effect in 2023 or 4, and have been manually maintaining it ever since.
+
 "use client";
 
 import { useEffect } from "react";
@@ -13,7 +15,6 @@ const cascadiaMono = Cascadia_Mono({
     fallback: ["monospace"],
     variable: "--font-cascadia-mono",
 });
-
 export const dynamic = "force-dynamic";
 const fontSize = 20;
 
@@ -34,9 +35,12 @@ function drawChars(
 
         const fade = 1 - j / drop.trail.length;
 
-        const gradient = ctx.createLinearGradient(0, 5, -2.07, -21.21);
+        const gradient = ctx.createLinearGradient(-2.07, -21.21, 0, 5);
+        const updgrad = ctx.createLinearGradient(2.07, 21.21, 0, -5);
         gradient.addColorStop(0, "rgba(0,0,0,0)");
         gradient.addColorStop(1, `rgba(0,255,65,${fade.toFixed(2)})`);
+        updgrad.addColorStop(0, "rgba(0,0,0,0)");
+        updgrad.addColorStop(1, `rgba(0,255,65,${fade.toFixed(2)})`);
 
         ctx.fillStyle =
             j === 0 ? "rgb(204,255,204)" : `rgba(0,255,65,${fade.toFixed(2)})`;
@@ -50,9 +54,9 @@ function drawChars(
             if (j === drop.trail.length - 1) {
                 ctx.shadowBlur = 0;
 
-                ctx.fillStyle = gradient;
                 ctx.scale(-1, 1);
                 ctx.rotate(Math.PI);
+                ctx.fillStyle = updgrad;
                 ctx.fillText(char, 0, 10);
             } else {
                 ctx.scale(-1, 1);
@@ -133,6 +137,7 @@ export default function Background({ hide }: { hide: boolean }) {
                 '012345789Z:."=*+-¦|_ ╌ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ日二çｸ';
             // const chars = "137Z日二" //specially handled as per observations from https://scifi.stackexchange.com/questions/137575/is-there-a-list-of-the-symbols-shown-in-the-matrixthe-symbols-rain-how-many
             // const chars = "日" // *wide putin theme plays*
+            // const chars = "3"
             const trailLength = 20;
             const openingSpeed = 4;
 

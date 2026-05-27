@@ -1,3 +1,6 @@
+// Most of this (exempting the obscenity implementation and stupid things to prevent bots)
+// were written by AI.
+
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";

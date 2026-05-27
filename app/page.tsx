@@ -5,29 +5,25 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react";
-import { isMobileCheck } from "components/isMobile";
 import Opening from "components/opening";
 import { useAnimations } from "components/settingsProvider";
 import Age from "age-ts";
 import { siC } from "simple-icons";
+import { siNpm } from "simple-icons";
 import { siGsap } from "simple-icons";
 import { siTypescript } from "simple-icons";
-import { siDotenv } from "simple-icons";
 import { siJavascript } from "simple-icons";
 import { siDotnet } from "simple-icons";
 import { siRust } from "simple-icons";
 import { siReact } from "simple-icons";
 import { siNextdotjs } from "simple-icons";
-import { siPnpm } from "simple-icons";
-import { siModrinth } from "simple-icons";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 import type { SimpleIcon } from "simple-icons";
+import { Draggable } from "gsap/Draggable";
 
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
-    const isMobile: boolean = isMobileCheck();
-    const isTilted = useRef<boolean>(false);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const chars: string =
         'ʎﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789:・."=*+-</>¦|⁝⁞₩₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾⍉⍊⍋';
@@ -36,28 +32,18 @@ export default function Home() {
         defaults: { duration: 1, ease: "expo.inOut" },
         repeat: -1,
     });
-    const pick: () => -20 | 20 = () => {
-        const rand: number = Math.random();
 
-        if (rand > 0.5) {
-            return -20;
-        }
-
-        return 20;
-    };
-
-    const icons: SimpleIcon[] = [ // Changing this array requires a full refresh to take effect.
+    const icons: SimpleIcon[] = [
+        // Changing this array requires a full refresh to take effect.
         siC,
         siGsap,
         siTypescript,
         siJavascript,
-        siDotenv,
         siDotnet,
         siRust,
         siReact,
         siNextdotjs,
-        siPnpm,
-        siModrinth,
+        siNpm,
     ];
 
     let ctx: CanvasRenderingContext2D | null;
@@ -65,6 +51,7 @@ export default function Home() {
     gsap.registerPlugin(useGSAP);
     gsap.registerPlugin(MorphSVGPlugin);
     gsap.registerPlugin(ScrambleTextPlugin);
+    gsap.registerPlugin(Draggable);
 
     useGSAP((): void => {
         if (hasLoadedAnims && anims) {
@@ -82,8 +69,11 @@ export default function Home() {
 
             function draw(rawPath: number[][], _target: unknown) {
                 if (ctx == null) return;
-                ctx.fillStyle = document.documentElement.classList.contains("light") ? "#000" : "#fff";
-                console.log(ctx.fillStyle);
+                ctx.fillStyle = document.documentElement.classList.contains(
+                    "light",
+                )
+                    ? "#000"
+                    : "#fff";
 
                 let l, segment, j, i;
                 ctx.clearRect(0, 0, 130, 130);
@@ -122,6 +112,12 @@ export default function Home() {
                 },
             });
 
+            Draggable.create("#namePlate", {
+                type: "rotation",
+                inertia: true,
+                dragResistance: 0,
+            });
+
             for (let i = 0; i < icons.length; i++) {
                 let nextshape;
 
@@ -150,18 +146,6 @@ export default function Home() {
         }
     }, [hasLoadedAnims, anims, content]);
 
-    const rotatedCheck: () => 0 | -20 | 20 = () => {
-        const number: -20 | 20 = pick();
-
-        if (isTilted.current) {
-            isTilted.current = false;
-            return 0;
-        }
-
-        isTilted.current = true;
-        return number;
-    };
-
     return (
         <>
             <Opening />
@@ -176,33 +160,7 @@ export default function Home() {
                         <b
                             ref={content}
                             className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
-                            onMouseEnter={() => {
-                                if (anims) {
-                                    gsap.to(content.current, {
-                                        rotation: pick(),
-                                        duration: 0.5,
-                                        ease: "elastic.inOut",
-                                    });
-                                }
-                            }}
-                            onMouseLeave={() => {
-                                if (anims) {
-                                    gsap.to(content.current, {
-                                        rotation: 0,
-                                        duration: 0.5,
-                                        ease: "elastic.inOut",
-                                    });
-                                }
-                            }}
-                            onClick={() => {
-                                if (isMobile && anims) {
-                                    gsap.to(content.current, {
-                                        rotation: rotatedCheck(),
-                                        duration: 0.5,
-                                        ease: "elastic.inOut",
-                                    });
-                                }
-                            }}
+                            id="namePlate"
                         >
                             &#64;GameLord2011
                         </b>
@@ -222,23 +180,38 @@ export default function Home() {
                         .
                     </p>
                     <p>I use:</p>
-                    <div className="pt-2">
-                        <svg className="h-0 w-0" height={0} width={0}>
-                            {icons.map((icn, i) => (
-                                <path id={icn.slug} d={icn.path} key={i} />
-                                /*
-                                    Even when it's not seen in the view, for some
-                                    reason gsap uses the dom api to get the thingie.
-                                */
-                            ))}
-                        </svg>
-                        <canvas
-                            ref={canvasRef}
-                            height={120}
-                            width={120}
-                            className="place-self-center"
-                        />
-                    </div>
+                    {anims && (
+                        <div className="grid pt-2">
+                            <svg className="h-0 w-0" height={0} width={0}>
+                                {icons.map((icn, i) => (
+                                    <path id={icn.slug} d={icn.path} key={i} />
+                                    /*
+                                            Even when it's not seen in the view, for some
+                                            reason gsap uses the dom api to get the thingie.
+                                    */
+                                ))}
+                            </svg>
+                            <canvas
+                                ref={canvasRef}
+                                height={120}
+                                width={120}
+                                className="place-self-center"
+                            />
+                        </div>
+                    )}
+                    {!anims && (
+                        <ul className="list-inside">
+                            <li>C</li>
+                            <li>GSAP</li>
+                            <li>TypeScript</li>
+                            <li>JavaScript</li>
+                            <li>.Net</li>
+                            <li>Rust</li>
+                            <li>React</li>
+                            <li>Next.Js</li>
+                            <li>Npm</li>
+                        </ul>
+                    )}
                 </div>
             </main>
         </>

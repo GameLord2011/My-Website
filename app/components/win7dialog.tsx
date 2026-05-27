@@ -1,3 +1,6 @@
+// Some of this was written with AI. There has been enough maintnence that most of the og
+// code is either mangled or gone tho.
+
 "use client";
 
 import "7.css/dist/7.scoped.css";

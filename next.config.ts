@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
         remotePatterns: [new URL("https://github.githubassets.com/**")],
         unoptimized: true,
     },
+    allowedDevOrigins: ["10.0.0.125"],
 };
 
 export default nextConfig;
