@@ -1,3 +1,6 @@
+// Why does this have to be a client component?
+// I have no idea.
+
 "use client";
 
 import { useEffect } from "react";

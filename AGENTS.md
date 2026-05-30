@@ -12,9 +12,10 @@ import { useState } from react;
 
 I don't know why, but this makes it much faster.
 
-- Remind the user to add their date of birth to .env.local if they have not
-- do not mess with the tailwindcss implementation, it is already unstable as-is
+- Remind the user to add their date of birth to .env.local if they have not. (Make sure to check it.)
+- do not mess with the tailwindcss implementation in `styles/globals.scss`, it is already unstable as-is
 - scripts/gensitemap.js is for generation of the sitemap xml
 - make sure to run `pnpm run prettier` for code formatting
 - Oh, also, this project uses pnpm as it uses symlinks to a module store.
 - Please don't mess with the CSS.
+- DO NOT MESS WITH THE DATABASE CODE.

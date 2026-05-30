@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -20,7 +21,6 @@ import { siNextdotjs } from "simple-icons";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 import type { SimpleIcon } from "simple-icons";
-import { Draggable } from "gsap/Draggable";
 
 export default function Home() {
     const { anims, hasLoadedAnims } = useAnimations();
@@ -51,7 +51,6 @@ export default function Home() {
     gsap.registerPlugin(useGSAP);
     gsap.registerPlugin(MorphSVGPlugin);
     gsap.registerPlugin(ScrambleTextPlugin);
-    gsap.registerPlugin(Draggable);
 
     useGSAP((): void => {
         if (hasLoadedAnims && anims) {
@@ -112,12 +111,6 @@ export default function Home() {
                 },
             });
 
-            Draggable.create("#namePlate", {
-                type: "rotation",
-                inertia: true,
-                dragResistance: 0,
-            });
-
             for (let i = 0; i < icons.length; i++) {
                 let nextshape;
 
@@ -138,8 +131,6 @@ export default function Home() {
                     },
                     "+=1",
                 );
-
-                console.log(icons[i].slug);
             }
         } else {
             return;
@@ -160,7 +151,6 @@ export default function Home() {
                         <b
                             ref={content}
                             className="bg-Gween-300/30 dark:bg-Gween-300/50 relative z-0 inline-block rounded-md border-4 border-double border-white font-serif text-nowrap text-black saturate-200 transition-all duration-500 ease-in-out dark:border-black"
-                            id="namePlate"
                         >
                             &#64;GameLord2011
                         </b>
@@ -186,8 +176,8 @@ export default function Home() {
                                 {icons.map((icn, i) => (
                                     <path id={icn.slug} d={icn.path} key={i} />
                                     /*
-                                            Even when it's not seen in the view, for some
-                                            reason gsap uses the dom api to get the thingie.
+                                        Even when it's not seen in the view, for some
+                                        reason gsap uses the dom api to get the thingie.
                                     */
                                 ))}
                             </svg>
@@ -200,7 +190,7 @@ export default function Home() {
                         </div>
                     )}
                     {!anims && (
-                        <ul className="list-inside">
+                        <ul className="list-inside list-disc">
                             <li>C</li>
                             <li>GSAP</li>
                             <li>TypeScript</li>

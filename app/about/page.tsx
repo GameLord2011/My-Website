@@ -9,23 +9,16 @@ export default function About() {
                 <h2 className="p-5 text-xl">Hi, I'm @GameLord2011</h2>
                 <p className="jio2:w-1/2 w-full translate-x-1/2">
                     I am a <Age /> year old developer. I mainly use windows. I
-                    listen to music on spotify and I play a lot of{" "}
-                    <Link href="https://minecraft.net/">Minecraft</Link> (
-                    <Link href="https://namemc.com/profile/GameLord2011.1">
-                        NameMC Page
-                    </Link>
-                    ) and <Link href="https://fortnite.com/">Fortnite</Link> (
-                    <Link href="https://fortnitetracker.com/profile/all/TRGameLord2011">
-                        Fortnite Tracker Page
-                    </Link>
-                    ). I also love the{" "}
-                    <Link href="https://marvel.com/">Marvel</Link> and{" "}
-                    <Link href="https://starwars.com/">Star Wars</Link> movies.
-                    I am a big fan of{" "}
-                    <Link href="https://en.wikipedia.org/wiki/Free_and_open-source_software">
-                        F.O.S.S.
+                    do a lot of programming in{" "}
+                    <Link href={"https://www.typescriptlang.org/"}>
+                        TypeScript
                     </Link>{" "}
-                    and <Link href="https://github.com/">GitHub</Link>!
+                    and <Link href={"https://rust-lang.org/"}>Rust</Link>. I
+                    have done some programming in{" "}
+                    <Link href={"https://www.java.com/"}>Java</Link> for{" "}
+                    <Link href={"https://www.minecraft.net/"}>Minecraft</Link>{" "}
+                    using <Link href={"https://fabricmc.net/"}>Fabric</Link> and{" "}
+                    <Link href={"https://neoforged.net/"}>NeoForge</Link>.
                 </p>
             </div>
         </main>

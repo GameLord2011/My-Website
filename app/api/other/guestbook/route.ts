@@ -23,10 +23,11 @@ async function getCensorList() {
 
 export async function GET() {
     try {
-        const rows = await sql`
-            SELECT id, name, message FROM guestbook ORDER BY id DESC LIMIT 100
-        `;
-        return NextResponse.json(rows);
+        return NextResponse.json(
+            await sql`
+                SELECT id, name, message FROM guestbook ORDER BY id DESC LIMIT 100
+            `,
+        );
     } catch (err) {
         console.error("GET /guestbook error:", err);
         return NextResponse.json(

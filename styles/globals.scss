@@ -4,6 +4,7 @@
 
 @use "tailwindcss";
 
+// Because of how I implemented theme switcher.
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -164,8 +165,4 @@ body {
 
 li::marker {
     color: var(--foreground);
-}
-
-ul li::marker {
-    content: "\2623  ";
 }

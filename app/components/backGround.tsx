@@ -6,16 +6,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { shown } from "components/opening";
 import { useAnimations } from "components/settingsProvider";
-import { Cascadia_Mono } from "next/font/google";
 
-const cascadiaMono = Cascadia_Mono({
-    subsets: ["latin"],
-    weight: "700",
-    preload: true,
-    fallback: ["monospace"],
-    variable: "--font-cascadia-mono",
-});
-export const dynamic = "force-dynamic";
 const fontSize = 20;
 
 function drawChars(
@@ -155,7 +146,7 @@ export default function Background({ hide }: { hide: boolean }) {
                 }));
             }
 
-            ctx.font = `${fontSize}px 'Cascadia Mono', monospace`;
+            ctx.font = `${fontSize}px monospace`;
             ctx.shadowColor = "#00ff41";
 
             let animationFrameId: number;
@@ -269,7 +260,6 @@ export default function Background({ hide }: { hide: boolean }) {
             draw();
 
             const handleResize = () => {
-                const canvas = canvasRef.current;
                 if (!canvas) return;
 
                 width = window.innerWidth;
@@ -313,7 +303,7 @@ export default function Background({ hide }: { hide: boolean }) {
                 // Reset font size on canvas context
                 const ctx = canvas.getContext("2d");
                 if (ctx) {
-                    ctx.font = `${fontSize}px Cascadia Mono, monospace`;
+                    ctx.font = `${fontSize}px monospace`;
                     ctx.shadowColor = "#00ff41";
                 }
             };
@@ -335,7 +325,7 @@ export default function Background({ hide }: { hide: boolean }) {
         <div>
             <canvas
                 ref={canvasRef}
-                className={`pointer-events-none fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen ${cascadiaMono.className}`}
+                className="fixed inset-[0] z-[-100000000] inline-flex h-screen w-screen"
             />
         </div>
     );

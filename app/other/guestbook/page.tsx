@@ -32,15 +32,14 @@ export default function Page() {
     useEffect(() => {
         fetch("/api/other/guestbook", {
             method: "GET",
-            headers: {
-                isFromGmlrd: "yep",
-            },
         })
             .then((res) => res.json())
             .then(setMessages);
     }, []);
 
-    const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = async () => {
+    const handleSubmit: React.SubmitEventHandler<
+        HTMLFormElement
+    > = async () => {
         if (!name || !message || blocked || censorTries.current >= 3) return;
         name.replaceAll(/\‌+/g, ""); // These are needed.
         message.replaceAll(/\‌+/g, "");
@@ -77,10 +76,7 @@ export default function Page() {
 
     return (
         <>
-            <main
-                // className={`${jacquard.className} flex min-h-screen items-center justify-center bg-cover bg-center`}
-                className="flex min-h-screen items-center justify-center bg-cover bg-center"
-            >
+            <main className="flex min-h-screen items-center justify-center bg-cover bg-center">
                 <div className="jio2:border-8 jio2:p-8 relative w-full max-w-lg rounded-xl border-0 border-[#c2b280] bg-[#f5ecd7] px-1 shadow-2xl">
                     <h1 className="papyrus_font mb-4 text-center text-2xl font-bold text-[#7c5c2a] drop-shadow">
                         Guestbook
@@ -97,10 +93,12 @@ export default function Page() {
                             </tr>
                         </thead>
                         <tbody>
-                            {Array.isArray(messages) &&
-                                messages.length > 0 &&
+                            {Array.isArray(messages) && messages.length > 0 ? (
                                 messages.map((msg, i) => (
-                                    <tr className="border-b border-[#c2b280]/40" key={i}>
+                                    <tr
+                                        className="border-b border-[#c2b280]/40"
+                                        key={i}
+                                    >
                                         <td className="jio2:text-base w-1/3 wrap-anywhere text-[#7c5c2a]">
                                             {msg.name}
                                         </td>
@@ -108,7 +106,17 @@ export default function Page() {
                                             {msg.message}
                                         </td>
                                     </tr>
-                                ))}
+                                ))
+                            ) : (
+                                <tr>
+                                    <td className="jio2:text-base wrap-anywhere text-[#4b3a1a]">
+                                        Loading
+                                    </td>
+                                    <td className="jio2:text-base wrap-anywhere text-[#4b3a1a]">
+                                        messages.
+                                    </td>
+                                </tr>
+                            )}
                             {!dun ? (
                                 <tr>
                                     <td className="jio2:text-base relative w-1/3 text-base">

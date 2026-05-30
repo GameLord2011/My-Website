@@ -7,7 +7,6 @@ import SettingsProvider from "components/settingsProvider";
 import { Cascadia_Mono } from "next/font/google";
 import "styles/globals.scss";
 import { bg_hammy } from "@/app/other/legacy/hamsterdance/page";
-import Script from "next/script";
 
 const cascadiaMono = Cascadia_Mono({
     subsets: ["latin"],
@@ -106,15 +105,21 @@ export default function RootLayout({
                         */
                     }}
                 />
+                <noscript>
+                    <style>{`.yescript {display:none;}`}</style>
+                </noscript>
             </head>
             <body
                 className={`${cascadiaMono.className} antialiased transition-all duration-500 ease-in-out`}
             >
-                <noscript>
-                    <style>{`.yescript {display: none;}`}</style>
-                </noscript>
-                <noscript className="x-0 y-0 relative z-50 m-0 block h-full w-full p-0 text-center">
-                    Please enable JavaScript to run this site.
+                <noscript className="x-0 y-0 relative z-50 m-0 block h-screen w-screen p-0 text-center">
+                    <p className="relative top-1/2">
+                        Please enable JavaScript to run this site. Please visit{" "}
+                        <a href="https://www.enable-javascript.com/">
+                            www.enable-javascript.com
+                        </a>{" "}
+                        for more info.
+                    </p>
                 </noscript>
                 <div className="yescript">
                     <SpeedInsights />

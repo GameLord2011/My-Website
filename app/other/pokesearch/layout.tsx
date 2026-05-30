@@ -1,50 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://gamelord2011.vercel.app"),
-    alternates: {
-        canonical: "/",
-    },
     title: "@GameLord2011 | Pokesearch",
-    description: "@GameLord2011's repositories",
-    generator: "NextJS",
-    applicationName: "@GameLord2011's repositories",
-    creator: "@GameLord2011",
-    formatDetection: {
-        email: false,
-        address: false,
-        telephone: false,
-    },
-    authors: [
-        { name: "@GameLord2011", url: "https://github.com/gamelord2011" },
-    ],
+    description: "@GameLord2011's Pokemon search engine thing",
+    applicationName: "@GameLord2011's Pokemon search engine thing",
     openGraph: {
-        title: "@GameLord2011",
-        description: "@GameLord2011's site",
-        url: "https://gamelord2011.vercel.app/repos",
-        type: "website",
-        siteName: "@GameLord2011 | Repos",
-        images: [
-            {
-                url: "/opengraph.png",
-                width: 512,
-                height: 512,
-            },
-        ],
+        url: "https://gamelord2011.vercel.app/other/pokesearch/",
+        siteName: "@GameLord2011 | Pokesearch",
     },
     twitter: {
-        card: "summary_large_image",
-        site: "@GameLord2011 | Repos",
-        creator: "@GameLord2011",
-        images: [
-            {
-                url: "/opengraph.png",
-                width: 512,
-                height: 512,
-            },
-        ],
+        site: "@GameLord2011 | Pokesearch",
     },
-    manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({

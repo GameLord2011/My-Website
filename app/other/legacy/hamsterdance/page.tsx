@@ -7,6 +7,13 @@ import { Fragment } from "react";
 export const bg_hammy = false;
 
 export default function Page() {
+    /*
+        I know someone's going to look at this code and say "But why did you implement it
+        with recursive mapping? It's super inneficent and will slow down runtime" I counter
+        with "This file was over 1400 lines without the mapping, be thankful that it's only
+        100, also, this is pre-rendered on the server."
+    */
+
     return (
         <div className={styles.container}>
             <HamsterDanceAudio />
