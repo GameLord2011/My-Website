@@ -124,14 +124,14 @@ export default function RootLayout({
                 <div className="yescript">
                     <p id="i" suppressHydrationWarning>
                         Hey, I noticed you're using a hella old browser! This
-                        website extensively uses ECMA Script 5 features, and if
+                        website extensively uses ECMA Script 6 features, and if
                         you're seeing this that means that this browser is not
                         using those. Please, if possible, upgrade your browser.
                     </p>
                     <script
                         dangerouslySetInnerHTML={{
-                            // This is a check for pre-ecmascript 5 browsers.
-                            __html: 'const d=()=>{document.getElementById("i").hidden=true};d()',
+                            // This is a check for pre-ecmascript 6 browsers.
+                            __html: 'const d=()=>{document.getElementById("i").hidden=!0};d()',
                         }}
                     />
                     <SpeedInsights />
