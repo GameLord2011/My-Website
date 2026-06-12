@@ -125,8 +125,8 @@ export default function RootLayout({
                     <p id="i" suppressHydrationWarning>
                         Hey, I noticed you're using a hella old browser! This
                         website extensively uses ECMA Script 5 features, and if
-                        you're seeing this that means that you are not using those.
-                        Please, if possible, upgrade your browser.
+                        you're seeing this that means that this browser is not
+                        using those. Please, if possible, upgrade your browser.
                     </p>
                     <script
                         dangerouslySetInnerHTML={{
