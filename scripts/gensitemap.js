@@ -9,10 +9,6 @@ const appDirectory = resolve(__dirname, "../app");
 const SITEMAP_PATH = join(__dirname, "../public/sitemap.xml");
 const BASE_URL = "https://gamelord2011.vercel.app";
 
-function isDynamicRoute(routePath) {
-    return routePath.includes("[") && routePath.includes("]");
-}
-
 function formatRoutePath(relativePath) {
     let routePath = relativePath.replace(/\\/g, "/").replace("/page.tsx", "");
     if (routePath === "" || routePath === "/page.tsx") return "/";
@@ -29,7 +25,7 @@ function getRoutes(dir, basePath = "") {
             routes = routes.concat(getRoutes(fullPath, relativePath));
         } else if (entry.isFile() && entry.name === "page.tsx") {
             const routePath = formatRoutePath(relativePath);
-            if (isDynamicRoute(routePath)) continue;
+            if (routePath.includes("[") && routePath.includes("]")) continue;
             routes.push({ path: routePath });
             console.log("Found route:", routePath);
         }
